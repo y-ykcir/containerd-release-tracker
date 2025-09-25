@@ -1,0 +1,117 @@
+name: Containerd Release Tracker
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      include_prerelease:
+        description: 'Include prerelease versions'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      send_notification:
+        description: 'Send notification to Ruliu'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      generate_report:
+        description: 'Generate analysis report'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+  
+  # Scheduled trigger (daily at 9:00 AM UTC)
+  schedule:
+    - cron: '0 9 * * *'
+
+jobs:
+  analyze-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Set up environment variables
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        QIANFAN_TOKEN: ${{ secrets.QIANFAN_TOKEN }}
+        RULIU_ACCESS_TOKEN: ${{ secrets.RULIU_ACCESS_TOKEN }}
+        RULIU_TARGET_IDS: ${{ secrets.RULIU_TARGET_IDS }}
+      run: |
+        echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
+        echo "QIANFAN_TOKEN=${QIANFAN_TOKEN}" >> $GITHUB_ENV
+        echo "RULIU_ACCESS_TOKEN=${RULIU_ACCESS_TOKEN}" >> $GITHUB_ENV
+        echo "RULIU_TARGET_IDS=${RULIU_TARGET_IDS}" >> $GITHUB_ENV
+    
+    - name: Test connections
+      run: |
+        python main.py test
+    
+    - name: Run analysis (Manual trigger)
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        INCLUDE_PRERELEASE="${{ github.event.inputs.include_prerelease }}"
+        SEND_NOTIFICATION="${{ github.event.inputs.send_notification }}"
+        GENERATE_REPORT="${{ github.event.inputs.generate_report }}"
+        
+        CMD="python main.py analyze"
+        
+        if [ "$INCLUDE_PRERELEASE" = "true" ]; then
+          CMD="$CMD --include-prerelease"
+        fi
+        
+        if [ "$SEND_NOTIFICATION" = "false" ]; then
+          CMD="$CMD --no-notification"
+        fi
+        
+        if [ "$GENERATE_REPORT" = "false" ]; then
+          CMD="$CMD --no-report"
+        fi
+        
+        echo "Running: $CMD"
+        $CMD
+    
+    - name: Run analysis (Scheduled trigger)
+      if: github.event_name == 'schedule'
+      run: |
+        python main.py analyze
+    
+    - name: Upload reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: containerd-release-reports
+        path: reports/
+        retention-days: 30
+    
+    - name: Comment on failure
+      if: failure() && github.event_name == 'workflow_dispatch'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+          const message = `❌ Containerd Release Tracker analysis failed. Check the [workflow run](${runUrl}) for details.`;
+          
+          // If this was triggered from a PR comment, we could add a comment back
+          // For now, just log the failure
+          console.log(message);

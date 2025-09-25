@@ -1,0 +1,4 @@
+.augment
+.pytest_cache
+.env*
+DEPLOYMENT.md

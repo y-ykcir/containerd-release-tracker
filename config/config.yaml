@@ -1,0 +1,47 @@
+# Containerd Release Tracker Configuration
+
+# GitHub API Configuration
+github:
+  api_url: "https://api.github.com"
+  repo_owner: "containerd"
+  repo_name: "containerd"
+  # GitHub token for API access (optional, set via environment variable GITHUB_TOKEN)
+  
+# LLM Configuration (Baidu Qianfan)
+llm:
+  api_url: "https://qianfan.baidubce.com/v2/chat/completions"
+  model: "deepseek-r1"
+  # API token set via environment variable QIANFAN_TOKEN
+  max_tokens: 4000
+  temperature: 0.1
+
+# Notification Configuration (Ruliu)
+notification:
+  webhook_url: "http://apiin.im.baidu.com/api/msg/groupmsgsend"
+  # Access token set via environment variable RULIU_ACCESS_TOKEN
+  # Target user IDs set via environment variable RULIU_TARGET_IDS (JSON array format)
+
+# Analysis Configuration
+analysis:
+  # Maximum number of PR/issue links to follow for detailed analysis
+  max_links_to_analyze: 10
+  # Keywords to identify important bugfixes
+  important_keywords:
+    - "panic"
+    - "deadlock"
+    - "crash"
+    - "security"
+    - "vulnerability"
+    - "memory leak"
+    - "performance"
+    - "critical"
+    - "urgent"
+    - "regression"
+
+# Report Configuration
+reports:
+  output_dir: "reports"
+  template_dir: "templates"
+  include_full_analysis: true
+  include_pr_details: true
+  include_issue_details: true
