@@ -110,9 +110,41 @@ jobs:
       id: analysis
       run: |
         echo "🚀 Running containerd release analysis with prerelease support..."
-        python main.py analyze --include-prerelease
+        python main.py analyze --include-prerelease --no-notification
         echo "analysis_status=success" >> $GITHUB_OUTPUT
       continue-on-error: true
+
+    - name: Commit and push reports
+      if: steps.parse.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success'
+      run: |
+        # Configure git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+        # Add reports if any exist
+        if [ -d "reports" ] && [ "$(ls -A reports)" ]; then
+          git add reports/
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No new reports to commit"
+          else
+            # Get the latest report info for commit message
+            LATEST_REPORT=$(ls -t reports/*.md 2>/dev/null | head -1)
+            if [ -n "$LATEST_REPORT" ]; then
+              REPORT_NAME=$(basename "$LATEST_REPORT" .md)
+              git commit -m "Add containerd release analysis: $REPORT_NAME [triggered by /rerun]"
+            else
+              git commit -m "Add containerd release analysis reports [triggered by /rerun]"
+            fi
+
+            # Push changes
+            git push
+            echo "✅ Reports committed and pushed to repository"
+          fi
+        else
+          echo "No reports directory or files found"
+        fi
     
     - name: Comment on success
       if: steps.parse.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success'
@@ -121,11 +153,15 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-          const message = `✅ Containerd release analysis completed successfully! 
-          
-          📊 Analysis included prerelease versions and notification was sent to Ruliu.
-          📋 Check the [workflow run](${runUrl}) for detailed logs.`;
-          
+          const reportsUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/tree/main/reports`;
+          const message = `✅ Containerd release analysis completed successfully!
+
+          📊 Analysis included prerelease versions and reports have been generated.
+          📁 Check the [reports directory](${reportsUrl}) for detailed analysis files.
+          📋 View the [workflow run](${runUrl}) for execution logs.
+
+          🔕 Note: Ruliu notifications are temporarily disabled due to network restrictions.`;
+
           await github.rest.issues.createComment({
             owner: context.repo.owner,
             repo: context.repo.repo,

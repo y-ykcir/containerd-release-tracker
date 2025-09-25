@@ -1,4 +1,47 @@
+# Augment specific
 .augment
-.pytest_cache
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+
+# Environment variables
 .env*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific - keep reports directory but allow content
+# reports/ directory content should be committed
+!reports/
+!reports/*.md
+!reports/*.json
+
+# Documentation (if you want to exclude it)
 DEPLOYMENT.md
