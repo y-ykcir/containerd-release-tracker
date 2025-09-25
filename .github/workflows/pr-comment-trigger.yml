@@ -30,9 +30,11 @@ jobs:
           const rerunRegex = /^\/rerun\s*$/m;
           if (!rerunRegex.test(commentBody)) {
             console.log('Comment does not contain /rerun command');
-            return JSON.stringify({ shouldRun: false, reason: 'No /rerun command found' });
+            core.setOutput('should_run', 'false');
+            core.setOutput('reason', 'No /rerun command found');
+            return;
           }
-          
+
           // Check user permissions
           try {
             const permissionLevel = await github.rest.repos.getCollaboratorPermissionLevel({
@@ -40,35 +42,30 @@ jobs:
               repo: issue.repo,
               username: username,
             });
-            
+
             const allowedPermissions = ['admin', 'write'];
             if (allowedPermissions.includes(permissionLevel.data.permission)) {
               console.log(`User ${username} with permission ${permissionLevel.data.permission} has access to trigger analysis`);
-              return JSON.stringify({ shouldRun: true, reason: 'Permission granted' });
+              core.setOutput('should_run', 'true');
+              core.setOutput('reason', 'Permission granted');
             } else {
               console.log(`User ${username} with permission ${permissionLevel.data.permission} does not have access to trigger analysis`);
-              return JSON.stringify({ shouldRun: false, reason: 'Insufficient permissions' });
+              core.setOutput('should_run', 'false');
+              core.setOutput('reason', 'Insufficient permissions');
             }
           } catch (error) {
             console.log(`Error checking permissions for ${username}: ${error.message}`);
-            return JSON.stringify({ shouldRun: false, reason: 'Permission check failed' });
+            core.setOutput('should_run', 'false');
+            core.setOutput('reason', 'Permission check failed');
           }
     
-    - name: Parse check result
-      id: parse
+    - name: Log check result
       run: |
-        RESULT='${{ steps.check.outputs.result }}'
-        echo "Check result: $RESULT"
-        
-        # Parse JSON result
-        SHOULD_RUN=$(echo "$RESULT" | jq -r '.shouldRun')
-        REASON=$(echo "$RESULT" | jq -r '.reason')
-        
-        echo "should_run=$SHOULD_RUN" >> $GITHUB_OUTPUT
-        echo "reason=$REASON" >> $GITHUB_OUTPUT
+        echo "Should run: ${{ steps.check.outputs.should_run }}"
+        echo "Reason: ${{ steps.check.outputs.reason }}"
     
     - name: Add reaction to comment
-      if: steps.parse.outputs.should_run == 'true'
+      if: steps.check.outputs.should_run == 'true'
       uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -79,25 +76,25 @@ jobs:
             comment_id: context.payload.comment.id,
             content: 'rocket'
           });
-    
+
     - name: Checkout repository
-      if: steps.parse.outputs.should_run == 'true'
+      if: steps.check.outputs.should_run == 'true'
       uses: actions/checkout@v4
-    
+
     - name: Set up Python
-      if: steps.parse.outputs.should_run == 'true'
+      if: steps.check.outputs.should_run == 'true'
       uses: actions/setup-python@v5
       with:
         python-version: '3.9'
-    
+
     - name: Install dependencies
-      if: steps.parse.outputs.should_run == 'true'
+      if: steps.check.outputs.should_run == 'true'
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
+
     - name: Run containerd release analysis
-      if: steps.parse.outputs.should_run == 'true'
+      if: steps.check.outputs.should_run == 'true'
       id: analysis
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -112,7 +109,7 @@ jobs:
       continue-on-error: true
 
     - name: Get latest report info
-      if: steps.parse.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success'
+      if: steps.check.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success'
       id: report-info
       run: |
         if [ -d "reports" ] && [ "$(ls -A reports)" ]; then
@@ -136,7 +133,7 @@ jobs:
         fi
 
     - name: Create Pull Request
-      if: steps.parse.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success' && steps.report-info.outputs.has_reports == 'true'
+      if: steps.check.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success' && steps.report-info.outputs.has_reports == 'true'
       id: create-pr
       uses: peter-evans/create-pull-request@v6
       with:
@@ -171,7 +168,7 @@ jobs:
         draft: false
     
     - name: Comment on success
-      if: steps.parse.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success'
+      if: steps.check.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status == 'success'
       uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -201,9 +198,9 @@ jobs:
             issue_number: context.issue.number,
             body: message
           });
-    
+
     - name: Comment on failure
-      if: steps.parse.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status != 'success'
+      if: steps.check.outputs.should_run == 'true' && steps.analysis.outputs.analysis_status != 'success'
       uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -222,25 +219,25 @@ jobs:
           });
     
     - name: Comment on permission denied
-      if: steps.parse.outputs.should_run == 'false'
+      if: steps.check.outputs.should_run == 'false'
       uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const reason = '${{ steps.parse.outputs.reason }}';
+          const reason = '${{ steps.check.outputs.reason }}';
           let message;
-          
+
           if (reason === 'No /rerun command found') {
             // Don't comment for non-rerun comments
             return;
           } else if (reason === 'Insufficient permissions') {
             message = `🚫 Sorry, you don't have permission to trigger the containerd release analysis.
-            
+
             Only users with write or admin access can use the \`/rerun\` command.`;
           } else {
             message = `⚠️ Unable to process the /rerun command: ${reason}`;
           }
-          
+
           await github.rest.issues.createComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
