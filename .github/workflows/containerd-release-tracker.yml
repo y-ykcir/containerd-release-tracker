@@ -34,10 +34,6 @@ jobs:
         echo "RULIU_ACCESS_TOKEN=${RULIU_ACCESS_TOKEN}" >> $GITHUB_ENV
         echo "RULIU_TARGET_IDS=${RULIU_TARGET_IDS}" >> $GITHUB_ENV
     
-    - name: Test connections
-      run: |
-        python main.py test
-    
     - name: Run containerd release analysis
       run: |
         echo "🚀 Running containerd release analysis with prerelease support..."
