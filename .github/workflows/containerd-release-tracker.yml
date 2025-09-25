@@ -4,6 +4,10 @@ on:
   # Manual trigger
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   analyze-release:
     runs-on: ubuntu-latest
@@ -22,21 +26,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Set up environment variables
+    - name: Run containerd release analysis
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         QIANFAN_TOKEN: ${{ secrets.QIANFAN_TOKEN }}
         RULIU_ACCESS_TOKEN: ${{ secrets.RULIU_ACCESS_TOKEN }}
         RULIU_TARGET_IDS: ${{ secrets.RULIU_TARGET_IDS }}
       run: |
-        echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
-        echo "QIANFAN_TOKEN=${QIANFAN_TOKEN}" >> $GITHUB_ENV
-        echo "RULIU_ACCESS_TOKEN=${RULIU_ACCESS_TOKEN}" >> $GITHUB_ENV
-        echo "RULIU_TARGET_IDS=${RULIU_TARGET_IDS}" >> $GITHUB_ENV
-    
-    - name: Run containerd release analysis
-      run: |
         echo "🚀 Running containerd release analysis with prerelease support..."
+        mkdir -p reports
         python main.py analyze --include-prerelease --no-notification
     
     - name: Get latest report info
@@ -52,7 +50,7 @@ jobs:
             echo "has_reports=true" >> $GITHUB_OUTPUT
 
             # List all generated files
-            FILES=$(ls reports/*.md reports/*.json 2>/dev/null | sed 's|^|- `|; s|$|`|' | tr '\n' '\n')
+            FILES=$(ls reports/*.md reports/*.json 2>/dev/null | sed 's|^reports/|- `reports/|; s|$|`|')
             echo "files<<EOF" >> $GITHUB_OUTPUT
             echo "$FILES" >> $GITHUB_OUTPUT
             echo "EOF" >> $GITHUB_OUTPUT
