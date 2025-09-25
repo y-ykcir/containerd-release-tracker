@@ -1,0 +1,231 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-25T05:18:13.195702",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.2.0-beta.0",
+    "name": "containerd 2.2.0-beta.0",
+    "body": "Welcome to the v2.2.0-beta.0 release of containerd!\n*This is a pre-release of containerd*\n\nThe second minor release of containerd 2.x focuses on continued stability alongside\nnew features and improvements. This is the second time-based released for containerd.\n\nThis is a beta release and some functionality is still under development.\n\n### Highlights\n\n* Add support for back references in the garbage collector ([#12025](https://github.com/containerd/containerd/pull/12025))\n\n#### Go client\n\n* Update pkg/oci to use fs.FS interface and os.OpenRoot ([#12245](https://github.com/containerd/containerd/pull/12245))\n\n#### Image Distribution\n\n* Tar unpack progress through transfer service ([#11921](https://github.com/containerd/containerd/pull/11921))\n\n#### Image Storage\n\n* Add snapshotter and differ for block CIMs ([#12050](https://github.com/containerd/containerd/pull/12050))\n* Add tar index mode to erofs snapshotter ([#11919](https://github.com/containerd/containerd/pull/11919))\n\n#### Node Resource Interface (NRI)\n\n* Enable otel traces in NRI ([#12082](https://github.com/containerd/containerd/pull/12082))\n* Add WASM plugin support ([containerd/nri#121](https://github.com/containerd/nri/pull/121))\n\n#### Runtime\n\n* Fix pidfd leak in UnshareAfterEnterUserns ([#12167](https://github.com/containerd/containerd/pull/12167))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Phil Estes\n* Derek McGowan\n* Krisztian Litkey\n* Akihiro Suda\n* Maksym Pavlenko\n* Mike Brown\n* Wei Fu\n* Markus Lehtonen\n* Samuel Karp\n* Sebastiaan van Stijn\n* Austin Vazquez\n* ningmingxiao\n* yashsingh74\n* Jin Dong\n* Kirtana Ashok\n* Etienne Champetier\n* Rodrigo Campos\n* Akhil Mohan\n* Chris Henzie\n* Gao Xiang\n* Sascha Grunert\n* Aleksa Sarai\n* Eric Mountain\n* Keith Mattix II\n* Paweł Gronowski\n* Adrien Delorme\n* Enji Cooper\n* Kohei Tokunaga\n* Yang Yang\n* jokemanfire\n* Aadhar Agarwal\n* Amit Barve\n* Andrew Halaney\n* Antonio Ojea\n* Brian Goff\n* Chenyang Yan\n* Dawei Wei\n* Divya Rani\n* Fabiano Fidêncio\n* Henry Wang\n* Iceber Gu\n* Jared Ledvina\n* Jonathan Perkin\n* Jose Fernandez\n* Karl Baumgartner\n* Radostin Stoyanov\n* Rehan Khan\n* Ruidong Cao\n* Sameer\n* Swagat Bora\n* Sylvain MOUQUET\n* Tom Wieczorek\n* Tycho Andersen\n* Ubuntu\n* Wuyue (Tony) Sun\n* jinda.ljd\n* tanhuaan\n* zounengren\n\n### Dependency Changes\n\n* **dario.cat/mergo**                                                    v1.0.1 -> v1.0.2\n* **github.com/Microsoft/hcsshim**                                       v0.13.0-rc.3 -> v0.14.0-rc.1\n* **github.com/checkpoint-restore/checkpointctl**                        v1.3.0 -> v1.4.0\n* **github.com/containerd/console**                                      v1.0.4 -> v1.0.5\n* **github.com/containerd/go-cni**                                       v1.1.12 -> v1.1.13\n* **github.com/containerd/nri**                                          v0.8.0 -> v0.10.0\n* **github.com/containernetworking/plugins**                             v1.7.1 -> v1.8.0\n* **github.com/coreos/go-systemd/v22**                                   v22.5.0 -> v22.6.0\n* **github.com/cpuguy83/go-md2man/v2**                                   v2.0.5 -> v2.0.7\n* **github.com/emicklei/go-restful/v3**                                  v3.11.0 -> v3.13.0\n* **github.com/fxamacker/cbor/v2**                                       v2.7.0 -> v2.9.0\n* **github.com/go-jose/go-jose/v4**                                      v4.0.5 -> v4.1.1\n* **github.com/go-logr/logr**                                            v1.4.2 -> v1.4.3\n* **github.com/golang/groupcache**                                       41bb18bfe9da -> 2c02b8208cf8\n* **github.com/gorilla/websocket**                                       v1.5.0 -> e064f32e3674\n* **github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus**  v1.0.1 -> v1.1.0\n* **github.com/intel/goresctrl**                                         v0.8.0 -> v0.9.0\n* **github.com/knqyf263/go-plugin**                                      v0.9.0 **_new_**\n* **github.com/modern-go/reflect2**                                      v1.0.2 -> 35a7c28c31ee\n* **github.com/prometheus/client_golang**                                v1.22.0 -> v1.23.2\n* **github.com/prometheus/client_model**                                 v0.6.1 -> v0.6.2\n* **github.com/prometheus/common**                                       v0.62.0 -> v0.66.1\n* **github.com/prometheus/procfs**                                       v0.15.1 -> v0.16.1\n* **github.com/stretchr/testify**                                        v1.10.0 -> v1.11.1\n* **github.com/tchap/go-patricia/v2**                                    v2.3.2 -> v2.3.3\n* **github.com/tetratelabs/wazero**                                      v1.9.0 **_new_**\n* **github.com/urfave/cli/v2**                                           v2.27.6 -> v2.27.7\n* **github.com/vishvananda/netlink**                                     0e7078ed04c8 -> v1.3.1\n* **go.etcd.io/bbolt**                                                   v1.4.0 -> v1.4.3\n* **go.opentelemetry.io/otel**                                           v1.35.0 -> v1.37.0\n* **go.opentelemetry.io/otel/metric**                                    v1.35.0 -> v1.37.0\n* **go.opentelemetry.io/otel/sdk**                                       v1.35.0 -> v1.37.0\n* **go.opentelemetry.io/otel/trace**                                     v1.35.0 -> v1.37.0\n* **go.uber.org/goleak**                                                 v1.3.0 **_new_**\n* **go.yaml.in/yaml/v2**                                                 v2.4.2 **_new_**\n* **golang.org/x/crypto**                                                v0.36.0 -> v0.41.0\n* **golang.org/x/mod**                                                   v0.24.0 -> v0.28.0\n* **golang.org/x/net**                                                   v0.38.0 -> v0.43.0\n* **golang.org/x/oauth2**                                                v0.27.0 -> v0.30.0\n* **golang.org/x/sync**                                                  v0.14.0 -> v0.17.0\n* **golang.org/x/sys**                                                   v0.33.0 -> v0.36.0\n* **golang.org/x/term**                                                  v0.30.0 -> v0.34.0\n* **golang.org/x/text**                                                  v0.23.0 -> v0.28.0\n* **golang.org/x/time**                                                  v0.7.0 -> v0.9.0\n* **google.golang.org/genproto/googleapis/api**                          56aae31c358a -> 8d1bb00bc6a7\n* **google.golang.org/genproto/googleapis/rpc**                          56aae31c358a -> 8d1bb00bc6a7\n* **google.golang.org/grpc**                                             v1.72.0 -> v1.75.1\n* **google.golang.org/protobuf**                                         v1.36.6 -> v1.36.9\n* **k8s.io/api**                                                         v0.32.3 -> v0.34.1\n* **k8s.io/apimachinery**                                                v0.32.3 -> v0.34.1\n* **k8s.io/client-go**                                                   v0.32.3 -> v0.34.1\n* **k8s.io/cri-api**                                                     v0.32.3 -> v0.34.1\n* **k8s.io/utils**                                                       3ea5e8cea738 -> 4c0f3b243397\n* **sigs.k8s.io/json**                                                   9aa6b5e7a4b3 -> cfa47c3a1cc8\n* **sigs.k8s.io/randfill**                                               v1.0.0 **_new_**\n* **sigs.k8s.io/structured-merge-diff/v6**                               v6.3.0 **_new_**\n* **sigs.k8s.io/yaml**                                                   v1.4.0 -> v1.6.0\n\nPrevious release can be found at [v2.1.0](https://github.com/containerd/containerd/releases/tag/v2.1.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2025-09-18T17:05:00Z",
+    "prerelease": true,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.2.0-beta.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: HTTPSConnectionPool(host='qianfan.baidubce.com', port=443): Read timed out. (read timeout=60)",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 10,
+    "analyzed_issues": 1,
+    "important_items": 5
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#11919: Add tar index mode to erofs snapshotter",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12167: Fix pidfd leak in UnshareAfterEnterUserns",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#10607: internal/cri: simplify netns setup with pinned userns",
+      "reason": "Contains 'security'"
+    },
+    {
+      "type": "PR",
+      "title": "#10611: core/mount: use ptrace instead of go:linkname",
+      "reason": "Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#10363: [v2.0.0] No CNI info for pod sandbox after containerd restart when using user namespaces",
+      "reason": "Contains 'security'; Has label 'kind/bug'; Performance related"
+    }
+  ],
+  "prs": {
+    "121": {
+      "title": "Send \"live\" event only if past events requested",
+      "url": "https://github.com/containerd/containerd/pull/121",
+      "body": "This fixes a bug where the live events are recorded in the events log.\n\nSigned-off-by: Kenfe-Mickael Laventure mickael.laventure@gmail.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-02-29T19:19:02Z",
+      "merged_at": "2016-02-29T19:25:51Z",
+      "author": "mlaventure",
+      "labels": []
+    },
+    "11919": {
+      "title": "Add tar index mode to erofs snapshotter",
+      "url": "https://github.com/containerd/containerd/pull/11919",
+      "body": "## Summary\r\n\r\nThis PR introduces support for a new \"tar index\" mode in the EROFS snapshotter and differ. The tar index mode enables more efficient handling of OCI image layers by generating a tar index and appending the original tar content\r\n\r\n## Key Changes\r\n\r\n- **docs/snapshotters/erofs.md**: Added documentation for the new tar index mode, including configuration and usage details.\r\n- **internal/erofsutils/mount_linux.go**: \r\n  - Added `GenerateTarIndexAndAppendTar` to create a combined EROFS layer with a tar index and tar content.\r\n  - Added `SupportGenerateFromTar` to detect mkfs.erofs tar mode support.\r\n- **plugins/diff/erofs/differ_linux.go**: \r\n  - Refactored to support tar index mode via options.\r\n  - Differentiated between standard and tar index conversion logic.\r\n- **plugins/diff/erofs/plugin/plugin_linux.go**: \r\n  - Updated plugin config to support enabling tar index mode via TOML.\r\n  - Checked for mkfs.erofs tar mode support during plugin initialization.\r\n\r\n## Motivation\r\n\r\nThe tar index approach provides computational advantages, particularly when integrated with dm-verity. When testing with an Ubuntu 20.04 image layer, it takes about 6s to generate the merkle tree. We would like to offload this process to happen off the container host ahead of time and can be stored in the registry. We will also use the registry to store the root hash dm-verity signature, so we would need to fetch that anyway.\r\n \r\nSince we will be fetching the dm-verity merkle tree and the root hash signature from the registry, we can also fetch the tar index generated by erofs utils. While generating the tar index is much less computationally intensive, it would still result in unnecessary computation on per node basis.\r\n \r\nFinally, we would like to have a fallback mechanism that is consistent with the artifacts published to the registry (the merkle tree and the tar index). For that, we would like to not only have the logic in the differ to support appending tar to the tar index fetched from the registry, but also the ability to generate the tar index. This way, if the index is not available in the registry, it can be generated on the fly on the node.\r\n \r\nAs to why we prefer the erofs tar index over the erofs blob, is that since we have already pulled the layer tar, we don't want to repull the full erofs blob, which would be effectively similar in size to the tar layer. The tar index is much smaller.\r\n\r\nIn addition, we have a tar diffID for each layer according to the OCI image spec, so we don't need to reinvent a new way to verify the image layer content for confidential containers but just calculate the sha256 of the original tar data (because erofs could just reuse the tar data with 512-byte fs block size and build a minimal index for direct mounting of tar) out of the tar index mode in the guest and compare it with each diffID.\r\n\r\n## Configuration\r\n\r\nTo enable tar index mode, set `enable_tar_index = true` in the differ plugin configuration.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-05-30T18:17:02Z",
+      "merged_at": "2025-07-09T07:26:36Z",
+      "author": "aadhar-agarwal",
+      "labels": [
+        "impact/changelog",
+        "ok-to-test",
+        "size/L",
+        "area/storage"
+      ]
+    },
+    "11921": {
+      "title": "Tar unpack progress through transfer service",
+      "url": "https://github.com/containerd/containerd/pull/11921",
+      "body": "Adds unpack to transfer service.\r\n\r\nSee https://asciinema.org/a/6bJRKKKuqkAVV51GjN8SBSeYu\r\n\r\nA few notes...\r\n- we could order the progress lines better to make it easier to follow\r\n- remote differ will not have the progress but the proxy will at least send start and end progress",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-05-30T21:24:16Z",
+      "merged_at": "2025-09-17T05:01:14Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/distribution"
+      ]
+    },
+    "12025": {
+      "title": "Add support for back references in the garbage collector",
+      "url": "https://github.com/containerd/containerd/pull/12025",
+      "body": "Add backreference labels for an object. This allows objects to be referred to by objects which already exist without updating the labels on the original object or referred to by objects which do not yet exist. This is useful for ephemeral objects as well as objects with a 1 to many relationship.\r\n\r\nUse cases:\r\n- Dependent images (\"dangling\" images)\r\n- Ephemeral container objects (such as streams, networks, or mounts)\r\n- OCI referrers (1 to many relationship)\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-06-24T23:32:23Z",
+      "merged_at": "2025-08-22T05:20:56Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "size/L"
+      ]
+    },
+    "12050": {
+      "title": "Add snapshotter and differ for block CIMs",
+      "url": "https://github.com/containerd/containerd/pull/12050",
+      "body": "This commit adds the snapshotter and differ plugins that can be used to pull/import container images in the block CIM format. (More about block CIMs [here](https://github.com/microsoft/hcsshim/blob/main/pkg/cimfs/doc.go).)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-01T22:17:28Z",
+      "merged_at": "2025-07-31T20:50:31Z",
+      "author": "ambarve",
+      "labels": [
+        "impact/changelog",
+        "platform/windows",
+        "needs-ok-to-test",
+        "size/XXL",
+        "go",
+        "area/storage"
+      ]
+    },
+    "12082": {
+      "title": "Enable otel traces in NRI",
+      "url": "https://github.com/containerd/containerd/pull/12082",
+      "body": "Set up NRI for producing otel trace spans.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-10T18:42:30Z",
+      "merged_at": "2025-07-21T15:01:18Z",
+      "author": "klihub",
+      "labels": [
+        "impact/changelog",
+        "size/S",
+        "area/nri"
+      ]
+    },
+    "12167": {
+      "title": "Fix pidfd leak in UnshareAfterEnterUserns",
+      "url": "https://github.com/containerd/containerd/pull/12167",
+      "body": "UnshareAfterEnterUserns() creates a pidfd via os.StartProcess() with CLONE_PIDFD but fails to close the file descriptor in any code path, resulting in a file descriptor leak for every container that uses user namespace isolation.\r\n\r\nThe leak occurs because:\r\n- The pidfd is created when PidFD field is set in SysProcAttr\r\n- The defer block only calls PidfdSendSignal() and pidfdWaitid()\r\n- No code path calls unix.Close(pidfd) to release the file descriptor\r\n\r\nThis causes one pidfd leak per container launch when user namespace isolation is enabled (e.g., Kubernetes pods with hostUsers: false). In production environments with high container churn, this can exhaust the system's file descriptor limit.\r\n\r\nFix the leak by adding a defer statement immediately after process creation that ensures unix.Close(pidfd) is always called, regardless of which code path is taken. This guarantees cleanup even if the function returns early due to errors or lack of pidfd support.\r\n\r\nThis follows the same cleanup pattern already established in core/mount/mount_idmapped_utils_linux.go:getUsernsFD(), which properly closes its pidfd.\r\n\r\nCloses: #12166\r\nFixes: #10607",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-08-05T04:06:03Z",
+      "merged_at": "2025-08-07T04:54:21Z",
+      "author": "jfernandez",
+      "labels": [
+        "impact/changelog",
+        "kind/bug",
+        "ok-to-test",
+        "area/runtime",
+        "size/XS",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.1.x"
+      ]
+    },
+    "10607": {
+      "title": "internal/cri: simplify netns setup with pinned userns",
+      "url": "https://github.com/containerd/containerd/pull/10607",
+      "body": "## Motivation:\r\n\r\nFor pod-level user namespaces, it's impossible to force the container runtime\r\nto join an existing network namespace after creating a new user namespace.\r\n\r\nAccording to the capabilities section in [user_namespaces(7)][1], a network\r\nnamespace created by containerd is owned by the root user namespace. When the\r\ncontainer runtime (like runc or crun) creates a new user namespace, it becomes\r\na child of the root user namespace. Processes within this child user namespace\r\nare not permitted to access resources owned by the parent user namespace.\r\n\r\nIf the network namespace is not owned by the new user namespace, the container\r\nruntime will fail to mount /sys due to the [sysfs: Restrict mounting sysfs][2]\r\npatch.\r\n\r\nReferencing the [cap_capable][3] function in Linux, a process can access a\r\nresource if:\r\n\r\n* The resource is owned by the process's user namespace, and the process has\r\nthe required capability.\r\n\r\n* The resource is owned by a child of the process's user namespace, and the\r\nowner's user namespace was created by the process's UID.\r\n\r\nIn the context of pod-level user namespaces, the CRI plugin delegates the\r\ncreation of the network namespace to the container runtime when running the\r\npause container. After the pause container is initialized, the CRI plugin pins\r\nthe pause container's network namespace into `/run/netns` and then executes\r\nthe `CNI_ADD` command over it.\r\n\r\nHowever, if the pause container is terminated during the pinning process, the\r\nCRI plugin might encounter a PID cycle, leading to the `CNI_ADD` command\r\noperating on an incorrect network namespace.\r\n\r\nMoreover, rolling back the `RunPodSandbox` API is complex due to the delegation\r\nof network namespace creation. As highlighted in issue https://github.com/containerd/containerd/issues/10363, the CRI plugin\r\ncan lose IP information after a containerd restart, making it challenging to\r\nmaintain robustness in the RunPodSandbox API.\r\n\r\n## Solution:\r\n\r\nAllow containerd to create a new user namespace and then create the network\r\nnamespace within that user namespace. This way, the CRI plugin can force the\r\ncontainer runtime to join both the user namespace and the network namespace.\r\nSince the network namespace is owned by the newly created user namespace,\r\nthe container runtime will have the necessary permissions to mount `/sys` on\r\nthe container's root filesystem. As a result, delegation of network namespace\r\ncreation is no longer needed.\r\n\r\n## NOTE:\r\n\r\n* The CRI plugin does not need to pin the newly created user namespace as it\r\ndoes with the network namespace, because the kernel allows retrieving a user\r\nnamespace reference via [ioctl_ns(2)][4]. As a result, the podsandbox\r\nimplementation can obtain the user namespace using the `netnsPath` parameter.\r\n\r\n* The `pkg/sys` package continues to use go:linkname to handle fork operations\r\ndue to efficiency, despite being a notable member of [hall of shame][5]. If https://github.com/containerd/containerd/pull/10611 can work, I will switch it back.\r\n\r\n[1]: <https://man7.org/linux/man-pages/man7/user_namespaces.7.html>\r\n[2]: <https://github.com/torvalds/linux/commit/7dc5dbc879bd0779924b5132a48b731a0bc04a1e>\r\n[3]: <https://github.com/torvalds/linux/blob/2c85ebc57b3e1817b6ce1a6b703928e113a90442/security/commoncap.c#L65>\r\n[4]: <https://man7.org/linux/man-pages/man2/ioctl_ns.2.html>\r\n[5]: <https://github.com/golang/go/blob/release-branch.go1.23/src/runtime/proc.go#L4820>\r\n\r\nSigned-off-by: Wei Fu <fuweid89@gmail.com>\r\n\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-08-17T14:14:59Z",
+      "merged_at": "2024-09-19T01:46:30Z",
+      "author": "fuweid",
+      "labels": [
+        "area/cri",
+        "ok-to-test",
+        "size/XL"
+      ]
+    },
+    "10611": {
+      "title": "core/mount: use ptrace instead of go:linkname",
+      "url": "https://github.com/containerd/containerd/pull/10611",
+      "body": "The Go runtime has started to [lock down future uses of linkname][1] since\r\ngo1.23. In the go source code, containerd project has been marked in the\r\ncomment, [hall of shame][2]. Well, the go:linkname is used to fork no-op\r\nsubprocess efficiently. However, since that comment, I would like to use\r\nptrace and remove go:linkname in the whole repository.\r\n\r\nWith go1.22 `go:linkname`:\r\n\r\n```bash\r\n$ go test -bench=.  -benchmem ./ -exec sudo\r\ngoos: linux\r\ngoarch: amd64\r\npkg: github.com/containerd/containerd/v2/core/mount\r\ncpu: AMD Ryzen 7 5800H with Radeon Graphics\r\nBenchmarkBatchRunGetUsernsFD_Concurrent1-16                 2440            533320 ns/op            1145 B/op         43 allocs/op\r\nBenchmarkBatchRunGetUsernsFD_Concurrent10-16                 342           3661616 ns/op           11562 B/op        421 allocs/op\r\nPASS\r\nok      github.com/containerd/containerd/v2/core/mount  2.983s\r\n```\r\n\r\nWith go1.22 `ptrace`:\r\n\r\n```bash\r\n$ go test -bench=.  -benchmem ./ -exec sudo\r\ngoos: linux\r\ngoarch: amd64\r\npkg: github.com/containerd/containerd/v2/core/mount\r\ncpu: AMD Ryzen 7 5800H with Radeon Graphics\r\nBenchmarkBatchRunGetUsernsFD_Concurrent1-16                 1785            739557 ns/op            3948 B/op         68 allocs/op\r\nBenchmarkBatchRunGetUsernsFD_Concurrent10-16                 328           4024300 ns/op           39601 B/op        671 allocs/op\r\nPASS\r\nok      github.com/containerd/containerd/v2/core/mount  3.104s\r\n```\r\n\r\nWith go1.23 `ptrace`:\r\n\r\n```bash\r\n$ go test -bench=.  -benchmem ./ -exec sudo\r\ngoos: linux\r\ngoarch: amd64\r\npkg: github.com/containerd/containerd/v2/core/mount\r\ncpu: AMD Ryzen 7 5800H with Radeon Graphics\r\nBenchmarkBatchRunGetUsernsFD_Concurrent1-16                 1815            723252 ns/op            4220 B/op         69 allocs/op\r\nBenchmarkBatchRunGetUsernsFD_Concurrent10-16                 319           3957157 ns/op           42351 B/op        682 allocs/op\r\nPASS\r\nok      github.com/containerd/containerd/v2/core/mount  3.051s\r\n```\r\n\r\nDiff:\r\n\r\nThe `ptrace` is slower than `go:linkname` mode. However, it's accepctable.\r\n\r\n```\r\ngoos: linux\r\ngoarch: amd64\r\npkg: github.com/containerd/containerd/v2/core/mount\r\ncpu: AMD Ryzen 7 5800H with Radeon Graphics\r\n                                    │ go122-golinkname │             go122-ptrace              │             go123-ptrace              │\r\n                                    │      sec/op      │    sec/op     vs base                 │    sec/op     vs base                 │\r\nBatchRunGetUsernsFD_Concurrent1-16        533.3µ ± ∞ ¹   739.6µ ± ∞ ¹        ~ (p=1.000 n=1) ²   723.3µ ± ∞ ¹        ~ (p=1.000 n=1) ²\r\nBatchRunGetUsernsFD_Concurrent10-16       3.662m ± ∞ ¹   4.024m ± ∞ ¹        ~ (p=1.000 n=1) ²   3.957m ± ∞ ¹        ~ (p=1.000 n=1) ²\r\ngeomean                                   1.397m         1.725m        +23.45%                   1.692m        +21.06%\r\n¹ need >= 6 samples for confidence interval at level 0.95\r\n² need >= 4 samples to detect a difference at alpha level 0.05\r\n\r\n                                    │ go122-golinkname │              go122-ptrace               │              go123-ptrace               │\r\n                                    │       B/op       │     B/op       vs base                  │     B/op       vs base                  │\r\nBatchRunGetUsernsFD_Concurrent1-16       1.118Ki ± ∞ ¹   3.855Ki ± ∞ ¹         ~ (p=1.000 n=1) ²   4.121Ki ± ∞ ¹         ~ (p=1.000 n=1) ²\r\nBatchRunGetUsernsFD_Concurrent10-16      11.29Ki ± ∞ ¹   38.67Ki ± ∞ ¹         ~ (p=1.000 n=1) ²   41.36Ki ± ∞ ¹         ~ (p=1.000 n=1) ²\r\ngeomean                                  3.553Ki         12.21Ki        +243.65%                   13.06Ki        +267.43%\r\n¹ need >= 6 samples for confidence interval at level 0.95\r\n² need >= 4 samples to detect a difference at alpha level 0.05\r\n\r\n                                    │ go122-golinkname │             go122-ptrace             │             go123-ptrace             │\r\n                                    │    allocs/op     │  allocs/op   vs base                 │  allocs/op   vs base                 │\r\nBatchRunGetUsernsFD_Concurrent1-16         43.00 ± ∞ ¹   68.00 ± ∞ ¹        ~ (p=1.000 n=1) ²   69.00 ± ∞ ¹        ~ (p=1.000 n=1) ²\r\nBatchRunGetUsernsFD_Concurrent10-16        421.0 ± ∞ ¹   671.0 ± ∞ ¹        ~ (p=1.000 n=1) ²   682.0 ± ∞ ¹        ~ (p=1.000 n=1) ²\r\ngeomean                                    134.5         213.6        +58.76%                   216.9        +61.23%\r\n¹ need >= 6 samples for confidence interval at level 0.95\r\n² need >= 4 samples to detect a difference at alpha level 0.05\r\n```\r\n\r\n[1]: <https://github.com/golang/go/issues/67401>\r\n[2]: <https://github.com/golang/go/blob/release-branch.go1.23/src/runtime/proc.go#L4820>\r\n\r\nSigned-off-by: Wei Fu <fuweid89@gmail.com>\r\n\r\n-----------------------\r\n\r\nNOTE: \r\n\r\n## Highlight https://github.com/golang/go/issues/68984\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-08-19T14:02:35Z",
+      "merged_at": "2024-08-30T17:46:23Z",
+      "author": "fuweid",
+      "labels": [
+        "area/runtime",
+        "size/XL",
+        "go"
+      ]
+    },
+    "12245": {
+      "title": "Update pkg/oci to use fs.FS interface and os.OpenRoot",
+      "url": "https://github.com/containerd/containerd/pull/12245",
+      "body": "Switch to use fs.FS interface over directly requiring path string. This interface allows the filesystem operations to be further abstracted, then we can use any library which can return an FS from mounts without requiring an active mount. This is useful for supporting erofs on hosts which cannot directly mount it.\r\n\r\nUsing os.OpenRoot over continuity's RootPath is the preferred solution going forward as it is part of the standard library and able to leverage the openat syscall. Switching with this package first is the safest since it does not resolve user provided paths against the root.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-08-28T06:16:14Z",
+      "merged_at": "2025-08-30T02:18:18Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "go",
+        "area/client"
+      ]
+    }
+  },
+  "issues": {
+    "10363": {
+      "title": "[v2.0.0] No CNI info for pod sandbox after containerd restart when using user namespaces",
+      "url": "https://github.com/containerd/containerd/issues/10363",
+      "body": "### Description\r\n\r\nWe are using containerd (2.0) in combination with standalone kubelet and user namespaces.\r\n\r\nWhen we do a restart of containerd and after that a restart of kubelet, all pods are getting restarted as well. The reason for that is pretty much the same as described here: https://github.com/containerd/containerd/issues/7843\r\n\r\nAfter restarting containerd, all network informations for the pod sandbox are gone. As kubelet is checking these infos at start and can't find them, it will force a re-create of the sandbox.\r\n\r\nBut this happens only in combination with user namespaces. Without enabling user namespaces, everything works as expected.\r\n\r\n### Steps to reproduce the issue\r\n\r\n1. Start a pod with user namespaces enabled (hostUsers: false)\r\n2. Check network infos for this pod sandbox:\r\n  ```\r\n  $ crictl inspectp 6c870a8bb4747 | jq .status.network\r\n  {\r\n    \"additionalIps\": [\r\n      {\r\n        \"ip\": \"fd69:abcd:1234:4321::10\"\r\n      }\r\n    ],\r\n    \"ip\": \"172.16.0.10\"\r\n  }\r\n  ```\r\n3. Do a restart of containerd\r\n4. Check network infos again:\r\n  ```\r\n  $ crictl inspectp 6c870a8bb4747 | jq .status.network\r\n  {\r\n    \"additionalIps\": [],\r\n    \"ip\": \"\"\r\n  }\r\n  ```\r\n\r\n### Describe the results you received and expected\r\n\r\nResult I get:\r\n* After the containerd restart, all of the sandbox network infos are not available anymore:\r\n\r\nResult I expect:\r\n* All sandbox network infos are still available after containerd restart\r\n\r\n### What version of containerd are you using?\r\n\r\n`containerd github.com/containerd/containerd/v2 v2.0.0-rc.3 27de5fea738a38345aa1ac7569032261a6b1e562`\r\n\r\n### Any other relevant information\r\n\r\nTested with runc release candidate and latest crun:\r\n\r\n```\r\n$ ./runc --version\r\nrunc version 1.2.0-rc.1\r\ncommit: v1.2.0-rc.1-0-g275e6d85\r\nspec: 1.2.0\r\ngo: go1.20.14\r\nlibseccomp: 2.5.5\r\n\r\n$ ./crun --version\r\ncrun version 1.15\r\ncommit: e6eacaf4034e84185fd8780ac9262bbf57082278\r\nrundir: /run/crun\r\nspec: 1.0.0\r\n+SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +YAJL\r\n```\r\n\r\n### Show configuration if it is related to CRI plugin.\r\n\r\n```\r\nversion = 3\r\nroot = '/var/lib/containerd'\r\nstate = '/run/containerd'\r\ntemp = ''\r\nplugin_dir = ''\r\ndisabled_plugins = []\r\nrequired_plugins = []\r\noom_score = 0\r\nimports = []\r\n\r\n[grpc]\r\n  address = '/run/containerd/containerd.sock'\r\n  tcp_address = ''\r\n  tcp_tls_ca = ''\r\n  tcp_tls_cert = ''\r\n  tcp_tls_key = ''\r\n  uid = 0\r\n  gid = 999\r\n  max_recv_message_size = 16777216\r\n  max_send_message_size = 16777216\r\n\r\n[ttrpc]\r\n  address = ''\r\n  uid = 0\r\n  gid = 0\r\n\r\n[debug]\r\n  address = ''\r\n  uid = 0\r\n  gid = 0\r\n  level = ''\r\n  format = ''\r\n\r\n[metrics]\r\n  address = ''\r\n  grpc_histogram = false\r\n\r\n[plugins]\r\n  [plugins.'io.containerd.cri.v1.images']\r\n    snapshotter = 'overlayfs'\r\n    disable_snapshot_annotations = true\r\n    discard_unpacked_layers = false\r\n    max_concurrent_downloads = 3\r\n    image_pull_progress_timeout = '5m0s'\r\n    image_pull_with_sync_fs = false\r\n    stats_collect_period = 10\r\n\r\n    [plugins.'io.containerd.cri.v1.images'.pinned_images]\r\n      sandbox = 'registry.k8s.io/pause:3.10'\r\n\r\n    [plugins.'io.containerd.cri.v1.images'.registry]\r\n      config_path = ''\r\n\r\n    [plugins.'io.containerd.cri.v1.images'.image_decryption]\r\n      key_model = 'node'\r\n\r\n  [plugins.'io.containerd.cri.v1.runtime']\r\n    enable_selinux = false\r\n    selinux_category_range = 1024\r\n    max_container_log_line_size = 16384\r\n    disable_cgroup = false\r\n    disable_apparmor = false\r\n    restrict_oom_score_adj = false\r\n    disable_proc_mount = false\r\n    unset_seccomp_profile = ''\r\n    tolerate_missing_hugetlb_controller = true\r\n    disable_hugetlb_controller = true\r\n    device_ownership_from_security_context = false\r\n    ignore_image_defined_volumes = false\r\n    netns_mounts_under_state_dir = false\r\n    enable_unprivileged_ports = true\r\n    enable_unprivileged_icmp = true\r\n    enable_cdi = true\r\n    cdi_spec_dirs = ['/etc/cdi', '/var/run/cdi']\r\n    drain_exec_sync_io_timeout = '0s'\r\n    ignore_deprecation_warnings = []\r\n\r\n    [plugins.'io.containerd.cri.v1.runtime'.containerd]\r\n      default_runtime_name = 'crun'\r\n      ignore_blockio_not_enabled_errors = false\r\n      ignore_rdt_not_enabled_errors = false\r\n\r\n      [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes]\r\n        [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc]\r\n          runtime_type = 'io.containerd.runc.v2'\r\n          runtime_path = ''\r\n          pod_annotations = []\r\n          container_annotations = []\r\n          privileged_without_host_devices = false\r\n          privileged_without_host_devices_all_devices_allowed = false\r\n          base_runtime_spec = ''\r\n          cni_conf_dir = ''\r\n          cni_max_conf_num = 0\r\n          snapshotter = ''\r\n          sandboxer = 'podsandbox'\r\n          io_type = ''\r\n\r\n          [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc.options]\r\n            BinaryName = ''\r\n            CriuImagePath = ''\r\n            CriuWorkPath = ''\r\n            IoGid = 0\r\n            IoUid = 0\r\n            NoNewKeyring = false\r\n            Root = ''\r\n            ShimCgroup = ''\r\n            SystemdCgroup = true\r\n\r\n        [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.crun]\r\n          runtime_type = 'io.containerd.runc.v2'\r\n          runtime_path = ''\r\n          pod_annotations = []\r\n          container_annotations = []\r\n          privileged_without_host_devices = false\r\n          privileged_without_host_devices_all_devices_allowed = false\r\n          base_runtime_spec = ''\r\n          cni_conf_dir = ''\r\n          cni_max_conf_num = 0\r\n          snapshotter = ''\r\n          sandboxer = 'podsandbox'\r\n          io_type = ''\r\n\r\n          [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.crun.options]\r\n            BinaryName = '/opt/crun/crun'\r\n            CriuImagePath = ''\r\n            CriuWorkPath = ''\r\n            IoGid = 0\r\n            IoUid = 0\r\n            NoNewKeyring = false\r\n            Root = ''\r\n            ShimCgroup = ''\r\n            SystemdCgroup = true\r\n\r\n    [plugins.'io.containerd.cri.v1.runtime'.cni]\r\n      bin_dir = '/opt/cni/bin'\r\n      conf_dir = '/etc/cni/net.d'\r\n      max_conf_num = 1\r\n      setup_serially = false\r\n      conf_template = ''\r\n      ip_pref = ''\r\n      use_internal_loopback = false\r\n\r\n  [plugins.'io.containerd.gc.v1.scheduler']\r\n    pause_threshold = 0.02\r\n    deletion_threshold = 0\r\n    mutation_threshold = 100\r\n    schedule_delay = '0s'\r\n    startup_delay = '100ms'\r\n\r\n  [plugins.'io.containerd.grpc.v1.cri']\r\n    disable_tcp_service = true\r\n    stream_server_address = '127.0.0.1'\r\n    stream_server_port = '0'\r\n    stream_idle_timeout = '4h0m0s'\r\n    enable_tls_streaming = false\r\n\r\n    [plugins.'io.containerd.grpc.v1.cri'.x509_key_pair_streaming]\r\n      tls_cert_file = ''\r\n      tls_key_file = ''\r\n\r\n  [plugins.'io.containerd.image-verifier.v1.bindir']\r\n    bin_dir = '/opt/containerd/image-verifier/bin'\r\n    max_verifiers = 10\r\n    per_verifier_timeout = '10s'\r\n\r\n  [plugins.'io.containerd.internal.v1.opt']\r\n    path = '/opt/containerd'\r\n\r\n  [plugins.'io.containerd.internal.v1.tracing']\r\n\r\n  [plugins.'io.containerd.metadata.v1.bolt']\r\n    content_sharing_policy = 'shared'\r\n\r\n  [plugins.'io.containerd.monitor.container.v1.restart']\r\n    interval = '10s'\r\n\r\n  [plugins.'io.containerd.monitor.task.v1.cgroups']\r\n    no_prometheus = false\r\n\r\n  [plugins.'io.containerd.nri.v1.nri']\r\n    disable = true\r\n    socket_path = '/var/run/nri/nri.sock'\r\n    plugin_path = '/opt/nri/plugins'\r\n    plugin_config_path = '/etc/nri/conf.d'\r\n    plugin_registration_timeout = '5s'\r\n    plugin_request_timeout = '2s'\r\n    disable_connections = false\r\n\r\n  [plugins.'io.containerd.runtime.v2.task']\r\n    platforms = ['linux/amd64']\r\n\r\n  [plugins.'io.containerd.service.v1.diff-service']\r\n    default = ['walking']\r\n\r\n  [plugins.'io.containerd.service.v1.tasks-service']\r\n    blockio_config_file = ''\r\n    rdt_config_file = ''\r\n\r\n  [plugins.'io.containerd.shim.v1.manager']\r\n    env = []\r\n\r\n  [plugins.'io.containerd.snapshotter.v1.blockfile']\r\n    root_path = ''\r\n    scratch_file = ''\r\n    fs_type = ''\r\n    mount_options = []\r\n    recreate_scratch = false\r\n\r\n  [plugins.'io.containerd.snapshotter.v1.btrfs']\r\n    root_path = ''\r\n\r\n  [plugins.'io.containerd.snapshotter.v1.devmapper']\r\n    root_path = ''\r\n    pool_name = ''\r\n    base_image_size = ''\r\n    async_remove = false\r\n    discard_blocks = false\r\n    fs_type = ''\r\n    fs_options = ''\r\n\r\n  [plugins.'io.containerd.snapshotter.v1.native']\r\n    root_path = ''\r\n\r\n  [plugins.'io.containerd.snapshotter.v1.overlayfs']\r\n    root_path = ''\r\n    upperdir_label = false\r\n    sync_remove = false\r\n    slow_chown = false\r\n    mount_options = []\r\n\r\n  [plugins.'io.containerd.tracing.processor.v1.otlp']\r\n\r\n  [plugins.'io.containerd.transfer.v1.local']\r\n    max_concurrent_downloads = 3\r\n    max_concurrent_uploaded_layers = 3\r\n    config_path = ''\r\n\r\n[cgroup]\r\n  path = ''\r\n\r\n[timeouts]\r\n  'io.containerd.timeout.bolt.open' = '0s'\r\n  'io.containerd.timeout.metrics.shimstats' = '2s'\r\n  'io.containerd.timeout.shim.cleanup' = '5s'\r\n  'io.containerd.timeout.shim.load' = '5s'\r\n  'io.containerd.timeout.shim.shutdown' = '3s'\r\n  'io.containerd.timeout.task.state' = '2s'\r\n\r\n[stream_processors]\r\n  [stream_processors.'io.containerd.ocicrypt.decoder.v1.tar']\r\n    accepts = ['application/vnd.oci.image.layer.v1.tar+encrypted']\r\n    returns = 'application/vnd.oci.image.layer.v1.tar'\r\n    path = 'ctd-decoder'\r\n    args = ['--decryption-keys-path', '/etc/containerd/ocicrypt/keys']\r\n    env = ['OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf']\r\n\r\n  [stream_processors.'io.containerd.ocicrypt.decoder.v1.tar.gzip']\r\n    accepts = ['application/vnd.oci.image.layer.v1.tar+gzip+encrypted']\r\n    returns = 'application/vnd.oci.image.layer.v1.tar+gzip'\r\n    path = 'ctd-decoder'\r\n    args = ['--decryption-keys-path', '/etc/containerd/ocicrypt/keys']\r\n    env = ['OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf']\r\n```",
+      "state": "closed",
+      "created_at": "2024-06-19T13:47:35Z",
+      "closed_at": "2024-10-17T10:32:33Z",
+      "author": "mathias-ioki",
+      "labels": [
+        "kind/bug",
+        "Stale"
+      ]
+    }
+  }
+}
