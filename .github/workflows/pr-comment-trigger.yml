@@ -104,7 +104,7 @@ jobs:
       run: |
         echo "🚀 Running containerd release analysis with prerelease support..."
         mkdir -p reports
-        python main.py analyze --include-prerelease --no-notification
+        python main.py analyze --include-prerelease
         echo "analysis_status=success" >> $GITHUB_OUTPUT
       continue-on-error: true
 
@@ -179,7 +179,7 @@ jobs:
 
           let message = `✅ Containerd release analysis completed successfully!
 
-          📊 Analysis included prerelease versions and reports have been generated.`;
+          📊 Analysis included prerelease versions, reports have been generated, and notifications have been sent.`;
 
           if (prUrl && prNumber) {
             message += `\n📋 **Pull Request created**: [#${prNumber}](${prUrl})
@@ -189,8 +189,7 @@ jobs:
             message += `\n📁 Reports have been generated but no PR was created (possibly no new changes).`;
           }
 
-          message += `\n\n📋 View the [workflow run](${runUrl}) for execution logs.
-          🔕 Note: Ruliu notifications are temporarily disabled due to network restrictions.`;
+          message += `\n\n📋 View the [workflow run](${runUrl}) for execution logs.`;
 
           await github.rest.issues.createComment({
             owner: context.repo.owner,

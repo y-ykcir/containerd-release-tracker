@@ -26,7 +26,7 @@ class LLMConfig(BaseModel):
 
 class NotificationConfig(BaseModel):
     """Notification configuration."""
-    webhook_url: str = "http://apiin.im.baidu.com/api/msg/groupmsgsend"
+    webhook_url: str = "http://api.im.baidu.com/api/msg/groupmsgsend"
     access_token: str = Field(default="", description="Notification access token")
     target_ids: List[int] = Field(default_factory=list, description="Target user IDs")
 

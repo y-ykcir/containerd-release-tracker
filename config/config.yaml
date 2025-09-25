@@ -17,7 +17,7 @@ llm:
 
 # Notification Configuration (Ruliu)
 notification:
-  webhook_url: "http://apiin.im.baidu.com/api/msg/groupmsgsend"
+  webhook_url: "http://api.im.baidu.com/api/msg/groupmsgsend"
   # Access token set via environment variable RULIU_ACCESS_TOKEN
   # Target user IDs set via environment variable RULIU_TARGET_IDS (JSON array format)
 
