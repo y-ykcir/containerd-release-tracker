@@ -27,7 +27,7 @@ jobs:
           const commentBody = context.payload.comment.body.trim();
           
           // Check if comment contains /rerun command
-          const rerunRegex = /^\/rerun\s*$/m;
+          const rerunRegex = /^\/rerun(\s|$)/m;
           if (!rerunRegex.test(commentBody)) {
             console.log('Comment does not contain /rerun command');
             core.setOutput('should_run', 'false');
