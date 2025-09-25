@@ -147,7 +147,7 @@ class RuliuNotifier:
                 webhook_url,
                 headers={"Content-Type": "application/json"},
                 json=body_content,
-                timeout=30
+                timeout=60
             )
             response.raise_for_status()
             
