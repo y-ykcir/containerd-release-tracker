@@ -110,7 +110,7 @@ jobs:
       id: analysis
       run: |
         echo "🚀 Running containerd release analysis with prerelease support..."
-        python main.py notify-release --include-prerelease
+        python main.py analyze --include-prerelease
         echo "analysis_status=success" >> $GITHUB_OUTPUT
       continue-on-error: true
     

@@ -3,35 +3,6 @@ name: Containerd Release Tracker
 on:
   # Manual trigger
   workflow_dispatch:
-    inputs:
-      include_prerelease:
-        description: 'Include prerelease versions'
-        required: false
-        default: 'false'
-        type: choice
-        options:
-          - 'true'
-          - 'false'
-      send_notification:
-        description: 'Send notification to Ruliu'
-        required: false
-        default: 'true'
-        type: choice
-        options:
-          - 'true'
-          - 'false'
-      generate_report:
-        description: 'Generate analysis report'
-        required: false
-        default: 'true'
-        type: choice
-        options:
-          - 'true'
-          - 'false'
-  
-  # Scheduled trigger (daily at 9:00 AM UTC)
-  schedule:
-    - cron: '0 9 * * *'
 
 jobs:
   analyze-release:
@@ -67,34 +38,10 @@ jobs:
       run: |
         python main.py test
     
-    - name: Run analysis (Manual trigger)
-      if: github.event_name == 'workflow_dispatch'
+    - name: Run containerd release analysis
       run: |
-        INCLUDE_PRERELEASE="${{ github.event.inputs.include_prerelease }}"
-        SEND_NOTIFICATION="${{ github.event.inputs.send_notification }}"
-        GENERATE_REPORT="${{ github.event.inputs.generate_report }}"
-        
-        CMD="python main.py analyze"
-        
-        if [ "$INCLUDE_PRERELEASE" = "true" ]; then
-          CMD="$CMD --include-prerelease"
-        fi
-        
-        if [ "$SEND_NOTIFICATION" = "false" ]; then
-          CMD="$CMD --no-notification"
-        fi
-        
-        if [ "$GENERATE_REPORT" = "false" ]; then
-          CMD="$CMD --no-report"
-        fi
-        
-        echo "Running: $CMD"
-        $CMD
-    
-    - name: Run analysis (Scheduled trigger)
-      if: github.event_name == 'schedule'
-      run: |
-        python main.py analyze
+        echo "🚀 Running containerd release analysis with prerelease support..."
+        python main.py analyze --include-prerelease
     
     - name: Upload reports
       if: always()
@@ -104,14 +51,11 @@ jobs:
         path: reports/
         retention-days: 30
     
-    - name: Comment on failure
-      if: failure() && github.event_name == 'workflow_dispatch'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-          const message = `❌ Containerd Release Tracker analysis failed. Check the [workflow run](${runUrl}) for details.`;
-          
-          // If this was triggered from a PR comment, we could add a comment back
-          // For now, just log the failure
-          console.log(message);
+    - name: Log completion
+      if: always()
+      run: |
+        if [ "${{ job.status }}" = "success" ]; then
+          echo "✅ Containerd release analysis completed successfully!"
+        else
+          echo "❌ Containerd release analysis failed. Check the logs above for details."
+        fi
