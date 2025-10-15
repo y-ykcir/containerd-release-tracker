@@ -22,6 +22,7 @@ class PRInfo:
     merged_at: Optional[str]
     author: str
     labels: List[str]
+    cherry_pick_from: Optional[int] = None  # 原始 PR 编号（如果是 cherry-pick）
 
 
 @dataclass
@@ -118,6 +119,26 @@ class GitHubClient:
         
         return sorted(list(pr_numbers))
     
+    def _detect_cherry_pick(self, body: str) -> Optional[int]:
+        """检测 PR 是否是 cherry-pick，返回原始 PR 编号。"""
+        if not body:
+            return None
+        
+        # 匹配常见的 cherry-pick 模式
+        patterns = [
+            r'automated cherry-pick of #(\d+)',
+            r'cherry-pick of #(\d+)',
+            r'backport.*#(\d+)',
+            r'backport.*https://github\.com/[^/]+/[^/]+/pull/(\d+)',
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, body, re.IGNORECASE)
+            if match:
+                return int(match.group(1))
+        
+        return None
+    
     def get_pr_info(self, pr_number: int) -> Optional[PRInfo]:
         """Get detailed information about a pull request."""
         url = f"{self.config.api_url}/repos/{self.config.repo_owner}/{self.config.repo_name}/pulls/{pr_number}"
@@ -127,20 +148,29 @@ class GitHubClient:
             response.raise_for_status()
             data = response.json()
             
+            body = data['body'] or ''
+            # 检测是否是 cherry-pick
+            cherry_pick_from = self._detect_cherry_pick(body)
+            
             return PRInfo(
                 number=data['number'],
                 title=data['title'],
                 url=data['html_url'],
-                body=data['body'] or '',
+                body=body,
                 state=data['state'],
                 merged=data['merged'],
                 created_at=data['created_at'],
                 merged_at=data.get('merged_at'),
                 author=data['user']['login'],
-                labels=[label['name'] for label in data['labels']]
+                labels=[label['name'] for label in data['labels']],
+                cherry_pick_from=cherry_pick_from
             )
         except requests.RequestException as e:
-            print(f"Error fetching PR {pr_number}: {e}")
+            # 404 错误可能是正常的（PR 不存在或已删除），使用 debug 级别
+            if '404' in str(e):
+                print(f"⚠️  PR #{pr_number} not found (may have been deleted or is invalid)")
+            else:
+                print(f"❌ Error fetching PR {pr_number}: {e}")
             return None
     
     def extract_issue_numbers_from_text(self, text: str) -> List[int]:
@@ -183,5 +213,9 @@ class GitHubClient:
                 labels=[label['name'] for label in data['labels']]
             )
         except requests.RequestException as e:
-            print(f"Error fetching issue {issue_number}: {e}")
+            # 404 错误可能是正常的（Issue 不存在或已删除），使用 debug 级别
+            if '404' in str(e):
+                print(f"⚠️  Issue #{issue_number} not found (may have been deleted or is invalid)")
+            else:
+                print(f"❌ Error fetching issue {issue_number}: {e}")
             return None

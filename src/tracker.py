@@ -20,7 +20,7 @@ class ContainerdReleaseTracker:
         self.link_analyzer = LinkAnalyzer(self.github_client, config.analysis)
         self.llm_analyzer = LLMAnalyzer(config.llm)
         self.notifier = RuliuNotifier(config.notification)
-        self.report_generator = ReportGenerator(config.reports)
+        self.report_generator = ReportGenerator(config.reports, self.llm_analyzer)
     
     def run_analysis(self, send_notification: bool = True,
                     generate_report: bool = True, include_prerelease: bool = False) -> bool:

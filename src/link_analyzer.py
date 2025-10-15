@@ -57,6 +57,11 @@ class LinkAnalyzer:
         analyzed_prs.add(pr_number)
         result.analyzed_prs[pr_number] = pr_info
         
+        # 如果是 cherry-pick，同时获取原始 PR（用于更完整的分析）
+        if pr_info.cherry_pick_from and pr_info.cherry_pick_from not in analyzed_prs:
+            print(f"🍒 PR #{pr_number} is cherry-picked from #{pr_info.cherry_pick_from}, fetching original PR...")
+            self._analyze_pr_chain(pr_info.cherry_pick_from, result, analyzed_prs, analyzed_issues)
+        
         # Extract related PR numbers from PR body and title
         related_prs = self.github_client.extract_pr_numbers_from_text(
             f"{pr_info.title} {pr_info.body}"

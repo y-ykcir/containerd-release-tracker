@@ -1,21 +1,23 @@
 """Report generation module for creating detailed analysis reports."""
 
 import os
+import re
 import json
 from datetime import datetime
 from typing import Dict, Any
 from pathlib import Path
 
 from .config import ReportsConfig
-from .llm_analyzer import LLMAnalysisResult
+from .llm_analyzer import LLMAnalysisResult, LLMAnalyzer
 from .link_analyzer import AnalysisResult
 
 
 class ReportGenerator:
     """Generate detailed analysis reports."""
     
-    def __init__(self, config: ReportsConfig):
+    def __init__(self, config: ReportsConfig, llm_analyzer: LLMAnalyzer = None):
         self.config = config
+        self.llm_analyzer = llm_analyzer
         self._ensure_output_dir()
     
     def _ensure_output_dir(self):
@@ -27,7 +29,9 @@ class ReportGenerator:
         """Generate comprehensive analysis report."""
         release = analysis_result.release_info
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"containerd_release_{release.tag_name}_{timestamp}.md"
+        # 清理 tag_name，替换不安全的文件名字符
+        safe_tag_name = release.tag_name.replace('/', '_').replace('\\', '_')
+        filename = f"containerd_release_{safe_tag_name}_{timestamp}.md"
         filepath = os.path.join(self.config.output_dir, filename)
         
         # Generate report content
@@ -38,7 +42,7 @@ class ReportGenerator:
             f.write(content)
         
         # Also generate JSON report for programmatic access
-        json_filename = f"containerd_release_{release.tag_name}_{timestamp}.json"
+        json_filename = f"containerd_release_{safe_tag_name}_{timestamp}.json"
         json_filepath = os.path.join(self.config.output_dir, json_filename)
         self._generate_json_report(analysis_result, llm_result, json_filepath)
         
@@ -93,20 +97,11 @@ class ReportGenerator:
             md_parts.append("**🚨 安全建议：** 如果您的环境中使用了受影响的功能，建议优先升级到此版本。")
             md_parts.append("")
 
-        # Important Bugfixes with recommendations
+        # Important Bugfixes
         if llm_result.important_bugfixes:
             md_parts.append("## 🐛 重要问题修复")
             for i, bugfix in enumerate(llm_result.important_bugfixes, 1):
                 md_parts.append(f"{i}. {bugfix}")
-            md_parts.append("")
-
-            # Add bugfix recommendations
-            md_parts.append("### 💡 修复建议")
-            bugfix_recommendations = self._generate_bugfix_recommendations(
-                llm_result.important_bugfixes, analysis_result.important_items
-            )
-            for rec in bugfix_recommendations:
-                md_parts.append(f"- {rec}")
             md_parts.append("")
 
         # Breaking Changes
@@ -144,49 +139,58 @@ class ReportGenerator:
             for i, recommendation in enumerate(llm_result.recommendations, 1):
                 md_parts.append(f"{i}. {recommendation}")
             md_parts.append("")
-
-        # Important Items from Link Analysis
-        if analysis_result.important_items:
-            md_parts.append("## 🔍 重点关注项目")
-            for item_type, title, reason in analysis_result.important_items:
-                item_type_cn = "Pull Request" if item_type == "PR" else "问题"
-                md_parts.append(f"### {item_type_cn}: {title}")
-                md_parts.append(f"**关注原因：** {reason}")
-                md_parts.append("")
         
-        # Detailed PR Analysis (only for important PRs)
+        # 完整的 Release PR 列表（只显示 release notes 中直接提到的 PR）
         if self.config.include_pr_details and analysis_result.analyzed_prs:
-            important_prs = self._filter_important_prs(analysis_result.analyzed_prs, analysis_result.important_items)
-            if important_prs:
-                md_parts.append("## 📝 重要 Pull Request 详情")
-                for pr_number, pr_info in important_prs.items():
+            # 获取 release notes 中直接提到的 PR（这些是要展示的主要PR）
+            release_prs = self._get_release_mentioned_prs(analysis_result)
+            
+            if release_prs:
+                # 批量收集聚合内容并总结
+                pr_summaries = {}
+                if self.llm_analyzer:
+                    pr_aggregated_texts = {}
+                    for pr_number, pr_info in release_prs.items():
+                        # 收集PR的所有相关内容（包括Issues、原始PR、原始PR的Issues）
+                        aggregated_content = self._collect_pr_aggregated_content(
+                            pr_number, pr_info, analysis_result
+                        )
+                        pr_aggregated_texts[f"PR #{pr_number}"] = aggregated_content
+                    
+                    # 批量总结所有PR的聚合内容
+                    pr_summaries = self.llm_analyzer.batch_summarize_texts(
+                        pr_aggregated_texts, 
+                        item_type="PR完整内容（包含关联Issue和原始PR）", 
+                        max_length=400,  # 因为内容更丰富，增加总结长度
+                        min_length_to_summarize=50
+                    )
+                
+                md_parts.append("## 📋 Release 包含的变更")
+                md_parts.append("")
+                
+                for pr_number, pr_info in sorted(release_prs.items()):
                     md_parts.append(f"### PR #{pr_number}: {pr_info.title}")
                     md_parts.append(f"- **链接：** {pr_info.url}")
                     md_parts.append(f"- **状态：** {pr_info.state}")
                     md_parts.append(f"- **已合并：** {'是' if pr_info.merged else '否'}")
                     md_parts.append(f"- **作者：** {pr_info.author}")
+                    
                     if pr_info.labels:
                         md_parts.append(f"- **标签：** {', '.join(pr_info.labels)}")
-                    if pr_info.body:
-                        md_parts.append(f"- **描述：**")
-                        md_parts.append(f"  {pr_info.body[:300]}{'...' if len(pr_info.body) > 300 else ''}")
-                    md_parts.append("")
-
-        # Detailed Issue Analysis (only for important issues)
-        if self.config.include_issue_details and analysis_result.analyzed_issues:
-            important_issues = self._filter_important_issues(analysis_result.analyzed_issues, analysis_result.important_items)
-            if important_issues:
-                md_parts.append("## 🐞 重要问题详情")
-                for issue_number, issue_info in important_issues.items():
-                    md_parts.append(f"### Issue #{issue_number}: {issue_info.title}")
-                    md_parts.append(f"- **链接：** {issue_info.url}")
-                    md_parts.append(f"- **状态：** {issue_info.state}")
-                    md_parts.append(f"- **作者：** {issue_info.author}")
-                    if issue_info.labels:
-                        md_parts.append(f"- **标签：** {', '.join(issue_info.labels)}")
-                    if issue_info.body:
-                        md_parts.append(f"- **描述：**")
-                        md_parts.append(f"  {issue_info.body[:300]}{'...' if len(issue_info.body) > 300 else ''}")
+                    
+                    # 显示聚合后的智能总结
+                    md_parts.append(f"- **变更说明：**")
+                    summary_key = f"PR #{pr_number}"
+                    if summary_key in pr_summaries:
+                        # 使用聚合总结
+                        md_parts.append(f"  {pr_summaries[summary_key]}")
+                    else:
+                        # Fallback: 简单显示PR body
+                        if pr_info.body:
+                            md_parts.append(f"  {pr_info.body[:400]}{'...' if len(pr_info.body) > 400 else ''}")
+                        else:
+                            md_parts.append(f"  （无详细描述）")
+                    
                     md_parts.append("")
 
         # Footer
@@ -233,6 +237,105 @@ class ReportGenerator:
 
         return recommendations
 
+    def _collect_pr_aggregated_content(self, pr_number: int, pr_info: Any, 
+                                      analysis_result: AnalysisResult) -> str:
+        """收集PR的所有相关内容用于聚合总结。
+        
+        包括：PR本身、关联的Issue、cherry-pick的原始PR、原始PR的Issue
+        """
+        context_parts = []
+        
+        # 1. PR 基本信息
+        context_parts.append(f"**PR #{pr_number}:** {pr_info.title}")
+        if pr_info.labels:
+            context_parts.append(f"**标签:** {', '.join(pr_info.labels)}")
+        
+        # 2. 如果是 cherry-pick，获取原始 PR 信息
+        original_pr = None
+        if pr_info.cherry_pick_from:
+            original_pr = analysis_result.analyzed_prs.get(pr_info.cherry_pick_from)
+            if original_pr:
+                context_parts.append(f"\n**原始PR #{pr_info.cherry_pick_from}:** {original_pr.title}")
+                if original_pr.labels:
+                    context_parts.append(f"**原始PR标签:** {', '.join(original_pr.labels)}")
+                if original_pr.body:
+                    context_parts.append(f"**原始PR内容:** {original_pr.body}")
+        
+        # 3. PR 自身内容（如果不是cherry-pick或作为补充）
+        if pr_info.body:
+            if pr_info.cherry_pick_from:
+                context_parts.append(f"\n**Cherry-pick PR内容:** {pr_info.body}")
+            else:
+                context_parts.append(f"\n**PR内容:** {pr_info.body}")
+        
+        # 4. 收集当前PR关联的Issues
+        pr_related_issues = self._extract_related_issues(pr_info, analysis_result)
+        if pr_related_issues:
+            context_parts.append("\n**关联的Issues:**")
+            for issue_num, issue_info in pr_related_issues.items():
+                context_parts.append(f"- Issue #{issue_num}: {issue_info.title}")
+                if issue_info.body:
+                    context_parts.append(f"  {issue_info.body[:200]}...")
+        
+        # 5. 收集原始PR关联的Issues（如果是cherry-pick）
+        if original_pr:
+            original_pr_issues = self._extract_related_issues(original_pr, analysis_result)
+            if original_pr_issues:
+                context_parts.append("\n**原始PR关联的Issues:**")
+                for issue_num, issue_info in original_pr_issues.items():
+                    context_parts.append(f"- Issue #{issue_num}: {issue_info.title}")
+                    if issue_info.body:
+                        context_parts.append(f"  {issue_info.body[:200]}...")
+        
+        return "\n".join(context_parts)
+    
+    def _extract_related_issues(self, pr_info: Any, analysis_result: AnalysisResult) -> Dict[int, Any]:
+        """从PR中提取关联的Issues。"""
+        patterns = [
+            r'https://github\.com/[^/]+/[^/]+/issues/(\d+)',
+            r'(?:fixes?|closes?|resolves?)\s+#(\d+)',
+        ]
+        
+        issue_numbers = set()
+        text = f"{pr_info.title} {pr_info.body}"
+        
+        for pattern in patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            issue_numbers.update(int(match) for match in matches)
+        
+        # 返回已分析的Issues
+        related_issues = {}
+        for issue_num in issue_numbers:
+            if issue_num in analysis_result.analyzed_issues:
+                related_issues[issue_num] = analysis_result.analyzed_issues[issue_num]
+        
+        return related_issues
+    
+    def _get_release_mentioned_prs(self, analysis_result: AnalysisResult) -> dict:
+        """获取 release notes 中直接提到的 PR。
+        
+        这些是要在报告中展示的主要PR，不包括通过关联发现的PR。
+        """
+        # 从 release body 中提取所有直接提到的 PR 编号
+        release_body = analysis_result.release_info.body
+        patterns = [
+            r'https://github\.com/[^/]+/[^/]+/pull/(\d+)',
+            r'(?:^|\s)#(\d+)',  # #123 格式
+        ]
+        
+        mentioned_pr_numbers = set()
+        for pattern in patterns:
+            matches = re.findall(pattern, release_body, re.MULTILINE)
+            mentioned_pr_numbers.update(int(match) for match in matches)
+        
+        # 返回这些PR（如果已分析）
+        release_prs = {}
+        for pr_num in mentioned_pr_numbers:
+            if pr_num in analysis_result.analyzed_prs:
+                release_prs[pr_num] = analysis_result.analyzed_prs[pr_num]
+        
+        return release_prs
+    
     def _filter_important_prs(self, all_prs: dict, important_items: list) -> dict:
         """Filter PRs to only include important ones."""
         important_pr_numbers = set()
