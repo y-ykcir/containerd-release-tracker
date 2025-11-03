@@ -13,6 +13,10 @@ class GitHubConfig(BaseModel):
     repo_owner: str = "containerd"
     repo_name: str = "containerd"
     token: str = Field(default="", description="GitHub API token")
+    # HTTP connection pool settings for better performance
+    pool_connections: int = 10
+    pool_maxsize: int = 20
+    max_retries: int = 3
 
 
 class LLMConfig(BaseModel):

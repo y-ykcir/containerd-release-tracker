@@ -15,6 +15,12 @@ from .link_analyzer import AnalysisResult
 class ReportGenerator:
     """Generate detailed analysis reports."""
     
+    # Pre-compile regex patterns for better performance
+    _ISSUE_URL_PATTERN = re.compile(r'https://github\.com/[^/]+/[^/]+/issues/(\d+)')
+    _ISSUE_REF_PATTERN = re.compile(r'(?:fixes?|closes?|resolves?)\s+#(\d+)', re.IGNORECASE)
+    _PR_URL_PATTERN = re.compile(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)')
+    _PR_REF_PATTERN = re.compile(r'(?:^|\s)#(\d+)', re.MULTILINE)
+    
     def __init__(self, config: ReportsConfig, llm_analyzer: LLMAnalyzer = None):
         self.config = config
         self.llm_analyzer = llm_analyzer
@@ -291,17 +297,12 @@ class ReportGenerator:
     
     def _extract_related_issues(self, pr_info: Any, analysis_result: AnalysisResult) -> Dict[int, Any]:
         """从PR中提取关联的Issues。"""
-        patterns = [
-            r'https://github\.com/[^/]+/[^/]+/issues/(\d+)',
-            r'(?:fixes?|closes?|resolves?)\s+#(\d+)',
-        ]
-        
         issue_numbers = set()
         text = f"{pr_info.title} {pr_info.body}"
         
-        for pattern in patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
-            issue_numbers.update(int(match) for match in matches)
+        # Use pre-compiled patterns
+        issue_numbers.update(int(match) for match in self._ISSUE_URL_PATTERN.findall(text))
+        issue_numbers.update(int(match) for match in self._ISSUE_REF_PATTERN.findall(text))
         
         # 返回已分析的Issues
         related_issues = {}
@@ -318,15 +319,10 @@ class ReportGenerator:
         """
         # 从 release body 中提取所有直接提到的 PR 编号
         release_body = analysis_result.release_info.body
-        patterns = [
-            r'https://github\.com/[^/]+/[^/]+/pull/(\d+)',
-            r'(?:^|\s)#(\d+)',  # #123 格式
-        ]
         
         mentioned_pr_numbers = set()
-        for pattern in patterns:
-            matches = re.findall(pattern, release_body, re.MULTILINE)
-            mentioned_pr_numbers.update(int(match) for match in matches)
+        mentioned_pr_numbers.update(int(match) for match in self._PR_URL_PATTERN.findall(release_body))
+        mentioned_pr_numbers.update(int(match) for match in self._PR_REF_PATTERN.findall(release_body))
         
         # 返回这些PR（如果已分析）
         release_prs = {}
