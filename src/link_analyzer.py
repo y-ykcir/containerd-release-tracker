@@ -21,6 +21,11 @@ class AnalysisResult:
 class LinkAnalyzer:
     """Intelligent link analyzer for GitHub releases."""
     
+    # Compile regex patterns once at class level for better performance
+    _CHERRY_PICK_PATTERN = re.compile(r'cherry.?pick|backport', re.IGNORECASE)
+    _PANIC_PATTERN = re.compile(r'panic|crash|segfault|sigsegv', re.IGNORECASE)
+    _PERFORMANCE_PATTERN = re.compile(r'performance|slow|timeout|hang', re.IGNORECASE)
+    
     def __init__(self, github_client: GitHubClient, config: AnalysisConfig):
         self.github_client = github_client
         self.config = config
@@ -32,12 +37,20 @@ class LinkAnalyzer:
         # Extract initial PR numbers from release body
         pr_numbers = self.github_client.extract_pr_numbers_from_text(release_info.body)
         
+        # Limit the number of PRs to analyze
+        pr_numbers_to_analyze = pr_numbers[:self.config.max_links_to_analyze]
+        
+        # Fetch all initial PRs concurrently
+        print(f"🔍 Fetching {len(pr_numbers_to_analyze)} PRs concurrently...")
+        prs_batch = self.github_client.get_prs_batch(pr_numbers_to_analyze)
+        
         # Analyze PRs and follow links
         analyzed_prs = set()
         analyzed_issues = set()
         
-        for pr_number in pr_numbers[:self.config.max_links_to_analyze]:
-            self._analyze_pr_chain(pr_number, result, analyzed_prs, analyzed_issues)
+        for pr_number, pr_info in prs_batch.items():
+            if pr_info:
+                self._analyze_pr_chain(pr_number, result, analyzed_prs, analyzed_issues)
         
         # Identify important items
         self._identify_important_items(result)
@@ -72,10 +85,15 @@ class LinkAnalyzer:
             f"{pr_info.title} {pr_info.body}"
         )
         
-        # Analyze related issues
-        for issue_number in related_issues:
-            if issue_number not in analyzed_issues:
-                self._analyze_issue(issue_number, result, analyzed_issues)
+        # Batch fetch related issues concurrently for better performance
+        if related_issues:
+            uncached_issues = [issue_num for issue_num in related_issues if issue_num not in analyzed_issues]
+            if uncached_issues:
+                issues_batch = self.github_client.get_issues_batch(uncached_issues)
+                for issue_number, issue_info in issues_batch.items():
+                    if issue_info and issue_number not in analyzed_issues:
+                        analyzed_issues.add(issue_number)
+                        result.analyzed_issues[issue_number] = issue_info
         
         # Follow related PRs (limit depth to avoid infinite loops)
         if len(analyzed_prs) < self.config.max_links_to_analyze:
@@ -143,15 +161,15 @@ class LinkAnalyzer:
                 reasons.append(f"Has label '{label}'")
         
         # Check for version patterns that might indicate backports or cherry-picks
-        if re.search(r'cherry.?pick|backport', text_lower):
+        if self._CHERRY_PICK_PATTERN.search(text_lower):
             reasons.append("Cherry-pick or backport")
         
         # Check for panic or crash patterns
-        if re.search(r'panic|crash|segfault|sigsegv', text_lower):
+        if self._PANIC_PATTERN.search(text_lower):
             reasons.append("Potential crash issue")
         
         # Check for performance issues
-        if re.search(r'performance|slow|timeout|hang', text_lower):
+        if self._PERFORMANCE_PATTERN.search(text_lower):
             reasons.append("Performance related")
         
         return reasons
