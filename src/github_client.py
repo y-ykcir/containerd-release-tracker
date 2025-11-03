@@ -82,9 +82,9 @@ class GitHubClient:
             })
         # Configure connection pooling for better performance
         adapter = requests.adapters.HTTPAdapter(
-            pool_connections=10,
-            pool_maxsize=20,
-            max_retries=3
+            pool_connections=config.pool_connections,
+            pool_maxsize=config.pool_maxsize,
+            max_retries=config.max_retries
         )
         self.session.mount('https://', adapter)
         self.session.mount('http://', adapter)

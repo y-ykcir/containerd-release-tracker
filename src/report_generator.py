@@ -18,6 +18,8 @@ class ReportGenerator:
     # Pre-compile regex patterns for better performance
     _ISSUE_URL_PATTERN = re.compile(r'https://github\.com/[^/]+/[^/]+/issues/(\d+)')
     _ISSUE_REF_PATTERN = re.compile(r'(?:fixes?|closes?|resolves?)\s+#(\d+)', re.IGNORECASE)
+    _PR_URL_PATTERN = re.compile(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)')
+    _PR_REF_PATTERN = re.compile(r'(?:^|\s)#(\d+)', re.MULTILINE)
     
     def __init__(self, config: ReportsConfig, llm_analyzer: LLMAnalyzer = None):
         self.config = config
@@ -315,16 +317,12 @@ class ReportGenerator:
         
         这些是要在报告中展示的主要PR，不包括通过关联发现的PR。
         """
-        # Pre-compile patterns if not already done
-        pr_url_pattern = re.compile(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)')
-        pr_ref_pattern = re.compile(r'(?:^|\s)#(\d+)', re.MULTILINE)
-        
         # 从 release body 中提取所有直接提到的 PR 编号
         release_body = analysis_result.release_info.body
         
         mentioned_pr_numbers = set()
-        mentioned_pr_numbers.update(int(match) for match in pr_url_pattern.findall(release_body))
-        mentioned_pr_numbers.update(int(match) for match in pr_ref_pattern.findall(release_body))
+        mentioned_pr_numbers.update(int(match) for match in self._PR_URL_PATTERN.findall(release_body))
+        mentioned_pr_numbers.update(int(match) for match in self._PR_REF_PATTERN.findall(release_body))
         
         # 返回这些PR（如果已分析）
         release_prs = {}
