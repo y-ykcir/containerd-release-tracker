@@ -1,0 +1,377 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-05T22:40:59.181074",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v1.7.29",
+    "name": "containerd 1.7.29",
+    "body": "Welcome to the v1.7.29 release of containerd!\n\nThe twenty-ninth patch release for containerd 1.7 contains various fixes\nand updates including security patches.\n\n### Security Updates\n\n* **containerd**\n  * [**GHSA-pwhc-rpq9-4c8w**](https://github.com/containerd/containerd/security/advisories/GHSA-pwhc-rpq9-4c8w)\n  * [**GHSA-m6hq-p25p-ffr2**](https://github.com/containerd/containerd/security/advisories/GHSA-m6hq-p25p-ffr2)\n\n* **runc**\n  * [**GHSA-qw9x-cqr3-wc7r**](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r)\n  * [**GHSA-cgrx-mc8f-2prm**](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm)\n  * [**GHSA-9493-h29p-rfm2**](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2)\n\n### Highlights\n\n#### Image Distribution\n\n* **Update differ to handle zstd media types** ([#12018](https://github.com/containerd/containerd/pull/12018))\n\n#### Runtime\n\n* **Update runc binary to v1.3.3** ([#12480](https://github.com/containerd/containerd/pull/12480))\n* **Fix lost container logs from quickly closing io** ([#12375](https://github.com/containerd/containerd/pull/12375))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Derek McGowan\n* Akihiro Suda\n* Phil Estes\n* Austin Vazquez\n* Sebastiaan van Stijn\n* ningmingxiao\n* Maksym Pavlenko\n* StepSecurity Bot\n* wheat2018\n\n### Changes\n<details><summary>38 commits</summary>\n<p>\n\n  * [`442cb34bd`](https://github.com/containerd/containerd/commit/442cb34bda9a6a0fed82a2ca7cade05c5c749582) Merge commit from fork\n  * [`0450f046e`](https://github.com/containerd/containerd/commit/0450f046e6942e513d0ebf1ef5c2aff13daa187f) Fix directory permissions\n  * [`e5cb6ddb7`](https://github.com/containerd/containerd/commit/e5cb6ddb7a7730c24253a94d7fdb6bbe13dba6f7) Merge commit from fork\n  * [`c575d1b5f`](https://github.com/containerd/containerd/commit/c575d1b5f4011f33b32f71ace75367a92b08c750) fix goroutine leak of container Attach\n* Prepare release notes for v1.7.29 ([#12486](https://github.com/containerd/containerd/pull/12486))\n  * [`1fc2daaf3`](https://github.com/containerd/containerd/commit/1fc2daaf3ed53f4c9e76fbc5786a6f1ae3bb885f) Prepare release notes for v1.7.29\n* Update runc binary to v1.3.3 ([#12480](https://github.com/containerd/containerd/pull/12480))\n  * [`3f5f9f872`](https://github.com/containerd/containerd/commit/3f5f9f872707a743563d316e85e530193a2e30ac) runc: Update runc binary to v1.3.3\n* Update GHA images and bump Go 1.24.9; 1.25.3 ([#12471](https://github.com/containerd/containerd/pull/12471))\n  * [`667409fb6`](https://github.com/containerd/containerd/commit/667409fb63098cb80280940ab06038114e7712da) ci: bump Go 1.24.9, 1.25.3\n  * [`294f8c027`](https://github.com/containerd/containerd/commit/294f8c027b607c4450b3e52f44280581a737a73f) Update GHA runners to use latest images for basic binaries build\n  * [`cf66b4141`](https://github.com/containerd/containerd/commit/cf66b4141defb757dee0fc5653bfd0a7ba1e8fed) Update GHA runners to use latest image for most jobs\n  * [`fa3e6fa18`](https://github.com/containerd/containerd/commit/fa3e6fa18aa8dc7e699428958e1fb1d38e832e15) pkg/epoch: extract parsing SOURCE_DATE_EPOCH to a function\n  * [`ac334bffc`](https://github.com/containerd/containerd/commit/ac334bffc4e759f188afb58efd74a603ade0855a) pkg/epoch: fix tests on macOS\n  * [`d04b8721f`](https://github.com/containerd/containerd/commit/d04b8721fc5bff2677beadb4f3d15d7c0ec989ca) pkg/epoch: replace some fmt.Sprintfs with strconv\n* CI: update Fedora to 43 ([#12450](https://github.com/containerd/containerd/pull/12450))\n  * [`5cfedbf52`](https://github.com/containerd/containerd/commit/5cfedbf52300d09f77a51f02a0c784c37284302c) CI: update Fedora to 43\n* CI: skip ubuntu-24.04-arm on private repos ([#12429](https://github.com/containerd/containerd/pull/12429))\n  * [`cf99a012d`](https://github.com/containerd/containerd/commit/cf99a012d6f7fcb51afdea641d87474dae95f50d) CI: skip ubuntu-24.04-arm on private repos\n* runc:Update runc binary to v1.3.1 ([#12276](https://github.com/containerd/containerd/pull/12276))\n  * [`4c77b8d07`](https://github.com/containerd/containerd/commit/4c77b8d078a65a5e99e40847a9eaa18a944ff68e) runc:Update runc binary to v1.3.1\n* Fix lost container logs from quickly closing io ([#12375](https://github.com/containerd/containerd/pull/12375))\n  * [`d30024db2`](https://github.com/containerd/containerd/commit/d30024db25590e6ec74b639746a5dc792f5c1403) bugfix:fix container logs lost because io close too quickly\n* ci: bump Go 1.24.8 ([#12362](https://github.com/containerd/containerd/pull/12362))\n  * [`f4b3d96f3`](https://github.com/containerd/containerd/commit/f4b3d96f3d83a0ac7bde03ae9eec749aa1936a59) ci: bump Go 1.24.8\n  * [`334fd8e4b`](https://github.com/containerd/containerd/commit/334fd8e4b974d88ebea43a998d76760aad49773a) update golangci-lint to v1.64.2\n  * [`8a67abc4c`](https://github.com/containerd/containerd/commit/8a67abc4cac67bf806da0b2b55ac7159e91f6996) Drop inactivated linter exportloopref\n  * [`e4dbf08f0`](https://github.com/containerd/containerd/commit/e4dbf08f0ff3dc9f6b2a9a36eab71d73ac707956) build(deps): bump golangci/golangci-lint-action from 6.3.2 to 6.5.0\n  * [`d7db2ba06`](https://github.com/containerd/containerd/commit/d7db2ba063385d06132ec80890eb6c1fe4126692) build(deps): bump golangci/golangci-lint-action from 6.2.0 to 6.3.2\n  * [`d7182888f`](https://github.com/containerd/containerd/commit/d7182888f0071cce86d40fcf09cd9a247ac15c41) build(deps): bump golangci/golangci-lint-action from 6.1.1 to 6.2.0\n  * [`4be6c7e3b`](https://github.com/containerd/containerd/commit/4be6c7e3b5d5da7be8c1c87e1c16450b7ea8dadb) build(deps): bump actions/cache from 4.1.2 to 4.2.0\n  * [`a2e097e86`](https://github.com/containerd/containerd/commit/a2e097e865887382c2fc29ee0cea0053e6152a12) build(deps): bump actions/checkout from 4.2.1 to 4.2.2\n  * [`6de404d11`](https://github.com/containerd/containerd/commit/6de404d11b8e237a7867c7fbe535579c5736bfde) build(deps): bump actions/cache from 4.1.1 to 4.1.2\n  * [`038a25584`](https://github.com/containerd/containerd/commit/038a25584e7f66272114ec0801b071e6149ef841) [StepSecurity] ci: Harden GitHub Actions\n* Update differ to handle zstd media types ([#12018](https://github.com/containerd/containerd/pull/12018))\n  * [`eaeb4b6ac`](https://github.com/containerd/containerd/commit/eaeb4b6ac581c0704bed0ff96ee7e53170345e84) Update differ to handle zstd media types\n* ci: bump Go 1.23.12, 1.24.6 ([#12188](https://github.com/containerd/containerd/pull/12188))\n  * [`83c535339`](https://github.com/containerd/containerd/commit/83c535339bbe253ce9e7a616a90f770994b754e5) ci: bump Go 1.23.12, 1.24.6\n</p>\n</details>\n\n### Dependency Changes\n\nThis release has no dependency changes\n\nPrevious release can be found at [v1.7.28](https://github.com/containerd/containerd/releases/tag/v1.7.28)\n",
+    "published_at": "2025-11-05T22:15:34Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v1.7.29",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 1.7.29 重点修复5个高危安全漏洞并优化容器日志稳定性，建议生产环境立即升级",
+    "key_changes": [
+      "支持zstd压缩格式的镜像分发处理 - [PR #12018](https://github.com/containerd/containerd/pull/12018)",
+      "升级runc至v1.3.3修复多个安全漏洞 - [PR #12480](https://github.com/containerd/containerd/pull/12480)"
+    ],
+    "important_bugfixes": [
+      "修复快速关闭IO导致的容器日志丢失问题 - [PR #12375](https://github.com/containerd/containerd/pull/12375) - **影响：** 可能造成关键业务日志不完整，影响监控和排障",
+      "修复容器attach操作的goroutine泄漏问题 - [commit c575d1b](https://github.com/containerd/containerd/commit/c575d1b5f4011f33b32f71ace75367a92b08c750) - **影响：** 长期运行可能导致内存持续增长"
+    ],
+    "security_issues": [
+      "runc文件描述符泄露漏洞 (GHSA-qw9x-cqr3-wc7r) - [PR #12475](https://github.com/containerd/containerd/pull/12475) - **风险级别：** 高",
+      "runc权限逃逸漏洞 (GHSA-cgrx-mc8f-2prm) - [PR #12475](https://github.com/containerd/containerd/pull/12475) - **风险级别：** 高",
+      "containerd镜像验证绕过漏洞 (GHSA-pwhc-rpq9-4c8w) - [安全公告](https://github.com/containerd/containerd/security/advisories/GHSA-pwhc-rpq9-4c8w) - **风险级别：** 中"
+    ],
+    "performance_improvements": [
+      "Go版本升级至1.24.9/1.25.3提升运行时性能 - [PR #12471](https://github.com/containerd/containerd/pull/12471) - **提升：** 内存管理和并发处理优化",
+      "CI基础镜像更新提升构建效率 - [PR #12450](https://github.com/containerd/containerd/pull/12450)"
+    ],
+    "breaking_changes": [],
+    "recommendations": [
+      "立即安排升级以修复关键安全漏洞，特别是使用多租户环境的集群",
+      "升级前重点验证日志收集系统的完整性",
+      "建议同时更新Kubernetes集群的runtime配置"
+    ],
+    "risk_assessment": "高风险安全版本，建议72小时内完成升级。需特别注意：1) 升级后验证runc与现有编排系统的兼容性 2) 监控升级后前24小时的日志采集情况 3) 检查容器镜像签名验证流程是否符合预期"
+  },
+  "statistics": {
+    "analyzed_prs": 15,
+    "analyzed_issues": 1,
+    "important_items": 14
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12018: [release/1.7]  Update differ to handle zstd media types",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12188: [release/1.7] ci: bump Go 1.23.12, 1.24.6",
+      "reason": "Contains 'security'; Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12180: ci: bump Go 1.24.6",
+      "reason": "Contains 'security'; Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12276: [release/1.7] runc:Update runc binary to v1.3.1",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12362: [release/1.7] ci: bump Go 1.24.8",
+      "reason": "Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12375: [release/1.7] Fix lost container logs from quickly closing io",
+      "reason": "Has label 'kind/bug'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12364: bugfix:fix container logs lost because io close too quickly",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12429: [release/1.7] CI: skip ubuntu-24.04-arm on private repos",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12450: [release/1.7] CI: update Fedora to 43",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12471: [release/1.7] Update GHA images and bump Go 1.24.9; 1.25.3",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12480: [release/1.7] Update runc binary to v1.3.3",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12475: runc: Update runc binary to v1.3.3 to fix cve",
+      "reason": "Contains 'security'"
+    },
+    {
+      "type": "PR",
+      "title": "#12486: [release/1.7] Prepare release notes for v1.7.29",
+      "reason": "Contains 'security'; Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#12289: ci failed TestContainerExecLargeOutputWithTTY",
+      "reason": "Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "12018": {
+      "title": "[release/1.7]  Update differ to handle zstd media types",
+      "url": "https://github.com/containerd/containerd/pull/12018",
+      "body": "The differ should be able to generate zstd compressed layers when provided with the zstd media type.\r\n\r\n\r\n(cherry picked from commit 17f7858b4e2e31b447410f66d0100b816c1fe6b3)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-06-24T11:06:25Z",
+      "merged_at": "2025-08-20T03:01:15Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "impact/changelog",
+        "kind/enhancement",
+        "needs-ok-to-test",
+        "size/S",
+        "area/distribution"
+      ]
+    },
+    "12188": {
+      "title": "[release/1.7] ci: bump Go 1.23.12, 1.24.6",
+      "url": "https://github.com/containerd/containerd/pull/12188",
+      "body": "This change backports https://github.com/containerd/containerd/pull/12180 to release/1.7 branch to bump the golang version used in CI to Go 1.23.12, 1.24.6.\r\n\r\n> go1.23.12 (released 2025-08-06) includes security fixes to the database/sql and os/exec packages, as well as bug fixes to the runtime. See the [Go 1.23.12 milestone](https://github.com/golang/go/issues?q=milestone%3AGo1.23.12+label%3ACherryPickApproved) on our issue tracker for details.\r\n\r\nfull diff: https://github.com/golang/go/compare/go1.23.11...go1.23.12\r\n\r\n> go1.24.6 (released 2025-08-06) includes security fixes to the database/sql and os/exec packages, as well as bug fixes to the runtime. See the [Go 1.24.6 milestone](https://github.com/golang/go/issues?q=milestone%3AGo1.24.6+label%3ACherryPickApproved) on our issue tracker for details.\r\n\r\nfull diff: https://github.com/golang/go/compare/go1.24.5...go1.24.6\r\n\r\n(cherry picked from commit db31fbc5a17180cb2d9ac073d026ec2a4d39fa2a)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-08-08T19:15:29Z",
+      "merged_at": "2025-08-11T17:35:32Z",
+      "author": "austinvazquez",
+      "labels": [
+        "size/S",
+        "go",
+        "area/toolchain"
+      ]
+    },
+    "12180": {
+      "title": "ci: bump Go 1.24.6",
+      "url": "https://github.com/containerd/containerd/pull/12180",
+      "body": "This change bumps the golang version used in CI to Go 1.24.6.\r\n\r\n> go1.24.6 (released 2025-08-06) includes security fixes to the database/sql and os/exec packages, as well as bug fixes to the runtime. See the [Go 1.24.6 milestone](https://github.com/golang/go/issues?q=milestone%3AGo1.24.6+label%3ACherryPickApproved) on our issue tracker for details.\r\n\r\nfull diff: https://github.com/golang/go/compare/go1.24.5...go1.24.6",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-08-07T14:01:00Z",
+      "merged_at": "2025-08-08T17:39:19Z",
+      "author": "austinvazquez",
+      "labels": [
+        "cherry-pick/1.6.x",
+        "cherry-picked/1.7.x",
+        "size/S",
+        "area/github_actions",
+        "area/toolchain",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.1.x"
+      ]
+    },
+    "12276": {
+      "title": "[release/1.7] runc:Update runc binary to v1.3.1",
+      "url": "https://github.com/containerd/containerd/pull/12276",
+      "body": "This is an automated cherry-pick of #12271\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-09-05T13:23:49Z",
+      "merged_at": "2025-10-22T13:58:09Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "needs-ok-to-test",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12271": {
+      "title": "runc:Update runc binary to v1.3.1",
+      "url": "https://github.com/containerd/containerd/pull/12271",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-09-03T08:17:22Z",
+      "merged_at": "2025-09-05T13:22:29Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "needs-ok-to-test",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12362": {
+      "title": "[release/1.7] ci: bump Go 1.24.8",
+      "url": "https://github.com/containerd/containerd/pull/12362",
+      "body": "This change backports a few CI updates alongside the maintenance Go bump to resolve CI failures.\r\n\r\nMost backports applied cleanly except:\r\n1. https://github.com/containerd/containerd/pull/12362/commits/8a67abc4cac67bf806da0b2b55ac7159e91f6996\r\n  a. Modified to only drop exportloopref linter\r\n1. https://github.com/containerd/containerd/pull/12362/commits/038a25584e7f66272114ec0801b071e6149ef841\r\n  a. Modified to pin GitHub Actions packages to the versions referenced in this branch.\r\n  b. e.g. azure/login@v1 -> azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1.6.1 <- pointed to by v1 tag.\r\n\r\n(cherry picked from commit c039f534907ff206dd9114b906ccf4e59e5284a0)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-09T12:54:47Z",
+      "merged_at": "2025-10-10T13:51:26Z",
+      "author": "austinvazquez",
+      "labels": [
+        "platform/windows",
+        "size/L",
+        "area/github_actions",
+        "area/toolchain",
+        "github_actions"
+      ]
+    },
+    "12375": {
+      "title": "[release/1.7] Fix lost container logs from quickly closing io",
+      "url": "https://github.com/containerd/containerd/pull/12375",
+      "body": "This is an automated cherry-pick of #12364\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-16T02:40:30Z",
+      "merged_at": "2025-10-21T14:21:12Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "kind/bug",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12364": {
+      "title": "bugfix:fix container logs lost because io close too quickly",
+      "url": "https://github.com/containerd/containerd/pull/12364",
+      "body": "fix  https://github.com/containerd/containerd/issues/12289\r\nI find TestContainerExecLargeOutputWithTTY failed because of  container exec logs lost.\r\nhttps://github.com/containerd/containerd/blob/v2.1.4/cmd/containerd-shim-runc-v2/process/exec.go#L108-L109\r\n```\r\nfunc (e *execProcess) delete(ctx context.Context) error {\r\n\twaitTimeout(ctx, &e.wg, 2*time.Second)\r\n```\r\nwaitTimeout will return context.Canceled.\r\nso default 2 second timeout  sometimes is not enough.\r\n\r\nPTAL  thanks @fuweid  @cpuguy83  @AkihiroSuda @dmcgowan @djdongjin \r\nthe ci failed is because of other reason. 😮‍💨\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-10T04:39:12Z",
+      "merged_at": "2025-10-15T18:28:53Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "kind/bug",
+        "needs-ok-to-test",
+        "cherry-picked/1.7.x",
+        "area/runtime",
+        "size/XS",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.1.x"
+      ]
+    },
+    "12429": {
+      "title": "[release/1.7] CI: skip ubuntu-24.04-arm on private repos",
+      "url": "https://github.com/containerd/containerd/pull/12429",
+      "body": "Cherrypick (not clean):\r\n- #12419",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-28T04:25:40Z",
+      "merged_at": "2025-10-28T16:36:03Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "kind/test",
+        "size/XS",
+        "github_actions"
+      ]
+    },
+    "12419": {
+      "title": "CI: skip ubuntu-24.04-arm on private repos",
+      "url": "https://github.com/containerd/containerd/pull/12419",
+      "body": "ubuntu-24.04-arm runners are not available for private repositories.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-27T16:34:18Z",
+      "merged_at": "2025-10-27T20:15:50Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "kind/test",
+        "easy-to-review",
+        "cherry-picked/1.7.x",
+        "size/XS",
+        "cherry-picked/2.0.x",
+        "github_actions",
+        "cherry-picked/2.1.x"
+      ]
+    },
+    "12450": {
+      "title": "[release/1.7] CI: update Fedora to 43",
+      "url": "https://github.com/containerd/containerd/pull/12450",
+      "body": "Cherry-pick (not clean)\r\n- https://github.com/containerd/containerd/pull/12446",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-31T15:42:58Z",
+      "merged_at": "2025-10-31T18:02:14Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "kind/test",
+        "size/S",
+        "github_actions"
+      ]
+    },
+    "12471": {
+      "title": "[release/1.7] Update GHA images and bump Go 1.24.9; 1.25.3",
+      "url": "https://github.com/containerd/containerd/pull/12471",
+      "body": "Backports a handful of CI updates to update GHA images for low risk jobs and Go version update.\r\n\r\n1. https://github.com/containerd/containerd/pull/8732\r\n1. https://github.com/containerd/containerd/pull/11933\r\n2. https://github.com/containerd/containerd/pull/12469\r\n3. https://github.com/containerd/containerd/pull/12464",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-04T19:43:10Z",
+      "merged_at": "2025-11-05T15:18:50Z",
+      "author": "austinvazquez",
+      "labels": [
+        "size/L",
+        "area/toolchain",
+        "github_actions"
+      ]
+    },
+    "12480": {
+      "title": "[release/1.7] Update runc binary to v1.3.3",
+      "url": "https://github.com/containerd/containerd/pull/12480",
+      "body": "This is an automated cherry-pick of #12475\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-05T14:25:57Z",
+      "merged_at": "2025-11-05T15:19:09Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12475": {
+      "title": "runc: Update runc binary to v1.3.3 to fix cve",
+      "url": "https://github.com/containerd/containerd/pull/12475",
+      "body": "fix cve [CVE-2025-31133](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2), [CVE-2025-52565](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r), and\r\n[CVE-2025-52881](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm)\r\n\r\n\r\nsee:https://github.com/opencontainers/runc/releases/tag/v1.3.3",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-05T09:43:14Z",
+      "merged_at": "2025-11-05T14:23:58Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12486": {
+      "title": "[release/1.7] Prepare release notes for v1.7.29",
+      "url": "https://github.com/containerd/containerd/pull/12486",
+      "body": "Generated notes\r\n----\r\ncontainerd 1.7.29\r\n\r\nWelcome to the v1.7.29 release of containerd!\r\n\r\nThe twenty-ninth patch release for containerd 1.7 contains various fixes\r\nand updates including security patches.\r\n\r\n### Security Updates\r\n\r\n* **runc**\r\n  * [**GHSA-qw9x-cqr3-wc7r**](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r)\r\n  * [**GHSA-cgrx-mc8f-2prm**](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm)\r\n  * [**GHSA-9493-h29p-rfm2**](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2)\r\n\r\n* **containerd**\r\n  * [**GHSA-pwhc-rpq9-4c8w**](https://github.com/containerd/containerd/security/advisories/GHSA-pwhc-rpq9-4c8w)\r\n  * [**GHSA-m6hq-p25p-ffr2**](https://github.com/containerd/containerd/security/advisories/GHSA-m6hq-p25p-ffr2)\r\n\r\n### Highlights\r\n\r\n#### Image Distribution\r\n\r\n* **Update differ to handle zstd media types** ([#12018](https://github.com/containerd/containerd/pull/12018))\r\n\r\n#### Runtime\r\n\r\n* **Update runc binary to v1.3.3** ([#12480](https://github.com/containerd/containerd/pull/12480))\r\n* **Fix lost container logs from quickly closing io** ([#12375](https://github.com/containerd/containerd/pull/12375))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Akihiro Suda\r\n* Derek McGowan\r\n* Phil Estes\r\n* Austin Vazquez\r\n* Sebastiaan van Stijn\r\n* ningmingxiao\r\n* Maksym Pavlenko\r\n* StepSecurity Bot\r\n\r\n### Changes\r\n<details><summary>33 commits</summary>\r\n<p>\r\n\r\n  * [`9e420781d`](https://github.com/containerd/containerd/commit/9e420781d1cbe9b5b8d299f784b6d39ffbb5b6bc) Prepare release notes for v1.7.29\r\n* Update runc binary to v1.3.3 ([#12480](https://github.com/containerd/containerd/pull/12480))\r\n  * [`3f5f9f872`](https://github.com/containerd/containerd/commit/3f5f9f872707a743563d316e85e530193a2e30ac) runc: Update runc binary to v1.3.3\r\n* Update GHA images and bump Go 1.24.9; 1.25.3 ([#12471](https://github.com/containerd/containerd/pull/12471))\r\n  * [`667409fb6`](https://github.com/containerd/containerd/commit/667409fb63098cb80280940ab06038114e7712da) ci: bump Go 1.24.9, 1.25.3\r\n  * [`294f8c027`](https://github.com/containerd/containerd/commit/294f8c027b607c4450b3e52f44280581a737a73f) Update GHA runners to use latest images for basic binaries build\r\n  * [`cf66b4141`](https://github.com/containerd/containerd/commit/cf66b4141defb757dee0fc5653bfd0a7ba1e8fed) Update GHA runners to use latest image for most jobs\r\n  * [`fa3e6fa18`](https://github.com/containerd/containerd/commit/fa3e6fa18aa8dc7e699428958e1fb1d38e832e15) pkg/epoch: extract parsing SOURCE_DATE_EPOCH to a function\r\n  * [`ac334bffc`](https://github.com/containerd/containerd/commit/ac334bffc4e759f188afb58efd74a603ade0855a) pkg/epoch: fix tests on macOS\r\n  * [`d04b8721f`](https://github.com/containerd/containerd/commit/d04b8721fc5bff2677beadb4f3d15d7c0ec989ca) pkg/epoch: replace some fmt.Sprintfs with strconv\r\n* CI: update Fedora to 43 ([#12450](https://github.com/containerd/containerd/pull/12450))\r\n  * [`5cfedbf52`](https://github.com/containerd/containerd/commit/5cfedbf52300d09f77a51f02a0c784c37284302c) CI: update Fedora to 43\r\n* CI: skip ubuntu-24.04-arm on private repos ([#12429](https://github.com/containerd/containerd/pull/12429))\r\n  * [`cf99a012d`](https://github.com/containerd/containerd/commit/cf99a012d6f7fcb51afdea641d87474dae95f50d) CI: skip ubuntu-24.04-arm on private repos\r\n* runc:Update runc binary to v1.3.1 ([#12276](https://github.com/containerd/containerd/pull/12276))\r\n  * [`4c77b8d07`](https://github.com/containerd/containerd/commit/4c77b8d078a65a5e99e40847a9eaa18a944ff68e) runc:Update runc binary to v1.3.1\r\n* Fix lost container logs from quickly closing io ([#12375](https://github.com/containerd/containerd/pull/12375))\r\n  * [`d30024db2`](https://github.com/containerd/containerd/commit/d30024db25590e6ec74b639746a5dc792f5c1403) bugfix:fix container logs lost because io close too quickly\r\n* ci: bump Go 1.24.8 ([#12362](https://github.com/containerd/containerd/pull/12362))\r\n  * [`f4b3d96f3`](https://github.com/containerd/containerd/commit/f4b3d96f3d83a0ac7bde03ae9eec749aa1936a59) ci: bump Go 1.24.8\r\n  * [`334fd8e4b`](https://github.com/containerd/containerd/commit/334fd8e4b974d88ebea43a998d76760aad49773a) update golangci-lint to v1.64.2\r\n  * [`8a67abc4c`](https://github.com/containerd/containerd/commit/8a67abc4cac67bf806da0b2b55ac7159e91f6996) Drop inactivated linter exportloopref\r\n  * [`e4dbf08f0`](https://github.com/containerd/containerd/commit/e4dbf08f0ff3dc9f6b2a9a36eab71d73ac707956) build(deps): bump golangci/golangci-lint-action from 6.3.2 to 6.5.0\r\n  * [`d7db2ba06`](https://github.com/containerd/containerd/commit/d7db2ba063385d06132ec80890eb6c1fe4126692) build(deps): bump golangci/golangci-lint-action from 6.2.0 to 6.3.2\r\n  * [`d7182888f`](https://github.com/containerd/containerd/commit/d7182888f0071cce86d40fcf09cd9a247ac15c41) build(deps): bump golangci/golangci-lint-action from 6.1.1 to 6.2.0\r\n  * [`4be6c7e3b`](https://github.com/containerd/containerd/commit/4be6c7e3b5d5da7be8c1c87e1c16450b7ea8dadb) build(deps): bump actions/cache from 4.1.2 to 4.2.0\r\n  * [`a2e097e86`](https://github.com/containerd/containerd/commit/a2e097e865887382c2fc29ee0cea0053e6152a12) build(deps): bump actions/checkout from 4.2.1 to 4.2.2\r\n  * [`6de404d11`](https://github.com/containerd/containerd/commit/6de404d11b8e237a7867c7fbe535579c5736bfde) build(deps): bump actions/cache from 4.1.1 to 4.1.2\r\n  * [`038a25584`](https://github.com/containerd/containerd/commit/038a25584e7f66272114ec0801b071e6149ef841) [StepSecurity] ci: Harden GitHub Actions\r\n* Update differ to handle zstd media types ([#12018](https://github.com/containerd/containerd/pull/12018))\r\n  * [`eaeb4b6ac`](https://github.com/containerd/containerd/commit/eaeb4b6ac581c0704bed0ff96ee7e53170345e84) Update differ to handle zstd media types\r\n* ci: bump Go 1.23.12, 1.24.6 ([#12188](https://github.com/containerd/containerd/pull/12188))\r\n  * [`83c535339`](https://github.com/containerd/containerd/commit/83c535339bbe253ce9e7a616a90f770994b754e5) ci: bump Go 1.23.12, 1.24.6\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\nThis release has no dependency changes\r\n\r\nPrevious release can be found at [v1.7.28](https://github.com/containerd/containerd/releases/tag/v1.7.28)\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-05T20:30:19Z",
+      "merged_at": "2025-11-05T21:49:05Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/M"
+      ]
+    }
+  },
+  "issues": {
+    "12289": {
+      "title": "ci failed TestContainerExecLargeOutputWithTTY",
+      "url": "https://github.com/containerd/containerd/issues/12289",
+      "body": "### Description\n\n    default: === NAME  TestContainerExecLargeOutputWithTTY\n    default:     container_test.go:1981: expected exec exit code 0 but received 129\n    default:     container_test.go:1993: process output does not end with \"999999 1000000\" at iteration 18, here are the last 20 characters of the output:\n    default: \n    default:          \"37 1038 1039 1040 10\"\n    default: --- FAIL: TestContainerExecLargeOutputWithTTY (12.53s)\n\n### Steps to reproduce the issue\n\n1.difficult to reproduce \nrun TestContainerExecLargeOutputWithTTY many times\n\n\n### Describe the results you received and expected\n\nci successful\n\n### What version of containerd are you using?\n\nlatest\n\n### Any other relevant information\n\n_No response_\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2025-09-09T08:17:21Z",
+      "closed_at": "2025-10-15T18:28:54Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    }
+  }
+}
