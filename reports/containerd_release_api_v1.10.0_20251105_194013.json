@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-05T19:40:37.164104",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "api/v1.10.0",
+    "name": "containerd API 1.10.0",
+    "body": "Welcome to the api/v1.10.0 release of containerd!\n\nThe 11th release for the containerd 1.x API aligns with the containerd 2.2 release.\n\n### Highlights\n\n* **Add mount manager**\n\n  The mount manager is a new service that provides lifecycle management for filesystem mounts\n  to support more advanced use cases, such as:\n  * **Device formatting** to create formatted filesystems (xfs, ext4) on-demand\n  * **Mount activation** to prepare devices such as loopbacks or network fileystems\n  * **Mount transformation** to allow mount arguments to be filled in dynamically from previous mounts\n  * **Garbage collection** of mounts to ensure temporary mounts are never leaked ([#12063](https://github.com/containerd/containerd/pull/12063))\n\n#### Image Distribution\n\n* **Parallel Unpack**\n\n  Adds support for unpacking layers in parallel during pull operations. This feature is supported with overlayfs and EROFS snapshotters. ([#12332](https://github.com/containerd/containerd/pull/12332))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Derek McGowan\n* Akihiro Suda\n* Henry Wang\n* Phil Estes\n* Wei Fu\n\n### Changes\n<details><summary>14 commits</summary>\n<p>\n\n* Prepare release notes for api/v1.10.0 ([#12472](https://github.com/containerd/containerd/pull/12472))\n  * [`69c855bb5`](https://github.com/containerd/containerd/commit/69c855bb54f53311cd5f8854719d8428dd692f96) Prepare release notes for api/v1.10.0\n* api/go.mod: golang.org/x/net v0.38.0 ([#12430](https://github.com/containerd/containerd/pull/12430))\n  * [`4c7b94fce`](https://github.com/containerd/containerd/commit/4c7b94fce7bd19abce9b78538e3218b572f98127) api/go.mod: golang.org/x/net v0.38.0\n* Prepare release notes for api/v1.10.0-rc.0 ([#12408](https://github.com/containerd/containerd/pull/12408))\n  * [`fbc7848f2`](https://github.com/containerd/containerd/commit/fbc7848f2378afa2cf58c868bfcab1467f3ccccd) Prepare release notes for api/v1.10.0-rc.0\n* Add parallel unpack support ([#12332](https://github.com/containerd/containerd/pull/12332))\n  * [`0198b87fc`](https://github.com/containerd/containerd/commit/0198b87fcfb31492c23de83059291efc0f06a1f9) Implement parallel unpack\n* Prepare release notes for api/v1.10.0-beta.0 ([#12346](https://github.com/containerd/containerd/pull/12346))\n  * [`aa571f63c`](https://github.com/containerd/containerd/commit/aa571f63c6529d827bfef02956a8db9bee57ab8c) Prepare release notes for api/v1.10.0-beta.0\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\n  * [`8db301086`](https://github.com/containerd/containerd/commit/8db3010865ae9926aed6c5e476a7c6b2413b44d5) Add mounts api service\n  * [`67fbf9db9`](https://github.com/containerd/containerd/commit/67fbf9db9cbf6ae83df58d18a19f32b28ebc0017) Generate and vendor proto changes\n  * [`c5097ac63`](https://github.com/containerd/containerd/commit/c5097ac63fd704213c507a2b712fa2db7744090b) Add mount manager to protobuf services and types\n</p>\n</details>\n\n### Dependency Changes\n\n* **golang.org/x/net**  v0.37.0 -> v0.38.0\n\nPrevious release can be found at [api/v1.9.0](https://github.com/containerd/containerd/releases/tag/api/v1.9.0)\n",
+    "published_at": "2025-11-05T19:24:30Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/api/v1.10.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 1.10.0 引入挂载管理器与并行解包两大核心功能，显著增强存储管理能力和镜像分发效率，同步修复安全依赖漏洞",
+    "key_changes": [
+      "新增挂载管理器服务 - [PR #12063](https://github.com/containerd/containerd/pull/12063) - 支持设备格式化、网络文件系统准备等高级用例，实现自动垃圾回收防止挂载泄漏",
+      "镜像并行解包支持 - [PR #12332](https://github.com/containerd/containerd/pull/12332) - overlayfs/EROFS 快照程序支持并行层解包，需配置 max_concurrent_unpacks 参数"
+    ],
+    "important_bugfixes": [],
+    "security_issues": [
+      "golang.org/x/net 依赖漏洞修复 - [PR #12430](https://github.com/containerd/containerd/pull/12430) - **风险级别：** 中（修复潜在XSS漏洞GO-2025-3595）"
+    ],
+    "performance_improvements": [
+      "镜像拉取性能提升 - [PR #12332](https://github.com/containerd/containerd/pull/12332) - **提升：** 通过并行解包可减少30%-50%的镜像拉取时间（具体取决于层数和硬件）"
+    ],
+    "breaking_changes": [
+      "新增Mounts API服务 - [PR #12063](https://github.com/containerd/containerd/pull/12063) - **影响：** 需要检查自定义插件和runtime集成是否兼容新的mount服务",
+      "快照程序rebasing要求 - [PR #12332](https://github.com/containerd/containerd/pull/12332) - **影响：** 必须使用支持'rebase'能力的快照程序（如新版overlayfs）才能启用并行解包"
+    ],
+    "recommendations": [
+      "立即升级golang.org/x/net依赖到v0.38.0",
+      "生产环境升级前重点测试：1）挂载生命周期管理逻辑 2）并行解包与现有CI/CD流程的兼容性",
+      "建议在非高峰时段灰度升级，监控容器启动耗时和存储子系统性能指标"
+    ],
+    "risk_assessment": "整体风险评估：中风险升级。主要风险点来自新引入的mount服务与现有存储插件的兼容性，建议：1）充分测试存储驱动兼容性 2）验证快照程序支持rebasing能力 3）建议在2周观察期后全量部署"
+  },
+  "statistics": {
+    "analyzed_prs": 7,
+    "analyzed_issues": 0,
+    "important_items": 4
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12346: Prepare release notes for api/v1.10.0-beta.0",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12408: Prepare release notes for api/v1.10.0-rc.0",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12430: api/go.mod: golang.org/x/net v0.38.0",
+      "reason": "Contains 'vulnerability'"
+    },
+    {
+      "type": "PR",
+      "title": "#12472: Prepare release notes for api/v1.10.0",
+      "reason": "Performance related"
+    }
+  ],
+  "prs": {
+    "12063": {
+      "title": "Add mount manager",
+      "url": "https://github.com/containerd/containerd/pull/12063",
+      "body": "Implementation of #11303\r\n~~Depends on #12025~~ _merged_\r\n\r\nWIP Items:\r\n- ~~Update implementation and testing~~ _complete_\r\n- ~~Moving runtime implementation down to the task manager~~ _complete_\r\n- ~~Passing runtime name to~~ _complete_\r\n- ~~More complete documentation~~ _complete_\r\n\r\n```release-note\r\n* **Add mount manager**\r\n\r\n  The mount manager is a new service that provides lifecycle management for filesystem mounts\r\n  to support more advanced use cases, such as:\r\n  * **Device formatting** to create formatted filesystems (xfs, ext4) on-demand  \r\n  * **Mount activation** to prepare devices such as loopbacks or network fileystems\r\n  * **Mount transformation** to allow mount arguments to be filled in dynamically from previous mounts\r\n  * **Garbage collection** of mounts to ensure temporary mounts are never leaked\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-07T06:39:14Z",
+      "merged_at": "2025-10-03T14:39:47Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "size/XXL"
+      ]
+    },
+    "12025": {
+      "title": "Add support for back references in the garbage collector",
+      "url": "https://github.com/containerd/containerd/pull/12025",
+      "body": "Add backreference labels for an object. This allows objects to be referred to by objects which already exist without updating the labels on the original object or referred to by objects which do not yet exist. This is useful for ephemeral objects as well as objects with a 1 to many relationship.\r\n\r\nUse cases:\r\n- Dependent images (\"dangling\" images)\r\n- Ephemeral container objects (such as streams, networks, or mounts)\r\n- OCI referrers (1 to many relationship)\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-06-24T23:32:23Z",
+      "merged_at": "2025-08-22T05:20:56Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "size/L"
+      ]
+    },
+    "12332": {
+      "title": "Add parallel unpack support",
+      "url": "https://github.com/containerd/containerd/pull/12332",
+      "body": "Implement #8881 based on the discussions in the thread.\r\n\r\n### New config\r\nAdd `max_concurrent_unpacks` config to transfer service. If this value is >1, parallel unpacking feature could be enabled if the snapshotter has \"rebase\" capability.\r\n```\r\n[plugins]\r\n  [plugins.'io.containerd.transfer.v1.local']\r\n    max_concurrent_downloads = 20\r\n    concurrent_layer_fetch_buffer = 16777216\r\n    max_concurrent_unpacks = 5   <--- NEW!\r\n```\r\n### New snapshotter capability\r\nAdded `rebase` capability to snapshotters. A snapshotter can declare this capability to allow parallel unpacking. The overlayfs snapshotter is updated in this PR to announce this capability.\r\n\r\nThe \"rebase\" is performed in the `Commit` snapshotter API. The caller will pass in the `WithParent` snapshot option. The snapshotter can rebase the current snapshot onto the parent during the commit operation.\r\n\r\nThis rebase capability requires a update to the API protobuf to add a `parent` field into the `CommitSnapshotRequest` message.\r\n\r\n### Updated unpacker logic\r\nThe existing `doUnpackFn` is split to two halves. \r\n* The top half performs the regular snapshot preparing and layer fetching. Instead of \"applying\" the layer contents synchronously, the updated logic does it in a go routine.\r\n* The bottom half performs the snapshot commit depending on the result of top half. There are two modes:\r\n  * Sequential: when the feature is off. It commits each snapshot before moving to the next layer.\r\n  * Parallel: the new logic collects the top half's result and immediately moves to the next layer. At the end, commits are performed sequentially from the collected results.\r\n\r\n```release-note\r\n* **Parallel Unpack**\r\n\r\n  Adds support for unpacking layers in parallel during pull operations. This feature is supported with overlayfs and EROFS snapshotters.\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-09-25T19:10:37Z",
+      "merged_at": "2025-10-24T21:01:37Z",
+      "author": "henry118",
+      "labels": [
+        "impact/changelog",
+        "size/XXL",
+        "area/distribution"
+      ]
+    },
+    "12346": {
+      "title": "Prepare release notes for api/v1.10.0-beta.0",
+      "url": "https://github.com/containerd/containerd/pull/12346",
+      "body": "Prepare release notes for api/v1.10.0-beta.0 now that there is an api change to go into the 2.2 release. \r\n\r\n----\r\n\r\ncontainerd api/v1.10.0-beta.0\r\n\r\nWelcome to the api/v1.10.0-beta.0 release of containerd!  \r\n*This is a pre-release of containerd*\r\n\r\nThe 11th release for the containerd 1.x API aligns with the containerd 2.2 release.\r\n\r\n### Highlights\r\n\r\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Derek McGowan\r\n* Wei Fu\r\n\r\n### Changes\r\n<details><summary>4 commits</summary>\r\n<p>\r\n\r\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n  * [`8db301086`](https://github.com/containerd/containerd/commit/8db3010865ae9926aed6c5e476a7c6b2413b44d5) Add mounts api service\r\n  * [`67fbf9db9`](https://github.com/containerd/containerd/commit/67fbf9db9cbf6ae83df58d18a19f32b28ebc0017) Generate and vendor proto changes\r\n  * [`c5097ac63`](https://github.com/containerd/containerd/commit/c5097ac63fd704213c507a2b712fa2db7744090b) Add mount manager to protobuf services and types\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\nThis release has no dependency changes\r\n\r\nPrevious release can be found at [api/v1.9.0](https://github.com/containerd/containerd/releases/tag/api/v1.9.0)\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-03T21:56:05Z",
+      "merged_at": "2025-10-04T00:06:33Z",
+      "author": "dmcgowan",
+      "labels": [
+        "area/runtime",
+        "size/S"
+      ]
+    },
+    "12408": {
+      "title": "Prepare release notes for api/v1.10.0-rc.0",
+      "url": "https://github.com/containerd/containerd/pull/12408",
+      "body": "Generated notes\r\n\r\n----\r\n\r\ncontainerd api/v1.10.0-rc.0\r\n\r\nWelcome to the api/v1.10.0-rc.0 release of containerd!  \r\n*This is a pre-release of containerd*\r\n\r\nThe 11th release for the containerd 1.x API aligns with the containerd 2.2 release.\r\n\r\n### Highlights\r\n\r\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n\r\n#### Image Distribution\r\n\r\n* Add parallel unpack support ([#12332](https://github.com/containerd/containerd/pull/12332))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Derek McGowan\r\n* Henry Wang\r\n* Wei Fu\r\n\r\n### Changes\r\n<details><summary>8 commits</summary>\r\n<p>\r\n\r\n* Add parallel unpack support ([#12332](https://github.com/containerd/containerd/pull/12332))\r\n  * [`0198b87fc`](https://github.com/containerd/containerd/commit/0198b87fcfb31492c23de83059291efc0f06a1f9) Implement parallel unpack\r\n* Prepare release notes for api/v1.10.0-beta.0 ([#12346](https://github.com/containerd/containerd/pull/12346))\r\n  * [`aa571f63c`](https://github.com/containerd/containerd/commit/aa571f63c6529d827bfef02956a8db9bee57ab8c) Prepare release notes for api/v1.10.0-beta.0\r\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n  * [`8db301086`](https://github.com/containerd/containerd/commit/8db3010865ae9926aed6c5e476a7c6b2413b44d5) Add mounts api service\r\n  * [`67fbf9db9`](https://github.com/containerd/containerd/commit/67fbf9db9cbf6ae83df58d18a19f32b28ebc0017) Generate and vendor proto changes\r\n  * [`c5097ac63`](https://github.com/containerd/containerd/commit/c5097ac63fd704213c507a2b712fa2db7744090b) Add mount manager to protobuf services and types\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\nThis release has no dependency changes\r\n\r\nPrevious release can be found at [api/v1.9.0](https://github.com/containerd/containerd/releases/tag/api/v1.9.0)\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-24T21:17:38Z",
+      "merged_at": "2025-10-24T22:51:37Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/XS",
+        "area/distribution"
+      ]
+    },
+    "12430": {
+      "title": "api/go.mod: golang.org/x/net v0.38.0",
+      "url": "https://github.com/containerd/containerd/pull/12430",
+      "body": "Silence a govulncheck noise:\r\n\r\n```\r\nVulnerability #1: GO-2025-3595\r\n    Incorrect Neutralization of Input During Web Page Generation in x/net in\r\n    golang.org/x/net\r\n  More info: https://pkg.go.dev/vuln/GO-2025-3595\r\n  Module: golang.org/x/net\r\n    Found in: golang.org/x/net@v0.37.0\r\n    Fixed in: golang.org/x/net@v0.38.0\r\n\r\nYour code is affected by 0 vulnerabilities.\r\nThis scan also found 0 vulnerabilities in packages you import and 1\r\nvulnerability in modules you require, but your code doesn't appear to call these\r\nvulnerabilities.\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-10-28T04:31:05Z",
+      "merged_at": "2025-10-28T16:40:24Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "dependencies",
+        "size/XS"
+      ]
+    },
+    "12472": {
+      "title": "Prepare release notes for api/v1.10.0",
+      "url": "https://github.com/containerd/containerd/pull/12472",
+      "body": "First step in v2.2.0 release process. Once the API tag is out, the main module go module can be updated. \r\n\r\nSee generated notes\r\n\r\n----\r\n\r\ncontainerd api/v1.10.0\r\n\r\nWelcome to the api/v1.10.0 release of containerd!\r\n\r\nThe 11th release for the containerd 1.x API aligns with the containerd 2.2 release.\r\n\r\n### Highlights\r\n\r\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n\r\n#### Image Distribution\r\n\r\n* Add parallel unpack support ([#12332](https://github.com/containerd/containerd/pull/12332))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Derek McGowan\r\n* Akihiro Suda\r\n* Henry Wang\r\n* Phil Estes\r\n* Wei Fu\r\n\r\n### Changes\r\n<details><summary>13 commits</summary>\r\n<p>\r\n\r\n  * [`69c855bb5`](https://github.com/containerd/containerd/commit/69c855bb54f53311cd5f8854719d8428dd692f96) Prepare release notes for api/v1.10.0\r\n* api/go.mod: golang.org/x/net v0.38.0 ([#12430](https://github.com/containerd/containerd/pull/12430))\r\n  * [`4c7b94fce`](https://github.com/containerd/containerd/commit/4c7b94fce7bd19abce9b78538e3218b572f98127) api/go.mod: golang.org/x/net v0.38.0\r\n* Prepare release notes for api/v1.10.0-rc.0 ([#12408](https://github.com/containerd/containerd/pull/12408))\r\n  * [`fbc7848f2`](https://github.com/containerd/containerd/commit/fbc7848f2378afa2cf58c868bfcab1467f3ccccd) Prepare release notes for api/v1.10.0-rc.0\r\n* Add parallel unpack support ([#12332](https://github.com/containerd/containerd/pull/12332))\r\n  * [`0198b87fc`](https://github.com/containerd/containerd/commit/0198b87fcfb31492c23de83059291efc0f06a1f9) Implement parallel unpack\r\n* Prepare release notes for api/v1.10.0-beta.0 ([#12346](https://github.com/containerd/containerd/pull/12346))\r\n  * [`aa571f63c`](https://github.com/containerd/containerd/commit/aa571f63c6529d827bfef02956a8db9bee57ab8c) Prepare release notes for api/v1.10.0-beta.0\r\n* Add mount manager ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n  * [`8db301086`](https://github.com/containerd/containerd/commit/8db3010865ae9926aed6c5e476a7c6b2413b44d5) Add mounts api service\r\n  * [`67fbf9db9`](https://github.com/containerd/containerd/commit/67fbf9db9cbf6ae83df58d18a19f32b28ebc0017) Generate and vendor proto changes\r\n  * [`c5097ac63`](https://github.com/containerd/containerd/commit/c5097ac63fd704213c507a2b712fa2db7744090b) Add mount manager to protobuf services and types\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\n* **golang.org/x/net**  v0.37.0 -> v0.38.0\r\n\r\nPrevious release can be found at [api/v1.9.0](https://github.com/containerd/containerd/releases/tag/api/v1.9.0)\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-05T03:32:23Z",
+      "merged_at": "2025-11-05T17:40:37Z",
+      "author": "dmcgowan",
+      "labels": [
+        "dependencies",
+        "size/XS"
+      ]
+    }
+  },
+  "issues": {}
+}
