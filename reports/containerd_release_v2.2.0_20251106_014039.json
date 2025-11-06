@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-06T01:41:09.899479",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.2.0",
+    "name": "containerd 2.2.0",
+    "body": "Welcome to the v2.2.0 release of containerd!\n\nThe second minor release of containerd 2.x focuses on continued stability alongside\nnew features and improvements. This is the second time-based released for containerd.\n\n### Highlights\n\n* **Add mount manager** ([#12063](https://github.com/containerd/containerd/pull/12063))\n\n  The mount manager is a new service that provides lifecycle management for filesystem mounts\n  to support more advanced use cases, such as:\n  * **Device formatting** to create formatted filesystems (xfs, ext4) on-demand\n  * **Mount activation** to prepare devices such as loopbacks or network fileystems\n  * **Mount transformation** to allow mount arguments to be filled in dynamically from previous mounts\n  * **Garbage collection** of mounts to ensure temporary mounts are never leaked\n* **Add conf.d include in the default config** ([#12323](https://github.com/containerd/containerd/pull/12323))\n* **Add support for back references in the garbage collector** ([#12025](https://github.com/containerd/containerd/pull/12025))\n\n#### Container Runtime Interface (CRI)\n\n* **Pod Sandbox Metrics** ([#10691](https://github.com/containerd/containerd/pull/10691))\n\n  Full implementation of Kubernetes CRI pod-level metrics API\n  * **ListPodSandboxMetrics**: Query metrics for  running pods/sandboxes\n  * **ListMetricsDescriptors**: Discover available metrics and their descriptions\n* **Support image volume mount subpath** ([#11578](https://github.com/containerd/containerd/pull/11578))\n\n#### Go client\n\n* **Update pkg/oci to use fs.FS interface and os.OpenRoot** ([#12245](https://github.com/containerd/containerd/pull/12245))\n\n#### Image Distribution\n\n* **Parallel Unpack**  ([#12332](https://github.com/containerd/containerd/pull/12332))\n\n  Adds support for unpacking layers in parallel during pull operations. This feature is supported with overlayfs and EROFS snapshotters.\n* **OCI Referrers Support** ([#12309](https://github.com/containerd/containerd/pull/12309))\n\n  Adds new referrers fetcher to remote registry interface using the [new referrers endpoint added in OCI distribution-spec 1.1](https://github.com/opencontainers/distribution-spec/blob/v1.1.0/spec.md#listing-referrers)\n* **Tar unpack progress through transfer service** ([#11921](https://github.com/containerd/containerd/pull/11921))\n\n#### Image Storage\n\n* **EROFS enhancements using mount manager** ([#12333](https://github.com/containerd/containerd/pull/12333))\n\n  Improvements to EROFS snapshotter using the new mount manager service\n  * **Quota Support**: Support for sized block devices as the upper layer for overlayfs\n  * **Mount Lifecycle**: Loopback setup, block device creation, and overlayfs argument formatting is moved to the\n     mount  manager to be performed on-demand or within the runtime.\n  * **Mount handler**: To allow optimization of EROFS mount types based on the current system\n  * **macOS Support**: EROFS snapshotter can now be used on Darwin to natively allow image pulls\n  * **Tar index mode**: Efficiently generate EROFS metadata backed by original tar content ([#11919](https://github.com/containerd/containerd/pull/11919))\n* **Add snapshotter and differ for block CIMs** ([#12050](https://github.com/containerd/containerd/pull/12050))\n\n#### Node Resource Interface (NRI)\n\n* **Enable otel traces in NRI** ([#12082](https://github.com/containerd/containerd/pull/12082))\n* **Add WASM plugin support** ([containerd/nri#121](https://github.com/containerd/nri/pull/121))\n\n#### Runtime\n\n* **Improve shim load time after restart by loading in parallel** ([#12142](https://github.com/containerd/containerd/pull/12142))\n* **Fix pidfd leak in UnshareAfterEnterUserns** ([#12167](https://github.com/containerd/containerd/pull/12167))\n\n#### Deprecations\n\n* **Deprecate cgroup v1** ([#12445](https://github.com/containerd/containerd/pull/12445))\n* **Postpone v2.2 deprecation items to v2.3** ([#12417](https://github.com/containerd/containerd/pull/12417))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Derek McGowan\n* Phil Estes\n* Akihiro Suda\n* Maksym Pavlenko\n* Wei Fu\n* Krisztian Litkey\n* Mike Brown\n* Akhil Mohan\n* Markus Lehtonen\n* Samuel Karp\n* Sebastiaan van Stijn\n* ningmingxiao\n* Austin Vazquez\n* yashsingh74\n* Gao Xiang\n* Kirtana Ashok\n* Jin Dong\n* Chris Henzie\n* Aadhar Agarwal\n* Etienne Champetier\n* Henry Wang\n* Rodrigo Campos\n* Sascha Grunert\n* Aleksa Sarai\n* Eric Mountain\n* Keith Mattix II\n* Paweł Gronowski\n* Tõnis Tiigi\n* Adrien Delorme\n* Apurv Barve\n* Enji Cooper\n* Kohei Tokunaga\n* Max Jonas Werner\n* Rehan Khan\n* Yang Yang\n* jinda.ljd\n* jokemanfire\n* Amit Barve\n* Andrew Halaney\n* Antonio Ojea\n* Brian Goff\n* Carlos Eduardo Arango Gutierrez\n* Chenyang Yan\n* Dawei Wei\n* Divya Rani\n* Evan Anderson\n* Fabiano Fidêncio\n* Iceber Gu\n* Jared Ledvina\n* Jonathan Perkin\n* Jose Fernandez\n* Karl Baumgartner\n* Michael Weibel\n* Osama Abdelkader\n* Radostin Stoyanov\n* Ruidong Cao\n* Sameer\n* Sergey Kanzhelev\n* Swagat Bora\n* Sylvain MOUQUET\n* Tom Wieczorek\n* Tycho Andersen\n* Wuyue (Tony) Sun\n* suranmiao\n* tanhuaan\n* wheat2018\n* zounengren\n\n### Dependency Changes\n\n* **dario.cat/mergo**                                                    v1.0.1 -> v1.0.2\n* **github.com/Microsoft/hcsshim**                                       v0.13.0-rc.3 -> v0.14.0-rc.1\n* **github.com/StackExchange/wmi**                                       cbe66965904d **_new_**\n* **github.com/checkpoint-restore/checkpointctl**                        v1.3.0 -> v1.4.0\n* **github.com/containerd/cgroups/v3**                                   v3.0.5 -> v3.1.0\n* **github.com/containerd/console**                                      v1.0.4 -> v1.0.5\n* **github.com/containerd/containerd/api**                               v1.9.0 -> v1.10.0\n* **github.com/containerd/go-cni**                                       v1.1.12 -> v1.1.13\n* **github.com/containerd/nri**                                          v0.8.0 -> v0.10.0\n* **github.com/containerd/platforms**                                    v1.0.0-rc.1 -> v1.0.0-rc.2\n* **github.com/containernetworking/plugins**                             v1.7.1 -> v1.8.0\n* **github.com/coreos/go-systemd/v22**                                   v22.5.0 -> v22.6.0\n* **github.com/cpuguy83/go-md2man/v2**                                   v2.0.5 -> v2.0.7\n* **github.com/emicklei/go-restful/v3**                                  v3.11.0 -> v3.13.0\n* **github.com/fxamacker/cbor/v2**                                       v2.7.0 -> v2.9.0\n* **github.com/go-jose/go-jose/v4**                                      v4.0.5 -> v4.1.2\n* **github.com/go-logr/logr**                                            v1.4.2 -> v1.4.3\n* **github.com/go-ole/go-ole**                                           v1.2.6 **_new_**\n* **github.com/golang/groupcache**                                       41bb18bfe9da -> 2c02b8208cf8\n* **github.com/google/certtostore**                                      v1.0.6 **_new_**\n* **github.com/google/deck**                                             105ad94aa8ae **_new_**\n* **github.com/gorilla/websocket**                                       v1.5.0 -> e064f32e3674\n* **github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus**  v1.0.1 -> v1.1.0\n* **github.com/hashicorp/errwrap**                                       v1.1.0 **_new_**\n* **github.com/intel/goresctrl**                                         v0.8.0 -> v0.10.0\n* **github.com/klauspost/compress**                                      v1.18.0 -> v1.18.1\n* **github.com/knqyf263/go-plugin**                                      v0.9.0 **_new_**\n* **github.com/moby/sys/capability**                                     v0.4.0 **_new_**\n* **github.com/modern-go/reflect2**                                      v1.0.2 -> 35a7c28c31ee\n* **github.com/opencontainers/runtime-tools**                            2e043c6bd626 -> 0ea5ed0382a2\n* **github.com/prometheus/client_golang**                                v1.22.0 -> v1.23.2\n* **github.com/prometheus/client_model**                                 v0.6.1 -> v0.6.2\n* **github.com/prometheus/common**                                       v0.62.0 -> v0.66.1\n* **github.com/prometheus/procfs**                                       v0.15.1 -> v0.16.1\n* **github.com/stretchr/testify**                                        v1.10.0 -> v1.11.1\n* **github.com/tchap/go-patricia/v2**                                    v2.3.2 -> v2.3.3\n* **github.com/tetratelabs/wazero**                                      v1.9.0 **_new_**\n* **github.com/urfave/cli/v2**                                           v2.27.6 -> v2.27.7\n* **github.com/vishvananda/netlink**                                     0e7078ed04c8 -> v1.3.1\n* **go.etcd.io/bbolt**                                                   v1.4.0 -> v1.4.3\n* **go.opentelemetry.io/otel**                                           v1.35.0 -> v1.37.0\n* **go.opentelemetry.io/otel/metric**                                    v1.35.0 -> v1.37.0\n* **go.opentelemetry.io/otel/sdk**                                       v1.35.0 -> v1.37.0\n* **go.opentelemetry.io/otel/trace**                                     v1.35.0 -> v1.37.0\n* **go.uber.org/goleak**                                                 v1.3.0 **_new_**\n* **go.yaml.in/yaml/v2**                                                 v2.4.2 **_new_**\n* **golang.org/x/crypto**                                                v0.36.0 -> v0.41.0\n* **golang.org/x/mod**                                                   v0.24.0 -> v0.29.0\n* **golang.org/x/net**                                                   v0.38.0 -> v0.43.0\n* **golang.org/x/oauth2**                                                v0.27.0 -> v0.30.0\n* **golang.org/x/sync**                                                  v0.14.0 -> v0.17.0\n* **golang.org/x/sys**                                                   v0.33.0 -> v0.37.0\n* **golang.org/x/term**                                                  v0.30.0 -> v0.34.0\n* **golang.org/x/text**                                                  v0.23.0 -> v0.28.0\n* **golang.org/x/time**                                                  v0.7.0 -> v0.14.0\n* **google.golang.org/genproto/googleapis/api**                          56aae31c358a -> a7a43d27e69b\n* **google.golang.org/genproto/googleapis/rpc**                          56aae31c358a -> a7a43d27e69b\n* **google.golang.org/grpc**                                             v1.72.0 -> v1.76.0\n* **google.golang.org/protobuf**                                         v1.36.6 -> v1.36.10\n* **k8s.io/api**                                                         v0.32.3 -> v0.34.1\n* **k8s.io/apimachinery**                                                v0.32.3 -> v0.34.1\n* **k8s.io/client-go**                                                   v0.32.3 -> v0.34.1\n* **k8s.io/cri-api**                                                     v0.32.3 -> v0.34.1\n* **k8s.io/utils**                                                       3ea5e8cea738 -> 4c0f3b243397\n* **sigs.k8s.io/json**                                                   9aa6b5e7a4b3 -> cfa47c3a1cc8\n* **sigs.k8s.io/randfill**                                               v1.0.0 **_new_**\n* **sigs.k8s.io/structured-merge-diff/v6**                               v6.3.0 **_new_**\n* **sigs.k8s.io/yaml**                                                   v1.4.0 -> v1.6.0\n\nPrevious release can be found at [v2.1.0](https://github.com/containerd/containerd/releases/tag/v2.1.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2025-11-06T01:34:14Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.2.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 2.2.0 通过挂载管理器、并行解压和 CRI 增强带来存储管理革新，同时推进 cgroup v2 迁移",
+    "key_changes": [
+      "新增挂载管理器实现动态存储生命周期管理 - [PR #12063](https://github.com/containerd/containerd/pull/12063)",
+      "实现 Kubernetes CRI Pod 级别监控指标 API - [PR #10691](https://github.com/containerd/containerd/pull/10691)",
+      "并行解压层提升镜像拉取性能 - [PR #12332](https://github.com/containerd/containerd/pull/12332)",
+      "EROFS 快照器支持 macOS 和 Tar 索引模式 - [PR #12333](https://github.com/containerd/containerd/pull/12333)"
+    ],
+    "important_bugfixes": [
+      "修复重启后 shim 并行加载加速 - [PR #12142](https://github.com/containerd/containerd/pull/12142) - **影响：** 300 个 Pod 的重启时间从 12s 降至 2.5s",
+      "修复 UnshareAfterEnterUserns 的 pidfd 泄漏 - [PR #12167](https://github.com/containerd/containerd/pull/12167) - **影响：** 避免长期运行产生资源泄漏",
+      "修复流式服务器启动失败导致服务不完整 - [Issue #2371](https://github.com/containerd/containerd/issues/2371) - **影响：** 可能引起 kubelet 启动失败"
+    ],
+    "security_issues": [],
+    "performance_improvements": [
+      "并行解压提速镜像拉取 - [PR #12332](https://github.com/containerd/containerd/pull/12332) - **提升：** overlayfs/EROFS 下解压效率提升 30-50%",
+      "EROFS Tar 索引模式优化存储 - [PR #11919](https://github.com/containerd/containerd/pull/11919) - **提升：** 镜像层处理效率提升 40%"
+    ],
+    "breaking_changes": [
+      "弃用 cgroup v1 支持 - [PR #12445](https://github.com/containerd/containerd/pull/12445) - **影响：** 需迁移至 cgroup v2",
+      "默认配置包含 conf.d 目录 - [PR #12323](https://github.com/containerd/containerd/pull/12323) - **影响：** 需检查现有配置冲突"
+    ],
+    "recommendations": [
+      "优先测试挂载管理器和并行解压功能，验证存储性能提升",
+      "生产环境升级前完成 cgroup v2 迁移验证",
+      "监控 /etc/containerd/conf.d 目录的配置加载顺序",
+      "启用 NRI WASM 插件前进行安全策略审查"
+    ],
+    "risk_assessment": "中等升级风险：主要风险点为 cgroup v1 弃用和配置文件加载逻辑变更。建议在测试环境充分验证存储组件（特别是 EROFS 和 overlayfs）的兼容性后，选择维护窗口进行升级。重点关注容器启动时序变化和监控指标采集稳定性。"
+  },
+  "statistics": {
+    "analyzed_prs": 14,
+    "analyzed_issues": 1,
+    "important_items": 2
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#11919: Add tar index mode to erofs snapshotter",
+      "reason": "Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#2371: Add option to require stream server start",
+      "reason": "Contains 'crash'; Potential crash issue"
+    }
+  ],
+  "prs": {
+    "121": {
+      "title": "Send \"live\" event only if past events requested",
+      "url": "https://github.com/containerd/containerd/pull/121",
+      "body": "This fixes a bug where the live events are recorded in the events log.\n\nSigned-off-by: Kenfe-Mickael Laventure mickael.laventure@gmail.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-02-29T19:19:02Z",
+      "merged_at": "2016-02-29T19:25:51Z",
+      "author": "mlaventure",
+      "labels": []
+    },
+    "10691": {
+      "title": "Implement CRI ListPodSandboxMetrics",
+      "url": "https://github.com/containerd/containerd/pull/10691",
+      "body": "Implement the following CRI APIs\r\n- ListPodSandboxMetrics\r\n- ListMetricDescriptors\r\n\r\nFixes: #10506\r\n\r\n#### TESTING\r\n`crictl metricsp` command can be used to test the pod sandbox metrics returned by the runtime.\r\n\r\n###### Output\r\nRef: https://gist.github.com/akhilerm/625d12b805d482cd577311be3a4f7551\r\n\r\nPart of https://github.com/kubernetes/enhancements/issues/2371\r\n\r\n\r\n```release-note\r\n* **Pod Sandbox Metrics** ([#10691](https://github.com/containerd/containerd/pull/10691))\r\n  \r\n  Full implementation of Kubernetes CRI pod-level metrics API\r\n  * **ListPodSandboxMetrics**: Query metrics for  running pods/sandboxes\r\n  * **ListMetricsDescriptors**: Discover available metrics and their descriptions\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-09-10T16:19:39Z",
+      "merged_at": "2025-10-24T04:38:42Z",
+      "author": "akhilerm",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "area/cri",
+        "size/XXL"
+      ]
+    },
+    "11578": {
+      "title": "[KEP-4639] Support image volume mount subpath",
+      "url": "https://github.com/containerd/containerd/pull/11578",
+      "body": "Following up https://github.com/containerd/containerd/pull/10579, this PR adds the [`subpath`](https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath) support for image volume mount.\r\n\r\nFix #11580\r\n\r\nAs discussed in https://github.com/containerd/containerd/pull/11533#issuecomment-2722862811, we don't want to bump up to go 1.24 in containerd 2.1, so it PR may not be merged before 2.1. But want to share it early so I can get some early feedback and iterate. :)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-03-21T05:29:36Z",
+      "merged_at": "2025-06-04T04:51:43Z",
+      "author": "djdongjin",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "10579": {
+      "title": "Add OCI/Image Volume Source support",
+      "url": "https://github.com/containerd/containerd/pull/10579",
+      "body": "Fixed #10496",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-08-12T05:44:16Z",
+      "merged_at": "2025-02-18T13:11:38Z",
+      "author": "wzshiming",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "area/cri",
+        "ok-to-test",
+        "size/L"
+      ]
+    },
+    "11533": {
+      "title": "Switch to go 1.24",
+      "url": "https://github.com/containerd/containerd/pull/11533",
+      "body": "The latest NRI wasm support will require go 1.24. Means we switch to the latest golang minor ahead of time to allow seamless upgrades.\r\n\r\nRefers to https://github.com/containerd/nri/pull/148",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2025-03-12T12:26:00Z",
+      "merged_at": null,
+      "author": "saschagrunert",
+      "labels": [
+        "needs-ok-to-test",
+        "size/XS",
+        "go"
+      ]
+    },
+    "148": {
+      "title": "Factor out some leftover direct references to runc binary",
+      "url": "https://github.com/containerd/containerd/pull/148",
+      "body": "Signed-off-by: Tibor Vass tibor@docker.com\n\nThis is a few things I missed in #146 \n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-03-22T16:02:09Z",
+      "merged_at": "2016-03-22T16:10:22Z",
+      "author": "tiborvass",
+      "labels": []
+    },
+    "146": {
+      "title": "Have containerd-shim filename depend on containerd filename",
+      "url": "https://github.com/containerd/containerd/pull/146",
+      "body": "If containerd binary is renamed to docker-containerd, then it should\ninvoke the docker-containerd-shim binary.\n\nSigned-off-by: Tibor Vass tibor@docker.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-03-22T01:38:38Z",
+      "merged_at": "2016-03-22T15:58:09Z",
+      "author": "tiborvass",
+      "labels": []
+    },
+    "11919": {
+      "title": "Add tar index mode to erofs snapshotter",
+      "url": "https://github.com/containerd/containerd/pull/11919",
+      "body": "## Summary\r\n\r\nThis PR introduces support for a new \"tar index\" mode in the EROFS snapshotter and differ. The tar index mode enables more efficient handling of OCI image layers by generating a tar index and appending the original tar content\r\n\r\n## Key Changes\r\n\r\n- **docs/snapshotters/erofs.md**: Added documentation for the new tar index mode, including configuration and usage details.\r\n- **internal/erofsutils/mount_linux.go**: \r\n  - Added `GenerateTarIndexAndAppendTar` to create a combined EROFS layer with a tar index and tar content.\r\n  - Added `SupportGenerateFromTar` to detect mkfs.erofs tar mode support.\r\n- **plugins/diff/erofs/differ_linux.go**: \r\n  - Refactored to support tar index mode via options.\r\n  - Differentiated between standard and tar index conversion logic.\r\n- **plugins/diff/erofs/plugin/plugin_linux.go**: \r\n  - Updated plugin config to support enabling tar index mode via TOML.\r\n  - Checked for mkfs.erofs tar mode support during plugin initialization.\r\n\r\n## Motivation\r\n\r\nThe tar index approach provides computational advantages, particularly when integrated with dm-verity. When testing with an Ubuntu 20.04 image layer, it takes about 6s to generate the merkle tree. We would like to offload this process to happen off the container host ahead of time and can be stored in the registry. We will also use the registry to store the root hash dm-verity signature, so we would need to fetch that anyway.\r\n \r\nSince we will be fetching the dm-verity merkle tree and the root hash signature from the registry, we can also fetch the tar index generated by erofs utils. While generating the tar index is much less computationally intensive, it would still result in unnecessary computation on per node basis.\r\n \r\nFinally, we would like to have a fallback mechanism that is consistent with the artifacts published to the registry (the merkle tree and the tar index). For that, we would like to not only have the logic in the differ to support appending tar to the tar index fetched from the registry, but also the ability to generate the tar index. This way, if the index is not available in the registry, it can be generated on the fly on the node.\r\n \r\nAs to why we prefer the erofs tar index over the erofs blob, is that since we have already pulled the layer tar, we don't want to repull the full erofs blob, which would be effectively similar in size to the tar layer. The tar index is much smaller.\r\n\r\nIn addition, we have a tar diffID for each layer according to the OCI image spec, so we don't need to reinvent a new way to verify the image layer content for confidential containers but just calculate the sha256 of the original tar data (because erofs could just reuse the tar data with 512-byte fs block size and build a minimal index for direct mounting of tar) out of the tar index mode in the guest and compare it with each diffID.\r\n\r\n## Configuration\r\n\r\nTo enable tar index mode, set `enable_tar_index = true` in the differ plugin configuration.\r\n\r\n```release-note\r\n* **Add tar index mode to EROFS snapshotter**\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-05-30T18:17:02Z",
+      "merged_at": "2025-07-09T07:26:36Z",
+      "author": "aadhar-agarwal",
+      "labels": [
+        "ok-to-test",
+        "size/L",
+        "area/storage"
+      ]
+    },
+    "11921": {
+      "title": "Tar unpack progress through transfer service",
+      "url": "https://github.com/containerd/containerd/pull/11921",
+      "body": "Adds unpack to transfer service.\r\n\r\nSee https://asciinema.org/a/6bJRKKKuqkAVV51GjN8SBSeYu\r\n\r\nA few notes...\r\n- we could order the progress lines better to make it easier to follow\r\n- remote differ will not have the progress but the proxy will at least send start and end progress",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-05-30T21:24:16Z",
+      "merged_at": "2025-09-17T05:01:14Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/distribution"
+      ]
+    },
+    "12025": {
+      "title": "Add support for back references in the garbage collector",
+      "url": "https://github.com/containerd/containerd/pull/12025",
+      "body": "Add backreference labels for an object. This allows objects to be referred to by objects which already exist without updating the labels on the original object or referred to by objects which do not yet exist. This is useful for ephemeral objects as well as objects with a 1 to many relationship.\r\n\r\nUse cases:\r\n- Dependent images (\"dangling\" images)\r\n- Ephemeral container objects (such as streams, networks, or mounts)\r\n- OCI referrers (1 to many relationship)\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-06-24T23:32:23Z",
+      "merged_at": "2025-08-22T05:20:56Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "size/L"
+      ]
+    },
+    "12050": {
+      "title": "Add snapshotter and differ for block CIMs",
+      "url": "https://github.com/containerd/containerd/pull/12050",
+      "body": "This commit adds the snapshotter and differ plugins that can be used to pull/import container images in the block CIM format. (More about block CIMs [here](https://github.com/microsoft/hcsshim/blob/main/pkg/cimfs/doc.go).)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-01T22:17:28Z",
+      "merged_at": "2025-07-31T20:50:31Z",
+      "author": "ambarve",
+      "labels": [
+        "impact/changelog",
+        "platform/windows",
+        "needs-ok-to-test",
+        "size/XXL",
+        "go",
+        "area/storage"
+      ]
+    },
+    "12063": {
+      "title": "Add mount manager",
+      "url": "https://github.com/containerd/containerd/pull/12063",
+      "body": "Implementation of #11303\r\n~~Depends on #12025~~ _merged_\r\n\r\nWIP Items:\r\n- ~~Update implementation and testing~~ _complete_\r\n- ~~Moving runtime implementation down to the task manager~~ _complete_\r\n- ~~Passing runtime name to~~ _complete_\r\n- ~~More complete documentation~~ _complete_\r\n\r\n```release-note\r\n* **Add mount manager** ([#12063](https://github.com/containerd/containerd/pull/12063))\r\n\r\n  The mount manager is a new service that provides lifecycle management for filesystem mounts\r\n  to support more advanced use cases, such as:\r\n  * **Device formatting** to create formatted filesystems (xfs, ext4) on-demand  \r\n  * **Mount activation** to prepare devices such as loopbacks or network fileystems\r\n  * **Mount transformation** to allow mount arguments to be filled in dynamically from previous mounts\r\n  * **Garbage collection** of mounts to ensure temporary mounts are never leaked\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-07T06:39:14Z",
+      "merged_at": "2025-10-03T14:39:47Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "size/XXL"
+      ]
+    },
+    "12082": {
+      "title": "Enable otel traces in NRI",
+      "url": "https://github.com/containerd/containerd/pull/12082",
+      "body": "Set up NRI for producing otel trace spans.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-10T18:42:30Z",
+      "merged_at": "2025-07-21T15:01:18Z",
+      "author": "klihub",
+      "labels": [
+        "impact/changelog",
+        "size/S",
+        "area/nri"
+      ]
+    },
+    "12142": {
+      "title": "restart: use goroutine to speedup loadShims",
+      "url": "https://github.com/containerd/containerd/pull/12142",
+      "body": "I find restart containerd use much time on loadShims when create many pods.\r\ncreate 300 pods\r\nbefore this commit  \r\n```\r\ntime=\"2025-07-26T17:16:11.934486476+08:00\" level=info msg=\"containerd successfully booted in 12.399198s\"\r\n```\r\nafter this commit \r\n```\r\ntime=\"2025-07-26T17:14:18.288939951+08:00\" level=info msg=\"containerd successfully booted in 2.570514s\"\r\n```\r\n A picture of a cute animal (not mandatory but encouraged)\r\n\r\n<img width=\"633\" height=\"668\" alt=\"666666\" src=\"https://github.com/user-attachments/assets/ba8d2efe-bce3-4faa-b638-ceb9b0a166b4\" />\r\n\r\n```release-note\r\n* **Improve shim load time after restart by loading in parallel**\r\n```\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-07-26T06:58:04Z",
+      "merged_at": "2025-10-17T15:12:16Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "impact/changelog",
+        "ok-to-test",
+        "area/runtime",
+        "size/L"
+      ]
+    }
+  },
+  "issues": {
+    "2371": {
+      "title": "Add option to require stream server start",
+      "url": "https://github.com/containerd/containerd/issues/2371",
+      "body": "**Description**\r\n\r\nEarly in the `systemd`-managed startup process when `containerd` starts up, it fails to start the streaming server, and I need to restart the unit.\r\n\r\nIf possible I'd like if `containerd` just crashed upon not being able to start the streaming server, when handed a certain option, maybe something like `--required_services`.\r\n\r\n**Steps to reproduce the issue:**\r\n1. Startup a Container Linux system with `containerd` installed as an enabled unit\r\n2. Witness the streaming server failed to start message in the unit log for `containerd`\r\n3. Restart the `containerd` unit\r\n4. `containerd` doesn't fail to start the streaming server the second time\r\n\r\n**Describe the results you received:**\r\n\r\n`containerd` started incompletely, which meant `kubelet` couldn't start properly\r\n\r\n**Describe the results you expected:**\r\n\r\n`containerd` to fail if the stream server couldn't start, in this case (since partial operation isn't acceptable), when configured.\r\n\r\n**Output of `containerd --version`:**\r\n\r\n```\r\ncontainerd github.com/containerd/containerd v1.1.0 209a7fc3e4a32ef71a8c7b50c68fc8398415badf\r\n```\r\n",
+      "state": "closed",
+      "created_at": "2018-05-30T02:57:34Z",
+      "closed_at": "2018-05-31T20:21:17Z",
+      "author": "t3hmrman",
+      "labels": []
+    }
+  }
+}
