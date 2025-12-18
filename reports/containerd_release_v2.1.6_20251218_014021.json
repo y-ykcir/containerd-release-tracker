@@ -1,0 +1,397 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-18T01:40:44.872830",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.1.6",
+    "name": "containerd 2.1.6",
+    "body": "Welcome to the v2.1.6 release of containerd!\n\nThe sixth patch release for containerd 2.1 contains various fixes and updates.\n\n### Highlights\n\n#### Runtime\n\n* **Update runc binary to v1.3.4** ([#12618](https://github.com/containerd/containerd/pull/12618))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Akihiro Suda\n* Derek McGowan\n* Mike Brown\n* Phil Estes\n* Austin Vazquez\n* Kirtana Ashok\n* Andrey Noskov\n* CrazyMax\n* Davanum Srinivas\n* Krisztian Litkey\n* Maksym Pavlenko\n* Michael Weibel\n* Paweł Gronowski\n* Sebastiaan van Stijn\n* Wei Fu\n\n### Changes\n<details><summary>28 commits</summary>\n<p>\n\n* Prepare release notes for v2.1.6 ([#12653](https://github.com/containerd/containerd/pull/12653))\n  * [`93f79087a`](https://github.com/containerd/containerd/commit/93f79087acf3fc3f01e80b354fbe2cea771304b6) Prepare release notes for v2.1.6\n* go.mod: containerd/zfs v2.0.0 ([#12655](https://github.com/containerd/containerd/pull/12655))\n  * [`7e75db3a9`](https://github.com/containerd/containerd/commit/7e75db3a929414f46a3e7c8790ea0eec3288e394) build(deps): bump github.com/containerd/zfs/v2 from 2.0.0-rc.0 to 2.0.0\n* cri/nri: short-circuit nil adjustment. ([#12673](https://github.com/containerd/containerd/pull/12673))\n  * [`2b8e11b12`](https://github.com/containerd/containerd/commit/2b8e11b12b97ada3d9741ebb29d0d8088ee3cbb8) cri/nri: short-circuit nil adjustment.\n* go.mod: github.com/containernetworking/plugins v1.9.0 ([#12659](https://github.com/containerd/containerd/pull/12659))\n  * [`69efd067c`](https://github.com/containerd/containerd/commit/69efd067caca778588edd945a5e9f2a4feb156a6) go.mod: github.com/containernetworking/plugins v1.9.0\n* go.mod: golang.org/x/crypto v0.45.0 (drop support for Go 1.23) ([#12639](https://github.com/containerd/containerd/pull/12639))\n  * [`e81678853`](https://github.com/containerd/containerd/commit/e816788537ca2b9484aa86da58391923e873f571) go.mod: golang.org/x/crypto v0.45.0\n  * [`55a2d8c8d`](https://github.com/containerd/containerd/commit/55a2d8c8d0bf6c5a7481c8922eb5a351f82f9344) CI: drop Go 1.23\n  * [`fd8e3c39b`](https://github.com/containerd/containerd/commit/fd8e3c39b952b2fb9278df64f9de4e46fa78dd36) Update Go requirements in BUILDING\n* core/runtime/v2: remove uses of otelgrpc.UnaryClientInterceptor ([#12623](https://github.com/containerd/containerd/pull/12623))\n  * [`a4454c49a`](https://github.com/containerd/containerd/commit/a4454c49a66b48309c0d9a1f5c386daf5d692614) core/runtime/v2: remove uses of otelgrpc.UnaryClientInterceptor\n* Update runc binary to v1.3.4 ([#12618](https://github.com/containerd/containerd/pull/12618))\n  * [`251f0a285`](https://github.com/containerd/containerd/commit/251f0a2854f7831ca040d7ba2dab181fd02f2240) runc: Update runc binary to v1.3.4\n* ci: bump Go 1.24.11, 1.25.5 ([#12626](https://github.com/containerd/containerd/pull/12626))\n  * [`c07c29bca`](https://github.com/containerd/containerd/commit/c07c29bca60eeff9454b005e9856acfb12cfd68c) ci: bump Go 1.24.11, 1.25.5\n  * [`e52817652`](https://github.com/containerd/containerd/commit/e528176522bc3df790ea923cfac15c18336ae429) ci: bump Go 1.24.10, 1.25.4\n  * [`04bbb66e4`](https://github.com/containerd/containerd/commit/04bbb66e408602872693282063c080bb2e9e6cf9) ci(release): set GO_VERSION in Dockerfile\n* ci: update CIFuzz actions to support Ubuntu 24.04 ([#12633](https://github.com/containerd/containerd/pull/12633))\n  * [`492987ccc`](https://github.com/containerd/containerd/commit/492987cccf044c4015ec35ce161606cc514de75e) ci: update CIFuzz actions to support Ubuntu 24.04\n* build(deps): bump github.com/opencontainers/selinux ([#12590](https://github.com/containerd/containerd/pull/12590))\n  * [`55a25ec6e`](https://github.com/containerd/containerd/commit/55a25ec6efa335cdb9e6b56207643f33277be4d4) build(deps): bump github.com/opencontainers/selinux\n* Redact all query parameters in CRI error logs ([#12547](https://github.com/containerd/containerd/pull/12547))\n  * [`b72d0dfe0`](https://github.com/containerd/containerd/commit/b72d0dfe0458e1b5f1e67ba70476fc4887ee5f08) fix: redact all query parameters in CRI error logs\n* Update 2.1 branch to no longer build as latest ([#12487](https://github.com/containerd/containerd/pull/12487))\n  * [`ecd58bd65`](https://github.com/containerd/containerd/commit/ecd58bd6507cb6c566c68b440ceea5d7d99b3260) Update 2.1 branch to no longer build as latest\n</p>\n</details>\n\n### Changes from containerd/platforms\n<details><summary>5 commits</summary>\n<p>\n\n* use windowsMatchComparer for OSVersion match order ([containerd/platforms#25](https://github.com/containerd/platforms/pull/25))\n  * [`8c0d9f9`](https://github.com/containerd/platforms/commit/8c0d9f9835bbe848b9c6f6f4a3a23f7dc97de927) use windowsMatchComparer for OSVersion match order\n* Add WS2025 to Windows matcher and code optimizations ([containerd/platforms#24](https://github.com/containerd/platforms/pull/24))\n  * [`8447b0a`](https://github.com/containerd/platforms/commit/8447b0ad126eb97a40c5bde800d38370a39ba52f) Update ci.yml\n  * [`4549974`](https://github.com/containerd/platforms/commit/4549974181760492ffc528fae4d7f29620a2c67c) Add WS2025 to Windows matcher and code optimizations\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/containerd/platforms**         v1.0.0-rc.1 -> v1.0.0-rc.2\n* **github.com/containerd/zfs/v2**            v2.0.0-rc.0 -> v2.0.0\n* **github.com/containernetworking/plugins**  v1.7.1 -> v1.9.0\n* **github.com/coreos/go-systemd/v22**        v22.5.0 -> v22.6.0\n* **github.com/cyphar/filepath-securejoin**   v0.5.1 **_new_**\n* **github.com/go-logr/logr**                 v1.4.2 -> v1.4.3\n* **github.com/opencontainers/selinux**       v1.12.0 -> v1.13.1\n* **github.com/vishvananda/netlink**          0e7078ed04c8 -> v1.3.1\n* **golang.org/x/crypto**                     v0.36.0 -> v0.45.0\n* **golang.org/x/mod**                        v0.24.0 -> v0.29.0\n* **golang.org/x/net**                        v0.38.0 -> v0.47.0\n* **golang.org/x/sync**                       v0.14.0 -> v0.18.0\n* **golang.org/x/sys**                        v0.33.0 -> v0.38.0\n* **golang.org/x/term**                       v0.30.0 -> v0.37.0\n* **golang.org/x/text**                       v0.23.0 -> v0.31.0\n* **google.golang.org/protobuf**              v1.36.6 -> v1.36.7\n\nPrevious release can be found at [v2.1.5](https://github.com/containerd/containerd/releases/tag/v2.1.5)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2025-12-18T01:06:52Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.1.6",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 2.1.6 主要包含安全补丁和运行时稳定性改进，重点升级 runc 到 v1.3.4 并修复多个安全漏洞",
+    "key_changes": [
+      "升级 runc 到 v1.3.4 - [PR #12618](https://github.com/containerd/containerd/pull/12618) - **影响：** 修复 tmpfs 挂载参数错误导致的容器启动失败问题",
+      "CRI 错误日志中敏感参数脱敏 - [PR #12547](https://github.com/containerd/containerd/pull/12547) - **影响：** 防止 URL 查询参数中的敏感信息泄露"
+    ],
+    "important_bugfixes": [
+      "修复 runc tmpfs 挂载参数错误导致的权限问题 - [PR #12618](https://github.com/containerd/containerd/pull/12618) - **影响：** 容器启动时可能触发 `permission denied` 错误（如 #12484 问题）",
+      "SELinux 依赖升级至 v1.13.1 - [PR #12590](https://github.com/containerd/containerd/pull/12590) - **影响：** 增强 SELinux 策略兼容性"
+    ],
+    "security_issues": [
+      "修复 golang.org/x/crypto 中的 SSH 组件漏洞（GO-2025-4135/4134/4116）- [PR #12639](https://github.com/containerd/containerd/pull/12639) - **风险级别：** 高 - 可能导致 SSH 连接 DoS 或敏感信息泄露",
+      "更新 containerd/platforms 的 Windows Server 2025 匹配规则 - [containerd/platforms#24](https://github.com/containerd/platforms/pull/24) - **风险级别：** 低"
+    ],
+    "performance_improvements": [
+      "CI 流水线升级至 Go 1.24.11/1.25.5 - [PR #12626](https://github.com/containerd/containerd/pull/12626) - **提升：** 构建稳定性和编译器优化"
+    ],
+    "breaking_changes": [
+      "移除 OpenTelemetry gRPC 拦截器 - [PR #12623](https://github.com/containerd/containerd/pull/12623) - **影响：** 依赖该组件的监控系统需迁移到 NewClientHandler",
+      "放弃对 Go 1.23 的支持 - [PR #12639](https://github.com/containerd/containerd/pull/12639) - **影响：** 自编译用户需升级到 Go 1.24+"
+    ],
+    "recommendations": [
+      "立即升级 runc 到 v1.3.4（需与 containerd 同步升级）",
+      "检查监控系统是否依赖旧版 OpenTelemetry 拦截器",
+      "优先在测试环境验证 tmpfs 挂载场景",
+      "若使用自编译部署，确保 Go 版本 ≥1.24"
+    ],
+    "risk_assessment": "整体风险评估：中风险。升级需重点关注 runc 兼容性（尤其是 tmpfs 挂载场景）和监控系统适配性。建议在维护窗口期升级，生产环境需充分测试容器启动和网络策略。安全更新涉及 SSH 组件，建议 1 周内完成升级。"
+  },
+  "statistics": {
+    "analyzed_prs": 19,
+    "analyzed_issues": 1,
+    "important_items": 12
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12487: Update 2.1 branch to no longer build as latest",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12547: [release/2.1] Redact all query parameters in CRI error logs",
+      "reason": "Has label 'kind/bug'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12491: fix: redact all query parameters in CRI error logs",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#12590: [release/2.1] build(deps): bump github.com/opencontainers/selinux",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12528: build(deps): bump github.com/opencontainers/selinux from 1.12.0 to 1.13.1",
+      "reason": "Contains 'security'; Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#203: containerd build clean on Solaris",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12618: [release/2.1] Update runc binary to v1.3.4",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12593: [release/2.2] Update runc binary to v1.3.4",
+      "reason": "Contains 'regression'"
+    },
+    {
+      "type": "PR",
+      "title": "#12623: [release/2.1] core/runtime/v2: remove uses of otelgrpc.UnaryClientInterceptor",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12626: [release/2.1] ci: bump Go 1.24.11, 1.25.5",
+      "reason": "Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12633: [release/2.1] ci: update CIFuzz actions to support Ubuntu 24.04",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12639: [release/2.1] go.mod: golang.org/x/crypto v0.45.0 (drop support for Go 1.23)",
+      "reason": "Contains 'vulnerability'; Cherry-pick or backport"
+    }
+  ],
+  "prs": {
+    "12487": {
+      "title": "Update 2.1 branch to no longer build as latest",
+      "url": "https://github.com/containerd/containerd/pull/12487",
+      "body": "2.2 release will now build as latest, change this to false to prevent overwriting 2.2 builds.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-06T00:57:22Z",
+      "merged_at": "2025-11-06T01:26:58Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/XS",
+        "github_actions"
+      ]
+    },
+    "12547": {
+      "title": "[release/2.1] Redact all query parameters in CRI error logs",
+      "url": "https://github.com/containerd/containerd/pull/12547",
+      "body": "This is an automated cherry-pick of #12491\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-19T22:32:13Z",
+      "merged_at": "2025-11-21T00:48:17Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "12491": {
+      "title": "fix: redact all query parameters in CRI error logs",
+      "url": "https://github.com/containerd/containerd/pull/12491",
+      "body": "Trying to fix #5453 \r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-06T11:57:28Z",
+      "merged_at": "2025-11-19T22:31:01Z",
+      "author": "andrey-noskov",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "cherry-picked/1.7.x",
+        "size/L",
+        "area/distribution",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12590": {
+      "title": "[release/2.1] build(deps): bump github.com/opencontainers/selinux",
+      "url": "https://github.com/containerd/containerd/pull/12590",
+      "body": "Cherry-pick (not clean)\r\n- #12528",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-28T02:18:49Z",
+      "merged_at": "2025-12-01T17:31:29Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "dependencies",
+        "size/XXL"
+      ]
+    },
+    "12528": {
+      "title": "build(deps): bump github.com/opencontainers/selinux from 1.12.0 to 1.13.1",
+      "url": "https://github.com/containerd/containerd/pull/12528",
+      "body": "Bumps [github.com/opencontainers/selinux](https://github.com/opencontainers/selinux) from 1.12.0 to 1.13.1.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/opencontainers/selinux/releases\">github.com/opencontainers/selinux's releases</a>.</em></p>\n<blockquote>\n<h2>v1.13.1</h2>\n<p>This release includes a minor update to reduce the minimum version\nrequirement of the <code>github.com/cyphar/filepath-securejoin</code> package from\nv0.6.0 to v0.5.1. We did not use any of the newer features, so\ndowngrading is a no-op but will help with downstreams that need to\nbackport <code>github.com/opencontainers/selinux</code> updates.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>build(deps): bump golangci/golangci-lint-action from 8 to 9 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/240\">opencontainers/selinux#240</a></li>\n<li>downgrade github.com/cyphar/filepath-securejoin to v0.5.1 by <a href=\"https://github.com/Luap99\"><code>@​Luap99</code></a> in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/242\">opencontainers/selinux#242</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/Luap99\"><code>@​Luap99</code></a> made their first contribution in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/242\">opencontainers/selinux#242</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/opencontainers/selinux/compare/v1.13.0...v1.13.1\">https://github.com/opencontainers/selinux/compare/v1.13.0...v1.13.1</a></p>\n<h2>v1.13.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Switch to golangci-lint v2 by <a href=\"https://github.com/kolyshkin\"><code>@​kolyshkin</code></a> in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/230\">opencontainers/selinux#230</a></li>\n<li>build(deps): bump actions/checkout from 4 to 5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/233\">opencontainers/selinux#233</a></li>\n<li>build(deps): bump actions/setup-go from 5 to 6 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/234\">opencontainers/selinux#234</a></li>\n<li>keyring: fix typo in EACCES check by <a href=\"https://github.com/cyphar\"><code>@​cyphar</code></a> in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/235\">opencontainers/selinux#235</a></li>\n<li>Add Go 1.25, drop go 1.23, bump golangci-lint by <a href=\"https://github.com/kolyshkin\"><code>@​kolyshkin</code></a> in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/236\">opencontainers/selinux#236</a></li>\n<li>selinux: migrate to pathrs-lite procfs API by <a href=\"https://github.com/cyphar\"><code>@​cyphar</code></a> in <a href=\"https://redirect.github.com/opencontainers/selinux/pull/237\">opencontainers/selinux#237</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/opencontainers/selinux/compare/v1.12.0...v1.13.0\">https://github.com/opencontainers/selinux/compare/v1.12.0...v1.13.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/5647f06491288afa5ea45747896b359f51f7c509\"><code>5647f06</code></a> Merge pull request <a href=\"https://redirect.github.com/opencontainers/selinux/issues/242\">#242</a> from Luap99/securejoin</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/69a52b85c9831ced6f3f512822063bff5eb41dac\"><code>69a52b8</code></a> downgrade github.com/cyphar/filepath-securejoin to v0.5.1</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/6950c322825bbede8032e70fbac550c497a49943\"><code>6950c32</code></a> Merge pull request <a href=\"https://redirect.github.com/opencontainers/selinux/issues/240\">#240</a> from opencontainers/dependabot/github_actions/golangc...</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/9a88c886b3ca4f6e016057eab6f2770aff9c2024\"><code>9a88c88</code></a> build(deps): bump golangci/golangci-lint-action from 8 to 9</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/4be9937fb76c0c49a30469135a4077fcc33712b8\"><code>4be9937</code></a> Merge pull request <a href=\"https://redirect.github.com/opencontainers/selinux/issues/237\">#237</a> from cyphar/selinux-safe-procfs</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/c8cfa6fd2d285a96022203163c2075eda85bff54\"><code>c8cfa6f</code></a> selinux: migrate to pathrs-lite procfs API</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/f2424d8145e2ac45a0ec457e39758cd58e573285\"><code>f2424d8</code></a> Merge pull request <a href=\"https://redirect.github.com/opencontainers/selinux/issues/236\">#236</a> from kolyshkin/modernize-ci</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/648ce7f0f85f4a310d1cd7317986fc1d6c8ff41c\"><code>648ce7f</code></a> ci: add go 1.25</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/916cab932c940e0fc55f0c8404d503665160dd9c\"><code>916cab9</code></a> ci: bump golangci-lint to v2.5</li>\n<li><a href=\"https://github.com/opencontainers/selinux/commit/b42e5c8eff8eab7ee590cc61d78fd3e2d38e3309\"><code>b42e5c8</code></a> all: format sources with latest gofumpt</li>\n<li>Additional commits viewable in <a href=\"https://github.com/opencontainers/selinux/compare/v1.12.0...v1.13.1\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=github.com/opencontainers/selinux&package-manager=go_modules&previous-version=1.12.0&new-version=1.13.1)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-17T23:09:12Z",
+      "merged_at": "2025-11-27T19:26:46Z",
+      "author": "dependabot[bot]",
+      "labels": [
+        "dependencies",
+        "cherry-picked/1.7.x",
+        "size/XXL",
+        "go",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "230": {
+      "title": "uprev dependencies required for build clean on Solaris",
+      "url": "https://github.com/containerd/containerd/pull/230",
+      "body": "This PR uprevs pkg/term and runc/libcontainer in containerd such that they build on Solaris.\nThis is a dependency for #203.\n\nSigned-off-by: Amit Krishnan krish.amit@gmail.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-05-02T20:58:24Z",
+      "merged_at": "2016-05-06T17:48:49Z",
+      "author": "amitkris",
+      "labels": []
+    },
+    "203": {
+      "title": "containerd build clean on Solaris",
+      "url": "https://github.com/containerd/containerd/pull/203",
+      "body": "This PR will build all 3 binaries containerd,containerd-shim and ctr on Solaris.\nThis PR is just build clean and I build these changes on Linux as well.\n\nThis PR has dependencies in various stages of completion (and therefore WIP until they're merged and vendored).\nThe code changes that are a part of this PR are stable and open to review.\n\nTODO:\n- [x]  [github/docker/docker/pkg/term#22080](https://github.com/docker/docker/pull/22080): This adds support for the pkg/term package specifically on Solaris. It needs to be merged and vendored.\n- [x]  opencontainers/runc : Solaris build clean support was merged. Needs to be vendored.\n\nSigned-off-by: Amit Krishnan krish.amit@gmail.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-04-16T23:36:20Z",
+      "merged_at": "2016-05-19T17:12:50Z",
+      "author": "amitkris",
+      "labels": []
+    },
+    "235": {
+      "title": "Use the new runtime update command to process UpdateResources requests ",
+      "url": "https://github.com/containerd/containerd/pull/235",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-05-09T17:28:31Z",
+      "merged_at": "2016-05-09T18:27:00Z",
+      "author": "mlaventure",
+      "labels": []
+    },
+    "236": {
+      "title": "Add version rpc",
+      "url": "https://github.com/containerd/containerd/pull/236",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-05-09T20:20:47Z",
+      "merged_at": "2016-05-09T21:19:07Z",
+      "author": "mlaventure",
+      "labels": []
+    },
+    "237": {
+      "title": "Use state for container create",
+      "url": "https://github.com/containerd/containerd/pull/237",
+      "body": "This fixes the issues that are visible after updating docker with the latest version.\n\nhttps://github.com/docker/docker/pull/22511#issuecomment-217883025\n\nSigned-off-by: Michael Crosby crosbymichael@gmail.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-05-09T21:46:16Z",
+      "merged_at": "2016-05-09T21:55:08Z",
+      "author": "crosbymichael",
+      "labels": []
+    },
+    "242": {
+      "title": "add uninstall target",
+      "url": "https://github.com/containerd/containerd/pull/242",
+      "body": "Signed-off-by: thomassong thomassong@tencent.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-05-17T07:47:38Z",
+      "merged_at": "2016-05-18T16:24:00Z",
+      "author": "mYmNeo",
+      "labels": []
+    },
+    "12618": {
+      "title": "[release/2.1] Update runc binary to v1.3.4",
+      "url": "https://github.com/containerd/containerd/pull/12618",
+      "body": "This is an automated cherry-pick of #12593\n\n/assign dmcgowan",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-03T20:19:39Z",
+      "merged_at": "2025-12-08T03:08:35Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12593": {
+      "title": "[release/2.2] Update runc binary to v1.3.4",
+      "url": "https://github.com/containerd/containerd/pull/12593",
+      "body": "- Related to: https://github.com/containerd/containerd/issues/12484\r\n\r\nThis update includes a fix for a regression introduced in CVE-2025-52881 mitigation patches where the `mode=` argument was incorrectly applied to tmpfs mounts regardless of whether the target path existed.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-28T09:35:05Z",
+      "merged_at": "2025-12-03T20:17:00Z",
+      "author": "vvoland",
+      "labels": [
+        "impact/changelog",
+        "cherry-picked/1.7.x",
+        "area/runtime",
+        "size/XS",
+        "cherry-picked/2.1.x"
+      ]
+    },
+    "12623": {
+      "title": "[release/2.1] core/runtime/v2: remove uses of otelgrpc.UnaryClientInterceptor",
+      "url": "https://github.com/containerd/containerd/pull/12623",
+      "body": "This is an automated cherry-pick of #12606\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-04T08:29:38Z",
+      "merged_at": "2025-12-08T14:46:59Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "12606": {
+      "title": "core/runtime/v2: remove uses of otelgrpc.UnaryClientInterceptor",
+      "url": "https://github.com/containerd/containerd/pull/12606",
+      "body": "- relates to https://github.com/containerd/containerd/pull/12604#issuecomment-3596523255\r\n- relates to https://github.com/open-telemetry/opentelemetry-go-contrib/pull/7125\r\n- relates to https://github.com/containerd/containerd/pull/10186\r\n\r\n\r\n\r\nThe otelgrpc.UnaryClientInterceptor and otelgrpc.StreamClientInterceptor options were deprecated and removed in favor of NewClientHandler.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-01T13:33:30Z",
+      "merged_at": "2025-12-01T19:37:05Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XS",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12626": {
+      "title": "[release/2.1] ci: bump Go 1.24.11, 1.25.5",
+      "url": "https://github.com/containerd/containerd/pull/12626",
+      "body": "This change backports two changesets for Go toolchain maintenance.\r\n\r\n1. https://github.com/containerd/containerd/pull/12583\r\n2. https://github.com/containerd/containerd/pull/12615\r\n\r\nNote: the Dockerfile change is not strictly required but nice to have to simplify toolchain updates in stable branches.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-04T14:16:41Z",
+      "merged_at": "2025-12-08T03:08:13Z",
+      "author": "austinvazquez",
+      "labels": [
+        "size/S",
+        "area/toolchain"
+      ]
+    },
+    "12633": {
+      "title": "[release/2.1] ci: update CIFuzz actions to support Ubuntu 24.04",
+      "url": "https://github.com/containerd/containerd/pull/12633",
+      "body": "This is an automated cherry-pick of #12631\n\n/assign mikebrow",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-06T21:52:49Z",
+      "merged_at": "2025-12-07T00:07:17Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS",
+        "github_actions"
+      ]
+    },
+    "12631": {
+      "title": "ci: update CIFuzz actions to support Ubuntu 24.04",
+      "url": "https://github.com/containerd/containerd/pull/12631",
+      "body": "Update the OSS-Fuzz CIFuzz action references from commit abe2c06d (Oct 2024) to c8c1b257 (Dec 2025) which includes support for Ubuntu 24.04 base images. \r\n\r\nThe new version reads `base_os_version: ubuntu-24-04` from the containerd project.yaml.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-06T17:03:09Z",
+      "merged_at": "2025-12-06T19:52:19Z",
+      "author": "dims",
+      "labels": [
+        "cherry-picked/1.7.x",
+        "size/XS",
+        "github_actions",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12639": {
+      "title": "[release/2.1] go.mod: golang.org/x/crypto v0.45.0 (drop support for Go 1.23)",
+      "url": "https://github.com/containerd/containerd/pull/12639",
+      "body": "\r\nSilence the following govulncheck reports\r\n(\"you import and 3 vulnerabilities in modules you require, but your code doesn't appear to call these vulnerabilities\"):\r\n\r\n```\r\nVulnerability #1: GO-2025-4135\r\n    Malformed constraint may cause denial of service in\r\n    golang.org/x/crypto/ssh/agent\r\n  More info: https://pkg.go.dev/vuln/GO-2025-4135\r\n  Module: golang.org/x/crypto\r\n    Found in: golang.org/x/crypto@v0.41.0\r\n    Fixed in: golang.org/x/crypto@v0.45.0\r\n\r\nVulnerability #2: GO-2025-4134\r\n    Unbounded memory consumption in golang.org/x/crypto/ssh\r\n  More info: https://pkg.go.dev/vuln/GO-2025-4134\r\n  Module: golang.org/x/crypto\r\n    Found in: golang.org/x/crypto@v0.41.0\r\n    Fixed in: golang.org/x/crypto@v0.45.0\r\n\r\nVulnerability #3: GO-2025-4116\r\n    Potential denial of service in golang.org/x/crypto/ssh/agent\r\n  More info: https://pkg.go.dev/vuln/GO-2025-4116\r\n  Module: golang.org/x/crypto\r\n    Found in: golang.org/x/crypto@v0.41.0\r\n    Fixed in: golang.org/x/crypto@v0.43.0\r\n```\r\n\r\n\r\n- - -\r\n\r\nThis commit also drops the support for Go 1.23, and cherry-picks:\r\n- https://github.com/containerd/containerd/pull/12257",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-08T04:28:50Z",
+      "merged_at": "2025-12-08T16:53:17Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "dependencies",
+        "size/XXL"
+      ]
+    }
+  },
+  "issues": {
+    "12484": {
+      "title": "[Docker, Inc.'s package] net.ipv4.ip_unprivileged_port_start permission denied only on 1.7.28-2~debian.13~trixie",
+      "url": "https://github.com/containerd/containerd/issues/12484",
+      "body": "### Description\n\nHi,\n\n**Given the bug, I'm not sure if it is the right place to report it. Don't hesitate to redirect me to the right person.**\n\nWhen using `containerd.io=1.7.28-2~debian.13~trixie` in a lxc (host is a proxmox server), running containers raise the following error:\n\n```\n$ docker run hello-world\ndocker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: open sysctl net.ipv4.ip_unprivileged_port_start file: reopen fd 8: permission denied: unknown\n```\n\nWhen rolling back to `containerd.io=1.7.28-1~debian.13~trixie` it works fine (at least for hello-world).\n\nWhat makes me think it is unrelated to the actual containerd.io binary is that both apt package give `containerd.io v1.7.28 b98a3aace656320842a23f4a392a33f46af97866` as their version (using `containerd --version`).\n\n### Steps to reproduce the issue\n\n1. in a lxc (unprivileged, nesting=1), on an up-to-date debian 13 (12 seems to have the same issue) with the normal docker installation (from docs.docker.com)\n2. run `docker run hello-world`\n\n\n### Describe the results you received and expected\n\nThe container does not start when using `1.7.28-2~debian.13~trixie` but it does with `1.7.28-1~debian.13~trixie`. The error is the following.\n\n```\ndocker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: open sysctl net.ipv4.ip_unprivileged_port_start file: reopen fd 8: permission denied: unknown\n```\n\n### What version of containerd are you using?\n\ncontainerd containerd.io v1.7.28 b98a3aace656320842a23f4a392a33f46af97866\n\n### Any other relevant information\n\nThe final test I did before posting this:\n\n```\nroot@test:~# apt update\n[...]                      \nAll packages are up to date.                         \nroot@test:~# apt list --installed | grep containerd\ncontainerd.io/trixie,now 1.7.28-2~debian.13~trixie amd64 [installed]\nroot@test:~# containerd --version\ncontainerd containerd.io v1.7.28 b98a3aace656320842a23f4a392a33f46af97866\nroot@test:~# docker run hello-world\ndocker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: open sysctl net.ipv4.ip_unprivileged_port_start file: reopen fd 8: permission denied: unknown\n\nRun 'docker run --help' for more information\nroot@test:~# apt install -y containerd.io=1.7.28-1~debian.13~trixie\n[...]\nroot@test:~# apt list --installed | grep containerd\ncontainerd.io/trixie,now 1.7.28-1~debian.13~trixie amd64 [installed,upgradable to: 1.7.28-2~debian.13~trixie]\nroot@test:~# containerd --version\ncontainerd containerd.io v1.7.28 b98a3aace656320842a23f4a392a33f46af97866\ndocker run hello-world\n\nHello from Docker!\n[...]\n```\n\nLet me know if it would be interesting to check on a bare bone machine.\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2025-11-05T17:31:00Z",
+      "closed_at": "2025-11-06T13:48:02Z",
+      "author": "Seb-sti1",
+      "labels": [
+        "kind/external",
+        "kind/duplicate",
+        "kind/external/docker-packaging"
+      ]
+    }
+  }
+}
