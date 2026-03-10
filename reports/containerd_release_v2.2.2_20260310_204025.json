@@ -1,0 +1,418 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-10T20:40:58.630639",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.2.2",
+    "name": "containerd 2.2.2",
+    "body": "Welcome to the v2.2.2 release of containerd!\n\nThe second patch release for containerd 2.2 contains various fixes and improvements.\n\n### Highlights\n\n#### Container Runtime Interface (CRI)\n\n* Fix migrated CRI image config when using legacy registry mirrors ([#12987](https://github.com/containerd/containerd/pull/12987))\n* Unpack images with per-layer labels for runtime-specific snapshotters ([#12936](https://github.com/containerd/containerd/pull/12936))\n* Fix CNI issue where DEL is never executed after a restart ([#12926](https://github.com/containerd/containerd/pull/12926))\n* Harden error handling to strip potentially-sensitive registry parameters ([#12804](https://github.com/containerd/containerd/pull/12804))\n* Fix nil pointer dereference in container spec memory metrics when memory constraints are not fully configured ([#12731](https://github.com/containerd/containerd/pull/12731))\n* Use the specified runtime handler when pulling images ([#12721](https://github.com/containerd/containerd/pull/12721))\n* Reduce noisy CDI logs ([#12717](https://github.com/containerd/containerd/pull/12717))\n* Fix regression for pulling encrypted images ([#12712](https://github.com/containerd/containerd/pull/12712))\n\n#### Runtime\n\n* Fix unintended dropping of mount flags for read-only bind-mounts in user namespaces ([#12944](https://github.com/containerd/containerd/pull/12944))\n* Fix AppArmor bug disallowing unix domain sockets on newer kernels ([#12897](https://github.com/containerd/containerd/pull/12897))\n\n#### ctr development tool\n\n* Fix `ctr image mount` failing with \"no such device\" ([#12831](https://github.com/containerd/containerd/pull/12831))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Akhil Mohan\n* Samuel Karp\n* Wei Fu\n* Michael Zappa\n* Phil Estes\n* Fabiano Fidêncio\n* Jérôme Poulin\n* Luke Hinds\n* Aadhar Agarwal\n* Akihiro Suda\n* Alex Chernyakhovsky\n* Chris Adeniyi-Jones\n* Kazuyoshi Kato\n* Rodrigo Campos\n* Sebastiaan van Stijn\n* You Binhao\n* ningmingxiao\n* qiuxue\n\n### Changes\n<details><summary>48 commits</summary>\n<p>\n\n* Prepare release notes for v2.2.2 ([#12998](https://github.com/containerd/containerd/pull/12998))\n  * [`7e6ecf434`](https://github.com/containerd/containerd/commit/7e6ecf43421f9cfa64cd7043f86ae224dc7dc0a4) Prepare release notes for v2.2.2\n* Fix migrated CRI image config when using legacy registry mirrors ([#12987](https://github.com/containerd/containerd/pull/12987))\n  * [`a20dead7c`](https://github.com/containerd/containerd/commit/a20dead7cc644291433b2da4b1efa2f70c8a144f) set default config_path in plugin init\n* Unpack images with per-layer labels for runtime-specific snapshotters ([#12936](https://github.com/containerd/containerd/pull/12936))\n  * [`a5f83d8c2`](https://github.com/containerd/containerd/commit/a5f83d8c2b419a3f882182d5beca60725387f499) cri: unpack images with per-layer labels for runtime-specific snapshotters\n* ci: modprobe xt_comment on almalinux ([#12957](https://github.com/containerd/containerd/pull/12957))\n  * [`68855cb0b`](https://github.com/containerd/containerd/commit/68855cb0be5d372fd53c450e91cc3224157abb4b) ci: modprobe xt_comment on almalinux\n* Fix unintended dropping of mount flags for read-only bind-mounts in user namespaces ([#12944](https://github.com/containerd/containerd/pull/12944))\n  * [`ef7a8beb3`](https://github.com/containerd/containerd/commit/ef7a8beb375c8322b9a09666f50150717b9ae335) core/mount: add test for getUnprivilegedMountFlags\n  * [`07b2cc07e`](https://github.com/containerd/containerd/commit/07b2cc07e4f3d553c5ca801c9f0800b55ba7eac2) core/mount: fix getUnprivilegedMountFlags iterating over indices instead of values\n* Fix CNI issue where DEL is never executed after a restart ([#12926](https://github.com/containerd/containerd/pull/12926))\n  * [`54101116f`](https://github.com/containerd/containerd/commit/54101116fcdf18e21c8d202f86ed93c34a5932af) add integration test for cni result nil\n  * [`d44c4384e`](https://github.com/containerd/containerd/commit/d44c4384ec9f7adef9a4598e05f12e0850338fd8) address comment\n  * [`f1835270b`](https://github.com/containerd/containerd/commit/f1835270b0b800e4c1ba13391cd4a75617810615) fix issue where cni del is never executed\n* Fix AppArmor bug disallowing unix domain sockets on newer kernels ([#12897](https://github.com/containerd/containerd/pull/12897))\n  * [`6c05047b4`](https://github.com/containerd/containerd/commit/6c05047b4ba86d2fb857429c6272bb66679e7dee) apparmor: explicitly set abi/3.0\n* ci: add build/test go1.26.0, drop go1.24 ([#12917](https://github.com/containerd/containerd/pull/12917))\n  * [`5dbf1b915`](https://github.com/containerd/containerd/commit/5dbf1b91596e35247f5928ad202da2a378859703) update golangci-lint to v2.9.0 with go1.26 support\n  * [`8ec695ebe`](https://github.com/containerd/containerd/commit/8ec695ebe8b6f8ec4fbd4ebbe658a2aaa35ac857) remove windows/arm from cross build\n  * [`b9c22a6e3`](https://github.com/containerd/containerd/commit/b9c22a6e39a937e86723bac0b63e30587cd8e936) ci: build/test go1.26.0\n* integration: Fix TestImageLoad() failure on CI ([#12906](https://github.com/containerd/containerd/pull/12906))\n  * [`09b876a81`](https://github.com/containerd/containerd/commit/09b876a8198818ab7d59e9037e6592889faea861) integration: Fix TestImageLoad() failure on CI\n* cri: Fix image volumes with user namespaces ([#12885](https://github.com/containerd/containerd/pull/12885))\n  * [`172ba65b6`](https://github.com/containerd/containerd/commit/172ba65b6a89479865832a7101f10e1b3a323d78) cri: Fix image volumes with user namespaces\n* update to go1.24.13, go1.25.7 ([#12871](https://github.com/containerd/containerd/pull/12871))\n  * [`b4240ef87`](https://github.com/containerd/containerd/commit/b4240ef8782d274b97554881cec65aa8b1da0d2c) update to go1.24.13, go1.25.7\n  * [`94dbfaea7`](https://github.com/containerd/containerd/commit/94dbfaea7295d65c11f36510abc558e6e01c9205) ci: bump go 1.24.12, 1.25.6\n* ci: set fetch-depth for containerd to 0 for version parsing ([#12875](https://github.com/containerd/containerd/pull/12875))\n  * [`e46a7a286`](https://github.com/containerd/containerd/commit/e46a7a28682e79b9d851ea4de1840eb0dcf555b5) set fetch-depth for containerd to 0 for version parsing\n* Fix `ctr image mount` failing with \"no such device\" ([#12831](https://github.com/containerd/containerd/pull/12831))\n  * [`1d7908273`](https://github.com/containerd/containerd/commit/1d79082735d46fe24ded00a55ea6e3a33954593e) core/mount/manager: fix bind mount missing rbind option\n  * [`3d509bcd3`](https://github.com/containerd/containerd/commit/3d509bcd335b15cece69ebfa117681d2715df930) core/mount/manager: add tests for WithTemporary option\n* Harden error handling to strip potentially-sensitive registry parameters ([#12804](https://github.com/containerd/containerd/pull/12804))\n  * [`cb3ae2119`](https://github.com/containerd/containerd/commit/cb3ae211952909a5c4d9fcb274e029286057fc34) fix: sanitize error before gRPC return to prevent credential leak in pod events\n* bump google.golang.org/grpc from 1.76.0 to 1.78.0 ([#12739](https://github.com/containerd/containerd/pull/12739))\n  * [`533a2552e`](https://github.com/containerd/containerd/commit/533a2552e9e1ff1896868986240f493e9f488920) build(deps): bump google.golang.org/grpc from 1.77.0 to 1.78.0\n  * [`b120237fb`](https://github.com/containerd/containerd/commit/b120237fb6af3b65117ba83af204cf92790acff3) build(deps): bump google.golang.org/grpc from 1.76.0 to 1.77.0\n* Fix nil pointer dereference in container spec memory metrics when memory constraints are not fully configured ([#12731](https://github.com/containerd/containerd/pull/12731))\n  * [`4be4e5156`](https://github.com/containerd/containerd/commit/4be4e5156c1bfdd84f12bb43424261e3b5578208) Fix nil pointer dereference in container spec memory metrics\n* cri: emit warning for concurrent CreateContainer ([#12735](https://github.com/containerd/containerd/pull/12735))\n  * [`a76eb698a`](https://github.com/containerd/containerd/commit/a76eb698a52f1eb3018fe6126587dcf36fad4e7b) cri: emit warning for concurrent CreateContainer\n* Use the specified runtime handler when pulling images ([#12721](https://github.com/containerd/containerd/pull/12721))\n  * [`3d2e188b1`](https://github.com/containerd/containerd/commit/3d2e188b15d7db18f87251eaf134da463f36a8c8) cri: Use the runtimeHandler parameter in PullImage\n* Reduce noisy CDI logs ([#12717](https://github.com/containerd/containerd/pull/12717))\n  * [`633057382`](https://github.com/containerd/containerd/commit/633057382e7bfd16523865928549b38e0aa0b7e2) cri: move noisy CDI logs to debug level\n* Fix regression for pulling encrypted images ([#12712](https://github.com/containerd/containerd/pull/12712))\n  * [`8a7409e2e`](https://github.com/containerd/containerd/commit/8a7409e2e71fd9486db3504ab804d4419e45af41) Reinstate image decryption\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/go-jose/go-jose/v4**              v4.1.2 -> v4.1.3\n* **go.opentelemetry.io/auto/sdk**               v1.1.0 -> v1.2.1\n* **go.opentelemetry.io/otel**                   v1.37.0 -> v1.38.0\n* **go.opentelemetry.io/otel/metric**            v1.37.0 -> v1.38.0\n* **go.opentelemetry.io/otel/sdk**               v1.37.0 -> v1.38.0\n* **go.opentelemetry.io/otel/trace**             v1.37.0 -> v1.38.0\n* **golang.org/x/oauth2**                        v0.30.0 -> v0.32.0\n* **google.golang.org/genproto/googleapis/api**  a7a43d27e69b -> ab9386a59fda\n* **google.golang.org/genproto/googleapis/rpc**  a7a43d27e69b -> ab9386a59fda\n* **google.golang.org/grpc**                     v1.76.0 -> v1.78.0\n\nPrevious release can be found at [v2.2.1](https://github.com/containerd/containerd/releases/tag/v2.2.1)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-03-10T20:03:58Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.2.2",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 2.2.2 版本聚焦关键稳定性修复和安全增强，重点解决了CNI网络清理、加密镜像拉取、敏感信息泄露等生产环境核心问题",
+    "key_changes": [
+      "修复CNI网络插件重启后DEL操作未执行问题 - [PR #12926](https://github.com/containerd/containerd/pull/12926) - **影响：** 可能导致残留网络配置积累，引发IP地址耗尽或网络冲突",
+      "增强错误信息过滤防止registry凭证泄露 - [PR #12804](https://github.com/containerd/containerd/pull/12804) - **影响：** 避免敏感凭证出现在Kubernetes事件日志中",
+      "支持在拉取镜像时指定runtime handler - [PR #12721](https://github.com/containerd/containerd/pull/12721) - **影响：** 确保GPU等特殊运行时设备能正确初始化"
+    ],
+    "important_bugfixes": [
+      "修复加密镜像拉取功能回归问题 - [PR #12712](https://github.com/containerd/containerd/pull/12712) - **影响：** 2.2版本用户无法正常使用镜像加密功能",
+      "修复内存指标空指针崩溃问题 - [PR #12731](https://github.com/containerd/containerd/pull/12731) - **影响：** 未配置完整内存限制的容器会触发containerd宕机",
+      "修复用户命名空间下只读挂载标志丢失问题 - [PR #12944](https://github.com/containerd/containerd/pull/12944) - **影响：** 容器可能意外获得写权限引发安全风险"
+    ],
+    "security_issues": [
+      "强化错误信息过滤机制 - [PR #12804](https://github.com/containerd/containerd/pull/12804) - **风险级别：** 高 - 修复前可能通过kubectl事件暴露registry凭证"
+    ],
+    "performance_improvements": [
+      "降低CDI插件日志噪音 - [PR #12717](https://github.com/containerd/containerd/pull/12717) - **提升：** 减少80%无关日志输出",
+      "优化并发容器创建检测机制 - [PR #12735](https://github.com/containerd/containerd/pull/12735) - **提升：** 添加明确告警信息便于问题排查"
+    ],
+    "breaking_changes": [
+      "弃用runtime-handler注解方式 - [PR #12721](https://github.com/containerd/containerd/pull/12721) - **影响：** 需升级CRI客户端到支持runtimeHandler参数的版本"
+    ],
+    "recommendations": [
+      "立即升级存在加密镜像使用的环境",
+      "检查所有使用用户命名空间的容器挂载配置",
+      "监控升级后CNI网络配置清理情况",
+      "更新Kubernetes组件确保使用新版CRI接口"
+    ],
+    "risk_assessment": "整体风险评估：中低风险。建议在测试环境验证后尽快升级，特别关注：1) 加密镜像拉取功能验证 2) 内存监控指标稳定性 3) 网络配置清理情况。需确保CNI插件版本兼容性，推荐在维护窗口期完成升级。"
+  },
+  "statistics": {
+    "analyzed_prs": 18,
+    "analyzed_issues": 1,
+    "important_items": 14
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12712: [release/2.2] Fix regression for pulling encrypted images",
+      "reason": "Contains 'regression'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12717: [release/2.2] Reduce noisy CDI logs",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12721: [release/2.2] Use the specified runtime handler when pulling images",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12731: [release/2.2] Fix nil pointer dereference in container spec memory metrics when memory constraints are not fully configured",
+      "reason": "Has label 'kind/bug'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12492: Fix nil pointer dereference in container spec memory metrics",
+      "reason": "Contains 'panic'; Has label 'kind/bug'; Potential crash issue; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12735: [release/2.2] cri: emit warning for concurrent CreateContainer",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12695: cri: emit warning for concurrent CreateContainer",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12804: [release/2.2] Harden error handling to strip potentially-sensitive registry parameters",
+      "reason": "Has label 'kind/bug'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12801: fix: sanitize error before gRPC return to prevent credential leak in pod events",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#12831: [release/2.2] Fix `ctr image mount` failing with \"no such device\"",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12581: Fix ctr image mount failing with no such device",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#12871: [release/2.2 backport] update to go1.24.13, go1.25.7",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12875: [release/2.2] ci: set fetch-depth for containerd to 0 for version parsing",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "Issue",
+      "title": "#12738: Continuous memory growth in containerd v2.1.4",
+      "reason": "Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "12712": {
+      "title": "[release/2.2] Fix regression for pulling encrypted images",
+      "url": "https://github.com/containerd/containerd/pull/12712",
+      "body": "This is an automated cherry-pick of #12705\n\n/assign mikebrow",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-19T16:35:57Z",
+      "merged_at": "2025-12-19T21:01:04Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/XS"
+      ]
+    },
+    "12705": {
+      "title": "Uncomment call to add options for pulling encrypted images",
+      "url": "https://github.com/containerd/containerd/pull/12705",
+      "body": "Looks like the call should have been uncommented when the fix for the circular dependencies was done.\r\n\r\n@mikebrow @dmcgowan ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-18T17:09:18Z",
+      "merged_at": "2025-12-19T16:04:27Z",
+      "author": "cadeniyi",
+      "labels": [
+        "area/cri",
+        "size/XS",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12717": {
+      "title": "[release/2.2] Reduce noisy CDI logs",
+      "url": "https://github.com/containerd/containerd/pull/12717",
+      "body": "This is an automated cherry-pick of #12715\n\n/assign samuelkarp",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-19T22:48:32Z",
+      "merged_at": "2025-12-19T23:40:44Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/XS"
+      ]
+    },
+    "12715": {
+      "title": "cri: move noisy CDI logs to debug level",
+      "url": "https://github.com/containerd/containerd/pull/12715",
+      "body": "`WithCDI` currently emits logs at `Info` level for every container even when `len(Config.CDIDevices) == 0`.  Move these to `Debug` level.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-19T19:43:47Z",
+      "merged_at": "2025-12-19T21:39:37Z",
+      "author": "samuelkarp",
+      "labels": [
+        "area/cri",
+        "size/XS",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12721": {
+      "title": "[release/2.2] Use the specified runtime handler when pulling images",
+      "url": "https://github.com/containerd/containerd/pull/12721",
+      "body": "This is an automated cherry-pick of #12710\n\n/assign mikebrow",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-22T16:14:21Z",
+      "merged_at": "2025-12-22T22:15:47Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/M"
+      ]
+    },
+    "12710": {
+      "title": "cri: Use the runtimeHandler parameter in PullImage",
+      "url": "https://github.com/containerd/containerd/pull/12710",
+      "body": "The runtimeHandler parameter was added to PullImage() but never used.\r\nInstead, the code relied on an experimental annotation\r\n(io.containerd.cri.runtime-handler) passed in the pod sandbox config.\r\n\r\nThis annotation was a workaround because CRI's PullImageRequest didn't\r\ninclude the runtime handler. However, since cri-api v0.29.0, the runtime\r\nhandler is available in the API and passed as a parameter to PullImage().\r\n\r\nFor backward compatibility with CRI clients that don't yet pass the\r\nruntime handler parameter, we fall back to the annotation if the\r\nparameter is empty. The annotation-based fallback is deprecated and\r\nwill be removed in containerd 2.5.\r\n\r\ncc @kiashok @mxpv @mikebrow @fuweid @zvonkok @danmihai1 @skaegi",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-19T09:27:41Z",
+      "merged_at": "2025-12-22T16:11:30Z",
+      "author": "fidencio",
+      "labels": [
+        "area/cri",
+        "size/M",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12731": {
+      "title": "[release/2.2] Fix nil pointer dereference in container spec memory metrics when memory constraints are not fully configured",
+      "url": "https://github.com/containerd/containerd/pull/12731",
+      "body": "This is an automated cherry-pick of #12492\r\n\r\n/assign akhilerm\r\n\r\nFixes: #12730 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-27T05:21:57Z",
+      "merged_at": "2025-12-30T20:32:42Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "kind/bug",
+        "area/cri",
+        "size/M"
+      ]
+    },
+    "12492": {
+      "title": "Fix nil pointer dereference in container spec memory metrics",
+      "url": "https://github.com/containerd/containerd/pull/12492",
+      "body": "## What type of PR is this?\r\n\r\n/kind bug\r\n\r\n## What this PR does / why we need it:\r\n\r\nThis PR fixes a potential nil pointer dereference panic in `extractContainerSpecMetrics` when collecting container resource metrics.\r\n\r\nThe issue occurs when memory resource fields (`Limit`, `Reservation`, `Swap`) are nil, which can happen when:\r\n- Container doesn't have memory limits set\r\n- Only some memory constraints are configured\r\n- `Reservation` is not set (it's only set via NRI plugins)\r\n\r\n## Which issue(s) this PR fixes:\r\n\r\nFixes potential panic when collecting metrics from containers without full memory limit configuration.\r\n\r\n## Special notes for your reviewer:\r\n\r\nThis fix makes the memory resource handling consistent with:\r\n1. CPU resource handling in the same function (lines 993-1012)\r\n2. Memory resource handling in `helpers.go` (lines 296-303)\r\n\r\nEach pointer field now has an independent nil check before dereferencing.\r\n\r\n## Does this PR introduce a user-facing change?\r\n\r\n```release-note\r\nFix potential panic in ListPodSandboxMetrics when containers don't have all memory limits configured",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-06T12:02:08Z",
+      "merged_at": "2025-11-07T23:54:04Z",
+      "author": "ymichaelson",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "size/M",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12735": {
+      "title": "[release/2.2] cri: emit warning for concurrent CreateContainer",
+      "url": "https://github.com/containerd/containerd/pull/12735",
+      "body": "This is an automated cherry-pick of #12695\n\n/assign samuelkarp",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-29T18:29:27Z",
+      "merged_at": "2025-12-30T20:29:05Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "area/cri",
+        "size/M"
+      ]
+    },
+    "12695": {
+      "title": "cri: emit warning for concurrent CreateContainer",
+      "url": "https://github.com/containerd/containerd/pull/12695",
+      "body": "We have existing detection for concurrent CreateContainer requests, but the error message is unclear and there is no warning in containerd logs. This change adds a warning and clarifies the error message.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-16T18:57:24Z",
+      "merged_at": "2025-12-23T21:55:27Z",
+      "author": "samuelkarp",
+      "labels": [
+        "area/cri",
+        "cherry-picked/1.7.x",
+        "size/M",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12739": {
+      "title": "[release/2.2] bump google.golang.org/grpc from 1.76.0 to 1.78.0",
+      "url": "https://github.com/containerd/containerd/pull/12739",
+      "body": "fix: https://github.com/containerd/containerd/issues/12738",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-02T08:00:00Z",
+      "merged_at": "2026-01-07T17:59:44Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "dependencies",
+        "size/XXL"
+      ]
+    },
+    "12804": {
+      "title": "[release/2.2] Harden error handling to strip potentially-sensitive registry parameters",
+      "url": "https://github.com/containerd/containerd/pull/12804",
+      "body": "This is an automated cherry-pick of #12801\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-21T07:48:05Z",
+      "merged_at": "2026-01-21T19:45:24Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "kind/bug",
+        "area/cri",
+        "size/S"
+      ]
+    },
+    "12801": {
+      "title": "fix: sanitize error before gRPC return to prevent credential leak in pod events",
+      "url": "https://github.com/containerd/containerd/pull/12801",
+      "body": "PR #12491 fixed credential leaks in containerd logs but the gRPC error returned to kubelet still contains sensitive information (e.g., SAS tokens). This is visible in Kubernetes pod events via `kubectl describe pod`.\r\n\r\n**Issue:**\r\nThe `SanitizeError` call was placed inside the defer block:\r\n```\r\ndefer func() {\r\n    if err != nil {\r\n        err = ctrdutil.SanitizeError(err)  // Runs AFTER return is evaluated\r\n        log.G(ctx).WithError(err).Errorf(...)\r\n    }\r\n}()\r\nres, err = in.c.PullImage(...)\r\nreturn res, errgrpc.ToGRPC(err)  // Uses ORIGINAL unsanitized error\r\n```\r\n\r\nGo evaluates `errgrpc.ToGRPC(err)` before the defer runs, so the gRPC message contains the original unsanitized error with credentials.\r\n\r\n**Fix:**\r\nMove `SantiizeError` before the return statement:\r\n\r\n```\r\nres, err = in.c.PullImage(...)\r\nif err != nil {\r\n    err = ctrdutil.SanitizeError(err)\r\n}\r\nreturn res, errgrpc.ToGRPC(err)  // Now uses sanitized error\r\n```\r\n\r\nThis ensures both the logged error and the gRPC error use the sanitized error.\r\n\r\n**Testing**:\r\n- Tested on an AKS cluster\r\n- Blocked blob storage IPs via iptables to force image pull failure\r\n- Deployed pod with ACR image requiring SAS token authentication\r\n\r\nWhen describing pod:\r\n<img width=\"2375\" height=\"327\" alt=\"image\" src=\"https://github.com/user-attachments/assets/4b6f3c47-9a02-4fc6-bdf9-8c36fc7010f3\" />\r\n\r\ncontainerd log:\r\n```\r\nJan 20 22:35:45 aks-nodepool1-35109453-vmss000000 containerd[38541]: time=\"2026-01-20T22:35:45.730403025Z\" level=error msg=\"PullImage \\\"akscon\r\ntainerhost.azurecr.io/newimage:v1\\\" failed\" error=\"rpc error: code = Unknown desc = failed to pull and unpack image \\\"akscontainerhost.azurecr\r\n.io/newimage:v1\\\": failed to copy: httpReadSeeker: failed open: failed to do request: Get \\\"https://eusmanaged213.blob.core.windows.net/d46180\r\n728b794a35a39c3b22ed20f8a3-6k5n90bm44//docker/registry/v2/blobs/sha256/bc/bc717f9cc8f343d7e59d10bc7fc0c811530afa98d437c9f6bcd8fb3dfc2308da/dat\r\na?anon=%5BREDACTED%5D&regid=%5BREDACTED%5D&se=%5BREDACTED%5D&sig=%5BREDACTED%5D&ske=%5BREDACTED%5D&skoid=%5BREDACTED%5D&sks=%5BREDACTED%5D&skt\r\n=%5BREDACTED%5D&sktid=%5BREDACTED%5D&skv=%5BREDACTED%5D&sp=%5BREDACTED%5D&spr=%5BREDACTED%5D&sr=%5BREDACTED%5D&sv=%5BREDACTED%5D\\\": dial tcp 2\r\n0.60.63.193:443: connect: connection refused\"\r\nJan 20 22:35:45 aks-nodepool1-35109453-vmss000000 containerd[38541]: time=\"2026-01-20T22:35:45.730424836Z\" level=info msg=\"stop pulling image\r\nakscontainerhost.azurecr.io/newimage:v1: active requests=0, bytes read=0\"\r\nroot@aks-nodepool1-35109453-vmss000000 [ / ]#\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-20T22:41:47Z",
+      "merged_at": "2026-01-21T05:46:33Z",
+      "author": "aadhar-agarwal",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "cherry-picked/1.7.x",
+        "size/S",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12831": {
+      "title": "[release/2.2] Fix `ctr image mount` failing with \"no such device\"",
+      "url": "https://github.com/containerd/containerd/pull/12831",
+      "body": "This is an automated cherry-pick of #12581\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-28T03:35:56Z",
+      "merged_at": "2026-01-30T23:26:09Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/ctr"
+      ]
+    },
+    "12581": {
+      "title": "Fix ctr image mount failing with no such device",
+      "url": "https://github.com/containerd/containerd/pull/12581",
+      "body": "Fix for #12549, bind mount missing rbind option.\r\n\r\nThe bind mount created for temporary activations was missing the Options field, causing mount to fail with \"no such device\" because the MS_BIND flag wasn't being set.\r\n\r\nTest was failing first:\r\n```\r\n❯ sudo go test -v -run \"TestTemporary\" ./core/mount/manager/ -test.root\r\n[sudo: authenticate] Password: \r\n=== RUN   TestTemporaryMountActivation\r\n    log_hook.go:47: time=\"2025-11-26T18:25:54.833945756-05:00\" level=debug msg=\"activating mount\" func=\"manager.(*mountManager).Activate\" file=\"/mnt/bcachefs/home/jerome/GIT/containerd/core/mount/manager/manager.go:134\" mounts=\"[{bind /tmp/TestTemporaryMountActivation905822259/001/source  [rbind ro]}]\" name=temp-mount-test testcase=TestTemporaryMountActivation\r\n    manager_linux_test.go:389: \r\n        \tError Trace:\t/mnt/bcachefs/home/jerome/GIT/containerd/core/mount/manager/manager_linux_test.go:389\r\n        \tError:      \tReceived unexpected error:\r\n        \t           \tmount source: \"/tmp/TestTemporaryMountActivation905822259/001/m/1/1\", target: \"/tmp/TestTemporaryMountActivation905822259/001/target\", fstype: bind, flags: 0, data: \"\", err: no such device\r\n        \tTest:       \tTestTemporaryMountActivation\r\n        \tMessages:   \tShould be able to mount system mounts to target\r\n--- FAIL: TestTemporaryMountActivation (0.01s)\r\n=== RUN   TestTemporaryOverlayMountActivation\r\n    log_hook.go:47: time=\"2025-11-26T18:25:54.842703306-05:00\" level=debug msg=\"activating mount\" func=\"manager.(*mountManager).Activate\" file=\"/mnt/bcachefs/home/jerome/GIT/containerd/core/mount/manager/manager.go:134\" mounts=\"[{overlay overlay  [lowerdir=/tmp/TestTemporaryOverlayMountActivation2818473812/001/lower2:/tmp/TestTemporaryOverlayMountActivation2818473812/001/lower1 upperdir=/tmp/TestTemporaryOverlayMountActivation2818473812/001/upper workdir=/tmp/TestTemporaryOverlayMountActivation2818473812/001/work]}]\" name=temp-overlay-test testcase=TestTemporaryOverlayMountActivation\r\n    manager_linux_test.go:481: \r\n        \tError Trace:\t/mnt/bcachefs/home/jerome/GIT/containerd/core/mount/manager/manager_linux_test.go:481\r\n        \tError:      \tReceived unexpected error:\r\n        \t           \tmount source: \"/tmp/TestTemporaryOverlayMountActivation2818473812/001/m/1/1\", target: \"/tmp/TestTemporaryOverlayMountActivation2818473812/001/target\", fstype: bind, flags: 0, data: \"\", err: no such device\r\n        \tTest:       \tTestTemporaryOverlayMountActivation\r\n        \tMessages:   \tShould be able to mount system mounts to target\r\n--- FAIL: TestTemporaryOverlayMountActivation (0.00s)\r\nFAIL\r\nFAIL\tgithub.com/containerd/containerd/v2/core/mount/manager\t0.013s\r\nFAIL\r\n```\r\n\r\nNow success:\r\n```\r\n❯ sudo go test -v -run \"TestTemporary\" ./core/mount/manager/ -test.root\r\n=== RUN   TestTemporaryMountActivation\r\n    log_hook.go:47: time=\"2025-11-26T18:40:46.444153608-05:00\" level=debug msg=\"activating mount\" func=\"manager.(*mountManager).Activate\" file=\"/mnt/bcachefs/home/jerome/GIT/containerd/core/mount/manager/manager.go:134\" mounts=\"[{bind /tmp/TestTemporaryMountActivation4144393487/001/source  [rbind ro]}]\" name=temp-mount-test testcase=TestTemporaryMountActivation\r\n    helpers.go:100: unmount /tmp/TestTemporaryMountActivation4144393487/001/target\r\n--- PASS: TestTemporaryMountActivation (0.00s)\r\n=== RUN   TestTemporaryOverlayMountActivation\r\n    log_hook.go:47: time=\"2025-11-26T18:40:46.444820178-05:00\" level=debug msg=\"activating mount\" func=\"manager.(*mountManager).Activate\" file=\"/mnt/bcachefs/home/jerome/GIT/containerd/core/mount/manager/manager.go:134\" mounts=\"[{overlay overlay  [lowerdir=/tmp/TestTemporaryOverlayMountActivation2175850857/001/lower2:/tmp/TestTemporaryOverlayMountActivation2175850857/001/lower1 upperdir=/tmp/TestTemporaryOverlayMountActivation2175850857/001/upper workdir=/tmp/TestTemporaryOverlayMountActivation2175850857/001/work]}]\" name=temp-overlay-test testcase=TestTemporaryOverlayMountActivation\r\n    helpers.go:100: unmount /tmp/TestTemporaryOverlayMountActivation2175850857/001/target\r\n--- PASS: TestTemporaryOverlayMountActivation (0.00s)\r\nPASS\r\nok  \tgithub.com/containerd/containerd/v2/core/mount/manager\t0.004s\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-26T23:41:03Z",
+      "merged_at": "2026-01-28T03:34:44Z",
+      "author": "ticpu",
+      "labels": [
+        "kind/bug",
+        "area/runtime",
+        "size/L",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "12871": {
+      "title": "[release/2.2 backport] update to go1.24.13, go1.25.7",
+      "url": "https://github.com/containerd/containerd/pull/12871",
+      "body": "backports of:\r\n\r\n- https://github.com/containerd/containerd/pull/12843\r\n- https://github.com/containerd/containerd/pull/12869\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-08T13:52:53Z",
+      "merged_at": "2026-02-09T21:04:17Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/S",
+        "area/toolchain",
+        "github_actions"
+      ]
+    },
+    "12875": {
+      "title": "[release/2.2] ci: set fetch-depth for containerd to 0 for version parsing",
+      "url": "https://github.com/containerd/containerd/pull/12875",
+      "body": "This is an automated cherry-pick of #12855\n\n/assign akhilerm",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-09T09:54:26Z",
+      "merged_at": "2026-02-09T15:49:18Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS",
+        "github_actions"
+      ]
+    },
+    "12855": {
+      "title": "ci: set fetch-depth for containerd to 0 for version parsing",
+      "url": "https://github.com/containerd/containerd/pull/12855",
+      "body": "image volume e2e tests in k/k uses containerd version to trigger tests for some features. ref: https://github.com/kubernetes/kubernetes/blob/bfafa32d90958a8fe7a2ce09ed553fdfef4edd98/test/e2e_node/image_volume.go#L64\r\n\r\nThe current CI builds have only the SHA as the version in the node e2e tests since the tags are not present. setting fetch-depth makes sure the tags are present and will be used while testing.\r\n\r\nThe issue occured now because as part of https://github.com/kubernetes/kubernetes/pull/136530, the ImageVolume feature now started testing in the github actions e2e node tests. ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-03T12:59:24Z",
+      "merged_at": "2026-02-03T20:36:59Z",
+      "author": "akhilerm",
+      "labels": [
+        "size/XS",
+        "github_actions"
+      ]
+    }
+  },
+  "issues": {
+    "12738": {
+      "title": "Continuous memory growth in containerd v2.1.4",
+      "url": "https://github.com/containerd/containerd/issues/12738",
+      "body": "### Description\n\nWe are seeing continuous memory growth on `containerd` version `github.com/containerd/containerd/v2 2.1.4` in our AWS EKS v1.32 cluster.\n\nThe containerd process memory grows constantly and reaches maximum capacity and causes the node to become non-responsive and also causes OS to kill other things abruptly due to memory pressure causing node to go into `NotReady` status.\n\n### Steps to reproduce the issue\n\nWe simply keep it running for a few days and memory grows.\n\n(Note: We have duplicate metrics. So two same value lines are shown. Ignore one)\n\n<img width=\"1831\" height=\"825\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a25b8918-dae7-41bb-b2db-a3d3374ef8b3\" />\n\n### Describe the results you received and expected\n\nMemory should not grow unbounded like this.\n\n### What version of containerd are you using?\n\ncontainerd github.com/containerd/containerd/v2 2.1.4 75cb2b7193e4e490e9fbdc236c0e811ccaba3376\n\n### Any other relevant information\n\nWe also use these nodes for running periodic Argo jobs (short-lived jobs run periodically every 2mins, etc.). I am not sure if this has any relation.\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "open",
+      "created_at": "2026-01-01T08:39:25Z",
+      "closed_at": null,
+      "author": "spy16x",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    }
+  }
+}
