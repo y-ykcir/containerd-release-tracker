@@ -1,0 +1,150 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-17T18:41:20.115202",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "api/v1.11.0-beta.0",
+    "name": "containerd API 1.11.0-beta.0",
+    "body": "Welcome to the api/v1.11.0-beta.0 release of containerd!\n*This is a pre-release of containerd*\n\nThe 12th release for the containerd 1.x API aligns with the containerd 2.3 release.\n\n### Highlights\n\n* Update sandbox API to include spec field ([#12840](https://github.com/containerd/containerd/pull/12840))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Derek McGowan\n* Sebastiaan van Stijn\n* Wei Fu\n\n### Changes\n<details><summary>18 commits</summary>\n<p>\n\n* Prepare release notes for api/v1.11.0-beta.0 ([#13045](https://github.com/containerd/containerd/pull/13045))\n  * [`aac6b5348`](https://github.com/containerd/containerd/commit/aac6b53488f05253f88fb061fed6674630feb41f) Prepare release notes for api/v1.11.0-beta.0\n* api: regenerate and re-vendor protos ([#12913](https://github.com/containerd/containerd/pull/12913))\n  * [`4b4eb6715`](https://github.com/containerd/containerd/commit/4b4eb67150b724e0c0450cc92f295b8d6582ca9a) api: regenerate and re-vendor protos\n* Remove Container field from sandbox metadata ([#12840](https://github.com/containerd/containerd/pull/12840))\n  * [`8ccf18724`](https://github.com/containerd/containerd/commit/8ccf18724f691f7f5503faf0b004334eb9f92cf3) Update sandbox API to include spec field\n* Use buf to format proto files ([#12841](https://github.com/containerd/containerd/pull/12841))\n  * [`ca1c5b2d3`](https://github.com/containerd/containerd/commit/ca1c5b2d3db8c620c26ab9674b7ccb9a4b023a63) Reformat and revendor proto files\n  * [`2a87c9d7d`](https://github.com/containerd/containerd/commit/2a87c9d7d29a5d947fa671a0d7b52f449835fd11) Add .editorconfig for proto files\n* Generate api/next.txtpb and name module ([#12815](https://github.com/containerd/containerd/pull/12815))\n  * [`472e0a8e7`](https://github.com/containerd/containerd/commit/472e0a8e7ada278b7aa376173eca20ad0a0348be) Generate next.txtpb to replace next.pb.txt\n  * [`f58dbbda0`](https://github.com/containerd/containerd/commit/f58dbbda0b34bea75f714e82463eb0706c06d30d) Add buf.build repository name for publishing API\n* Migrate from protobuild to buf ([#12762](https://github.com/containerd/containerd/pull/12762))\n  * [`dac9721fa`](https://github.com/containerd/containerd/commit/dac9721faf891205ed46105cd38340bc3bceabcb) Drop outdated pb.txt files\n  * [`6a6283193`](https://github.com/containerd/containerd/commit/6a6283193b6f865c35529717068259bf54ccc307) Update pb files\n  * [`57782b717`](https://github.com/containerd/containerd/commit/57782b7175f743489010c348a8f59da720140722) Move buf configuration under api/\n  * [`39991b661`](https://github.com/containerd/containerd/commit/39991b6617041c8c5b471f11f08461f36cc6719f) Use relative import intead of GOPATH style imports\n  * [`eb586b5ef`](https://github.com/containerd/containerd/commit/eb586b5ef2e20c5f845f28d5e9cd5f5e8e10885d) Regenerate proto files\n</p>\n</details>\n\n### Dependency Changes\n\nThis release has no dependency changes\n\nPrevious release can be found at [api/v1.10.0](https://github.com/containerd/containerd/releases/tag/api/v1.10.0)\n",
+    "published_at": "2026-03-17T17:48:06Z",
+    "prerelease": true,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/api/v1.11.0-beta.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 1.11.0-beta.0 带来沙箱API重构和Proto工具链升级，主要面向容器运行时集成商和插件开发者",
+    "key_changes": [
+      "沙箱API重构：移除Container字段改用独立spec字段 - [PR #12840](https://github.com/containerd/containerd/pull/12840) - **影响：** 需要更新依赖沙箱元数据的组件（如NRI插件）",
+      "Proto工具链迁移至buf并改进API管理 - [PR #12762](https://github.com/containerd/containerd/pull/12762) - **影响：** 改进proto文件生成一致性和CI可靠性"
+    ],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [
+      "Proto生成工具链优化 - [PR #12841](https://github.com/containerd/containerd/pull/12841) - **提升：** 统一proto文件格式化标准，降低协作冲突",
+      "API模块化改进 - [PR #12815](https://github.com/containerd/containerd/pull/12815) - **提升：** 支持通过buf registry管理proto依赖"
+    ],
+    "breaking_changes": [
+      "沙箱元数据删除Container字段 - [PR #12840](https://github.com/containerd/containerd/pull/12840) - **影响：** 需要修改依赖pause容器元数据的插件实现",
+      "Proto生成路径标准化 - [PR #12762](https://github.com/containerd/containerd/pull/12762) - **影响：** 自定义插件需验证proto兼容性"
+    ],
+    "recommendations": [
+      "立即测试沙箱API变更对CRI插件、NRI插件的影响",
+      "检查自定义插件对沙箱元数据字段的依赖情况",
+      "在预发布环境验证proto文件生成的一致性",
+      "关注后续beta版本对API稳定性的改进"
+    ],
+    "risk_assessment": "中风险升级：沙箱API变更可能影响插件兼容性，建议在非关键环境先行验证。生产环境建议等待正式版发布，重点验证：1) 沙箱生命周期管理 2) NRI插件兼容性 3) 自定义proto插件的构建流程"
+  },
+  "statistics": {
+    "analyzed_prs": 6,
+    "analyzed_issues": 0,
+    "important_items": 3
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12762: Migrate from protobuild to buf",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12815: Generate api/next.txtpb and name module",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13045: Prepare release notes for api/v1.11.0-beta.0",
+      "reason": "Performance related"
+    }
+  ],
+  "prs": {
+    "12762": {
+      "title": "Migrate from protobuild to buf",
+      "url": "https://github.com/containerd/containerd/pull/12762",
+      "body": "This PR migrates from `Protobuild` (which we all love and use for quite some time) to [`buf`](https://github.com/bufbuild/buf) to manage our proto files.\r\n\r\nImmediate benefits:\r\n- No need to install `protoc` dependency. Mush simpler [CI setup](https://github.com/containerd/containerd/pull/12762/changes/edb3e0869706fa0d058f8530f7b563af9310eec3).\r\n- Much better local/CI reproducibility - all generators and dependencies are pinned in `buf.yaml` and `buf.lock`, so same output is expected everywhere. Only the `buf` binary need to be installed on the system to get things going.\r\n- No longer needs `containerd` to be in `GOPATH` (not strictly buf’s feature, but implemented in this PR)\r\n\r\nThere are also some longer term nice-to-have features that we could benefit from, which we don't have in protobuild:\r\n- Breaking change detector (we can run this on CI to guaranty API compatibility)\r\n- Linter\r\n- Formatter.\r\n\r\nI was able to generate exactly the same code with buf as it was before.\r\nThe only annoying thing is\r\n\r\n`// \tprotoc        (unknown)`\r\n\r\nwhich seems to be expected when buf is not using external protoc binary (which we don't):\r\n\r\n> The protoc (unknown) line is being inserted by protoc-gen-go which we do not control. Part of the CodeGeneratorRequest passed to protoc-gen-go specifies the version of protoc being used, but buf is not, and doesn't use, protoc, so there is no appropriate answer here.\r\n\r\nMade a few follow up changes based on feedback:\r\n- Switched to relative imports (which `buf` supports natively), so workarounds in the `Makefile` no longer necessary.\r\n- Moved `buf` configuration files under `api/` directory",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-08T23:33:25Z",
+      "merged_at": "2026-01-09T20:20:51Z",
+      "author": "mxpv",
+      "labels": [
+        "size/XXL",
+        "area/toolchain"
+      ]
+    },
+    "12815": {
+      "title": "Generate api/next.txtpb and name module",
+      "url": "https://github.com/containerd/containerd/pull/12815",
+      "body": "`buf` will generate the protobuf text file which can be used for viewing all protobuf changes in one file and quickly diffing changes.\r\n\r\nAdd a module name to the buf.yaml to allow pushing. With the switch the buf and relative paths, without publishing the containerd protos are not importable without copying locally. Using the buf registy makes this easier for importers. There is no requirement to use the buf registry though.\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-24T01:26:54Z",
+      "merged_at": "2026-01-24T06:49:33Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/XXL",
+        "area/toolchain"
+      ]
+    },
+    "12840": {
+      "title": "Remove Container field from sandbox metadata",
+      "url": "https://github.com/containerd/containerd/pull/12840",
+      "body": "There are multiple places in CRI which assume the use of pause containers and the podsandbox package. Since the goal of the Sandbox API is to abstract away the use of pause containers, we should not make such assumptions.                                                                       \r\n\r\nThis PR removes the Container object for the pause container from Sandbox metadata. This was primarily used in NRI, so this PR refactors the code to fetch the necessary data from the metadata store instead.\r\n\r\n@chrishenzie could PTAL? This updates `nriPodSandbox` to fetch spec from sandbox store instead of task instance (we don't want to access pause container directly), so this, technically, amends lifecycle test, because the spec will remain available after stopping pod sandbox.\r\n\r\n\r\n```release-note\r\nUpdate sandbox API to include spec field\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-31T02:07:50Z",
+      "merged_at": "2026-02-18T05:33:05Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/changelog",
+        "size/XXL"
+      ]
+    },
+    "12841": {
+      "title": "Use buf to format proto files",
+      "url": "https://github.com/containerd/containerd/pull/12841",
+      "body": "We've integrated `buf` in https://github.com/containerd/containerd/pull/12762                                                                                                                \r\n`buf` comes with an integrated linter and formatter.                                                                                                                                         \r\n                                                                                                                                                                                               \r\nThis PR updates `Makefile` targets to use `buf format` to format proto files.                                                                                                                \r\n                                                                                                                                                                                               \r\nOur current proto formatter is pretty rudimentary. It only requires tabs instead of spaces. But would happily pass everything else (like double tabs).                             \r\n                                                                                                                                                                                               \r\n`buf` is much more sophisticated and can handle pretty complex cases, which is nice.\r\nIt also comes with github actions integration out of the box.                                                                                                        \r\n                                                                                                                                                                                               \r\nThe only downside is that `buf` accepts no configuration leaving no way to amend how proto files are formatted.                                                                                                   \r\nAnd by default, they use 2 spaces instead of tabs. I'm not sure is this is going to be a deal breaker for us",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-31T02:30:28Z",
+      "merged_at": "2026-02-07T08:33:02Z",
+      "author": "mxpv",
+      "labels": [
+        "size/XXL",
+        "area/toolchain"
+      ]
+    },
+    "12913": {
+      "title": "api: regenerate and re-vendor protos",
+      "url": "https://github.com/containerd/containerd/pull/12913",
+      "body": "Probably related to https://github.com/containerd/containerd/commit/ca1c5b2d3db8c620c26ab9674b7ccb9a4b023a63 (https://github.com/containerd/containerd/pull/12841).\r\n\r\nI got this diff when running `make protos`; let's see if CI agrees it's OK 😅 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-17T13:06:25Z",
+      "merged_at": "2026-02-24T20:23:18Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XXL",
+        "go",
+        "area/toolchain"
+      ]
+    },
+    "13045": {
+      "title": "Prepare release notes for api/v1.11.0-beta.0",
+      "url": "https://github.com/containerd/containerd/pull/13045",
+      "body": "First step in v2.3 beta process\r\n\r\n----\r\ncontainerd api/v1.11.0-beta.0\r\n\r\nWelcome to the api/v1.11.0-beta.0 release of containerd!  \r\n*This is a pre-release of containerd*\r\n\r\nThe 12th release for the containerd 1.x API aligns with the containerd 2.3 release.\r\n\r\n### Highlights\r\n\r\n* Update sandbox API to include spec field ([#12840](https://github.com/containerd/containerd/pull/12840))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Maksym Pavlenko\r\n* Derek McGowan\r\n* Sebastiaan van Stijn\r\n* Wei Fu\r\n\r\n### Changes\r\n<details><summary>17 commits</summary>\r\n<p>\r\n\r\n  * [`aac6b5348`](https://github.com/containerd/containerd/commit/aac6b53488f05253f88fb061fed6674630feb41f) Prepare release notes for api/v1.11.0-beta.0\r\n* api: regenerate and re-vendor protos ([#12913](https://github.com/containerd/containerd/pull/12913))\r\n  * [`4b4eb6715`](https://github.com/containerd/containerd/commit/4b4eb67150b724e0c0450cc92f295b8d6582ca9a) api: regenerate and re-vendor protos\r\n* Remove Container field from sandbox metadata ([#12840](https://github.com/containerd/containerd/pull/12840))\r\n  * [`8ccf18724`](https://github.com/containerd/containerd/commit/8ccf18724f691f7f5503faf0b004334eb9f92cf3) Update sandbox API to include spec field\r\n* Use buf to format proto files ([#12841](https://github.com/containerd/containerd/pull/12841))\r\n  * [`ca1c5b2d3`](https://github.com/containerd/containerd/commit/ca1c5b2d3db8c620c26ab9674b7ccb9a4b023a63) Reformat and revendor proto files\r\n  * [`2a87c9d7d`](https://github.com/containerd/containerd/commit/2a87c9d7d29a5d947fa671a0d7b52f449835fd11) Add .editorconfig for proto files\r\n* Generate api/next.txtpb and name module ([#12815](https://github.com/containerd/containerd/pull/12815))\r\n  * [`472e0a8e7`](https://github.com/containerd/containerd/commit/472e0a8e7ada278b7aa376173eca20ad0a0348be) Generate next.txtpb to replace next.pb.txt\r\n  * [`f58dbbda0`](https://github.com/containerd/containerd/commit/f58dbbda0b34bea75f714e82463eb0706c06d30d) Add buf.build repository name for publishing API\r\n* Migrate from protobuild to buf ([#12762](https://github.com/containerd/containerd/pull/12762))\r\n  * [`dac9721fa`](https://github.com/containerd/containerd/commit/dac9721faf891205ed46105cd38340bc3bceabcb) Drop outdated pb.txt files\r\n  * [`6a6283193`](https://github.com/containerd/containerd/commit/6a6283193b6f865c35529717068259bf54ccc307) Update pb files\r\n  * [`57782b717`](https://github.com/containerd/containerd/commit/57782b7175f743489010c348a8f59da720140722) Move buf configuration under api/\r\n  * [`39991b661`](https://github.com/containerd/containerd/commit/39991b6617041c8c5b471f11f08461f36cc6719f) Use relative import intead of GOPATH style imports\r\n  * [`eb586b5ef`](https://github.com/containerd/containerd/commit/eb586b5ef2e20c5f845f28d5e9cd5f5e8e10885d) Regenerate proto files\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\nThis release has no dependency changes\r\n\r\nPrevious release can be found at [api/v1.10.0](https://github.com/containerd/containerd/releases/tag/api/v1.10.0)\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-17T01:35:52Z",
+      "merged_at": "2026-03-17T17:01:49Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/S"
+      ]
+    }
+  },
+  "issues": {}
+}
