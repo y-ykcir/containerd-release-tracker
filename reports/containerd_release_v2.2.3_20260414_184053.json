@@ -1,0 +1,467 @@
+{
+  "metadata": {
+    "generated_at": "2026-04-14T18:41:26.966900",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.2.3",
+    "name": "containerd 2.2.3",
+    "body": "Welcome to the v2.2.3 release of containerd!\n\nThe third patch release for containerd 2.2 contains various fixes\nand updates including a security patch.\n\n### Security Updates\n\n* **spdystream**\n  * [**CVE-2026-35469**](https://github.com/moby/spdystream/security/advisories/GHSA-pc3f-x583-g7j2)\n\n### Highlights\n\n#### Container Runtime Interface (CRI)\n\n* Preserve cgroup mount options for privileged containers ([#13120](https://github.com/containerd/containerd/pull/13120))\n* Ensure UpdatePodSandbox returns Unimplemented instead of a generic error ([#13023](https://github.com/containerd/containerd/pull/13023))\n\n#### Go client\n\n* Handle absolute symlinks in rootfs user lookup to fix regressions when using Go 1.24 ([#13015](https://github.com/containerd/containerd/pull/13015))\n\n#### Image Distribution\n\n* Enable mount manager in diff walking to fix layer extraction errors with some snapshotters (e.g., EROFS) ([#13198](https://github.com/containerd/containerd/pull/13198))\n* Apply hardening to prevent TOCTOU race during tar extraction ([#12971](https://github.com/containerd/containerd/pull/12971))\n\n#### Runtime\n\n* Restore support for client-mounted roots in Windows containers using process isolation ([#13195](https://github.com/containerd/containerd/pull/13195))\n* Update runc to v1.3.5 ([#13061](https://github.com/containerd/containerd/pull/13061))\n* Apply absolute symlink resolution to /etc/group in OCI spec to fix lookups on NixOS-style systems ([#13019](https://github.com/containerd/containerd/pull/13019))\n* Handle absolute symlinks in rootfs user lookup to fix regressions when using Go 1.24 ([#13015](https://github.com/containerd/containerd/pull/13015))\n\n#### Snapshotters\n\n* Fix bug that caused whiteouts to be ignored when parallel unpack was used ([#13125](https://github.com/containerd/containerd/pull/13125))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Samuel Karp\n* Sebastiaan van Stijn\n* Maksym Pavlenko\n* Chris Henzie\n* Derek McGowan\n* Paulo Oliveira\n* Henry Wang\n* Phil Estes\n* Wei Fu\n* Akihiro Suda\n* Gao Xiang\n* Ricardo Branco\n* Shachar Tal\n\n### Changes\n<details><summary>40 commits</summary>\n<p>\n\n* Prepare release notes for v2.2.3 ([#13224](https://github.com/containerd/containerd/pull/13224))\n  * [`8a0f4ed5d`](https://github.com/containerd/containerd/commit/8a0f4ed5d360171d62ca625bc93f393a36241189) Prepare release notes for v2.2.3\n* update github.com/moby/spdystream v0.5.1 ([#13217](https://github.com/containerd/containerd/pull/13217))\n  * [`31bd34a06`](https://github.com/containerd/containerd/commit/31bd34a064dc7136413efde09b99a2bdd14dabe9) update github.com/moby/spdystream v0.5.1\n* vendor: github.com/klauspost/compress v1.18.5 ([#13197](https://github.com/containerd/containerd/pull/13197))\n  * [`1336f6c45`](https://github.com/containerd/containerd/commit/1336f6c45d25c674963e5cb86ee1ea522e6f513e) vendor: github.com/klauspost/compress v1.18.5\n* diff/walking: enable mount manager ([#13198](https://github.com/containerd/containerd/pull/13198))\n  * [`409f75be8`](https://github.com/containerd/containerd/commit/409f75be8791d53e2e4e96ab060d8db56fd46b1e) diff/walking: enable mount manager\n* update runhcs to v0.14.1 ([#13195](https://github.com/containerd/containerd/pull/13195))\n  * [`3f33146c1`](https://github.com/containerd/containerd/commit/3f33146c1c199f1d9479d791b105197cebf7b1bc) update runhcs to v0.14.1\n* vendor: github.com/Microsoft/hcsshim v0.14.1 ([#13196](https://github.com/containerd/containerd/pull/13196))\n  * [`8bd1b74e5`](https://github.com/containerd/containerd/commit/8bd1b74e5dbcd6aad671666e13861a6c8a7bf13c) vendor: github.com/Microsoft/hcsshim v0.14.1\n  * [`c6b0be8e1`](https://github.com/containerd/containerd/commit/c6b0be8e1317166d53a05c308db3223293f36f85) vendor: github.com/Microsoft/hcsshim v0.14.0\n* update to Go 1.25.9, 1.26.2 ([#13190](https://github.com/containerd/containerd/pull/13190))\n  * [`2ecde8cfe`](https://github.com/containerd/containerd/commit/2ecde8cfe12320fefd05e08c83e413a4046bb72c) update to Go 1.25.9, 1.26.2\n* Skip TestExportAndImportMultiLayer on s390x ([#13154](https://github.com/containerd/containerd/pull/13154))\n  * [`be554f478`](https://github.com/containerd/containerd/commit/be554f478ceb629d3dc3fbd5331b9167cc7a4870) Skip TestExportAndImportMultiLayer on s390x\n* Tweak mount info for overlayfs in case of parallel unpack ([#13125](https://github.com/containerd/containerd/pull/13125))\n  * [`660de195b`](https://github.com/containerd/containerd/commit/660de195b07db576cbe8aab53a4b6e87cc931347) Tweak mount info for overlayfs in case of parallel unpack\n  * [`bc9274a4b`](https://github.com/containerd/containerd/commit/bc9274a4b05342ba1096c73ce6ce8a505ce243ce) Add integration test for issue 13030\n* Preserve cgroup mount options for privileged containers ([#13120](https://github.com/containerd/containerd/pull/13120))\n  * [`c387890b5`](https://github.com/containerd/containerd/commit/c387890b582324c4cf11e940efe4268a21524ed6) Add integration test for privileged container cgroup mounts\n  * [`047a335a6`](https://github.com/containerd/containerd/commit/047a335a69d66e673ddc155fed779152e00a5652) Forward RUNC_FLAVOR env var down to integration tests\n  * [`9b2d72ee0`](https://github.com/containerd/containerd/commit/9b2d72ee03b548c8344cd243670e06f863a701a2) Preserve host cgroup mount options for privileged containers\n  * [`5b66cd6a0`](https://github.com/containerd/containerd/commit/5b66cd6a0902b7927eeb8107bb5a30d78436eaa3) Move cgroup namespace placement higher in spec builder\n* update runc binary to v1.3.5 ([#13061](https://github.com/containerd/containerd/pull/13061))\n  * [`584205c2f`](https://github.com/containerd/containerd/commit/584205c2fa986334d22b840293b1060b10ab724e) [release/2.2] update runc binary to v1.3.5\n* Fix vagrant on CI ([#13066](https://github.com/containerd/containerd/pull/13066))\n  * [`77c6886df`](https://github.com/containerd/containerd/commit/77c6886df6510bf1ac9326436e7b371a28eb5678) Ignore NOCHANGE error\n* Fix TOCTOU race bug in tar extraction ([#12971](https://github.com/containerd/containerd/pull/12971))\n  * [`fbed68b8f`](https://github.com/containerd/containerd/commit/fbed68b8fb97b778b0caf68167cb0c4ab4af27df) Fix TOCTOU race bug in tar extraction\n* cri: UpdatePodSandbox should return Unimplemented ([#13023](https://github.com/containerd/containerd/pull/13023))\n  * [`a83510103`](https://github.com/containerd/containerd/commit/a835101036b106386be8e5b433d5ca0f1f0529cd) cri: UpdatePodSandbox should return Unimplemented\n* fix(oci): apply absolute symlink resolution to /etc/group ([#13019](https://github.com/containerd/containerd/pull/13019))\n  * [`ee4179e52`](https://github.com/containerd/containerd/commit/ee4179e5212c09e7bc4c429bf5b77eabb2b84662) fix(oci): apply absolute symlink resolution to /etc/group\n* fix(oci): handle absolute symlinks in rootfs user lookup ([#13015](https://github.com/containerd/containerd/pull/13015))\n  * [`fd061b848`](https://github.com/containerd/containerd/commit/fd061b84887177b969e8f8e2499e780341cde0ae) test(oci): use fstest and mock fs for better symlink coverage\n  * [`5d44d2c22`](https://github.com/containerd/containerd/commit/5d44d2c220d6296156c1c4fe3a500958667a3708) fix(oci): handle absolute symlinks in rootfs user lookup\n* update to go1.25.8, test go1.26.1 ([#13011](https://github.com/containerd/containerd/pull/13011))\n  * [`00c776f07`](https://github.com/containerd/containerd/commit/00c776f075f06e4eeb4bfd97e23b3331c5c96bbc) update to go1.25.8, test go1.26.1\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/Microsoft/hcsshim**   v0.14.0-rc.1 -> v0.14.1\n* **github.com/klauspost/compress**  v1.18.1 -> v1.18.5\n* **github.com/moby/spdystream**     v0.5.0 -> v0.5.1\n\nPrevious release can be found at [v2.2.2](https://github.com/containerd/containerd/releases/tag/v2.2.2)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-04-14T17:38:30Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.2.3",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 2.2.3 是一个重要的补丁版本，主要修复了安全漏洞、容器创建回归问题以及并行解包导致的文件系统错误，并升级了底层依赖以提升稳定性和安全性。",
+    "key_changes": [
+      "修复特权容器cgroup挂载选项丢失的问题，避免影响主机cgroup配置 - [PR #13120](https://github.com/containerd/containerd/pull/13120)",
+      "修复使用Go 1.24时，因绝对符号链接导致无法从NixOS等风格镜像创建容器的回归问题 - [PR #13015](https://github.com/containerd/containerd/pull/13015) / [Issue #12683](https://github.com/containerd/containerd/issues/12683)",
+      "修复并行解包 (`max_concurrent_unpacks > 1`) 时白洞（whiteout）文件被忽略的bug，确保文件删除操作正确生效 - [PR #13125](https://github.com/containerd/containerd/pull/13125) / [Issue #13030](https://github.com/containerd/containerd/issues/13030)",
+      "修复tar提取过程中的TOCTOU竞争条件漏洞，增强安全性 - [PR #12971](https://github.com/containerd/containerd/pull/12971)",
+      "更新底层runc运行时至v1.3.5版本 - [PR #13061](https://github.com/containerd/containerd/pull/13061)"
+    ],
+    "important_bugfixes": [
+      "修复：特权容器会错误地覆盖主机的cgroup挂载选项（如`nsdelegate`）。 - [PR #13120](https://github.com/containerd/containerd/pull/13120) - **影响：** 运行特权容器可能意外改变主机cgroup子系统的行为，影响资源管理和安全隔离。",
+      "修复：当镜像中`/etc/passwd`或`/etc/group`是绝对路径符号链接时，容器创建失败。 - [PR #13015](https://github.com/containerd/containerd/pull/13015) - **影响：** 使用NixOS、Guix等发行版基础镜像的容器无法启动，是Go 1.24引入的严重回归。",
+      "修复：启用并行解包时，上层镜像层中删除的文件（白洞）可能在下层仍然可见。 - [PR #13125](https://github.com/containerd/containerd/pull/13125) - **影响：** 导致容器内文件系统状态与镜像定义不符，可能引发安全或功能问题。",
+      "修复：CRI接口中`UpdatePodSandbox`方法返回通用错误而非`Unimplemented`。 - [PR #13023](https://github.com/containerd/containerd/pull/13023) - **影响：** 调用该API的客户端（如某些版本的Kubelet）可能收到令人困惑的错误信息。"
+    ],
+    "security_issues": [
+      "修复spdystream依赖中的安全漏洞 CVE-2026-35469。 - [更新提交](https://github.com/containerd/containerd/commit/31bd34a064dc7136413efde09b99a2bdd14dabe9) - **风险级别：** 中（依赖项漏洞，具体影响需参考上游公告）",
+      "修复镜像层tar提取过程中的TOCTOU（检查时间与使用时间）竞争条件漏洞。 - [PR #12971](https://github.com/containerd/containerd/pull/12971) - **风险级别：** 中（可能被用于破坏容器镜像完整性或进行符号链接攻击）",
+      "升级Go工具链至1.25.8/1.26.2，包含多个Go标准库安全修复。 - [PR #13011](https://github.com/containerd/containerd/pull/13011) - **风险级别：** 中（修复了`crypto/x509`, `html/template`, `net/url`, `os`等包的安全问题）"
+    ],
+    "performance_improvements": [
+      "在差异计算（diff walking）中启用挂载管理器，修复某些快照器（如EROFS）的层提取错误。 - [PR #13198](https://github.com/containerd/containerd/pull/13198) - **提升：** 提高与特定文件系统和快照器的兼容性，减少镜像拉取失败。",
+      "升级压缩库`github.com/klauspost/compress`至v1.18.5。 - [PR #13197](https://github.com/containerd/containerd/pull/13197) - **提升：** 通常包含bug修复和潜在的性能优化。"
+    ],
+    "breaking_changes": [
+      "此版本为补丁版本，未引入故意的破坏性变更。所有变更旨在修复bug、提升安全性和兼容性。"
+    ],
+    "recommendations": [
+      "**建议升级**：对于使用2.2.x版本的用户，特别是那些使用NixOS风格镜像、启用了并行解包功能或运行特权容器的环境，建议尽快安排升级到2.2.3。",
+      "**测试重点**：升级前，请在测试环境中重点验证容器创建（尤其是基于特定发行版的镜像）、镜像拉取和解压、以及特权容器的cgroup行为。",
+      "**关联组件**：由于runc已升级至v1.3.5，请确保同时更新runc二进制文件以获取完整的修复集。",
+      "**回滚准备**：虽然风险较低，但任何升级都应制定回滚计划。备份当前containerd配置和状态。"
+    ],
+    "risk_assessment": "整体风险评估：**低风险**。这是一个修复导向的补丁版本，主要解决已知的bug和安全问题，未引入新功能或架构变更。\n建议的升级时机：下一个维护窗口。对于受特定bug（如NixOS镜像启动失败、白洞文件问题）影响的环境，建议优先升级。\n需要特别关注的方面：1) 验证绝对符号链接相关修复是否解决了您环境中容器启动的问题。2) 如果使用了`max_concurrent_unpacks`配置，升级后检查之前被错误保留的文件是否已被正确删除。3) 观察特权容器运行后，主机cgroup的挂载选项是否保持稳定。"
+  },
+  "statistics": {
+    "analyzed_prs": 19,
+    "analyzed_issues": 2,
+    "important_items": 17
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12971: [release/2.2] Fix TOCTOU race bug in tar extraction",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12961: Fix TOCTOU race bug in tar extraction",
+      "reason": "Contains 'security'; Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13011: [release/2.2 backport] update to go1.25.8, test go1.26.1",
+      "reason": "Contains 'panic'; Contains 'crash'; Contains 'security'; Cherry-pick or backport; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#12985: update to go1.25.8, test go1.26.1",
+      "reason": "Contains 'panic'; Contains 'crash'; Contains 'security'; Cherry-pick or backport; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#13010: [release/2.2] update to go1.25.8, test go1.26.1",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13015: [release/2.2] fix(oci): handle absolute symlinks in rootfs user lookup",
+      "reason": "Contains 'regression'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12732: fix(oci): handle absolute symlinks in rootfs user lookup",
+      "reason": "Contains 'regression'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13019: [release/2.2] fix(oci): apply absolute symlink resolution to /etc/group",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13066: [release/2.2] Fix vagrant on CI",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13055: Fix vagrant on CI",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13120: [release/2.2] Preserve cgroup mount options for privileged containers",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12952: Preserve cgroup mount options for privileged containers",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13125: [release/2.2] Tweak mount info for overlayfs in case of parallel unpack",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13115: Tweak mount info for overlayfs in case of parallel unpack",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13154: [release/2.2] Skip TestExportAndImportMultiLayer on s390x",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "Issue",
+      "title": "#12683: [Go 1.24] v2.2.0 fails to create containers from images having /etc/{passwd,group} symlinked to an absolute path",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#13030: whiteout files not honored by max_concurrent_unpacks > 1",
+      "reason": "Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "12971": {
+      "title": "[release/2.2] Fix TOCTOU race bug in tar extraction",
+      "url": "https://github.com/containerd/containerd/pull/12971",
+      "body": "This is an automated cherry-pick of #12961\n\n/assign AkihiroSuda\n\n```release-note\nApply hardening to prevent TOCTOU race during tar extraction\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-04T01:05:46Z",
+      "merged_at": "2026-03-13T16:22:25Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/XS",
+        "area/distribution"
+      ]
+    },
+    "12961": {
+      "title": "Fix TOCTOU race bug in tar extraction",
+      "url": "https://github.com/containerd/containerd/pull/12961",
+      "body": "See https://github.com/containerd/containerd/security/advisories/GHSA-ww5g-h6rh-8wm3 for a conversation around this particular bug.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-02T20:02:21Z",
+      "merged_at": "2026-03-04T01:03:47Z",
+      "author": "shachartal",
+      "labels": [
+        "kind/bug",
+        "size/XS"
+      ]
+    },
+    "13011": {
+      "title": "[release/2.2 backport] update to go1.25.8, test go1.26.1",
+      "url": "https://github.com/containerd/containerd/pull/13011",
+      "body": "- backport https://github.com/containerd/containerd/pull/12985\r\n- replaces, closes https://github.com/containerd/containerd/pull/13010\r\n\r\ngo1.25.8 (released 2026-03-05) includes security fixes to the html/template, net/url, and os packages, as well as bug fixes to the go command, the compiler, and the os package. See the Go 1.25.8 milestone on our issue tracker for details.\r\n\r\n- 1.25.8 https://github.com/golang/go/issues?q=milestone%3AGo1.25.8+label%3ACherryPickApproved\r\n- diff: https://github.com/golang/go/compare/go1.25.7...go1.25.8\r\n- 1.26.1 https://github.com/golang/go/issues?q=milestone%3AGo1.26.1+label%3ACherryPickApproved\r\n- diff: https://github.com/golang/go/compare/go1.26.0...go1.26.1\r\n\r\n---\r\n\r\nWe have just released Go versions 1.26.1 and 1.25.8, minor point releases.\r\n\r\nThese releases include 5 security fixes following the security policy:\r\n\r\ncrypto/x509: incorrect enforcement of email constraints\r\n\r\n- When verifying a certificate chain which contains a certificate containing multiple email address constraints (composed of the full email address) which share common local portions (the portion of the address before the '@' character) but different domain portions (the portion of the address after the '@' character), these constraints will not be properly applied, and only the last constraint will be considered.\r\n\r\n  This can allow certificates in the chain containing email addresses which are either not permitted or excluded by the relevant constraints to be returned by calls to Certificate.Verify. Since the name constraint checks happen after chain building is complete, this only applies to certificate chains which chain to trusted roots (root certificates either in VerifyOptions.Roots or in the system root certificate pool), requiring a trusted CA to issue certificates containing either not permitted or excluded email addresses.\r\n\r\n  This issue only affects Go 1.26.\r\n\r\n  Thanks to Jakub Ciolek for reporting this issue.\r\n\r\n  This is CVE-2026-27137 and Go issue https://go.dev/issue/77952.\r\n\r\n- crypto/x509: panic in name constraint checking for malformed certificates\r\n\r\n  Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.\r\n\r\n  Since the name constraint checks happen after chain building is complete, this only applies to certificate chains which chain to trusted roots (root certificates either in VerifyOptions.Roots or in the system root certificate pool), requiring a trusted CA to issue certificates containing malformed DNS names.\r\n\r\n  This issue only affects Go 1.26.\r\n\r\n  Thanks to Jakub Ciolek for reporting this issue.\r\n\r\n  This is CVE-2026-27138 and Go issue https://go.dev/issue/77953.\r\n\r\n- html/template: URLs in meta content attribute actions are not escaped\r\n\r\n  Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\r\n\r\n  A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.\r\n\r\n  This is CVE-2026-27142 and Go issue https://go.dev/issue/77954.\r\n\r\n- net/url: reject IPv6 literal not at start of host\r\n\r\n  The Go standard library function net/url.Parse insufficiently validated the host/authority component and accepted some invalid URLs by effectively treating garbage before an IP-literal as ignorable. The function should have rejected this as invalid.\r\n\r\n  To prevent this behavior, net/url.Parse now rejects IPv6 literals that do not appear at the start of the host subcomponent of a URL.\r\n\r\n  Thanks to Masaki Hara (https://github.com/qnighy) of Wantedly.\r\n\r\n  This is CVE-2026-25679 and Go issue https://go.dev/issue/77578.\r\n\r\n- os: FileInfo can escape from a Root\r\n\r\n  On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\r\n\r\n  The contents of the FileInfo were populated using the lstat system call, which takes the path to the file as a parameter. If a component of the full path of the file described by the FileInfo is replaced with a symbolic link, the target of the lstat can be directed to another location on the filesystem.\r\n\r\n  The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem. This could be used to probe for the presence or absence of files as well as gleaning metadata like file sizes, but does not permit reading or writing files outside the root.\r\n\r\n  The FileInfo is now populated using fstatat.\r\n\r\n  Thank you to Miloslav Trmač of Red Hat for reporting this issue.\r\n\r\n  This is CVE-2026-27139 and Go issue https://go.dev/issue/77827.\r\n\r\n\r\n(cherry picked from commit 38b3e4c4aa6b39518c7eb2e86376099fe195ea82)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-11T09:02:26Z",
+      "merged_at": "2026-03-11T14:19:24Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/S",
+        "go",
+        "area/toolchain"
+      ]
+    },
+    "12985": {
+      "title": "update to go1.25.8, test go1.26.1",
+      "url": "https://github.com/containerd/containerd/pull/12985",
+      "body": "go1.25.8 (released 2026-03-05) includes security fixes to the html/template, net/url, and os packages, as well as bug fixes to the go command, the compiler, and the os package. See the Go 1.25.8 milestone on our issue tracker for details.\r\n\r\n- 1.25.8 https://github.com/golang/go/issues?q=milestone%3AGo1.25.8+label%3ACherryPickApproved\r\n- diff: https://github.com/golang/go/compare/go1.25.7...go1.25.8\r\n- 1.26.1 https://github.com/golang/go/issues?q=milestone%3AGo1.26.1+label%3ACherryPickApproved\r\n- diff: https://github.com/golang/go/compare/go1.26.0...go1.26.1\r\n\r\n---\r\n\r\nWe have just released Go versions 1.26.1 and 1.25.8, minor point releases.\r\n\r\nThese releases include 5 security fixes following the security policy:\r\n\r\ncrypto/x509: incorrect enforcement of email constraints\r\n\r\n- When verifying a certificate chain which contains a certificate containing multiple email address constraints (composed of the full email address) which share common local portions (the portion of the address before the '@' character) but different domain portions (the portion of the address after the '@' character), these constraints will not be properly applied, and only the last constraint will be considered.\r\n\r\n  This can allow certificates in the chain containing email addresses which are either not permitted or excluded by the relevant constraints to be returned by calls to Certificate.Verify. Since the name constraint checks happen after chain building is complete, this only applies to certificate chains which chain to trusted roots (root certificates either in VerifyOptions.Roots or in the system root certificate pool), requiring a trusted CA to issue certificates containing either not permitted or excluded email addresses.\r\n\r\n  This issue only affects Go 1.26.\r\n\r\n  Thanks to Jakub Ciolek for reporting this issue.\r\n\r\n  This is CVE-2026-27137 and Go issue https://go.dev/issue/77952.\r\n\r\n- crypto/x509: panic in name constraint checking for malformed certificates\r\n\r\n  Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.\r\n\r\n  Since the name constraint checks happen after chain building is complete, this only applies to certificate chains which chain to trusted roots (root certificates either in VerifyOptions.Roots or in the system root certificate pool), requiring a trusted CA to issue certificates containing malformed DNS names.\r\n\r\n  This issue only affects Go 1.26.\r\n\r\n  Thanks to Jakub Ciolek for reporting this issue.\r\n\r\n  This is CVE-2026-27138 and Go issue https://go.dev/issue/77953.\r\n\r\n- html/template: URLs in meta content attribute actions are not escaped\r\n\r\n  Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\r\n\r\n  A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.\r\n\r\n  This is CVE-2026-27142 and Go issue https://go.dev/issue/77954.\r\n\r\n- net/url: reject IPv6 literal not at start of host\r\n\r\n  The Go standard library function net/url.Parse insufficiently validated the host/authority component and accepted some invalid URLs by effectively treating garbage before an IP-literal as ignorable. The function should have rejected this as invalid.\r\n\r\n  To prevent this behavior, net/url.Parse now rejects IPv6 literals that do not appear at the start of the host subcomponent of a URL.\r\n\r\n  Thanks to Masaki Hara (https://github.com/qnighy) of Wantedly.\r\n\r\n  This is CVE-2026-25679 and Go issue https://go.dev/issue/77578.\r\n\r\n- os: FileInfo can escape from a Root\r\n\r\n  On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\r\n\r\n  The contents of the FileInfo were populated using the lstat system call, which takes the path to the file as a parameter. If a component of the full path of the file described by the FileInfo is replaced with a symbolic link, the target of the lstat can be directed to another location on the filesystem.\r\n\r\n  The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem. This could be used to probe for the presence or absence of files as well as gleaning metadata like file sizes, but does not permit reading or writing files outside the root.\r\n\r\n  The FileInfo is now populated using fstatat.\r\n\r\n  Thank you to Miloslav Trmač of Red Hat for reporting this issue.\r\n\r\n  This is CVE-2026-27139 and Go issue https://go.dev/issue/77827.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-06T13:48:16Z",
+      "merged_at": "2026-03-11T04:31:15Z",
+      "author": "thaJeztah",
+      "labels": [
+        "cherry-pick/1.7.x",
+        "size/S",
+        "area/toolchain",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "13010": {
+      "title": "[release/2.2] update to go1.25.8, test go1.26.1",
+      "url": "https://github.com/containerd/containerd/pull/13010",
+      "body": "This is an automated cherry-pick of #12985\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2026-03-11T08:54:55Z",
+      "merged_at": null,
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/S",
+        "area/toolchain"
+      ]
+    },
+    "13015": {
+      "title": "[release/2.2] fix(oci): handle absolute symlinks in rootfs user lookup",
+      "url": "https://github.com/containerd/containerd/pull/13015",
+      "body": "This is an automated cherry-pick of #12732\n\n/assign AkihiroSuda\n\n```release-note\nHandle absolute symlinks in rootfs user lookup to fix regressions when using Go 1.24\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-11T10:33:57Z",
+      "merged_at": "2026-03-12T06:22:16Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/L",
+        "go",
+        "area/client"
+      ]
+    },
+    "12732": {
+      "title": "fix(oci): handle absolute symlinks in rootfs user lookup",
+      "url": "https://github.com/containerd/containerd/pull/12732",
+      "body": "### Analysis\r\nThis PR addresses a regression/behavior change introduced with Go 1.24 builds regarding strict path validation in `os.DirFS` (via `os.Root`).\r\n\r\nIn scenarios involving container images based on NixOS (or other distributions using absolute symlinks for configuration files), standard files like `/etc/passwd` or `/etc/group` are often symlinks pointing to absolute paths (e.g., `/nix/store/...`).\r\n\r\nIn Go 1.24, calling `root.Open(\"etc/passwd\")` fails with `path escapes from parent` if the symlink target is absolute, even if that target resolves to a valid path within the container's root filesystem context. This breaks container creation for these images.\r\n\r\n### Solution\r\nI introduced a helper function `openUserFile` in `pkg/oci/spec_opts.go` to wrap the file opening logic for `UserFromFS` and `GIDFromFS`.\r\n\r\nThe logic is as follows:\r\n1. Attempt to open the file normally.\r\n2. If `Open` fails, check if the filesystem supports `ReadLink` (using a local interface `readLinker` to maintain compatibility with Go versions prior to 1.23).\r\n3. If the file is an absolute symlink, re-anchor the path relative to the rootfs (stripping the leading `/`) and attempt to open it again.\r\n\r\nThis approach ensures compatibility with NixOS-style images while respecting the safety constraints of the standard library where possible.\r\n\r\n### Testing\r\n- [x] Ran unit tests `go test -v ./pkg/oci/...` (All passed).\r\n- [x] Verified locally with a reproduction test case that mimics the Go 1.24 behavior and the NixOS directory structure.\r\n\r\n**Fixes:** #12683",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-27T17:50:41Z",
+      "merged_at": "2026-01-14T01:06:47Z",
+      "author": "pauloappbr",
+      "labels": [
+        "size/L",
+        "go",
+        "area/client",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "13019": {
+      "title": "[release/2.2] fix(oci): apply absolute symlink resolution to /etc/group",
+      "url": "https://github.com/containerd/containerd/pull/13019",
+      "body": "This is an automated cherry-pick of #12925\n\n/assign AkihiroSuda\n\n```release-note\nApply absolute symlink resolution to /etc/group in OCI spec to fix lookups on NixOS-style systems\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-12T08:38:16Z",
+      "merged_at": "2026-03-12T23:23:45Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M",
+        "go"
+      ]
+    },
+    "12925": {
+      "title": "fix(oci): apply absolute symlink resolution to /etc/group",
+      "url": "https://github.com/containerd/containerd/pull/12925",
+      "body": "This is a follow-up to PR #12732. \r\n\r\nAs noted by @TheColorman, while the previous PR successfully resolved absolute symlinks pointing outside the mount root for `/etc/passwd` during user lookups, the same logic was missing for group lookups. This caused `openat etc/group: path escapes from parent` errors when `/etc/group` was also an absolute symlink (e.g., in NixOS environments).\r\n\r\nThis patch updates `GIDFromFS`, `getSupplementalGroupsFromFS`, and `WithAppendAdditionalGroups` to use the `openUserFile` helper, ensuring absolute symlinks are correctly re-anchored across all OCI user/group resolution paths.\r\n\r\nFixes #12683\r\n\r\nSigned-off-by: Paulo Oliveira <paulo.hco47@gmail.com>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-20T13:45:24Z",
+      "merged_at": "2026-03-12T08:37:38Z",
+      "author": "pauloappbr",
+      "labels": [
+        "cherry-pick/1.7.x",
+        "size/M",
+        "go",
+        "area/client",
+        "cherry-pick/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "13023": {
+      "title": "[release/2.2] cri: UpdatePodSandbox should return Unimplemented",
+      "url": "https://github.com/containerd/containerd/pull/13023",
+      "body": "errgrpc will correctly translate ErrNotImplemented to GRPC's Unimplemented, but a plain error will be returned directly.\n\n```release-note\nEnsure UpdatePodSandbox returns Unimplemented instead of a generic error\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-12T20:29:09Z",
+      "merged_at": "2026-03-13T00:37:06Z",
+      "author": "samuelkarp",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/XS"
+      ]
+    },
+    "13061": {
+      "title": "[release/2.2] update runc binary to v1.3.5",
+      "url": "https://github.com/containerd/containerd/pull/13061",
+      "body": "release notes: https://github.com/opencontainers/runc/releases/tag/v1.3.5\r\nfull diff: https://github.com/opencontainers/runc/compare/v1.3.4...v1.3.5\n\n```release-note\nUpdate runc to v1.3.5\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-19T11:46:00Z",
+      "merged_at": "2026-03-20T13:14:39Z",
+      "author": "thaJeztah",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "13066": {
+      "title": "[release/2.2] Fix vagrant on CI",
+      "url": "https://github.com/containerd/containerd/pull/13066",
+      "body": "This is an automated cherry-pick of #13055\n\n/assign estesp",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-19T14:29:51Z",
+      "merged_at": "2026-03-19T16:17:37Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13055": {
+      "title": "Fix vagrant on CI",
+      "url": "https://github.com/containerd/containerd/pull/13055",
+      "body": "Recent jobs started to fail:\r\n\r\n```bash\r\n    default: NOCHANGE: partition 4 is size 123318239. it cannot be grown\r\nThe SSH command responded with a non-zero exit status. Vagrant\r\nassumes that this means the command failed. The output for this command\r\nshould be in the log above. Please read the output to determine what\r\nwent wrong.\r\n```\r\n\r\n- https://github.com/containerd/containerd/actions/runs/23276654538/job/67681274802\r\n- https://github.com/containerd/containerd/actions/runs/23273699658/job/67672196780\r\n- https://github.com/containerd/containerd/actions/runs/23273684057/job/67683270990",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-19T03:00:29Z",
+      "merged_at": "2026-03-19T06:07:43Z",
+      "author": "mxpv",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13120": {
+      "title": "[release/2.2] Preserve cgroup mount options for privileged containers",
+      "url": "https://github.com/containerd/containerd/pull/13120",
+      "body": "This is an automated cherry-pick of #12952\n\n/assign chrishenzie\n\n```release-note\nPreserve cgroup mount options for privileged containers\n```\n\n```release-note\nPreserve cgroup mount options for privileged containers\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-25T02:21:57Z",
+      "merged_at": "2026-03-25T19:27:09Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "12952": {
+      "title": "Preserve cgroup mount options for privileged containers",
+      "url": "https://github.com/containerd/containerd/pull/12952",
+      "body": "Privileged containers don't have a cgroup namespace, so by default they run in the host's cgroup namespace.\r\nhttps://github.com/containerd/containerd/blob/d1d9d07f1960f7f3648298e44963a263eac87fa5/internal/cri/server/container_create.go#L933-L939\r\n\r\nWhen mounting cgroup2 inside a privileged container, applying a different set of mount options can inadvertently alter the host's shared cgroup2 VFS superblock mount options. Because the container's mount options were previously hardcoded, any additional host mount options like `nsdelegate` or `memory_recursiveprot` would be accidentally stripped from the host.\r\n\r\nFixes this issue by reading the host's `/sys/fs/cgroup` mount options during container creation and explicitly including them if the container is privileged.\r\n\r\nAn integration test is also included to verify that the host's cgroup mount options remain unchanged before and after running a privileged container.\r\n\r\nAdditionally updates the Vagrantfile and cri-integration script to forward the `RUNC_FLAVOR` environment variable to conditionally skip the integration test for `crun` until support is added for `nsdelegate`.\r\n\r\nAssisted-by: gemini-cli\r\n\r\n@samuelkarp @Divya063 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-28T09:01:24Z",
+      "merged_at": "2026-03-24T23:27:57Z",
+      "author": "chrishenzie",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "size/L",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    },
+    "13125": {
+      "title": "[release/2.2] Tweak mount info for overlayfs in case of parallel unpack",
+      "url": "https://github.com/containerd/containerd/pull/13125",
+      "body": "This is an automated cherry-pick of #13115\r\n\r\n/assign samuelkarp\r\n\r\n```release-note\r\nFix bug that caused whiteouts to be ignored when parallel unpack was used\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-25T20:58:38Z",
+      "merged_at": "2026-03-26T00:45:14Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/L"
+      ]
+    },
+    "13115": {
+      "title": "Tweak mount info for overlayfs in case of parallel unpack",
+      "url": "https://github.com/containerd/containerd/pull/13115",
+      "body": "Fixes: https://github.com/containerd/containerd/issues/13030\r\n\r\nAlternative to: https://github.com/containerd/containerd/pull/13044\r\n\r\nInstead of changing overlay snapshotter itself, this PR updates unpacker logic to tweak the mount info returned by overlay in the parallel case.\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-24T18:55:21Z",
+      "merged_at": "2026-03-25T20:55:43Z",
+      "author": "henry118",
+      "labels": [
+        "kind/bug",
+        "size/L",
+        "cherry-pick/2.2.x"
+      ]
+    },
+    "13154": {
+      "title": "[release/2.2] Skip TestExportAndImportMultiLayer on s390x",
+      "url": "https://github.com/containerd/containerd/pull/13154",
+      "body": "This is an automated cherry-pick of #13149\n\n/assign samuelkarp",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-02T19:18:34Z",
+      "merged_at": "2026-04-02T21:53:48Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "kind/test",
+        "size/XS"
+      ]
+    },
+    "13149": {
+      "title": "Skip TestExportAndImportMultiLayer on s390x",
+      "url": "https://github.com/containerd/containerd/pull/13149",
+      "body": "Skip TestExportAndImportMultiLayer on s390x\r\n\r\nThe test image `ghcr.io/containerd/volume-copy-up:2.`1 does not include a manifest for s390x, causing the test to fail with:\r\n\"no manifest found for platform: not found\".",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-02T16:46:35Z",
+      "merged_at": "2026-04-02T18:39:42Z",
+      "author": "ricardobranco777",
+      "labels": [
+        "kind/test",
+        "cherry-picked/1.7.x",
+        "size/XS",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x"
+      ]
+    }
+  },
+  "issues": {
+    "12683": {
+      "title": "[Go 1.24] v2.2.0 fails to create containers from images having /etc/{passwd,group} symlinked to an absolute path",
+      "url": "https://github.com/containerd/containerd/issues/12683",
+      "body": "### Description\n\nContainer creation with containerd 2.2.0 fails with `path escapes from parent` errors for images that contain `/etc/passwd` and `/etc/group` as absolute symlinks.\nPrevious versions of containerd, like 2.1.5 (and 1.7.28), are able to create containers from such images without errors.\nUsing relative symlinks instead of absolute ones for both files does not produce the error.\n\nApparently containerd tries to open `/etc/passwd` and `/etc/group` for user and group name resolution[^1] but misinterprets the absolute target path of those symlinks as being rooted in the host's file system rather than the container's file system.\n\n[^1]: https://github.com/containerd/containerd/blob/v2.2.0/vendor/github.com/moby/sys/user/user.go#L274\n\n### Steps to reproduce the issue\n\nTry to run `ctr containers create docker.io/nixos/nix:2.32.2 nixos-2-32-2` on Ubuntu 24.04 with containerd v2.2.0 installed.\nIn that container image `/etc/passwd` is a symlink into `/nix/store/`.\n\n```console\nroot@debug-containerd-220:~# uname -a\nLinux debug-containerd-220 6.8.0-45-generic #45-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug 30 12:02:04 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\nroot@debug-containerd-220:~# grep -E '^(NAME|VERSION)=' /etc/os-release \nNAME=\"Ubuntu\"\nVERSION=\"24.04.1 LTS (Noble Numbat)\"\nroot@debug-containerd-220:~# apt install containerd.io='2.2.0-*'\nroot@debug-containerd-220:~# containerd --version\ncontainerd containerd.io v2.2.0 1c4457e00facac03ce1d75f7b6777a7a851e5c41\nroot@debug-containerd-220:~# ctr image pull docker.io/nixos/nix:2.32.2\n.......\napplication/vnd.oci.image.index.v1+json sha256:04abdb9c74e0bd20913ca84e4704419af31e49e901cd57253ed8f9762def28fd\nCompleted pull from OCI Registry (docker.io/nixos/nix:2.32.2)   elapsed: 24.6s  total:  97.3 M  (4.0 MiB/s)\nroot@debug-containerd-220:~# ctr containers create docker.io/nixos/nix:2.32.2 nixos-2-32-2\nctr: mount callback failed on /tmp/containerd-mount263707551: openat etc/passwd: path escapes from parent\n```\n\nTo narrow down the issue I've built 3 container images:\n1. one that matches the original\n2. one that has the absolute symlink at `/etc/passwd` replaced with a relative one\n3. one that has the absolute symlink at `/etc/passwd` as well as `/etc/group` replaced with relative ones\n\nI observed that container creation succeeds only with the third image.\n\n```console\nroot@debug-containerd-220:~# mkdir ./nix-2-32-2-containerfiles\nroot@debug-containerd-220:~# cat <<\"EOF\" > nix-2-32-2-containerfiles/original\nFROM docker.io/nixos/nix:2.32.2\nEOF\nroot@debug-containerd-220:~# cat <<\"EOF\" > nix-2-32-2-containerfiles/rel-passwd-symlink\nFROM docker.io/nixos/nix:2.32.2\nRUN ln --symbolic --force \"$(realpath --relative-to=/etc /etc/passwd)\" /etc/passwd\nEOF\nroot@debug-containerd-220:~# cat <<\"EOF\" > nix-2-32-2-containerfiles/rel-passwd-group-symlink\nFROM docker.io/nixos/nix:2.32.2\nRUN \\\n\tln --symbolic --force \"$(realpath --relative-to=/etc /etc/passwd)\" /etc/passwd; \\\n\tln --symbolic --force \"$(realpath --relative-to=/etc /etc/group)\" /etc/group\nEOF\nroot@debug-containerd-220:~# \nroot@debug-containerd-220:~# mkdir ./empty-dir\nroot@debug-containerd-220:~# for containerfile in nix-2-32-2-containerfiles/*; do podman build --tag localhost/nix-2-32-2:$(basename $containerfile) --file $containerfile ./empty-dir; podman image save localhost/nix-2-32-2:$(basename $containerfile) | ctr image import /dev/stdin; done\n.......\nSuccessfully tagged localhost/nix-2-32-2:original\nSuccessfully tagged docker.io/nixos/nix:2.32.2\nf9b3c7811e275e67142fd4cd66a4ae1bd90ae3dd7d50b5e839b1a000690800a1\nlocalhost/nix 2 32 2:original           \tsaved\t\napplication/vnd.docker.distribution.manifest.v2+json sha256:e233d4e348d00873f4136271143e988790564d3f3eac13ac05ec8fda418755f7\n.......\nSuccessfully tagged localhost/nix-2-32-2:rel-passwd-group-symlink\n947f41d91c5c423efb85c089312579f3551a5defb9f7df3f1878fef85ffc77f9\nlocalhost/nix 2 32 2:rel passwd group sy\tsaved\t\napplication/vnd.docker.distribution.manifest.v2+json sha256:423394ddd5fb52ce13c9ee71f5326a3c9d25db0e32a1c506efe41515d4bbdc02\n.......\nSuccessfully tagged localhost/nix-2-32-2:rel-passwd-symlink\n8f6201eaf0ce9e89fc7aed5e9c4442349a7a46c36cf363f35c2f51f331ade829\nlocalhost/nix 2 32 2:rel passwd symlink \tsaved\t\napplication/vnd.docker.distribution.manifest.v2+json sha256:51a0a6acdcfb2d30b1db1d73804f5dd19d928f1269a9431a857929fc8ccf5c21\n.......\nroot@debug-containerd-220:~# ctr container create localhost/nix-2-32-2:original nix-2-32-2-original\nctr: mount callback failed on /tmp/containerd-mount3757137550: openat etc/passwd: path escapes from parent\nroot@debug-containerd-220:~# echo $?\n1\nroot@debug-containerd-220:~# ctr container create localhost/nix-2-32-2:rel-passwd-symlink nix-2-32-2-rel-passwd-symlink\nctr: mount callback failed on /tmp/containerd-mount2612271920: openat etc/group: path escapes from parent\nroot@debug-containerd-220:~# echo $?\n1\nroot@debug-containerd-220:~# ctr container create localhost/nix-2-32-2:rel-passwd-group-symlink nix-2-32-2-rel-passwd-group-symlink\nroot@debug-containerd-220:~# echo $?\n0\nroot@debug-containerd-220:~# \n```\n\nI've also tested all 3 images against containerd 2.1.5 which yielded no errors.\n\n```console\nroot@debug-containerd-220:~# apt remove --purge containerd.io && apt install containerd.io='2.1.5-*'\n.......\nroot@debug-containerd-220:~# ctr container delete nix-2-32-2-original nix-2-32-2-rel-passwd-group-symlink nix-2-32-2-rel-passwd-symlink\nroot@debug-containerd-220:~# ctr container create localhost/nix-2-32-2:original nix-2-32-2-original\nroot@debug-containerd-220:~# echo $?\n0\nroot@debug-containerd-220:~# ctr container create localhost/nix-2-32-2:rel-passwd-symlink nix-2-32-2-rel-passwd-symlink\nroot@debug-containerd-220:~# echo $?\n0\nroot@debug-containerd-220:~# ctr container create localhost/nix-2-32-2:rel-passwd-group-symlink nix-2-32-2-rel-passwd-group-symlink\nroot@debug-containerd-220:~# echo $?\n0\n```\n\n### Describe the results you received and expected\n\nTrying to create a container from the `docker.io/nixos/nix:2.32.2` image with containerd 2.2.0, fails with `ctr: mount callback failed on /tmp/containerd-mount3757137550: openat etc/passwd: path escapes from parent`.\n\nPrevious versions of containerd, like 2.1.5 (and 1.7.28), are able to create a container from said image without errors.\n\nModifying the image so that `/etc/passwd` and `/etc/group` are relative instead of absolute symlinks, makes containerd 2.2.0 succeed with creating a container.\n\nI expect containerd 2.2.0 to handle absolute symlinks for both files like in previous versions.\n\n### What version of containerd are you using?\n\n```console\nroot@debug-containerd-220:~# containerd --version\ncontainerd containerd.io v2.2.0 1c4457e00facac03ce1d75f7b6777a7a851e5c41\n```\n\n### Any other relevant information\n\ncontainerd 2.2.0 is built with go 1.24.3[^2] whereas containerd 1.7.28 is built with go 1.23.0[^3].\ngo 1.24 introduces a check[^4] that may produce the \"path escapes from parent\" error[^5] that I've experienced.\n\n[^2]: https://github.com/containerd/containerd/blob/v2.2.0/go.mod#L3\n[^3]: https://github.com/containerd/containerd/blob/v2.1.5/go.mod#L3\n[^4]: https://github.com/golang/go/commit/43d90c6a14e7b3fd1b3b8085b8071a09231c4b62#diff-47957b402486ac2a9d4182ae5fa01371df1eb7abab86e1c543b5d1af3fc4deccR15\n[^5]: https://github.com/golang/go/commit/43d90c6a14e7b3fd1b3b8085b8071a09231c4b62#diff-9104369aad12ebcc262dc47f26321742fe4b10d31e30bc53832e869f4a7b3bceR401\n\n### Show configuration if it is related to CRI plugin.\n\n```console\nroot@debug-containerd-220:~# cat /etc/containerd/config.toml \n#   Copyright 2018-2022 Docker Inc.\n\n#   Licensed under the Apache License, Version 2.0 (the \"License\");\n#   you may not use this file except in compliance with the License.\n#   You may obtain a copy of the License at\n\n#       http://www.apache.org/licenses/LICENSE-2.0\n\n#   Unless required by applicable law or agreed to in writing, software\n#   distributed under the License is distributed on an \"AS IS\" BASIS,\n#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n#   See the License for the specific language governing permissions and\n#   limitations under the License.\n\ndisabled_plugins = [\"cri\"]\n\n#root = \"/var/lib/containerd\"\n#state = \"/run/containerd\"\n#subreaper = true\n#oom_score = 0\n\n#[grpc]\n#  address = \"/run/containerd/containerd.sock\"\n#  uid = 0\n#  gid = 0\n\n#[debug]\n#  address = \"/run/containerd/debug.sock\"\n#  uid = 0\n#  gid = 0\n#  level = \"info\"\n```",
+      "state": "closed",
+      "created_at": "2025-12-13T14:36:11Z",
+      "closed_at": "2026-03-12T08:37:40Z",
+      "author": "brunosc-cah",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    },
+    "13030": {
+      "title": "whiteout files not honored by max_concurrent_unpacks > 1",
+      "url": "https://github.com/containerd/containerd/issues/13030",
+      "body": "### Description\n\nWhen running with max_parallel_unpacks > 1, you will not honor whiteout files, meaning files deleted in later layers are present in the final overlayfs.\n\n### Steps to reproduce the issue\n\nKind of a wordy way of reproducing below, running the containerfile with the config makes it clear but I wanted to play around with the `ctr` commands :D \n\nHere's a simple containerfile:\n```\n$ cat Containerfile\nFROM fedora\n\nRUN touch /this-will-be-deleted\nRUN rm /this-will-be-deleted\n\nCMD [\"/bin/bash\", \"-c\", \"if [[ -e /this-will-be-deleted ]]; then exit 1; fi; exit 0\"]\n```\n\nHere's a config.toml\n```\n$ cat /tmp/containerd.toml\nroot = \"/tmp/containerd-test/root\"\nstate = \"/tmp/containerd-test/state\"\n\n[grpc]\n  address = \"/tmp/containerd-test/containerd.sock\"\n\n[plugins]\n    [plugins.'io.containerd.transfer.v1.local']\n      max_concurrent_unpacks = 2\n```\n\nHere's the result pulling, running, and examining the outputs:\n```\n# sudo ctr -a /tmp/containerd-test/containerd.sock images pull docker.io/ajhalaney/whiteout:latest\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             fetching image content\ndocker.io/ajhalaney/whiteout:latest             saved\n└──manifest (0c0ddd905833)                      complete        |++++++++++++++++++++++++++++++++++++++|\n   ├──config (6b43f146ae7a)                     complete        |++++++++++++++++++++++++++++++++++++++|\n   ├──layer (6fedc8898b61)                      extracted       |++++++++++++++++++++++++++++++++++++++|\n   ├──layer (c08102457b12)                      extracted       |++++++++++++++++++++++++++++++++++++++|\n   └──layer (f81a0d9bcd09)                      extracted       |++++++++++++++++++++++++++++++++++++++|\napplication/vnd.oci.image.manifest.v1+json sha256:0c0ddd90583366057cb127a7b2026299f8cadda06a2a025b11222946480e7d7b\nCompleted pull from OCI Registry (docker.io/ajhalaney/whiteout:latest)  elapsed: 3.7 s  total:  58.0 M  (15.5 MiB/s)\n\n# sudo ctr -a /tmp/containerd-test/containerd.sock images ls\nREF                                 TYPE                                       DIGEST                                                                  SIZE     PLATFORMS   LABELS\ndocker.io/ajhalaney/whiteout:latest application/vnd.oci.image.manifest.v1+json sha256:0c0ddd90583366057cb127a7b2026299f8cadda06a2a025b11222946480e7d7b 58.0 MiB linux/amd64 -\n\n# sudo ctr -a /tmp/containerd-test/containerd.sock snapshots --snapshotter overlayfs ls\nKEY                                                                     PARENT                                                                  KIND\nsha256:aa7b92b02603d4da7e30a20768f6e90f871f53c7d8fb008d2a98a35e12d25903 sha256:e95d9d0e6f87fd222a38defaf3ded0b7f009e2d2bed719ae89927a810ba25f75 Committed\nsha256:e95d9d0e6f87fd222a38defaf3ded0b7f009e2d2bed719ae89927a810ba25f75 sha256:fbf251198d865bcc0302539eac8fc14533bce6e70eaa008da56576c9bd2c73ac Committed\nsha256:fbf251198d865bcc0302539eac8fc14533bce6e70eaa008da56576c9bd2c73ac                                                                         Committed\n\n# sudo ./bin/ctr -a /tmp/containerd-test/containerd.sock snapshots --snapshotter overlayfs prepare test-active sha256:aa7b92b02603d4da7e30a20768f6e90f871f53c7d8fb008d2a98a35e12d25903\n\nsudo ./bin/ctr -a /tmp/containerd-test/containerd.sock snapshots --snapshotter overlayfs mounts /tmp/pointless test-active\nmount -t overlay overlay /tmp/pointless -o workdir=/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/4/work,upperdir=/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,lowerdir=/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/3/fs:/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs:/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/1/fs,index=off\n\n# find /tmp/containerd-test/ -name this-will-be-deleted\n/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs/this-will-be-deleted\n# ls -lah /tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs/this-will-be-deleted\n-rw-r--r--. 1 root root 0 Mar 13 15:28 /tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs/this-will-be-deleted\n\n# sudo ./bin/ctr -a /tmp/containerd-test/containerd.sock run --rm --snapshotter overlayfs docker.io/ajhalaney/whiteout:latest test\n# echo $?\n1\n```\nYou'd expect to find a character device in layer 3 there to delete the file in overlayfs.\n\n\n\n### Describe the results you received and expected\n\nRedoing the same thing (after cleanup), but with `max_concurrent_unpacks = 1`:\n```\n(skipping setup)\n# find /tmp/containerd-test/ -name this-will-be-deleted\n/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/3/fs/this-will-be-deleted\n/tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs/this-will-be-deleted\n\n# ls -lah /tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/3/fs/this-will-be-deleted /tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs/this-will-be-deleted\n-rw-r--r--. 1 root root    0 Mar 13 15:28 /tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs/this-will-be-deleted\nc---------. 1 root root 0, 0 Mar 13 16:26 /tmp/containerd-test/root/io.containerd.snapshotter.v1.overlayfs/snapshots/3/fs/this-will-be-deleted\n\n# sudo ./bin/ctr -a /tmp/containerd-test/containerd.sock run --rm --snapshotter overlayfs docker.io/ajhalaney/whiteout:latest test\n# echo $?\n0\n```\nThat works great! \n\n\n### What version of containerd are you using?\n\nv2.2.0-436-gb4848858e b4848858efde49fb53df4aa9023a67b3e98d43a3\n\n### Any other relevant information\n\n\n\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-03-13T21:30:33Z",
+      "closed_at": "2026-03-25T20:55:45Z",
+      "author": "halaney",
+      "labels": [
+        "kind/bug",
+        "priority/P1",
+        "area/distribution",
+        "status/accepted"
+      ]
+    }
+  }
+}
