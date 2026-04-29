@@ -1,0 +1,261 @@
+{
+  "metadata": {
+    "generated_at": "2026-04-29T07:41:50.141926",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.3.0-rc.1",
+    "name": "containerd 2.3.0-rc.1",
+    "body": "Welcome to the v2.3.0-rc.1 release of containerd!\n*This is a pre-release of containerd*\n\nThe third minor release of containerd 2.x focuses on continued stability alongside\nnew features and improvements. This is the third time-based release for containerd.\n\nStarting with containerd 2.3, the project has moved to release cadence aligned with\nthe Kubernetes release schedule, with new minor releases about every 4 months. The\ncontainerd 2.3 release is also the first annual LTS (Long Term Stable) release under\nthis new schedule, with support planned for at least two years. Direct upgrades\nbetween sequential LTS releases (e.g., 1.7 to 2.3) will be tested and supported.\n\nThis is a beta release and some functionality is still under development.\n\n### Highlights\n\n* Add transfer types for container filesystem copy ([#13165](https://github.com/containerd/containerd/pull/13165))\n* Introduce shim bootstrap protocol ([#12786](https://github.com/containerd/containerd/pull/12786))\n* Add option to inject trace ID to logs ([#13117](https://github.com/containerd/containerd/pull/13117))\n* Propagate OpenTelemetry traces in outgoing RPCs from plugin clients ([#13113](https://github.com/containerd/containerd/pull/13113))\n* Update plugin config migration to run on load ([#12608](https://github.com/containerd/containerd/pull/12608))\n* Detect vendor in cdi specs to generate device IDs for --gpus ([#12839](https://github.com/containerd/containerd/pull/12839))\n* Update sandbox API to include spec field ([#12840](https://github.com/containerd/containerd/pull/12840))\n* api: fix OCI hook ownership tracking. ([containerd/nri#264](https://github.com/containerd/nri/pull/264))\n\n#### Container Runtime Interface (CRI)\n\n* Allow containers to use user namespaces with host networking ([#12518](https://github.com/containerd/containerd/pull/12518))\n* Unpack images with per-layer labels for specific runtime ([#12835](https://github.com/containerd/containerd/pull/12835))\n* Populate ImageId field in container status ([#12787](https://github.com/containerd/containerd/pull/12787))\n* Set annotations parameter in CreateSandbox request ([#12566](https://github.com/containerd/containerd/pull/12566))\n\n#### Image Distribution\n\n* Support zstd-wrapped EROFS layers ([#13185](https://github.com/containerd/containerd/pull/13185))\n* Add EROFS layer media type ([#12567](https://github.com/containerd/containerd/pull/12567))\n\n#### Image Storage\n\n* Use fsmount API to avoid PAGE_SIZE limit for erofs ([#12783](https://github.com/containerd/containerd/pull/12783))\n\n#### Node Resource Interface (NRI)\n\n* Pass container user (uid, gids) to plugins ([#12769](https://github.com/containerd/containerd/pull/12769))\n* Pass seccomp policy to plugins ([#12768](https://github.com/containerd/containerd/pull/12768))\n* Pass any POSIX rlimits to plugins ([#12765](https://github.com/containerd/containerd/pull/12765))\n* Pass extended container status to NRI. ([#12770](https://github.com/containerd/containerd/pull/12770))\n* Pass injected CDI devices to plugins ([#12767](https://github.com/containerd/containerd/pull/12767))\n* Pass linux sysctl to plugins ([#12766](https://github.com/containerd/containerd/pull/12766))\n\n#### Runtime\n\n* Add configured socket directory to shim bootstrap protocol ([#12785](https://github.com/containerd/containerd/pull/12785))\n* Fix binary logging driver not blocking container start on failure ([#12595](https://github.com/containerd/containerd/pull/12595))\n* Use new filtered cgroups stats API ([#12901](https://github.com/containerd/containerd/pull/12901))\n* Update OOMKilled event handling ([#12714](https://github.com/containerd/containerd/pull/12714))\n\n#### Snapshotters\n\n* Propagate parent chain ID and diff ID via labels during snapshot preparation ([#13071](https://github.com/containerd/containerd/pull/13071))\n\n#### Breaking\n\n* api: fix OCI hook ownership tracking. ([containerd/nri#264](https://github.com/containerd/nri/pull/264))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Derek McGowan\n* Sebastiaan van Stijn\n* Krisztian Litkey\n* Samuel Karp\n* Wei Fu\n* Akihiro Suda\n* Phil Estes\n* Mike Brown\n* Markus Lehtonen\n* Hudson Zhu\n* Davanum Srinivas\n* Chris Henzie\n* Gao Xiang\n* Chengyu Zhu\n* Akhil Mohan\n* Kazuyoshi Kato\n* Sergey Kanzhelev\n* Austin Vazquez\n* ningmingxiao\n* Aadhar Agarwal\n* Andrew Halaney\n* Apurv Barve\n* Brian Goff\n* HirazawaUi\n* Michael Zappa\n* Paweł Gronowski\n* Fabiano Fidêncio\n* Hasan Siddiqui\n* Jintao Zhang\n* Paulo Oliveira\n* Shiv Tyagi\n* Albin Kerouanton\n* Alex Lyn\n* Avinesh Singh\n* Danny Canter\n* Esteban Ginez\n* Henry Wang\n* Jin Dong\n* Jérôme Poulin\n* Laura Lorenz\n* Luke Hinds\n* Sascha Grunert\n* Tianon Gravi\n* majianhan\n* markdodgson\n* qiuxue\n* Adrien Delorme\n* Alessio Biancalana\n* Alex Chernyakhovsky\n* Andrey Noskov\n* Andrey Smirnov\n* Annie Cherkaev\n* Antti Kervinen\n* Anuj Singh\n* Benjamin Elder\n* Champ-Goblem\n* Chris Adeniyi-Jones\n* Chris Chang\n* Cindia-blue\n* CrazyMax\n* Eldon Stegall\n* Evan Lezar\n* Fletcher Woodruff\n* Gaurav Ghildiyal\n* Harsh Rawat\n* Hayato Kiwata\n* Joseph Zhang\n* Justin Chadwell\n* Kal\n* Manuel de Brito Fontes\n* Mikhail Dmitrichenko\n* Mujib Ahasan\n* Neeraj Krishna Gopalakrishna\n* Pierluigi Lenoci\n* Ricardo Branco\n* Rob Murray\n* Rodrigo Campos\n* Sameer\n* Sameer\n* Sanil Khurana\n* Shachar Tal\n* Shaobao Feng\n* Shiming Zhang\n* Tariq Ibrahim\n* Tim Windelschmidt\n* Tõnis Tiigi\n* Wade Simmons\n* Weixie Cui\n* Will Jordan\n* William Myers\n* Yohei Yamamoto\n* You Binhao\n* Youfu Zhang\n* Yuanliang Zhang\n* apurv15\n* bo.jiang\n* chris-henderson-alation\n* delthas\n* guodong\n* jinda.ljd\n* jokemanfire\n* pandaWall\n* sreeram-venkitesh\n\n### Dependency Changes\n\n* **cyphar.com/go-pathrs**                                                         v0.2.1 **_new_**\n* **github.com/Microsoft/go-winio**                                                v0.6.2 -> ad3df93bed29\n* **github.com/Microsoft/hcsshim**                                                 v0.14.0-rc.1 -> v0.15.0-rc.1\n* **github.com/cenkalti/backoff/v5**                                               v5.0.3 **_new_**\n* **github.com/checkpoint-restore/checkpointctl**                                  v1.4.0 -> v1.5.0\n* **github.com/containerd/cgroups/v3**                                             v3.1.0 -> v3.1.3\n* **github.com/containerd/containerd/api**                                         v1.10.0 -> v1.11.0-rc.0\n* **github.com/containerd/continuity**                                             v0.4.5 -> v0.5.0\n* **github.com/containerd/go-dmverity**                                            v0.1.0 **_new_**\n* **github.com/containerd/imgcrypt/v2**                                            v2.0.1 -> v2.0.2\n* **github.com/containerd/nri**                                                    v0.10.0 -> v0.12.0\n* **github.com/containerd/platforms**                                              v1.0.0-rc.2 -> v1.0.0-rc.4\n* **github.com/containerd/plugin**                                                 v1.0.0 -> v1.1.0\n* **github.com/containerd/ttrpc**                                                  v1.2.7 -> v1.2.8\n* **github.com/containerd/zfs/v2**                                                 v2.0.0-rc.0 -> v2.0.0\n* **github.com/containernetworking/plugins**                                       v1.8.0 -> v1.9.1\n* **github.com/coreos/go-systemd/v22**                                             v22.6.0 -> v22.7.0\n* **github.com/cyphar/filepath-securejoin**                                        v0.6.0 **_new_**\n* **github.com/davecgh/go-spew**                                                   v1.1.1 -> d8f796af33cc\n* **github.com/erofs/go-erofs**                                                    v0.3.0 **_new_**\n* **github.com/go-jose/go-jose/v4**                                                v4.1.2 -> v4.1.4\n* **github.com/grpc-ecosystem/grpc-gateway/v2**                                    v2.26.1 -> v2.28.0\n* **github.com/intel/goresctrl**                                                   v0.10.0 -> v0.12.0\n* **github.com/klauspost/compress**                                                v1.18.1 -> v1.18.5\n* **github.com/moby/spdystream**                                                   v0.5.0 -> v0.5.1\n* **github.com/opencontainers/runtime-spec**                                       v1.2.1 -> v1.3.0\n* **github.com/opencontainers/runtime-tools**                                      0ea5ed0382a2 -> edf4cb3d2116\n* **github.com/opencontainers/selinux**                                            v1.12.0 -> v1.13.1\n* **github.com/pelletier/go-toml/v2**                                              v2.2.4 -> v2.3.0\n* **github.com/pmezard/go-difflib**                                                v1.0.0 -> 5d4384ee4fb2\n* **github.com/prometheus/common**                                                 v0.66.1 -> v0.67.5\n* **github.com/prometheus/procfs**                                                 v0.16.1 -> v0.19.2\n* **github.com/sirupsen/logrus**                                                   v1.9.3 -> v1.9.4\n* **github.com/tetratelabs/wazero**                                                v1.9.0 -> v1.11.0\n* **go.opentelemetry.io/auto/sdk**                                                 v1.1.0 -> v1.2.1\n* **go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc**  v0.60.0 -> v0.68.0\n* **go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp**                v0.60.0 -> v0.68.0\n* **go.opentelemetry.io/otel**                                                     v1.37.0 -> v1.43.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace**                            v1.35.0 -> v1.43.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc**              v1.35.0 -> v1.43.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp**              v1.35.0 -> v1.43.0\n* **go.opentelemetry.io/otel/metric**                                              v1.37.0 -> v1.43.0\n* **go.opentelemetry.io/otel/sdk**                                                 v1.37.0 -> v1.43.0\n* **go.opentelemetry.io/otel/trace**                                               v1.37.0 -> v1.43.0\n* **go.opentelemetry.io/proto/otlp**                                               v1.5.0 -> v1.10.0\n* **go.yaml.in/yaml/v2**                                                           v2.4.2 -> v2.4.3\n* **golang.org/x/crypto**                                                          v0.41.0 -> v0.49.0\n* **golang.org/x/mod**                                                             v0.29.0 -> v0.35.0\n* **golang.org/x/net**                                                             v0.43.0 -> v0.52.0\n* **golang.org/x/oauth2**                                                          v0.30.0 -> v0.35.0\n* **golang.org/x/sync**                                                            v0.17.0 -> v0.20.0\n* **golang.org/x/sys**                                                             v0.37.0 -> v0.43.0\n* **golang.org/x/term**                                                            v0.34.0 -> v0.41.0\n* **golang.org/x/text**                                                            v0.28.0 -> v0.35.0\n* **golang.org/x/time**                                                            v0.14.0 -> v0.15.0\n* **google.golang.org/genproto/googleapis/api**                                    a7a43d27e69b -> 9d38bb4040a9\n* **google.golang.org/genproto/googleapis/rpc**                                    a7a43d27e69b -> 6f92a3bedf2d\n* **google.golang.org/grpc**                                                       v1.76.0 -> v1.80.0\n* **google.golang.org/protobuf**                                                   v1.36.10 -> f2248ac996af\n* **k8s.io/api**                                                                   v0.34.1 -> v0.36.0\n* **k8s.io/apimachinery**                                                          v0.34.1 -> v0.36.0\n* **k8s.io/client-go**                                                             v0.34.1 -> v0.36.0\n* **k8s.io/component-base**                                                        v0.36.0 **_new_**\n* **k8s.io/cri-api**                                                               v0.34.1 -> v0.36.0\n* **k8s.io/cri-client**                                                            v0.36.0 **_new_**\n* **k8s.io/cri-streaming**                                                         v0.36.0 **_new_**\n* **k8s.io/klog/v2**                                                               v2.130.1 -> v2.140.0\n* **k8s.io/kube-openapi**                                                          5883c5ee87b9 **_new_**\n* **k8s.io/streaming**                                                             v0.36.0 **_new_**\n* **k8s.io/utils**                                                                 4c0f3b243397 -> 28399d86e0b5\n* **sigs.k8s.io/json**                                                             cfa47c3a1cc8 -> 2d320260d730\n* **sigs.k8s.io/structured-merge-diff/v6**                                         v6.3.0 -> v6.3.2\n* **tags.cncf.io/container-device-interface**                                      v1.0.1 -> v1.1.0\n* **tags.cncf.io/container-device-interface/specs-go**                             v1.0.0 -> v1.1.0\n\nPrevious release can be found at [v2.2.0](https://github.com/containerd/containerd/releases/tag/v2.2.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-04-29T07:23:43Z",
+    "prerelease": true,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.3.0-rc.1",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd 2.3.0-rc.1 是首个年度长期支持（LTS）版本，提供至少两年支持，核心变更为引入新的 shim 引导协议、增强 OpenTelemetry 可观测性、原生支持 EROFS 镜像层以及大量 CRI 和 NRI 插件功能的完善。",
+    "key_changes": [
+      "引入 shim 引导协议，改进 shim 生命周期管理 - [PR #12786](https://github.com/containerd/containerd/pull/12786)",
+      "增强 OpenTelemetry 追踪集成，支持在 RPC 调用和日志中传播 Trace ID - [PR #13113](https://github.com/containerd/containerd/pull/13113) / [PR #13117](https://github.com/containerd/containerd/pull/13117)",
+      "原生支持 EROFS 镜像层，提升容器镜像分发与存储效率 - [PR #12567](https://github.com/containerd/containerd/pull/12567) / [PR #13185](https://github.com/containerd/containerd/pull/13185)",
+      "CRI：允许容器同时使用主机网络和用户命名空间 - [PR #12518](https://github.com/containerd/containerd/pull/12518)",
+      "CRI：修复 Sandbox 创建请求中注解（Annotations）未传递的问题 - [PR #12566](https://github.com/containerd/containerd/pull/12566) - [Issue #12565](https://github.com/containerd/containerd/issues/12565)",
+      "NRI：向插件传递更多容器运行时信息（如用户、seccomp策略、rlimits、sysctl、CDI设备等） - [PR #12765](https://github.com/containerd/containerd/pull/12765) / [PR #12766](https://github.com/containerd/containerd/pull/12766) / [PR #12767](https://github.com/containerd/containerd/pull/12767) / [PR #12768](https://github.com/containerd/containerd/pull/12768) / [PR #12769](https://github.com/containerd/containerd/pull/12769)"
+    ],
+    "important_bugfixes": [
+      "修复二进制日志驱动（binary logging driver）失败时不会阻塞容器启动的问题，确保日志收集可靠性 - [PR #12595](https://github.com/containerd/containerd/pull/12595) - **影响：** 此前若日志驱动初始化失败，容器仍会启动，导致关键日志丢失。修复后，启动流程将正确阻塞，保证日志系统就绪。",
+      "修复插件配置迁移逻辑，确保在配置加载时正确执行，避免版本不一致导致的配置问题 - [PR #12608](https://github.com/containerd/containerd/pull/12608) - **影响：** 防止因全局配置和插件配置迁移步骤不同步而导致的潜在配置错误或插件加载失败。",
+      "改进 OOMKilled 事件处理顺序，确保在容器退出事件前发送 OOM 事件 - [PR #12714](https://github.com/containerd/containerd/pull/12714) - **影响：** 使监控系统能更准确地判断容器退出原因（尤其是因 OOM 被杀）。"
+    ],
+    "security_issues": [
+      "依赖项全面升级，包含多个安全补丁（如 golang.org/x/* 套件、containerd/nri、go-jose等） - **风险级别：** 中 - 建议审查依赖变更列表以评估特定环境风险。"
+    ],
+    "performance_improvements": [
+      "使用新的过滤式 cgroups 统计信息 API，可能提升资源监控效率 - [PR #12901](https://github.com/containerd/containerd/pull/12901) - **提升：** 减少不必要的数据收集开销。",
+      "EROFS 层使用 fsmount API，避免 PAGE_SIZE 限制，提升挂载性能 - [PR #12783](https://github.com/containerd/containerd/pull/12783) - **提升：** 优化大镜像或特殊场景下的存储性能。"
+    ],
+    "breaking_changes": [
+      "修复 NRI 插件中 OCI 钩子的所有权跟踪问题，可能影响依赖特定行为的 NRI 插件 - [PR #264](https://github.com/containerd/nri/pull/264) - **影响：** 使用 NRI 插件的环境需要测试插件兼容性，确保修复后的行为符合预期。"
+    ],
+    "recommendations": [
+      "**当前版本为候选发布版（rc.1），不建议直接用于生产环境。** 应尽快在测试环境中部署，验证新功能（如 EROFS、shim 引导协议）和关键修复（如日志驱动）的稳定性。",
+      "计划升级至 2.3 LTS 版本的用户，应利用此预发布版开始兼容性测试，特别是针对 NRI 插件和自定义沙箱（Sandbox）实现。",
+      "关注 OpenTelemetry 集成增强，评估并调整现有监控和日志链路，以充分利用分布式追踪能力。",
+      "检查并更新容器镜像构建流程，评估采用 EROFS 格式镜像以提升分发和存储效率的可能性。"
+    ],
+    "risk_assessment": "整体风险评估：中等。作为首个年度 LTS 的预发布版，其引入的新特性和架构变更（如 shim 引导协议）需要充分测试。然而，大量的 bug 修复和稳定性改进为生产环境带来了积极影响。建议的升级时机是在 2.3.0 稳定版发布后，并经过充分的测试验证。需要特别关注的方面包括：NRI 插件兼容性、二进制日志驱动行为变化、以及任何自定义运行时或沙箱集成点。"
+  },
+  "statistics": {
+    "analyzed_prs": 10,
+    "analyzed_issues": 2,
+    "important_items": 5
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#264: Fix panic within ctr if the daemon dies while attached to a container",
+      "reason": "Contains 'panic'; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#12595: Fix binary logging driver not blocking container start on failure",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12608: Update plugin config migration to run on load",
+      "reason": "Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#12565: Annotations not passed as part of CreateSandbox Request",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#12490: The binary logging driver does not function as intended.",
+      "reason": "Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "264": {
+      "title": "Fix panic within ctr if the daemon dies while attached to a container",
+      "url": "https://github.com/containerd/containerd/pull/264",
+      "body": "Signed-off-by: Kenfe-Mickael Laventure mickael.laventure@gmail.com\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2016-06-09T21:20:19Z",
+      "merged_at": "2016-06-09T21:36:42Z",
+      "author": "mlaventure",
+      "labels": []
+    },
+    "12518": {
+      "title": "feat: Allow containers to use both host network and user namespace",
+      "url": "https://github.com/containerd/containerd/pull/12518",
+      "body": "This PR implements the feature proposed in KEP: kubernetes/enhancements#5607 for containerd.\r\n\r\nThis PR modifies the behavior to use bind mounts for /sys when a pod employs both hostNetwork and user namespace.\r\n\r\nrelate: #12489\r\n\r\n```release-note\r\nAllow containers to use user namespaces with host networking\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-16T15:15:05Z",
+      "merged_at": "2026-03-30T16:19:51Z",
+      "author": "HirazawaUi",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "12566": {
+      "title": "Set annotations parameter in CreateSandbox request",
+      "url": "https://github.com/containerd/containerd/pull/12566",
+      "body": "In the CreateSandbox request, which is part of the Sandbox Controller, we ignored the `Annotations` parameter which could have been set by the caller via `WithAnnotations` option.\r\n\r\nThis PR rectifies the same and adds the Annotations parameter to the request.\r\n\r\nIssue: https://github.com/containerd/containerd/issues/12565",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-24T14:21:35Z",
+      "merged_at": "2026-01-05T19:26:48Z",
+      "author": "rawahars",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "area/cri",
+        "size/S"
+      ]
+    },
+    "12567": {
+      "title": "Add EROFS layer media type",
+      "url": "https://github.com/containerd/containerd/pull/12567",
+      "body": "It introduces \"application/vnd.erofs.layer.v1\" to add support for EROFS native layers, so that containerd can fetch EROFS native container images directly.\r\nE.g. `ctr run --snapshotter erofs -t quay.io/chengyuzhu6/ubuntu:20.04-erofs test /bin/bash`",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-24T15:14:11Z",
+      "merged_at": "2026-01-06T07:06:04Z",
+      "author": "ChengyuZhu6",
+      "labels": [
+        "impact/changelog",
+        "size/S",
+        "area/distribution"
+      ]
+    },
+    "12595": {
+      "title": "Fix binary logging driver not blocking container start on failure",
+      "url": "https://github.com/containerd/containerd/pull/12595",
+      "body": "fix https://github.com/containerd/containerd/issues/12490\r\n\r\n~~Note: I think this is a breaking change; perhaps we should also consider compatibility issues.~~\n\n`binary-v2://` was introduced to avoid breaking changes.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-29T23:53:20Z",
+      "merged_at": "2026-04-05T23:54:00Z",
+      "author": "tao12345666333",
+      "labels": [
+        "impact/changelog",
+        "kind/bug",
+        "kind/feature",
+        "area/runtime",
+        "size/L"
+      ]
+    },
+    "12608": {
+      "title": "Update plugin config migration to run on load",
+      "url": "https://github.com/containerd/containerd/pull/12608",
+      "body": "Perform the plugin migrations on load to allow stepping through plugin migration versions to happen alongside migration of the global configuration object. When the configuration migrations happen separately, the version in the config can get increasd on load and cause plugin migration not to occur. This does not cause issues today because global config migrations only occur for version 0 and 1, which was before plugin config migration was introduced. Any new version which does migrations either cannot get called on load or will break plugin migration later.\r\n\r\nThis change simplifies configuration load and migration, preventing the need to migrate the configurations on load and again later when plugins are loaded. This also allows includes to work at different versions, which may currently break or cause inconsistent results.\r\n\r\n***Note*** this will now call the plugin graph twice, once without any filter to perform all migrations, and later with the disabled filter. Since the disabled filter is part of the global configuration, it does not make sense to utilize it during configuration load.\r\nCurrently the plugin load has an inefficiency which is solved by https://github.com/containerd/plugin/pull/8 and https://github.com/containerd/plugin/pull/13 which together is a 300x improvement in `Graph` call time and 99% reduction in memory allocation, making the extra call to `Graph` negligible. ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-02T01:28:29Z",
+      "merged_at": "2026-03-13T15:09:01Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "size/L"
+      ]
+    },
+    "12714": {
+      "title": "Update OOMKilled event handling",
+      "url": "https://github.com/containerd/containerd/pull/12714",
+      "body": "### cmd/containerd-shim-runc-v2: add experimental OOM package\r\n\r\n\r\nThe OOM handling code is intended to live under pkg/oom/v2. However, the\r\ncgroupv2 package still needs further refinement, such as exporting the\r\ncgroup path and allowing callers to query specific stats instead of\r\nreturning all of them.\r\n\r\nUntil that work is complete, introduce the OOM package as experimental\r\nand place it under containerd-shim-runc-v2.\r\n\r\n\r\n### cmd/containerd-shim-runc-v2: use experimental OOM package\r\n\r\n\r\nWe should always send oom event before exit event.\r\n\r\n\r\n### internal/cri/server: check if OOM event occurred before update status\r\n\r\n### cri-integration: add stress test for TestOOMEventMonitor\r\n\r\n\r\nThe test was validated locally by running 100 pods for 100 rounds without\r\nobserving any failures. Due to limited resources in the CI environment,\r\nthe test parameters were reduced to 8 pods and 10 rounds.\r\n\r\n```bash\r\nFOCUS=TestOOMEventMonitor CGROUP_DRIVER=cgroupfs taskset -c 0,1 make cri-integration | tee /tmp/log\r\n```\r\n\r\n### *: skip critest OOMKilled testcase for systemd cgroup\r\n\r\nWith the systemd cgroup driver, the container runtime uses a scope unit to\r\nmanage the cgroup path. According to the scope unit documentation:\r\n\r\n> Unlike service units, scope units have no “main” process: all processes in\r\n> the scope are equivalent. The lifecycle of a scope unit is therefore not\r\n> bound to a specific process, but to the existence of at least one process in\r\n> the scope. As a result, individual process exit statuses are not relevant to\r\n> the scope unit’s failure state.\r\n\r\nWe cannot rely on CollectMode=inactive-or-failed to preserve the cgroup path.\r\nSo there is a race condition between containerd and systemd garbage collection.\r\nIf systemd GC removes the scope unit’s cgroup before containerd reads it,\r\ncontainerd loses the opportunity to inspect the cgroup and determine the OOM status.\r\n\r\nSo we disable the OOMKilled testcase.\r\n\r\nIn theory, this could be mitigated by inspecting the unit logs (e.g.\r\n`journalctl -u XXX.scope`) and searching for the \"OOMKilled\" keyword.\r\nHowever, this approach depends on journalctl and systemd logging behavior,\r\nso it should be avoided.\r\n\r\n Example journal output:\r\n\r\n> Dec 22 01:24:58 devbox systemd[1]: Started /usr/bin/bash -c dd if=/dev/zero of=/dev/null bs=20M.\r\n> Dec 22 01:24:58 devbox systemd[1]: XXX.service: A process of this unit has been killed by the OOM killer.\r\n> Dec 22 01:24:58 devbox systemd[1]: XXX.service: Main process exited, code=killed, status=9/KILL\r\n> Dec 22 01:24:58 devbox systemd[1]: XXX.service: Failed with result 'oom-kill'.\r\n\r\nRef: https://www.freedesktop.org/software/systemd/man/latest/systemd.scope.html\r\n\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-19T19:14:54Z",
+      "merged_at": "2026-01-07T14:45:10Z",
+      "author": "fuweid",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XL"
+      ]
+    },
+    "12765": {
+      "title": "cri,nri: pass any POSIX rlimits to plugins.",
+      "url": "https://github.com/containerd/containerd/pull/12765",
+      "body": "Implement missing support for passing any container POSIX rlimits as input to NRI plugins. \r\n\r\n```release-note\r\nPass any POSIX rlimits to plugins\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-09T17:26:54Z",
+      "merged_at": "2026-01-12T15:41:47Z",
+      "author": "klihub",
+      "labels": [
+        "impact/changelog",
+        "size/S",
+        "area/nri"
+      ]
+    },
+    "12766": {
+      "title": "cri,nri: pass linux sysctl to plugins.",
+      "url": "https://github.com/containerd/containerd/pull/12766",
+      "body": "Implement missing support for passing any container linux sysctl parameters as input to NRI plugins.\r\n\r\n```release-note\r\nPass linux sysctl to plugins\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-09T17:28:21Z",
+      "merged_at": "2026-01-09T23:25:05Z",
+      "author": "klihub",
+      "labels": [
+        "impact/changelog",
+        "size/S",
+        "area/nri"
+      ]
+    },
+    "12767": {
+      "title": "Pass injected CDI devices to plugins",
+      "url": "https://github.com/containerd/containerd/pull/12767",
+      "body": "Implement passing injected CDI devices as input to NRI plugins.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-09T17:29:35Z",
+      "merged_at": "2026-01-10T00:08:22Z",
+      "author": "klihub",
+      "labels": [
+        "impact/changelog",
+        "size/S",
+        "area/nri"
+      ]
+    }
+  },
+  "issues": {
+    "12565": {
+      "title": "Annotations not passed as part of CreateSandbox Request",
+      "url": "https://github.com/containerd/containerd/issues/12565",
+      "body": "### Description\n\nIn the implementation of Sandbox Controller, the request includes the [following parameters](https://github.com/containerd/containerd/blob/bcc3b3b1af3b5a42b9d624f26718decda994a8ba/api/runtime/sandbox/v1/sandbox.proto#L64)-\n```\nmessage CreateSandboxRequest {\n\tstring sandbox_id = 1;\n\tstring bundle_path = 2;\n\trepeated containerd.types.Mount rootfs = 3;\n\tgoogle.protobuf.Any options = 4;\n\tstring netns_path = 5;\n\tmap<string, string> annotations = 6;\n}\n```\nHowever, when the request is crafted, [we ignore](https://github.com/containerd/containerd/blob/bcc3b3b1af3b5a42b9d624f26718decda994a8ba/plugins/sandbox/controller.go#L159) the `annotations` parameter.\n\nIf we set the [annotations param](https://github.com/containerd/containerd/blob/bcc3b3b1af3b5a42b9d624f26718decda994a8ba/plugins/sandbox/controller.go#L159) as `coptions.Annotations`, then the user passed annotations will be forwarded to the shim which can act upon the same.\n\n### Steps to reproduce the issue\n\nCall `SandboxController.Create` while passing [the param](https://github.com/containerd/containerd/blob/bcc3b3b1af3b5a42b9d624f26718decda994a8ba/core/sandbox/controller.go#L73) `WithAnnotations()`.\n\n\n\n### Describe the results you received and expected\n\nThe annotations set by user are received in the shim.\n\n### What version of containerd are you using?\n\nlatest\n\n### Any other relevant information\n\n_No response_\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2025-11-24T14:12:56Z",
+      "closed_at": "2026-01-05T20:36:16Z",
+      "author": "rawahars",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "area/runtime"
+      ]
+    },
+    "12490": {
+      "title": "The binary logging driver does not function as intended.",
+      "url": "https://github.com/containerd/containerd/issues/12490",
+      "body": "### Description\n\nAccording to multiple comments, the `CONTAINER_WAIT` pipe should be closed by the binary logging driver to signal the shim that the driver is ready. However, in the current implementation, this pipe is always closed by containerd-shim. As a result, even if the binary logging driver fails to initialize and exits abnormally, the container is still started normally.\n\nExpected:\nhttps://github.com/containerd/containerd/blob/dbc74db6a10588fd3ca06e13129271e68494bac9/core/runtime/v2/logging/logging.go#L32-L37\n\nhttps://github.com/containerd/containerd/blob/58bd48ecff5418efbeacf27134d8adb3e58ab17d/core/runtime/v2/README.md#L503-L506\n\nReceived:\nhttps://github.com/containerd/containerd/blob/33ee060a350c5dd42b07b60d413cea66eb5adc89/cmd/containerd-shim-runc-v2/process/io.go#L302-L305\n\n### Steps to reproduce the issue\n\n_No response_\n\n### Describe the results you received and expected\n\nExpected: Don't start container when binary logging driver not ready.\nReceived: Container started normally when binary logging driver not ready.\n\n### What version of containerd are you using?\n\ncontainerd containerd.io 1.6.32 8b3b7ca2e5ce38e8f31a34f35b2b68ceb8470d89\n\n### Any other relevant information\n\n_No response_\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2025-11-06T11:00:03Z",
+      "closed_at": "2026-04-05T23:54:01Z",
+      "author": "zwtop",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    }
+  }
+}
