@@ -1,0 +1,265 @@
+{
+  "metadata": {
+    "generated_at": "2026-04-30T05:41:37.701111",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "api/v1.11.0",
+    "name": "containerd API 1.11.0",
+    "body": "Welcome to the api/v1.11.0 release of containerd!\n\nThe 12th release for the containerd 1.x API aligns with the containerd 2.3 release.\n\n### Highlights\n\n* Add transfer types for container filesystem copy ([#13165](https://github.com/containerd/containerd/pull/13165))\n* Update sandbox API to include spec field ([#12840](https://github.com/containerd/containerd/pull/12840))\n\n#### Image Distribution\n\n* Add os.features support for EROFS native container images ([#13091](https://github.com/containerd/containerd/pull/13091))\n\n#### Runtime\n\n* Add configured socket directory to shim bootstrap protocol ([#12785](https://github.com/containerd/containerd/pull/12785))\n* Introduce shim bootstrap protocol ([#12786](https://github.com/containerd/containerd/pull/12786))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Derek McGowan\n* Wei Fu\n* Akihiro Suda\n* Gao Xiang\n* Sebastiaan van Stijn\n\n### Changes\n<details><summary>47 commits</summary>\n<p>\n\n* Prepare release notes for api/v1.11.0 ([#13322](https://github.com/containerd/containerd/pull/13322))\n  * [`8f2fce4ce`](https://github.com/containerd/containerd/commit/8f2fce4ce57fd3a5772d479d5cbee1707ef7b3b4) Prepare release notes for v1.11.0\n* Prepare api/v1.11.0-rc.0 ([#13306](https://github.com/containerd/containerd/pull/13306))\n  * [`bf502662a`](https://github.com/containerd/containerd/commit/bf502662a508667b83b15b2bbe8658129c1dfec3) Prepare api/v1.11.0-rc.0\n* Make shim socket directory use configured directory ([#12785](https://github.com/containerd/containerd/pull/12785))\n  * [`d806373fe`](https://github.com/containerd/containerd/commit/d806373feb1bf9e753a4beaf5b092c5176baa2c3) Make shim socket directory use configured state\n* Update bootstrap API log level definition ([#13208](https://github.com/containerd/containerd/pull/13208))\n  * [`2c102c6cb`](https://github.com/containerd/containerd/commit/2c102c6cbebbc1dabe31eb0740a1803fcce56c4e) Update bootstrap API log level definition\n* Add transfer types for container filesystem copy ([#13165](https://github.com/containerd/containerd/pull/13165))\n  * [`121f3a21e`](https://github.com/containerd/containerd/commit/121f3a21e438cd8c18c6d76cbab1514ee2a8d8d2) Add transfer types for container filesystem copy\n* Introduce shim bootstrap protocol ([#12786](https://github.com/containerd/containerd/pull/12786))\n  * [`16b7ce254`](https://github.com/containerd/containerd/commit/16b7ce254959e62927896aecc033e86b0a10dc31) Address code review suggestions\n  * [`9bf65dcf0`](https://github.com/containerd/containerd/commit/9bf65dcf0275341a75b9e56454e5ebe599bcc90f) Use enums instead of strings for capabilities and log level\n  * [`9dc864fd0`](https://github.com/containerd/containerd/commit/9dc864fd0feefd907aba16ba98cf453dd16df694) Switch to proto instead of json\n  * [`3fbdb132b`](https://github.com/containerd/containerd/commit/3fbdb132bf4fb2f59995b9fc632c0ad507ff98f6) Fix module path\n  * [`1852a4758`](https://github.com/containerd/containerd/commit/1852a4758ea70e12ada6bc98c45258a001c9f6bc) Remove testify dependency from api\n  * [`0f55bdd49`](https://github.com/containerd/containerd/commit/0f55bdd49c41ba2a43d6595bdd827b6ba4ed4987) Fix extensions API and update tests\n  * [`d957b1bf5`](https://github.com/containerd/containerd/commit/d957b1bf53914443e28a3a7ab63824ea2e6c22ed) Use log level instead of debug flag\n  * [`31d0bbbad`](https://github.com/containerd/containerd/commit/31d0bbbad7723c8555b299f1dc12f7173390b2ec) Include containerd version when launching shim\n  * [`f71c2e421`](https://github.com/containerd/containerd/commit/f71c2e4211c9cbae06c582222d200c8756a84845) Reformat and clean proto files\n  * [`9e9a095fe`](https://github.com/containerd/containerd/commit/9e9a095feb43c6b6a84fe1f4b2331977ebb92b91) Read spec annotations from file\n  * [`3831fc806`](https://github.com/containerd/containerd/commit/3831fc80630879870327fde99f66b12959c973f0) Fix reading from stdin\n  * [`5ea993b48`](https://github.com/containerd/containerd/commit/5ea993b48d29e620dba6f90746a98ff0a4a29f65) Pass runc options as a separate extension\n  * [`e72145b19`](https://github.com/containerd/containerd/commit/e72145b192de6542dfb86554cda512e37f46eb5e) Update vendor\n  * [`790b0ead7`](https://github.com/containerd/containerd/commit/790b0ead7bc4e234b5ce90b9a1225b60bad34d75) Implement shim bootstrap protocol\n* Add `os.features` support for EROFS native container images ([#13091](https://github.com/containerd/containerd/pull/13091))\n  * [`146930e91`](https://github.com/containerd/containerd/commit/146930e91de7598fa93161cb96d16208f1eff866) api: add `os_features` to api/types/platform.proto\n* build(deps): bump google.golang.org/grpc from 1.59.0 to 1.79.3 in /api ([#13099](https://github.com/containerd/containerd/pull/13099))\n  * [`d323efc2b`](https://github.com/containerd/containerd/commit/d323efc2bfaf8425c8a2f1ceeb34e8230eb16f8d) build(deps): bump google.golang.org/grpc from 1.59.0 to 1.79.3 in /api\n* Prepare release notes for api/v1.11.0-beta.0 ([#13045](https://github.com/containerd/containerd/pull/13045))\n  * [`aac6b5348`](https://github.com/containerd/containerd/commit/aac6b53488f05253f88fb061fed6674630feb41f) Prepare release notes for api/v1.11.0-beta.0\n* api: regenerate and re-vendor protos ([#12913](https://github.com/containerd/containerd/pull/12913))\n  * [`4b4eb6715`](https://github.com/containerd/containerd/commit/4b4eb67150b724e0c0450cc92f295b8d6582ca9a) api: regenerate and re-vendor protos\n* Remove Container field from sandbox metadata ([#12840](https://github.com/containerd/containerd/pull/12840))\n  * [`8ccf18724`](https://github.com/containerd/containerd/commit/8ccf18724f691f7f5503faf0b004334eb9f92cf3) Update sandbox API to include spec field\n* Use buf to format proto files ([#12841](https://github.com/containerd/containerd/pull/12841))\n  * [`ca1c5b2d3`](https://github.com/containerd/containerd/commit/ca1c5b2d3db8c620c26ab9674b7ccb9a4b023a63) Reformat and revendor proto files\n  * [`2a87c9d7d`](https://github.com/containerd/containerd/commit/2a87c9d7d29a5d947fa671a0d7b52f449835fd11) Add .editorconfig for proto files\n* Generate api/next.txtpb and name module ([#12815](https://github.com/containerd/containerd/pull/12815))\n  * [`472e0a8e7`](https://github.com/containerd/containerd/commit/472e0a8e7ada278b7aa376173eca20ad0a0348be) Generate next.txtpb to replace next.pb.txt\n  * [`f58dbbda0`](https://github.com/containerd/containerd/commit/f58dbbda0b34bea75f714e82463eb0706c06d30d) Add buf.build repository name for publishing API\n* Migrate from protobuild to buf ([#12762](https://github.com/containerd/containerd/pull/12762))\n  * [`dac9721fa`](https://github.com/containerd/containerd/commit/dac9721faf891205ed46105cd38340bc3bceabcb) Drop outdated pb.txt files\n  * [`6a6283193`](https://github.com/containerd/containerd/commit/6a6283193b6f865c35529717068259bf54ccc307) Update pb files\n  * [`57782b717`](https://github.com/containerd/containerd/commit/57782b7175f743489010c348a8f59da720140722) Move buf configuration under api/\n  * [`39991b661`](https://github.com/containerd/containerd/commit/39991b6617041c8c5b471f11f08461f36cc6719f) Use relative import intead of GOPATH style imports\n  * [`eb586b5ef`](https://github.com/containerd/containerd/commit/eb586b5ef2e20c5f845f28d5e9cd5f5e8e10885d) Regenerate proto files\n</p>\n</details>\n\n### Dependency Changes\n\n* **golang.org/x/net**                           v0.38.0 -> v0.48.0\n* **golang.org/x/sys**                           v0.31.0 -> v0.39.0\n* **golang.org/x/text**                          v0.23.0 -> v0.32.0\n* **google.golang.org/genproto/googleapis/rpc**  c3f982113cda -> ff82c1b0f217\n* **google.golang.org/grpc**                     v1.59.0 -> v1.79.3\n* **google.golang.org/protobuf**                 v1.33.0 -> v1.36.10\n\nPrevious release can be found at [api/v1.10.0](https://github.com/containerd/containerd/releases/tag/api/v1.10.0)\n",
+    "published_at": "2026-04-30T03:58:14Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/api/v1.11.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "containerd API 1.11.0 版本主要引入了新的 shim 引导协议以统一运行时参数传递，增强了沙箱 API 的抽象能力，并正式支持 EROFS 原生容器镜像，为 containerd 2.3 的发布奠定基础。",
+    "key_changes": [
+      "引入 shim 引导协议，统一并标准化 containerd 向 shim 传递参数的方式 - [PR #12786](https://github.com/containerd/containerd/pull/12786)",
+      "更新沙箱 API，移除对 pause 容器的直接依赖，增加 spec 字段以提升抽象能力 - [PR #12840](https://github.com/containerd/containerd/pull/12840)",
+      "为容器文件系统拷贝操作添加传输类型定义 - [PR #13165](https://github.com/containerd/containerd/pull/13165)",
+      "在平台定义中增加 `os.features` 字段以支持 EROFS 原生容器镜像的识别与处理 - [PR #13091](https://github.com/containerd/containerd/pull/13091)"
+    ],
+    "important_bugfixes": [
+      "修复 rootless 模式下 shim socket 目录硬编码问题，使其遵循 containerd 的配置目录 - [PR #12785](https://github.com/containerd/containerd/pull/12785) - **影响：** 解决了 rootless 容器因默认 `/run/containerd/s` 目录权限问题导致 shim 启动失败的问题，提升了 rootless 部署的可靠性。"
+    ],
+    "security_issues": [
+      "升级 gRPC 依赖至 1.79.3，修复了路径头畸形时可能绕过 `grpc/authz` 等拦截器中基于路径的“拒绝”规则的授权绕过漏洞 - [PR #13099](https://github.com/containerd/containerd/pull/13099) - **风险级别：** 中"
+    ],
+    "performance_improvements": [
+      "将 Protobuf 工具链从 protobuild 迁移至 buf，提升了构建的一致性和开发效率 - [PR #12762](https://github.com/containerd/containerd/pull/12762) - **提升：** 简化 CI 设置，确保本地与 CI 环境生成结果完全一致，并为未来引入 API 破坏性变更检测、代码规范检查等功能铺平道路。"
+    ],
+    "breaking_changes": [
+      "沙箱 API 的元数据中移除了 `Container` 字段，相关数据需通过元数据存储获取 - [PR #12840](https://github.com/containerd/containerd/pull/12840) - **影响：** 直接依赖此字段（例如某些 NRI 插件）的客户端代码需要更新，改为从沙箱存储中获取沙箱 spec。",
+      "shim 引导协议引入新的参数传递方式（通过 stdin 传递 `BootstrapParams`），废弃了部分原有的 CLI 参数和环境变量传递方式 - [PR #12786](https://github.com/containerd/containerd/pull/12786) - **影响：** 自定义或深度定制 shim 的用户需要适配新的引导协议。"
+    ],
+    "recommendations": [
+      "**升级前务必测试**：由于存在 API 变更（特别是沙箱 API 和 shim 引导协议），建议在非生产环境充分验证现有工作负载和自定义插件的兼容性。",
+      "**关注插件兼容性**：检查并更新任何依赖沙箱 `Container` 字段的插件（如 NRI 插件）。",
+      "**利用安全更新**：建议升级以获取 gRPC 安全修复带来的益处。",
+      "**评估 EROFS 价值**：如果关注容器镜像密度和启动速度，可以开始评估并测试 EROFS 原生镜像，但需注意需显式配置 EROFS snapshotter。",
+      "**遵循工具链变更**：开发者在本地生成 Protobuf 代码时，需安装 `buf` 工具而非 `protoc`。"
+    ],
+    "risk_assessment": "整体风险评估：中等。此版本包含重要的 API 演进和底层通信协议变更，可能影响依赖特定内部 API 的插件或自定义组件。然而，核心功能保持稳定，且包含重要的安全修复。建议的升级时机是在 containerd 2.3 正式发布后，结合完整的集成测试周期进行。需要特别关注的方面是：1) 所有与沙箱管理相关的自定义工具或插件；2) 任何非标准的 shim 实现或定制。"
+  },
+  "statistics": {
+    "analyzed_prs": 12,
+    "analyzed_issues": 0,
+    "important_items": 7
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12762: Migrate from protobuild to buf",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12785: Make shim socket directory use configured directory",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12786: Introduce shim bootstrap protocol",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#7061: [CRI] Remove image store",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12815: Generate api/next.txtpb and name module",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13045: Prepare release notes for api/v1.11.0-beta.0",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13099: build(deps): bump google.golang.org/grpc from 1.59.0 to 1.79.3 in /api",
+      "reason": "Contains 'security'; Contains 'performance'; Cherry-pick or backport; Performance related"
+    }
+  ],
+  "prs": {
+    "12762": {
+      "title": "Migrate from protobuild to buf",
+      "url": "https://github.com/containerd/containerd/pull/12762",
+      "body": "This PR migrates from `Protobuild` (which we all love and use for quite some time) to [`buf`](https://github.com/bufbuild/buf) to manage our proto files.\r\n\r\nImmediate benefits:\r\n- No need to install `protoc` dependency. Mush simpler [CI setup](https://github.com/containerd/containerd/pull/12762/changes/edb3e0869706fa0d058f8530f7b563af9310eec3).\r\n- Much better local/CI reproducibility - all generators and dependencies are pinned in `buf.yaml` and `buf.lock`, so same output is expected everywhere. Only the `buf` binary need to be installed on the system to get things going.\r\n- No longer needs `containerd` to be in `GOPATH` (not strictly buf’s feature, but implemented in this PR)\r\n\r\nThere are also some longer term nice-to-have features that we could benefit from, which we don't have in protobuild:\r\n- Breaking change detector (we can run this on CI to guaranty API compatibility)\r\n- Linter\r\n- Formatter.\r\n\r\nI was able to generate exactly the same code with buf as it was before.\r\nThe only annoying thing is\r\n\r\n`// \tprotoc        (unknown)`\r\n\r\nwhich seems to be expected when buf is not using external protoc binary (which we don't):\r\n\r\n> The protoc (unknown) line is being inserted by protoc-gen-go which we do not control. Part of the CodeGeneratorRequest passed to protoc-gen-go specifies the version of protoc being used, but buf is not, and doesn't use, protoc, so there is no appropriate answer here.\r\n\r\nMade a few follow up changes based on feedback:\r\n- Switched to relative imports (which `buf` supports natively), so workarounds in the `Makefile` no longer necessary.\r\n- Moved `buf` configuration files under `api/` directory",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-08T23:33:25Z",
+      "merged_at": "2026-01-09T20:20:51Z",
+      "author": "mxpv",
+      "labels": [
+        "size/XXL",
+        "area/toolchain"
+      ]
+    },
+    "12785": {
+      "title": "Make shim socket directory use configured directory",
+      "url": "https://github.com/containerd/containerd/pull/12785",
+      "body": "Pass the socket directory from containerd to the shim via bootstrapparameters. The shim still decides the socket filename but now places it in the directory configured by containerd, ensuring proper ownership and permissions.\r\n\r\n**Why:** In rootless setups the default state directory (`/run/containerd/s`) may not be writable by the user. With the socket path hardcoded in the shim there was no way to override it. This change makes it configurable through the shim manager, with sensible defaults: root users keep the existing path under the state directory; non-root users fall back to a temp directory when the state directory is not owned by them.\r\n\r\n**Note:** The socket directory path should be kept short (≤ 32 characters) because the socket filename is a 64-character SHA256 hash and unix socket paths are limited to 104 bytes on macOS / 108 on Linux.\r\n\r\nChanges across three commits:\r\n - Pass configured socket directory to the shim via `BootstrapParams.socket_dir`\r\n - Remove unnecessary `mkdir` on the default state directory\r\n - Add `socket_dir` configuration to the shim manager with platform-aware defaults\r\n\r\n\r\n```release-note\r\nAdd configured socket directory to shim bootstrap protocol\r\n```\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-14T07:30:46Z",
+      "merged_at": "2026-04-15T11:05:22Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XL"
+      ]
+    },
+    "12786": {
+      "title": "Introduce shim bootstrap protocol",
+      "url": "https://github.com/containerd/containerd/pull/12786",
+      "body": " Containerd needs to pass a bunch of parameters from the daemon down to the shim. Historically, we introduced several mechanisms to do it:\r\n- CLI arguments (-namespace, -id, -address, -publish-binary, -debug)\r\n- Env variables (TTRPC_ADDRESS, GRPC_ADDRESS, NAMESPACE, MAX_SHIM_VERSION, GOMAXPROCS, SCHED_CORE)\r\n- Some are passed via stdin (runtime options as protobuf)\r\n- spec.json file to read annotations from disk\r\n\r\nWe have a few cases where we need to introduce more parameters:\r\n- https://github.com/containerd/containerd/pull/12785\r\n- https://github.com/containerd/containerd/pull/12849\r\n- Further podsandbox/ work will require more configuration to be passed\r\n\r\nThis PR is a proposal to address the issues with 2 new structs:\r\n- `BootstrapParams` is passed via stdin with all configurations (at `shim -start`).\r\n- `BootstrapResult` is written by the shim to stdout.\r\n\r\nAnd deprecate everything else.\r\n\r\nThe structs are defined in protobuf, we can version it and detect breaking changes.\r\nAnd we'll use json to serialize/deserialize when launching a new shim instances.\r\n\r\nThe structs are also extensible enough to support more use cases in future.\r\n\r\nCompatibility:\r\n- `pkg/shim` is backward compatible. It uses the new bootstrap protocol by default and fallbacks to CLI/env/stdin.\r\n- containerd still provides CLI/env for backward compatibility. We should deprecate this approach in 2.3 and probably remove in 2.4?\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-15T02:12:18Z",
+      "merged_at": "2026-04-08T22:07:51Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XXL"
+      ]
+    },
+    "12849": {
+      "title": "Remove image service dependency from podsandbox controller",
+      "url": "https://github.com/containerd/containerd/pull/12849",
+      "body": "This PR removes the last significant dependency on internal CRI APIs, opening the path for migration down to the shim.                                                                       \r\n                                                                                                                                                                                               \r\nI've made several attempts to decouple the `Controller` from the rest of the CRI APIs, but it's challenging without major refactoring (see previous attempts: https://github.com/containerd/containerd/pull/7061). As a result, I've moved pause container pulling back to the CRI layer. Since almost every runtime today assumes pause containers anyway, this should not be a significant issue.\r\n                                                                                                                                                     \r\nIf/when we come up with a different solution, we can deprecate and remove this. Additionally, we can make this conditional once https://github.com/containerd/containerd/pull/12786 lands.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-03T03:21:37Z",
+      "merged_at": "2026-02-20T22:03:14Z",
+      "author": "mxpv",
+      "labels": [
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "7061": {
+      "title": "[CRI] Remove image store",
+      "url": "https://github.com/containerd/containerd/pull/7061",
+      "body": "This PR refactors CRI and removes in-memory image store in favor of containerd's metadata image store. The goal is to simplify CRI code and rely more on containerd APIs instead of maintaining custom layers.\r\n\r\nSo instead of in-memory cache, this PR relies on containerd’s metadata store (and labels) to keep additional image information needed by CRI. It preserves existing logic with creating a separate image per reference, but now appends appropriate labels, so we can just use boltdb.\r\n\r\nLabels can be appended on demand, on event, or at daemon start - some of these may be removed in 2.0. Currently labels that we add - config digest (that CRI uses for image ID), image size, chain ID, etc.\r\n\r\nIn the new implementation search for image references narrows down to querying metadata store with all records that contain same image ID label. Queries are slower comparing to the original implementation, but boltdb still reasonably fast (also there is room for optimization if that will be a bottleneck). ",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2022-06-14T23:17:51Z",
+      "merged_at": null,
+      "author": "mxpv",
+      "labels": [
+        "area/cri",
+        "kind/refactor"
+      ]
+    },
+    "12815": {
+      "title": "Generate api/next.txtpb and name module",
+      "url": "https://github.com/containerd/containerd/pull/12815",
+      "body": "`buf` will generate the protobuf text file which can be used for viewing all protobuf changes in one file and quickly diffing changes.\r\n\r\nAdd a module name to the buf.yaml to allow pushing. With the switch the buf and relative paths, without publishing the containerd protos are not importable without copying locally. Using the buf registy makes this easier for importers. There is no requirement to use the buf registry though.\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-24T01:26:54Z",
+      "merged_at": "2026-01-24T06:49:33Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/XXL",
+        "area/toolchain"
+      ]
+    },
+    "12840": {
+      "title": "Remove Container field from sandbox metadata",
+      "url": "https://github.com/containerd/containerd/pull/12840",
+      "body": "There are multiple places in CRI which assume the use of pause containers and the podsandbox package. Since the goal of the Sandbox API is to abstract away the use of pause containers, we should not make such assumptions.                                                                       \r\n\r\nThis PR removes the Container object for the pause container from Sandbox metadata. This was primarily used in NRI, so this PR refactors the code to fetch the necessary data from the metadata store instead.\r\n\r\n@chrishenzie could PTAL? This updates `nriPodSandbox` to fetch spec from sandbox store instead of task instance (we don't want to access pause container directly), so this, technically, amends lifecycle test, because the spec will remain available after stopping pod sandbox.\r\n\r\n\r\n```release-note\r\nUpdate sandbox API to include spec field\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-31T02:07:50Z",
+      "merged_at": "2026-02-18T05:33:05Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/changelog",
+        "size/XXL"
+      ]
+    },
+    "12841": {
+      "title": "Use buf to format proto files",
+      "url": "https://github.com/containerd/containerd/pull/12841",
+      "body": "We've integrated `buf` in https://github.com/containerd/containerd/pull/12762                                                                                                                \r\n`buf` comes with an integrated linter and formatter.                                                                                                                                         \r\n                                                                                                                                                                                               \r\nThis PR updates `Makefile` targets to use `buf format` to format proto files.                                                                                                                \r\n                                                                                                                                                                                               \r\nOur current proto formatter is pretty rudimentary. It only requires tabs instead of spaces. But would happily pass everything else (like double tabs).                             \r\n                                                                                                                                                                                               \r\n`buf` is much more sophisticated and can handle pretty complex cases, which is nice.\r\nIt also comes with github actions integration out of the box.                                                                                                        \r\n                                                                                                                                                                                               \r\nThe only downside is that `buf` accepts no configuration leaving no way to amend how proto files are formatted.                                                                                                   \r\nAnd by default, they use 2 spaces instead of tabs. I'm not sure is this is going to be a deal breaker for us",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-31T02:30:28Z",
+      "merged_at": "2026-02-07T08:33:02Z",
+      "author": "mxpv",
+      "labels": [
+        "size/XXL",
+        "area/toolchain"
+      ]
+    },
+    "12913": {
+      "title": "api: regenerate and re-vendor protos",
+      "url": "https://github.com/containerd/containerd/pull/12913",
+      "body": "Probably related to https://github.com/containerd/containerd/commit/ca1c5b2d3db8c620c26ab9674b7ccb9a4b023a63 (https://github.com/containerd/containerd/pull/12841).\r\n\r\nI got this diff when running `make protos`; let's see if CI agrees it's OK 😅 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-17T13:06:25Z",
+      "merged_at": "2026-02-24T20:23:18Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XXL",
+        "go",
+        "area/toolchain"
+      ]
+    },
+    "13045": {
+      "title": "Prepare release notes for api/v1.11.0-beta.0",
+      "url": "https://github.com/containerd/containerd/pull/13045",
+      "body": "First step in v2.3 beta process\r\n\r\n----\r\ncontainerd api/v1.11.0-beta.0\r\n\r\nWelcome to the api/v1.11.0-beta.0 release of containerd!  \r\n*This is a pre-release of containerd*\r\n\r\nThe 12th release for the containerd 1.x API aligns with the containerd 2.3 release.\r\n\r\n### Highlights\r\n\r\n* Update sandbox API to include spec field ([#12840](https://github.com/containerd/containerd/pull/12840))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Maksym Pavlenko\r\n* Derek McGowan\r\n* Sebastiaan van Stijn\r\n* Wei Fu\r\n\r\n### Changes\r\n<details><summary>17 commits</summary>\r\n<p>\r\n\r\n  * [`aac6b5348`](https://github.com/containerd/containerd/commit/aac6b53488f05253f88fb061fed6674630feb41f) Prepare release notes for api/v1.11.0-beta.0\r\n* api: regenerate and re-vendor protos ([#12913](https://github.com/containerd/containerd/pull/12913))\r\n  * [`4b4eb6715`](https://github.com/containerd/containerd/commit/4b4eb67150b724e0c0450cc92f295b8d6582ca9a) api: regenerate and re-vendor protos\r\n* Remove Container field from sandbox metadata ([#12840](https://github.com/containerd/containerd/pull/12840))\r\n  * [`8ccf18724`](https://github.com/containerd/containerd/commit/8ccf18724f691f7f5503faf0b004334eb9f92cf3) Update sandbox API to include spec field\r\n* Use buf to format proto files ([#12841](https://github.com/containerd/containerd/pull/12841))\r\n  * [`ca1c5b2d3`](https://github.com/containerd/containerd/commit/ca1c5b2d3db8c620c26ab9674b7ccb9a4b023a63) Reformat and revendor proto files\r\n  * [`2a87c9d7d`](https://github.com/containerd/containerd/commit/2a87c9d7d29a5d947fa671a0d7b52f449835fd11) Add .editorconfig for proto files\r\n* Generate api/next.txtpb and name module ([#12815](https://github.com/containerd/containerd/pull/12815))\r\n  * [`472e0a8e7`](https://github.com/containerd/containerd/commit/472e0a8e7ada278b7aa376173eca20ad0a0348be) Generate next.txtpb to replace next.pb.txt\r\n  * [`f58dbbda0`](https://github.com/containerd/containerd/commit/f58dbbda0b34bea75f714e82463eb0706c06d30d) Add buf.build repository name for publishing API\r\n* Migrate from protobuild to buf ([#12762](https://github.com/containerd/containerd/pull/12762))\r\n  * [`dac9721fa`](https://github.com/containerd/containerd/commit/dac9721faf891205ed46105cd38340bc3bceabcb) Drop outdated pb.txt files\r\n  * [`6a6283193`](https://github.com/containerd/containerd/commit/6a6283193b6f865c35529717068259bf54ccc307) Update pb files\r\n  * [`57782b717`](https://github.com/containerd/containerd/commit/57782b7175f743489010c348a8f59da720140722) Move buf configuration under api/\r\n  * [`39991b661`](https://github.com/containerd/containerd/commit/39991b6617041c8c5b471f11f08461f36cc6719f) Use relative import intead of GOPATH style imports\r\n  * [`eb586b5ef`](https://github.com/containerd/containerd/commit/eb586b5ef2e20c5f845f28d5e9cd5f5e8e10885d) Regenerate proto files\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\nThis release has no dependency changes\r\n\r\nPrevious release can be found at [api/v1.10.0](https://github.com/containerd/containerd/releases/tag/api/v1.10.0)\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-17T01:35:52Z",
+      "merged_at": "2026-03-17T17:01:49Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13091": {
+      "title": "Add `os.features` support for EROFS native container images",
+      "url": "https://github.com/containerd/containerd/pull/13091",
+      "body": "~depends on #13080~ \r\nsupercedes #12784 \r\n\r\n**Note that users still need to explicitly specify the EROFS snapshotter in order to run the EROFS native images by design; it only improves the user experence of the unpacking process**\r\n\r\nFirst, it enhances the transfer service: If no snapshotter is specified and `os.features` contains \"erofs\", unpacking should use the EROFS snapshotter and differ.\r\n\r\nSecond, if no snapshotter is specified, _container run_ selects the default snapshotter. However, if `os.features` is set, we should always call `checkSnapshotterSupport()` so that containerd clients can report a clear error instead of the confusing layer extraction error out of overlayfs snapshotter.\r\n\r\nTested by the ubuntu-22.04 multi-manifest image (\"linux/amd64\" and \"linux(+erofs)/amd64\"):\r\n`ctr i pull --platform=\"linux(+erofs)\" docker.io/hsiangkao/ubuntu:22.04-platforms`\r\nand\r\n`ctr run --platform=\"linux(+erofs)/amd64\" --tty docker.io/hsiangkao/ubuntu:22.04-platforms test`\r\nand\r\n`ctr run --platform=\"linux(+erofs)/amd64\" --snapshotter erofs --tty docker.io/hsiangkao/ubuntu:22.04-platforms test`\r\n\r\nScreenshot (`docker.1ms.run` is a connectable mirror of `docker.io`):\r\n<img width=\"2130\" height=\"1130\" alt=\"image\" src=\"https://github.com/user-attachments/assets/9dea9a37-1a10-46d8-b85a-58e66cfee3c6\" />\r\n\n\n```release-note\nAdd os.features support for EROFS native container images\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-23T02:55:10Z",
+      "merged_at": "2026-04-01T23:54:55Z",
+      "author": "hsiangkao",
+      "labels": [
+        "impact/changelog",
+        "kind/feature",
+        "size/XL",
+        "area/distribution"
+      ]
+    },
+    "13099": {
+      "title": "build(deps): bump google.golang.org/grpc from 1.59.0 to 1.79.3 in /api",
+      "url": "https://github.com/containerd/containerd/pull/13099",
+      "body": "Bumps [google.golang.org/grpc](https://github.com/grpc/grpc-go) from 1.59.0 to 1.79.3.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/grpc/grpc-go/releases\">google.golang.org/grpc's releases</a>.</em></p>\n<blockquote>\n<h2>Release 1.79.3</h2>\n<h1>Security</h1>\n<ul>\n<li>server: fix an authorization bypass where malformed :path headers (missing the leading slash) could bypass path-based restricted &quot;deny&quot; rules in interceptors like <code>grpc/authz</code>. Any request with a non-canonical path is now immediately rejected with an <code>Unimplemented</code> error. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8981\">#8981</a>)</li>\n</ul>\n<h2>Release 1.79.2</h2>\n<h1>Bug Fixes</h1>\n<ul>\n<li>stats: Prevent redundant error logging in health/ORCA producers by skipping stats/tracing processing when no stats handler is configured. (<a href=\"https://redirect.github.com/grpc/grpc-go/pull/8874\">grpc/grpc-go#8874</a>)</li>\n</ul>\n<h2>Release 1.79.1</h2>\n<h1>Bug Fixes</h1>\n<ul>\n<li>grpc: Remove the <code>-dev</code> suffix from the User-Agent header. (<a href=\"https://redirect.github.com/grpc/grpc-go/pull/8902\">grpc/grpc-go#8902</a>)</li>\n</ul>\n<h2>Release 1.79.0</h2>\n<h1>API Changes</h1>\n<ul>\n<li>mem: Add experimental API <code>SetDefaultBufferPool</code> to change the default buffer pool. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8806\">#8806</a>)\n<ul>\n<li>Special Thanks: <a href=\"https://github.com/vanja-p\"><code>@​vanja-p</code></a></li>\n</ul>\n</li>\n<li>experimental/stats: Update <code>MetricsRecorder</code> to require embedding the new <code>UnimplementedMetricsRecorder</code> (a no-op struct) in all implementations for forward compatibility. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8780\">#8780</a>)</li>\n</ul>\n<h1>Behavior Changes</h1>\n<ul>\n<li>balancer/weightedtarget: Remove handling of <code>Addresses</code> and only handle <code>Endpoints</code> in resolver updates. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8841\">#8841</a>)</li>\n</ul>\n<h1>New Features</h1>\n<ul>\n<li>experimental/stats: Add support for asynchronous gauge metrics through the new <code>AsyncMetricReporter</code> and <code>RegisterAsyncReporter</code> APIs. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8780\">#8780</a>)</li>\n<li>pickfirst: Add support for weighted random shuffling of endpoints, as described in <a href=\"https://redirect.github.com/grpc/proposal/pull/535\">gRFC A113</a>.\n<ul>\n<li>This is enabled by default, and can be turned off using the environment variable <code>GRPC_EXPERIMENTAL_PF_WEIGHTED_SHUFFLING</code>. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8864\">#8864</a>)</li>\n</ul>\n</li>\n<li>xds: Implement <code>:authority</code> rewriting, as specified in <a href=\"https://github.com/grpc/proposal/blob/master/A81-xds-authority-rewriting.md\">gRFC A81</a>. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8779\">#8779</a>)</li>\n<li>balancer/randomsubsetting: Implement the <code>random_subsetting</code> LB policy, as specified in <a href=\"https://github.com/grpc/proposal/blob/master/A68-random-subsetting.md\">gRFC A68</a>. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8650\">#8650</a>)\n<ul>\n<li>Special Thanks: <a href=\"https://github.com/marek-szews\"><code>@​marek-szews</code></a></li>\n</ul>\n</li>\n</ul>\n<h1>Bug Fixes</h1>\n<ul>\n<li>credentials/tls: Fix a bug where the port was not stripped from the authority override before validation. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8726\">#8726</a>)\n<ul>\n<li>Special Thanks: <a href=\"https://github.com/Atul1710\"><code>@​Atul1710</code></a></li>\n</ul>\n</li>\n<li>xds/priority: Fix a bug causing delayed failover to lower-priority clusters when a higher-priority cluster is stuck in <code>CONNECTING</code> state. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8813\">#8813</a>)</li>\n<li>health: Fix a bug where health checks failed for clients using legacy compression options (<code>WithDecompressor</code> or <code>RPCDecompressor</code>). (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8765\">#8765</a>)\n<ul>\n<li>Special Thanks: <a href=\"https://github.com/sanki92\"><code>@​sanki92</code></a></li>\n</ul>\n</li>\n<li>transport: Fix an issue where the HTTP/2 server could skip header size checks when terminating a stream early. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8769\">#8769</a>)\n<ul>\n<li>Special Thanks: <a href=\"https://github.com/joybestourous\"><code>@​joybestourous</code></a></li>\n</ul>\n</li>\n<li>server: Propagate status detail headers, if available, when terminating a stream during request header processing. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8754\">#8754</a>)\n<ul>\n<li>Special Thanks: <a href=\"https://github.com/joybestourous\"><code>@​joybestourous</code></a></li>\n</ul>\n</li>\n</ul>\n<h1>Performance Improvements</h1>\n<ul>\n<li>credentials/alts: Optimize read buffer alignment to reduce copies. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8791\">#8791</a>)</li>\n<li>mem: Optimize pooling and creation of <code>buffer</code> objects.  (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8784\">#8784</a>)</li>\n<li>transport: Reduce slice re-allocations by reserving slice capacity. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8797\">#8797</a>)</li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/dda86dbd9cecb8b35b58c73d507d81d67761205f\"><code>dda86db</code></a> Change version to 1.79.3 (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8983\">#8983</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/72186f163e75a065c39e6f7df9b6dea07fbdeff5\"><code>72186f1</code></a> grpc: enforce strict path checking for incoming requests on the server (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8981\">#8981</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/97ca3522b239edf6813e2b1106924e9d55e89d43\"><code>97ca352</code></a> Changing version to 1.79.3-dev (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8954\">#8954</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/8902ab6efea590f5b3861126559eaa26fa9783b2\"><code>8902ab6</code></a> Change the version to release 1.79.2 (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8947\">#8947</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/a9286705aa689bee321ec674323b6896284f3e02\"><code>a928670</code></a> Cherry-pick <a href=\"https://redirect.github.com/grpc/grpc-go/issues/8874\">#8874</a> to v1.79.x (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8904\">#8904</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/06df3638c0bcee88197b1033b3ba83e1eb8bc010\"><code>06df363</code></a> Change version to 1.79.2-dev (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8903\">#8903</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/782f2de44f597af18a120527e7682a6670d84289\"><code>782f2de</code></a> Change version to 1.79.1 (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8902\">#8902</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/850eccbb2257bd2de6ac28ee88a7172ab6175629\"><code>850eccb</code></a> Change version to 1.79.1-dev (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8851\">#8851</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/765ff056b6890f6c8341894df4e9668e9bfc18ef\"><code>765ff05</code></a> Change version to 1.79.0 (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8850\">#8850</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/68804be0e78ed0365bb5a576dedc12e2168ed63e\"><code>68804be</code></a> Cherry pick <a href=\"https://redirect.github.com/grpc/grpc-go/issues/8864\">#8864</a> to v1.79.x (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8896\">#8896</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/grpc/grpc-go/compare/v1.59.0...v1.79.3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=google.golang.org/grpc&package-manager=go_modules&previous-version=1.59.0&new-version=1.79.3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\nYou can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/containerd/containerd/network/alerts).\n\n</details>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-03-23T17:02:32Z",
+      "merged_at": "2026-03-23T19:23:32Z",
+      "author": "dependabot[bot]",
+      "labels": [
+        "dependencies",
+        "size/M",
+        "go"
+      ]
+    }
+  },
+  "issues": {}
+}
