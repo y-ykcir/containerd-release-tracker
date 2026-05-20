@@ -1,0 +1,403 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T22:39:51.755047",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.3.1",
+    "name": "containerd 2.3.1",
+    "body": "Welcome to the v2.3.1 release of containerd!\n\nThe first patch release for containerd 2.3 contains various fixes and improvements.\n\n### Security Updates\n\n* [**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)\n\n### Highlights\n\n* Fix bug where failed gRPC plugins were not tolerated when starting listeners ([#13390](https://github.com/containerd/containerd/pull/13390))\n\n#### Image Storage\n\n* Ensure metadata and mount plugin boltdb files are closed on server shutdown ([#13379](https://github.com/containerd/containerd/pull/13379))\n\n#### Runtime\n\n* Fix handling of out-of-range USER values in OCI spec to avoid unexpected username/group lookups ([#13447](https://github.com/containerd/containerd/pull/13447))\n* Fix sandbox task API endpoints for non-runc runtimes and deprecate task fields in Runc options ([#13422](https://github.com/containerd/containerd/pull/13422))\n* Apply hardening to default seccomp socket policy by blocking AF_ALG ([#13409](https://github.com/containerd/containerd/pull/13409))\n\n#### Snapshotters\n\n* Disable overlayfs \"rebase\" capability when running in user namespace ([#13394](https://github.com/containerd/containerd/pull/13394))\n* Fix transfer plugin error when EROFS differ is configured but mkfs.erofs is unavailable ([#13364](https://github.com/containerd/containerd/pull/13364))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Akihiro Suda\n* Derek McGowan\n* Paweł Gronowski\n* Brian Goff\n* Austin Vazquez\n* LEI WANG\n* Samuel Karp\n\n### Changes\n<details><summary>24 commits</summary>\n<p>\n\n* Prepare release notes for v2.3.1 ([#13405](https://github.com/containerd/containerd/pull/13405))\n  * [`58af96519`](https://github.com/containerd/containerd/commit/58af9651939577f81969b387b6b2e2aed45ead7d) Prepare release notes for v2.3.1\n  * [`8f0b3ca83`](https://github.com/containerd/containerd/commit/8f0b3ca83015873d643db246202b63b8384f14fd) Update api to v1.11.1\n* oci: return explicit error for out-of-range USER values ([#13447](https://github.com/containerd/containerd/pull/13447))\n  * [`a05ae7885`](https://github.com/containerd/containerd/commit/a05ae78850384eb24effbc597ebc5b19a5e4ba04) oci: return explicit error for out-of-range USER values\n* Prepare release notes for api/v1.11.1 ([#13444](https://github.com/containerd/containerd/pull/13444))\n  * [`da7aef299`](https://github.com/containerd/containerd/commit/da7aef299c57cc1f290700ade8fa0a5fec69a462) Prepare release notes for api/v1.11.1\n* Fix sandbox task API endpoints for non-runc runtimes ([#13422](https://github.com/containerd/containerd/pull/13422))\n  * [`5282d4e09`](https://github.com/containerd/containerd/commit/5282d4e09d3bc8b0957780caa7a4644fac7c86a7) Wire task address and version fields\n  * [`e44f5f9ec`](https://github.com/containerd/containerd/commit/e44f5f9ec610d95a712d230e8a19ae516e0a26ac) protos: include task API address to CreateTaskRequest\n* seccomp: Block AF_ALG in default socket policy ([#13409](https://github.com/containerd/containerd/pull/13409))\n  * [`4d80a31bf`](https://github.com/containerd/containerd/commit/4d80a31bf637bc15e83e50a15941bf5bb0cb3988) seccomp: Block AF_ALG in default socket policy\n  * [`2ed0d97b6`](https://github.com/containerd/containerd/commit/2ed0d97b6e58def34684a1bffc2ab6931182f221) seccomp: Document socket rule scope and socketcall limitation\n* server: tolerate failed gRPC plugins when starting listeners ([#13390](https://github.com/containerd/containerd/pull/13390))\n  * [`3a88fdde0`](https://github.com/containerd/containerd/commit/3a88fdde0c613e62415e61738e946b903f1bf32f) server: tolerate failed gRPC plugins when starting listeners\n* overlay: disable \"rebase\" capability when running in UserNS ([#13394](https://github.com/containerd/containerd/pull/13394))\n  * [`2be0710b8`](https://github.com/containerd/containerd/commit/2be0710b81b99f47aa4ef0fa2951cd69f80b7e19) overlay: disable \"rebase\" capability when running in UserNS\n* Update Go to 1.26.3 ([#13374](https://github.com/containerd/containerd/pull/13374))\n  * [`3b199c22b`](https://github.com/containerd/containerd/commit/3b199c22b13495bd442b32121c2015f301594387) Update Go to 1.26.3\n* fix: close boltdb on metadata and mount plugin close ([#13379](https://github.com/containerd/containerd/pull/13379))\n  * [`1d601271a`](https://github.com/containerd/containerd/commit/1d601271a73a649de465ed94fa973564211b7f46) fix: close boltdb on metadata and mount plugin close\n* Fix optional EROFS differ setup in transfer plugin ([#13364](https://github.com/containerd/containerd/pull/13364))\n  * [`d666d2e42`](https://github.com/containerd/containerd/commit/d666d2e4261da664a50c7b1663461747ba8ebb2e) Refactor transfer unpack configuration setup\n  * [`ccc3bd7b9`](https://github.com/containerd/containerd/commit/ccc3bd7b90be7afce7a903391d2a34b83424c5e0) Fix optional transfer differ setup\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/containerd/containerd/api**  v1.11.0 -> v1.11.1\n\nPrevious release can be found at [v2.3.0](https://github.com/containerd/containerd/releases/tag/v2.3.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-05-20T20:46:56Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.3.1",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 17,
+    "analyzed_issues": 2,
+    "important_items": 16
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13364: [release/2.3] Fix optional EROFS differ setup in transfer plugin",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13328: Fix optional EROFS differ setup in transfer plugin",
+      "reason": "Contains 'regression'; Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13374: [release/2.3] Update Go to 1.26.3",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13361: Update Go to 1.26.3",
+      "reason": "Contains 'panic'; Contains 'crash'; Contains 'security'; Contains 'vulnerability'; Cherry-pick or backport; Potential crash issue; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13379: [release/2.3] fix: close boltdb on metadata and mount plugin close",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13348: fix: close boltdb on metadata and mount plugin close",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13390: [release/2.3] server: tolerate failed gRPC plugins when starting listeners",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13394: [release/2.3] overlay: disable \"rebase\" capability when running in UserNS",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13389: overlay: disable \"rebase\" capability when running in UserNS",
+      "reason": "Contains 'regression'"
+    },
+    {
+      "type": "PR",
+      "title": "#13405: [release/2.3] Prepare release notes for v2.3.1",
+      "reason": "Contains 'security'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13409: [release/2.3] seccomp: Block AF_ALG in default socket policy",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13422: [release/2.3] Fix sandbox task API endpoints for non-runc runtimes",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13360: Fix sandbox task API endpoints for non-runc runtimes",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13444: Prepare release notes for api/v1.11.1",
+      "reason": "Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#13346: Since 2.3.0, transfer service refuses to initialize without erofs-utils",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#13362: [v2.3.0-rc.0 regression] rootless: `\"/run/containerd/containerd.sock\": no such file or directory`",
+      "reason": "Contains 'regression'; Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "13364": {
+      "title": "[release/2.3] Fix optional EROFS differ setup in transfer plugin",
+      "url": "https://github.com/containerd/containerd/pull/13364",
+      "body": "This is an automated cherry-pick of #13328\n\n/assign AkihiroSuda\n\n```release-note\nFix transfer plugin error when EROFS differ is configured but mkfs.erofs is unavailable\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-10T12:33:11Z",
+      "merged_at": "2026-05-10T14:01:51Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/L"
+      ]
+    },
+    "13328": {
+      "title": "Fix optional EROFS differ setup in transfer plugin",
+      "url": "https://github.com/containerd/containerd/pull/13328",
+      "body": "- closes https://github.com/containerd/containerd/issues/13346\r\n\r\nFound this during some smoke tests for containerd 2.3.\r\nOn my system I have erofs available but I was running tests in a container which didn't have mkfs.erofs.\r\nThis got containerd into a *weird* state.\r\nTransfer service completely failed to load, a few other things as well, and I couldn't even `ctr plugin ls`, subscribe to events, nothing despite the grpc service running (returning `Unavailable` for the things I tried).\r\n\r\n- Refactor transfer unpack platform setup into helpers for targeted testing.\r\n- Skip optional unpack configs when their explicit differ is unavailable or skipped.\r\n- Add regression coverage for EROFS defaults when the EROFS snapshotter is available but the EROFS differ skips due to missing `mkfs.erofs`.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-01T01:12:52Z",
+      "merged_at": "2026-05-10T11:23:10Z",
+      "author": "cpuguy83",
+      "labels": [
+        "kind/bug",
+        "priority/P0",
+        "size/L",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13374": {
+      "title": "[release/2.3] Update Go to 1.26.3",
+      "url": "https://github.com/containerd/containerd/pull/13374",
+      "body": "This is an automated cherry-pick of #13361\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-11T20:39:06Z",
+      "merged_at": "2026-05-13T04:04:53Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13361": {
+      "title": "Update Go to 1.26.3",
+      "url": "https://github.com/containerd/containerd/pull/13361",
+      "body": "- https://github.com/golang/go/issues?q=milestone%3AGo1.26.3+label%3ACherryPickApproved\r\n- full diff: https://github.com/golang/go/compare/go1.26.2...go1.26.3\r\n\r\n**- Description for the changelog**\r\n\r\n```markdown changelog\r\nUpdate Go runtime to [1.26.3](https://go.dev/doc/devel/release#go1.26.3)\r\n```\r\n\r\n\r\n```\r\nThis release include 11 security fixes:\r\n\r\n- cmd/go: malicious module proxy can bypass checksum database\r\n\r\n    A malicious module proxy could exploit a flaw in the go command's\r\n    validation of module checksums to bypass checksum database validation.\r\n\r\n    This vulnerability affects any user using an untrusted module proxy\r\n    (GOMODPROXY) or checksum database (GOSUMDB).\r\n\r\n    A malicious module proxy can serve altered versions of the Go toolchain.\r\n    When selecting a different version of the Go toolchain than the\r\n    currently installed toolchain (due to the GOTOOLCHAIN environment variable,\r\n    or a go.work or go.mod with a toolchain line), the go command will download\r\n    and execute a toolchain provided by the module proxy. A malicious module\r\n    proxy can bypass checksum database validation for this downloaded\r\n    toolchain.\r\n\r\n    Since this vulnerability affects the security of toolchain downloads,\r\n    setting GOTOOLCHAIN to a fixed version is not sufficient. You must upgrade\r\n    your base Go toolchain.\r\n\r\n    The go tool always validates the hash of a toolchain before executing it,\r\n    so fixed versions will refuse to execute any cached, altered versions of the\r\n    toolchain.\r\n\r\n    The go tool trusts go.sum files to contain accurate hashes of the current\r\n    module's dependencies. A malicious proxy exploiting this vulnerability to\r\n    serve an altered module will have caused an incorrect hash to be recorded\r\n    in the go.sum. Users who have configured a non-trusted GOPROXY can determine\r\n    if they have been affected by running \"rm go.sum ; go mod tidy ; go mod verify\",\r\n    which will revalidate all dependencies of the current module.\r\n\r\n    The specific flaw in more detail:\r\n\r\n    The go command consults the checksum database to validate downloaded modules,\r\n    when a module is not listed in the go.sum file. It verifies that the module hash\r\n    reported by the checksum database matches the hash of the downloaded module.\r\n    If, however, the checksum database returns a successful response that contains\r\n    no entry for the module, the go command incorrectly permitted validation to succeed.\r\n\r\n    A module proxy may mirror or proxy the checksum database, in which case the go\r\n    command will not connect to the checksum database directly. Checksums reported\r\n    by the checksum database are cryptographically signed, so a malicious proxy\r\n    cannot alter the reported checksum for a module. However, a proxy which returns\r\n    an empty checksum response, or a checksum response for an unrelated module,\r\n    could cause the go command to proceed as if a downloaded module has been validated.\r\n\r\n    The go command now properly checks checksum database responses to ensure\r\n    that the expected module signature is present, not just that if a signature is\r\n    present it matches the expectation.\r\n\r\n    Thanks to Mundur (https://github.com/M0nd0R) for reporting this issue.\r\n\r\n    This is CVE-2026-42501 and Go issue https://go.dev/issue/79070.\r\n\r\n- net/http/httputil: ReverseProxy forwards queries with more than urlmaxqueryparams parameters\r\n\r\n    When used with a Rewrite function, or a Director function which parses query parameters,\r\n    ReverseProxy sanitizes the forwarded request to remove query parameters which are not\r\n    parsed by url.ParseQuery. ReverseProxy did not take ParseQuery's limit on the total number\r\n    of query parameters (controlled by GODEBUG=urlmaxqueryparams=N) into account.\r\n    This could permit ReverseProxy to forward a request containing a query parameter\r\n    that was not visible to the Rewrite function.\r\n\r\n    For example, the query \"a1=x&a2=x&...&a10000=x&hidden=y\" could forward the parameter\r\n    \"hidden=y\" while hiding it from the proxy's Rewrite function.\r\n\r\n    ReverseProxy now avoids forwarding parameters that exceed the ParseQuery limit.\r\n\r\n    This is CVE-2026-39825 and Go issue https://go.dev/issue/78948.\r\n\r\n- net: panic in Dial and LookupPort when handling NUL byte on Windows\r\n\r\n    The Dial and LookupPort functions would panic on Windows when provided\r\n    with an input containing a NUL (0). These functions now return an error\r\n    rather than panicking.\r\n\r\n    This is CVE-2026-39836 and Go issue https://go.dev/issue/79006.\r\n\r\n- net/mail: quadratic string concatenation in consumePhrase\r\n\r\n    Pathological inputs could cause DoS through consumePhrase\r\n    when parsing an email address according to RFC 5322.\r\n\r\n    This is CVE-2026-42499 and Go issue https://go.dev/issue/78987.\r\n\r\n- net/mail: quadratic string concatentation in consumeComment\r\n\r\n    Well-crafted inputs reaching ParseAddress, ParseAddressList,\r\n    and ParseDate were able to trigger excessive CPU exhaustion\r\n    and memory allocations.\r\n\r\n    This is CVE-2026-39820 and Go issue https://go.dev/issue/78566.\r\n\r\n- cmd/go: \"go bug\" follows symlinks in predictable temporary filenames\r\n\r\n    The \"go bug\" command wrote to two files with predictable names in\r\n    the system temporary directory (for example, \"/tmp\").\r\n\r\n    An attacker with access to the temporary directory could create a\r\n    symlink in one of these names, causing \"go bug\" to overwrite the\r\n    target of the symlink.\r\n\r\n    The \"go bug\" command now uses os.MkdirTemp to create a safe\r\n    working directory.\r\n\r\n    Thanks to Harshit Gupta (Mr HAX) for reporting this issue.\r\n\r\n    This is CVE-2026-39819 and Go issue https://go.dev/issue/78584.\r\n\r\n- cmd/go: \"go tool pack\" does not sanitize output paths\r\n\r\n    The \"go tool pack\" subcommand is a minimal version of the Unix ar utility.\r\n    It is used by the compiler as an internal tool with known-good inputs.\r\n\r\n    The \"pack\" subcommand did not sanitize output filenames.\r\n    When invoked to extract a malicious archive file, it could write\r\n    files to arbitrary locations on the filesystem.\r\n\r\n    The \"pack\" subcommand now refuses to extract files with names\r\n    containing any directory components.\r\n\r\n    Thanks to Harshit Gupta (Mr HAX) for reporting this issue.\r\n\r\n    This is CVE-2026-39817 and Go issue https://go.dev/issue/78778.\r\n\r\n- net/http: infinite loop in HTTP/2 transport when given bad SETTINGS_MAX_FRAME_SIZE\r\n\r\n    When processing HTTP/2 SETTINGS frames, transport will enter an infinite loop of\r\n    writing CONTINUATION frames if it receives a SETTINGS_MAX_FRAME_SIZE with a\r\n    value of 0.\r\n\r\n    This allows potential DoS against a client by a malicious server. HTTP/2\r\n    transport now properly checks that the received SETTINGS_MAX_FRAME_SIZE is\r\n    valid.\r\n\r\n    Thanks to Marwan Atia (marwansamir688@gmail.com) for reporting this issue.\r\n\r\n    This is CVE-2026-33814 and Go issue https://go.dev/issue/78476.\r\n\r\n- html/template: escaper bypass leads to XSS\r\n\r\n    If a trusted template author were to write a\r\n    tag containing an empty type attribute or a type\r\n    attribute with an ASCII whitespace, the execution of\r\n    the template would incorrectly escape any data passed\r\n    into the block.\r\n\r\n    Thanks to Mundur (https://github.com/M0nd0R) for reporting this issue.\r\n\r\n    This is CVE-2026-39826 and Go issue https://go.dev/issue/78981.\r\n\r\n- net: crash when handling long CNAME response\r\n\r\n    When using LookupCNAME with the cgo DNS resolver,\r\n    a very long CNAME response could trigger a double-free of C memory\r\n    and a crash. The double-free has been fixed.\r\n\r\n    Thanks to hamayanhamayan for reporting this issue.\r\n\r\n    This is CVE-2026-33811 and Go issue https://go.dev/issue/78803.\r\n\r\n- html/template: bypass of meta content URL escaping causes XSS\r\n\r\n    CVE-2026-27142 fixed a vulnerability in which URLs were not\r\n    correctly escaped inside of a tag's attribute.\r\n    If the URL content were to insert ASCII whitespaces around the\r\n    = rune inside of the attribute, the escaper would\r\n    fail to similarly escape it, leading to XSS.\r\n\r\n    Dynamic inputs to a tag's attribute are now\r\n    whitespace sanitized prior to escaping.\r\n\r\n    Thanks to Samy Ghannad for reporting this issue.\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-08T13:41:04Z",
+      "merged_at": "2026-05-11T17:35:33Z",
+      "author": "vvoland",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13379": {
+      "title": "[release/2.3] fix: close boltdb on metadata and mount plugin close",
+      "url": "https://github.com/containerd/containerd/pull/13379",
+      "body": "This is an automated cherry-pick of #13348\n\n/assign austinvazquez\n\n```release-note\nEnsure metadata and mount plugin boltdb files are closed on server shutdown\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-11T22:22:05Z",
+      "merged_at": "2026-05-13T00:44:04Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/storage"
+      ]
+    },
+    "13348": {
+      "title": "fix: close boltdb on metadata and mount plugin close",
+      "url": "https://github.com/containerd/containerd/pull/13348",
+      "body": "### Issue\r\n\r\nWhen containerd shuts down its metadata or mount plugin never explicitly close the underlying bboltdb file deferring cleanup of the lock file to the underlying OS. The issue encountered is this causes variable delay for use cases where graceful teardown is desirable to reliably reset containerd.\r\n\r\n### Summary\r\n\r\nThis change adds closing of the metadata and mount boltdb to server shutdown.\r\n\r\n#### Garbage collection consideration\r\n\r\nThe GC plugin currently does not implement Close, thus is skipped in server stop.\r\n\r\nClosure of the metadata database should occur after acquiring the read-write lock to ensure no GC cycle is occurring concurrently. Transactions post-closure will result in `ErrDatabaseNotOpen`. This should be fine as these resources can be scheduled for collection on the next containerd process invocation.\r\n\r\n### Testing\r\n\r\nUpdated existing unit tests to close via plugin/manager rather than directly on the raw bolt handle.\r\nAdded new test cases to verify the underlying bolt Db is closed by asserting a new transaction returns ErrDatabaseNotOpen.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-06T00:31:28Z",
+      "merged_at": "2026-05-11T02:44:25Z",
+      "author": "austinvazquez",
+      "labels": [
+        "kind/bug",
+        "size/L",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13390": {
+      "title": "[release/2.3] server: tolerate failed gRPC plugins when starting listeners",
+      "url": "https://github.com/containerd/containerd/pull/13390",
+      "body": "This is an automated cherry-pick of #13363\n\n/assign AkihiroSuda\n\n```release-note\nFix bug where failed gRPC plugins were not tolerated when starting listeners\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-12T17:54:04Z",
+      "merged_at": "2026-05-13T04:05:56Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/M",
+        "area/rootless"
+      ]
+    },
+    "13363": {
+      "title": "server: tolerate failed gRPC plugins when starting listeners",
+      "url": "https://github.com/containerd/containerd/pull/13363",
+      "body": "The grpc, grpc-tcp, and ttrpc server plugins enumerated their services through ic.GetByType, which short-circuits on the first plugin whose Instance() returned an error. A single failed gRPC plugin (e.g. CRI under rootless, which cannot watch /etc/cni/net.d) therefore prevented the server plugins from initialising, leaving /run/containerd/containerd.sock uncreated.\r\n\r\nIterate the plugin set directly and skip plugins that failed to initialise, restoring the pre-c15ec2485 behaviour where the listener is still created and only the failed services are missing.\r\n\r\nFixes: c15ec2485 (\"Add server plugins for grpc and ttrpc\")\r\nFixes: https://github.com/containerd/containerd/issues/13362\r\n\r\n- - -\r\n\r\nNote: used Claude Code",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-10T05:04:56Z",
+      "merged_at": "2026-05-12T17:53:16Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "priority/P0",
+        "size/M",
+        "cherry-picked/2.3.x",
+        "area/rootless"
+      ]
+    },
+    "13394": {
+      "title": "[release/2.3] overlay: disable \"rebase\" capability when running in UserNS",
+      "url": "https://github.com/containerd/containerd/pull/13394",
+      "body": "This is an automated cherry-pick of #13389\n\n/assign AkihiroSuda\n\n```release-note\nDisable overlayfs \"rebase\" capability when running in user namespace\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-12T20:13:05Z",
+      "merged_at": "2026-05-13T04:05:27Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/XS",
+        "area/rootless"
+      ]
+    },
+    "13389": {
+      "title": "overlay: disable \"rebase\" capability when running in UserNS",
+      "url": "https://github.com/containerd/containerd/pull/13389",
+      "body": "Fix #13388\r\n\r\n```\r\n[...]\r\nMay 12 16:57:23 kind-control-plane kubelet[257]:         failed to extract layer (application/vnd.docker.image.rootfs\r\n.diff.tar sha256:6f1cdceb6a3146f0ccb986521156bef8a422cdbb0863396f7f751f575ba308f4) to overlayfs as \"extract-920875437\r\n-7QPF sha256:31e64620332e54e3e4fb246d8325ed2c9f1c2cc64a95f0bb23b4b7e82834c95a\": failed to mount /var/lib/containerd/t\r\nmpmounts/containerd-mount2180142388: mount source: \"overlay\", target: \"/var/lib/containerd/tmpmounts/containerd-mount\r\n2180142388\", fstype: overlay, flags: 0, data: \"upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/sn\r\napshots/279/fs\", err: invalid argument\r\n[...]\r\n```\r\n\r\nThis was a regression introduced in PR #13115.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-12T17:17:25Z",
+      "merged_at": "2026-05-12T20:11:47Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "area/cri",
+        "size/XS",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x",
+        "area/rootless"
+      ]
+    },
+    "13405": {
+      "title": "[release/2.3] Prepare release notes for v2.3.1",
+      "url": "https://github.com/containerd/containerd/pull/13405",
+      "body": "containerd 2.3.1\r\n\r\nWelcome to the v2.3.1 release of containerd!\r\n\r\nThe first patch release for containerd 2.3 contains various fixes and improvements.\r\n\r\n### Security Updates\r\n\r\n* [**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)\r\n\r\n### Highlights\r\n\r\n* Fix bug where failed gRPC plugins were not tolerated when starting listeners ([#13390](https://github.com/containerd/containerd/pull/13390))\r\n\r\n#### Image Storage\r\n\r\n* Ensure metadata and mount plugin boltdb files are closed on server shutdown ([#13379](https://github.com/containerd/containerd/pull/13379))\r\n\r\n#### Runtime\r\n\r\n* Fix handling of out-of-range USER values in OCI spec to avoid unexpected username/group lookups ([#13447](https://github.com/containerd/containerd/pull/13447))\r\n* Fix sandbox task API endpoints for non-runc runtimes and deprecate task fields in Runc options ([#13422](https://github.com/containerd/containerd/pull/13422))\r\n* Apply hardening to default seccomp socket policy by blocking AF_ALG ([#13409](https://github.com/containerd/containerd/pull/13409))\r\n\r\n#### Snapshotters\r\n\r\n* Disable overlayfs \"rebase\" capability when running in user namespace ([#13394](https://github.com/containerd/containerd/pull/13394))\r\n* Fix transfer plugin error when EROFS differ is configured but mkfs.erofs is unavailable ([#13364](https://github.com/containerd/containerd/pull/13364))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Maksym Pavlenko\r\n* Akihiro Suda\r\n* Derek McGowan\r\n* Pawe┼é Gronowski\r\n* Brian Goff\r\n* Austin Vazquez\r\n* LEI WANG\r\n* Samuel Karp\r\n\r\n### Changes\r\n<details><summary>23 commits</summary>\r\n<p>\r\n\r\n  * [`58af96519`](https://github.com/containerd/containerd/commit/58af9651939577f81969b387b6b2e2aed45ead7d) Prepare release notes for v2.3.1\r\n  * [`8f0b3ca83`](https://github.com/containerd/containerd/commit/8f0b3ca83015873d643db246202b63b8384f14fd) Update api to v1.11.1\r\n* oci: return explicit error for out-of-range USER values ([#13447](https://github.com/containerd/containerd/pull/13447))\r\n  * [`a05ae7885`](https://github.com/containerd/containerd/commit/a05ae78850384eb24effbc597ebc5b19a5e4ba04) oci: return explicit error for out-of-range USER values\r\n* Prepare release notes for api/v1.11.1 ([#13444](https://github.com/containerd/containerd/pull/13444))\r\n  * [`da7aef299`](https://github.com/containerd/containerd/commit/da7aef299c57cc1f290700ade8fa0a5fec69a462) Prepare release notes for api/v1.11.1\r\n* Fix sandbox task API endpoints for non-runc runtimes ([#13422](https://github.com/containerd/containerd/pull/13422))\r\n  * [`5282d4e09`](https://github.com/containerd/containerd/commit/5282d4e09d3bc8b0957780caa7a4644fac7c86a7) Wire task address and version fields\r\n  * [`e44f5f9ec`](https://github.com/containerd/containerd/commit/e44f5f9ec610d95a712d230e8a19ae516e0a26ac) protos: include task API address to CreateTaskRequest\r\n* seccomp: Block AF_ALG in default socket policy ([#13409](https://github.com/containerd/containerd/pull/13409))\r\n  * [`4d80a31bf`](https://github.com/containerd/containerd/commit/4d80a31bf637bc15e83e50a15941bf5bb0cb3988) seccomp: Block AF_ALG in default socket policy\r\n  * [`2ed0d97b6`](https://github.com/containerd/containerd/commit/2ed0d97b6e58def34684a1bffc2ab6931182f221) seccomp: Document socket rule scope and socketcall limitation\r\n* server: tolerate failed gRPC plugins when starting listeners ([#13390](https://github.com/containerd/containerd/pull/13390))\r\n  * [`3a88fdde0`](https://github.com/containerd/containerd/commit/3a88fdde0c613e62415e61738e946b903f1bf32f) server: tolerate failed gRPC plugins when starting listeners\r\n* overlay: disable \"rebase\" capability when running in UserNS ([#13394](https://github.com/containerd/containerd/pull/13394))\r\n  * [`2be0710b8`](https://github.com/containerd/containerd/commit/2be0710b81b99f47aa4ef0fa2951cd69f80b7e19) overlay: disable \"rebase\" capability when running in UserNS\r\n* Update Go to 1.26.3 ([#13374](https://github.com/containerd/containerd/pull/13374))\r\n  * [`3b199c22b`](https://github.com/containerd/containerd/commit/3b199c22b13495bd442b32121c2015f301594387) Update Go to 1.26.3\r\n* fix: close boltdb on metadata and mount plugin close ([#13379](https://github.com/containerd/containerd/pull/13379))\r\n  * [`1d601271a`](https://github.com/containerd/containerd/commit/1d601271a73a649de465ed94fa973564211b7f46) fix: close boltdb on metadata and mount plugin close\r\n* Fix optional EROFS differ setup in transfer plugin ([#13364](https://github.com/containerd/containerd/pull/13364))\r\n  * [`d666d2e42`](https://github.com/containerd/containerd/commit/d666d2e4261da664a50c7b1663461747ba8ebb2e) Refactor transfer unpack configuration setup\r\n  * [`ccc3bd7b9`](https://github.com/containerd/containerd/commit/ccc3bd7b90be7afce7a903391d2a34b83424c5e0) Fix optional transfer differ setup\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\n* **github.com/containerd/containerd/api**  v1.11.0 -> v1.11.1\r\n\r\nPrevious release can be found at [v2.3.0](https://github.com/containerd/containerd/releases/tag/v2.3.0)\r\n### Which file should I download?\r\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         Γ£àRecommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\r\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\r\n\r\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\r\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\r\n\r\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-14T17:58:53Z",
+      "merged_at": "2026-05-20T20:41:13Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "size/L"
+      ]
+    },
+    "13409": {
+      "title": "[release/2.3] seccomp: Block AF_ALG in default socket policy",
+      "url": "https://github.com/containerd/containerd/pull/13409",
+      "body": "This is an automated cherry-pick of #13327\n\n/assign AkihiroSuda\n\n```release-note\nApply hardening to default seccomp socket policy by blocking AF_ALG\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-14T18:06:25Z",
+      "merged_at": "2026-05-14T23:56:13Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M"
+      ]
+    },
+    "13327": {
+      "title": "seccomp: Block AF_ALG in default socket policy",
+      "url": "https://github.com/containerd/containerd/pull/13327",
+      "body": "- port: https://github.com/moby/profiles/pull/20\r\n\r\nAddresses `CVE-2026-31431`.\r\n\r\nNote: This doesn't block usage via `socketcall`.\r\n\r\nAF_ALG (address family 38) exposes the Linux kernel crypto API to userspace via socket(2). Containers have no legitimate need for this interface under the default profile, and leaving it accessible widens the kernel attack surface unnecessarily (see https://copy.fail/).\r\n\r\nThe previous socket rule used a single \"arg0 != AF_VSOCK\" condition. Adding a second OpNotEqual for AF_ALG does not work because seccomp evaluates multiple argument conditions within a single rule as a logical AND against the same argument index.\r\n\r\nInstead, restructure the socket allowlist into three range-based rules that cover every domain except AF_ALG (38) and AF_VSOCK (40):\r\n\r\n1. Allow socket when arg0 < 38   (all families below AF_ALG)\r\n2. Allow socket when arg0 == 39  (the single family between them)\r\n3. Allow socket when arg0 > 40   (all families above AF_VSOCK)\r\n\r\nDomains 38 and 40 match none of the three rules and fall through to the default SCMP_ACT_ERRNO action.\r\n\r\nPort of https://github.com/moby/profiles/pull/20",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-30T19:35:20Z",
+      "merged_at": "2026-05-12T20:11:47Z",
+      "author": "vvoland",
+      "labels": [
+        "kind/enhancement",
+        "cherry-picked/1.7.x",
+        "size/M",
+        "cherry-picked/2.0.x",
+        "cherry-pick/2.1.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13422": {
+      "title": "[release/2.3] Fix sandbox task API endpoints for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13422",
+      "body": "This is an automated cherry-pick of #13360\n\n/assign mxpv\n\n```release-note\nFix sandbox task API endpoints for non-runc runtimes and deprecate task fields in Runc options\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-19T03:18:35Z",
+      "merged_at": "2026-05-20T16:48:29Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XXL"
+      ]
+    },
+    "13360": {
+      "title": "Fix sandbox task API endpoints for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13360",
+      "body": "I believe we overlooked this in https://github.com/containerd/containerd/pull/9736 and introduced task API address and version fields in Runc options.\r\n\r\nThose are used in Sandbox API flow and have nothing to do with runc specifically.\r\nAs the result it doesn't work with other runtimes - https://github.com/containerd/containerd/pull/12986\r\n\r\nThis PR deprecates fields introduced in runc options and moves them to `CreateTaskRequest`.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-07T22:02:00Z",
+      "merged_at": "2026-05-19T00:47:03Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/deprecation",
+        "kind/bug",
+        "size/XXL",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13444": {
+      "title": "Prepare release notes for api/v1.11.1",
+      "url": "https://github.com/containerd/containerd/pull/13444",
+      "body": "Generated notes\r\n\r\n----\r\n\r\nWelcome to the api/v1.11.1 release of containerd!\r\n\r\nThe first patch release for the containerd 1.11 API includes a fix\r\nin the task endpoints for non-runc shims.\r\n\r\n### Highlights\r\n\r\n* Fix sandbox task API endpoints for non-runc runtimes ([#13422](https://github.com/containerd/containerd/pull/13422))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Derek McGowan\r\n* Maksym Pavlenko\r\n* Samuel Karp\r\n\r\n### Changes\r\n<details><summary>3 commits</summary>\r\n<p>\r\n\r\n  * [`da7aef299`](https://github.com/containerd/containerd/commit/da7aef299c57cc1f290700ade8fa0a5fec69a462) Prepare release notes for api/v1.11.1\r\n* Fix sandbox task API endpoints for non-runc runtimes ([#13422](https://github.com/containerd/containerd/pull/13422))\r\n  * [`e44f5f9ec`](https://github.com/containerd/containerd/commit/e44f5f9ec610d95a712d230e8a19ae516e0a26ac) protos: include task API address to CreateTaskRequest\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\nThis release has no dependency changes\r\n\r\nPrevious release can be found at [api/v1.11.0](https://github.com/containerd/containerd/releases/tag/api/v1.11.0)\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-20T17:08:17Z",
+      "merged_at": "2026-05-20T17:33:06Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13447": {
+      "title": "[release/2.3] oci: return explicit error for out-of-range USER values",
+      "url": "https://github.com/containerd/containerd/pull/13447",
+      "body": "```release-note\nFix handling of out-of-range USER values in OCI spec to avoid unexpected username/group lookups\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-20T17:20:07Z",
+      "merged_at": "2026-05-20T18:06:06Z",
+      "author": "samuelkarp",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M"
+      ]
+    }
+  },
+  "issues": {
+    "13346": {
+      "title": "Since 2.3.0, transfer service refuses to initialize without erofs-utils",
+      "url": "https://github.com/containerd/containerd/issues/13346",
+      "body": "### Description\n\nMy docker-in-docker setup no longer starts after upgrade to containerd 2.3.0. I believe this is because it requires the transfer plugin, which no longer works unless (sufficiently recent) erofs utilities are installed on the host.\n\n```\nlevel=info msg=\"skip loading plugin\" error=\"failed to check mkfs.erofs availability:\n  failed to run mkfs.erofs --help: exec: \"mkfs.erofs\": executable file not found in $PATH: skip plugin\"\n  id=io.containerd.differ.v1.erofs\n\nlevel=info msg=\"skip loading plugin\" error=\"failed to get instance for diff plugin \\\"erofs\\\":\n  ... skip plugin\"\n  id=io.containerd.transfer.v1.local\n```\n\nIs this an expected dependency? It's not expressed in the apt repo.\nIf erofs support is optional, its absence should not prevent the transfer plugin from functioning?\n\nDowngrading to containerd 2.2.3 fixes the issue for me.\n\n### Steps to reproduce the issue\n\nInstall containerd on a system without the `mkfs.erofs` binary.\n\n### Describe the results you received and expected\n\nExpected: Transfer plugin loads\nActual: Transfer plugin (and downstream dependencies) skip loading\n\n### What version of containerd are you using?\n\ncontainerd github.com/containerd/containerd/v2 2.3.0-1 2976f38ccbfcda5ef1364d63d60b0a304e4bf94a\n\n### Any other relevant information\n\nLinux, Debian Bookworm\nInstalled via https://github.com/devcontainers/features/blob/main/src/docker-in-docker/install.sh\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-05-05T08:57:29Z",
+      "closed_at": "2026-05-10T11:23:11Z",
+      "author": "glennschmidt",
+      "labels": [
+        "kind/bug",
+        "area/snapshotters"
+      ]
+    },
+    "13362": {
+      "title": "[v2.3.0-rc.0 regression] rootless: `\"/run/containerd/containerd.sock\": no such file or directory`",
+      "url": "https://github.com/containerd/containerd/issues/13362",
+      "body": "### Description\n\nStarting with v2.3.0-rc.0, the rootless mode no longer works, as `/run/containerd/containerd.sock` is no longer created in the daemon's mount namespace (which is created with the daemon's user namespace, by RootlessKit):\n\n```console\n$ nerdctl info\nFATA[0000] cannot access containerd socket \"/run/containerd/containerd.sock\": no such file or directory\n\n$ containerd-rootless-setuptool.sh nsenter -- ls /run/containerd\ncontainerd.sock.ttrpc      io.containerd.mount-manager.v1.bolt  io.containerd.sandbox.controller.v1.shim\nio.containerd.grpc.v1.cri  io.containerd.runtime.v2.task\n```\n\nThis is a regression in [c15ec2485](https://github.com/containerd/containerd/commit/c15ec248571cecd7b073dfaacaf932cfb09ba409) (\"Add server plugins for grpc and ttrpc\") from:\n- https://github.com/containerd/containerd/pull/12562\n\nThanks to @haytok for bisecting:\n- https://github.com/containerd/nerdctl/pull/4887#issuecomment-4412212098\n\n\n### Steps to reproduce the issue\n\n1. `containerd-rootless.sh`\n2. `nerdctl info`\n\n\n### Describe the results you received and expected\n\nReceived: \"/run/containerd/containerd.sock\": no such file or directory\nExpected: `nerdctl` should work, and \"/run/containerd/containerd.sock\" should be visible via `containerd-rootless-setuptool.sh nsenter -- ls /run/containerd`\n\n### What version of containerd are you using?\n\ncontainerd github.com/containerd/containerd/v2 v2.3.0 2976f38ccbfcda5ef1364d63d60b0a304e4bf94a\n\n### Any other relevant information\n\n- Ubuntu 26.04\n- nerdctl v2.3.0\n- RootlessKit v3.0.0\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-05-10T04:32:19Z",
+      "closed_at": "2026-05-12T17:53:18Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "kind/bug",
+        "priority/P0",
+        "area/rootless"
+      ]
+    }
+  }
+}
