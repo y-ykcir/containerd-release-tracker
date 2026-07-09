@@ -1,0 +1,389 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-09T23:39:57.483174",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.3.2",
+    "name": "containerd 2.3.2",
+    "body": "Welcome to the v2.3.2 release of containerd!\n\nThe second patch release for containerd 2.3 contains various fixes\nand updates including security patches.\n\n### Security Updates\n\n* **containerd**\n  * [**CVE-2026-50195**](https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574)\n  * [**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)\n  * [**CVE-2026-53492**](https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc)\n  * [**CVE-2026-53489**](https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388)\n  * [**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)\n\n### Highlights\n\n* Fix a data race when reading shim logs on Windows ([#13522](https://github.com/containerd/containerd/pull/13522))\n\n#### Image Distribution\n\n* Allow the last host to retry on transient network errors ([#13591](https://github.com/containerd/containerd/pull/13591))\n\n#### Runtime\n\n* Fix container startup failures caused by concurrent task RPC timeouts during slow container creation ([#13512](https://github.com/containerd/containerd/pull/13512))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Samuel Karp\n* Chris Henzie\n* Akihiro Suda\n* Derek McGowan\n* Akhil Mohan\n* Austin Vazquez\n* Ben Cressey\n* Brian Goff\n* Maksym Pavlenko\n* Sebastiaan van Stijn\n* Sergey Kanzhelev\n\n### Changes\n<details><summary>30 commits</summary>\n<p>\n\n* Prepare release notes for v2.3.2 ([#13627](https://github.com/containerd/containerd/pull/13627))\n  * [`fb8ca00b0`](https://github.com/containerd/containerd/commit/fb8ca00b051fa9a9187502b16620fdb46595f1b7) Prepare release notes for v2.3.2\n  * [`9c69960ba`](https://github.com/containerd/containerd/commit/9c69960ba495c0aa08797be3f17b3c7712d17a22) Merge commit from fork\n  * [`0f6251520`](https://github.com/containerd/containerd/commit/0f6251520569a25f0b52158a97d035726e6af9d2) Merge commit from fork\n  * [`91d7471e2`](https://github.com/containerd/containerd/commit/91d7471e2cc7113c31dbcc62007756ba88f8cf9f) cri: filter CDI annotations on checkpoint restore\n  * [`7c2e086bf`](https://github.com/containerd/containerd/commit/7c2e086bf31a4402cc19817df3b05ffd74d454e6) Merge commit from fork\n  * [`dae67765f`](https://github.com/containerd/containerd/commit/dae67765f2d51ca3e67190c26e51edf496dd4cf4) cri: do not re-tag restored checkpoints\n  * [`94aa1e2c1`](https://github.com/containerd/containerd/commit/94aa1e2c1a6ebadf2578fabe85ba7845e1e553c0) Merge commit from fork\n  * [`09599078f`](https://github.com/containerd/containerd/commit/09599078f66bb98f6e83087893e3f2349b019fe7) cri: make checkpoint restore robust to unexpected archive content\n  * [`e1fdb8d22`](https://github.com/containerd/containerd/commit/e1fdb8d221a27ce017264875e3658d021511ba0c) Merge commit from fork\n  * [`ff1d116ef`](https://github.com/containerd/containerd/commit/ff1d116ef9c2d7505306d7d367ef46ff0756460b) Bound user-database file reads in openUserFile\n  * [`d156e07cb`](https://github.com/containerd/containerd/commit/d156e07cbe61331f77b72e3603d8b6d67dda59e5) Merge commit from fork\n  * [`f99aad54a`](https://github.com/containerd/containerd/commit/f99aad54af507168a1393dfae1559fde4cae9b2c) Do not propagate reserved labels from image configs\n* vendor: golang.org/x/crypto v0.53.0 ([#13608](https://github.com/containerd/containerd/pull/13608))\n  * [`0b9469501`](https://github.com/containerd/containerd/commit/0b9469501257584fc8ff32c8160dbda3501e99cc) [release/2.3] vendor: golang.org/x/crypto v0.53.0\n* resolver: retry on transient network errors ([#13591](https://github.com/containerd/containerd/pull/13591))\n  * [`983bbddc1`](https://github.com/containerd/containerd/commit/983bbddc139c607700259a2bec519e7026018c6f) resolver: retry on transient network errors\n* update runc binary to v1.4.3 ([#13601](https://github.com/containerd/containerd/pull/13601))\n  * [`3f76f2dc1`](https://github.com/containerd/containerd/commit/3f76f2dc1863820a2192af9dcf07584b61db778e) update runc binary to v1.4.3\n* update go to 1.26.4 ([#13580](https://github.com/containerd/containerd/pull/13580))\n  * [`8a49dfe85`](https://github.com/containerd/containerd/commit/8a49dfe854c1fe869e1531662bef76720104f20b) update go to 1.26.4\n  * [`5aa6bb2b7`](https://github.com/containerd/containerd/commit/5aa6bb2b7155a246a05872c70ea8e63e1e69ee70) remove 1.26.2 from CI builds as it is not supported any longer due to the dependency\n* Configure udevd children-max for root-test ([#13568](https://github.com/containerd/containerd/pull/13568))\n  * [`bfb8aebc0`](https://github.com/containerd/containerd/commit/bfb8aebc07d75608fdb70a6f5592a5bfd753475b) Configure udevd children-max for root-test\n* core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read ([#13522](https://github.com/containerd/containerd/pull/13522))\n  * [`62ceafff0`](https://github.com/containerd/containerd/commit/62ceafff0a9b37ab01f73d4d5acd2ff105ef4023) core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read\n* runc-shim: don't hold the service lock across runc create ([#13512](https://github.com/containerd/containerd/pull/13512))\n  * [`9b0c0dc58`](https://github.com/containerd/containerd/commit/9b0c0dc584f275269e29a8b8365ab155705f6ec8) runc-shim: don't hold the service lock across runc create\n* contrib/checkpoint: increase timeouts to 30s ([#13459](https://github.com/containerd/containerd/pull/13459))\n  * [`f588bc6fb`](https://github.com/containerd/containerd/commit/f588bc6fb7c6001865461ece541cc8a6e12a33fe) contrib/checkpoint: increase timeouts to 30s\n</p>\n</details>\n\n### Dependency Changes\n\n* **golang.org/x/crypto**  v0.49.0 -> v0.53.0\n* **golang.org/x/mod**     v0.35.0 -> v0.36.0\n* **golang.org/x/net**     v0.52.0 -> v0.55.0\n* **golang.org/x/sync**    v0.20.0 -> v0.21.0\n* **golang.org/x/sys**     v0.43.0 -> v0.46.0\n* **golang.org/x/term**    v0.41.0 -> v0.44.0\n* **golang.org/x/text**    v0.35.0 -> v0.38.0\n\nPrevious release can be found at [v2.3.1](https://github.com/containerd/containerd/releases/tag/v2.3.1)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-06-18T23:16:02Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.3.2",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 18,
+    "analyzed_issues": 1,
+    "important_items": 15
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13459: [release/2.3] contrib/checkpoint: increase timeouts to 30s",
+      "reason": "Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13436: contrib/checkpoint: increase timeouts to 30s",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13512: [release/2.3] runc-shim: don't hold the service lock across runc create",
+      "reason": "Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13483: runc-shim: don't hold the service lock across runc create",
+      "reason": "Contains 'critical'; Contains 'regression'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12821: fix: propagate `context deadline exceeded` error properly",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13522: [release/2.3] core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13462: core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13568: [release/2.3] Configure udevd children-max for root-test",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13562: Configure udevd children-max for root-test",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13580: [release/2.3] update go to 1.26.4",
+      "reason": "Contains 'security'"
+    },
+    {
+      "type": "PR",
+      "title": "#13591: [release/2.3] resolver: retry on transient network errors",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13601: [release/2.3] update runc binary to v1.4.3",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13608: [release/2.3] vendor: golang.org/x/crypto v0.53.0",
+      "reason": "Contains 'panic'; Contains 'deadlock'; Contains 'security'; Contains 'vulnerability'; Contains 'memory leak'; Cherry-pick or backport; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#13600: vendor: golang.org/x/crypto v0.53.0",
+      "reason": "Contains 'panic'; Contains 'deadlock'; Contains 'security'; Contains 'vulnerability'; Contains 'memory leak'; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#13627: [release/2.3] Prepare release notes for v2.3.2 ",
+      "reason": "Contains 'security'; Performance related"
+    }
+  ],
+  "prs": {
+    "13459": {
+      "title": "[release/2.3] contrib/checkpoint: increase timeouts to 30s",
+      "url": "https://github.com/containerd/containerd/pull/13459",
+      "body": "This is an automated cherry-pick of #13436\n\n/assign samuelkarp",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-21T01:28:23Z",
+      "merged_at": "2026-05-21T04:06:51Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13436": {
+      "title": "contrib/checkpoint: increase timeouts to 30s",
+      "url": "https://github.com/containerd/containerd/pull/13436",
+      "body": "Under slow network conditions (e.g., simulated 2 Mbps ingress bandwidth limits in CI), restoring a container from a checkpoint can fail if it requires pulling the base image again.\r\n\r\nDuring restore, crictl create is called. In test_from_oci, it used a 10-second timeout (crictl -t 10s create). Over a 2 Mbps connection, pulling the 2.8MB Alpine layer takes ~12-13 seconds, causing the operation to exceed the timeout and fail with context canceled.\r\n\r\nIncrease the timeouts in both test_from_archive and test_from_oci to 30 seconds. This ensures the base image pull can complete successfully even in constrained CI environments.\r\n\r\nTested:\r\nRan the CRI integration tests on a GCE VM under a simulated 2 Mbps ingress bandwidth limit using traffic control (tc). Verified that both test_from_archive and test_from_oci passed successfully and container restore completed without timeout.\r\n\r\nAssisted-by: Antigravity",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-19T23:00:35Z",
+      "merged_at": "2026-05-21T00:20:00Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/XS",
+        "cherry-pick/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13512": {
+      "title": "[release/2.3] runc-shim: don't hold the service lock across runc create",
+      "url": "https://github.com/containerd/containerd/pull/13512",
+      "body": "This is an automated cherry-pick of #13483\n\n/assign AkihiroSuda\n\n```release-note\nFix container startup failures caused by concurrent task RPC timeouts during slow container creation\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-01T17:23:17Z",
+      "merged_at": "2026-06-02T20:13:53Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "13483": {
+      "title": "runc-shim: don't hold the service lock across runc create",
+      "url": "https://github.com/containerd/containerd/pull/13483",
+      "body": "The task service guards its containers map with s.mu, and getContainer() takes it on behalf of effectively every task RPC (State, Connect, Stats, Wait, Pause, Kill, ...). Create() held s.mu for its whole duration, including runc.NewContainer(), which runs the actual `runc create`.\r\n\r\n`runc create` can be slow on a loaded host. While it runs, any concurrent task RPC blocks on s.mu. The tasks service applies a 2s timeout to State (io.containerd.timeout.task.state), so a concurrent State waits on s.mu, exceeds the deadline, and the ttrpc call is abandoned -- the late shim reply then shows up as:\r\n\r\n    ttrpc: received message on inactive stream stream=3\r\n\r\nSince deadline errors are now surfaced to clients, this is treated as a fatal failure and the just-created container is torn down right after start (observed on Lima/vz: nginx -> Exited (1)).\r\n\r\nMove runc.NewContainer() out of the s.mu critical section, mirroring the runtime v1 shim lock optimization. s.mu is taken only once the container exists, to guard the map and the remaining (fast) setup, so a slow create no longer blocks concurrent State and other lookups. preStart/handleStarted/cleanup only use s.lifecycleMu, so early-exit handling is unchanged.\r\n\r\nSee:\r\n- lima-vm/lima#5030.\r\n\r\n> The regression is caused by https://github.com/containerd/containerd/commit/f078cebbd\r\n> - https://github.com/containerd/containerd/pull/12821\r\n> \r\n> - - -\r\n> - `f078cebbd` https://github.com/lima-vm/lima/actions/runs/26487350835/job/77997535035?pr=5049\r\n> ```\r\n> + limactl shell default nerdctl ps -a\r\n> time=\"2026-05-27T02:56:35Z\" level=warning msg=\"treating lima version \\\"0c93a37\\\" from \\\"/Users/runner/.lima/default/lima-version\\\" as very latest release\"\r\n> CONTAINER ID    IMAGE                                              COMMAND                   CREATED           STATUS                      PORTS                     NAMES\r\n> 3f67f52a5931    ghcr.io/stargz-containers/nginx:1.19-alpine-org    \"/docker-entrypoint.…\"    10 seconds ago    Exited (1) 5 seconds ago    127.0.0.1:8080->80/tcp    nginx\r\n> + limactl shell default nerdctl logs nginx\r\n> time=\"2026-05-27T02:56:36Z\" level=warning msg=\"treating lima version \\\"0c93a37\\\" from \\\"/Users/runner/.lima/default/lima-version\\\" as very latest release\"\r\n> + [[ -z '' ]]\r\n> + limactl shell default journalctl --user -u containerd\r\n> [...]\r\n> May 27 02:55:49 lima-default containerd-rootless.sh[1173]: time=\"2026-05-27T02:55:49.956586096Z\" level=info msg=\"containerd successfully booted in 7.782954s\"\r\n> May 27 02:56:25 lima-default containerd-rootless.sh[1173]: time=\"2026-05-27T02:56:25.445537685Z\" level=info msg=\"connecting to shim 3f67f52a59314ed6fc4e1048b0e2c826ab26df575cec4cbf38619beb754dbebd\" address=\"unix:///run/containerd/s/56dfcbff8ef161f104b965a6f02b0158fca28ed1beba7df4c255935edf3a9122\" namespace=default protocol=ttrpc version=3\r\n> May 27 02:56:29 lima-default containerd-rootless.sh[1173]: time=\"2026-05-27T02:56:29.753250886Z\" level=error msg=\"ttrpc: received message on inactive stream\" stream=3\r\n> ```\r\n> - `f078cebbd~1` https://github.com/lima-vm/lima/actions/runs/26487350835/job/77997535032?pr=5049\r\n> \r\n\r\n            \r\n- - -\r\nNote: used Claude",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-27T04:15:28Z",
+      "merged_at": "2026-06-01T17:22:36Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "easy-to-review",
+        "size/XS",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "5030": {
+      "title": "Add Codecov badge to README",
+      "url": "https://github.com/containerd/containerd/pull/5030",
+      "body": "Tom from Codecov here. I thought I would go ahead and add the Codecov badge here in case it's useful!",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2021-02-10T19:13:10Z",
+      "merged_at": null,
+      "author": "thomasrockhu",
+      "labels": [
+        "needs-ok-to-test"
+      ]
+    },
+    "12821": {
+      "title": "fix: propagate `context deadline exceeded` error properly",
+      "url": "https://github.com/containerd/containerd/pull/12821",
+      "body": "When a shim becomes unresponsive (e.g., stopped via SIGSTOP), ttrpc communication times out with `context deadline exceeded`.\r\n\r\nCurrently, this error is not properly propagated, causing redundant API calls and slow container listing by client sides.\r\n\r\nSpecifically, when executing the API to check the task state, it appears that the `context deadline exceeded` error via ttrpc is not being handled within `shimTask.State()` and `getProcessState()`.\r\n\r\nAs a result, when this error occurs, clients such as nerdctl cannot recognize this error, and it is thought that the issue described below is occurring:\r\n\r\n- https://github.com/containerd/nerdctl/issues/4720\r\n\r\nTherefore, this commit adds error handling to ensure timeouts are properly handled by client sides.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-01-26T14:01:10Z",
+      "merged_at": "2026-02-21T22:38:26Z",
+      "author": "haytok",
+      "labels": [
+        "kind/bug",
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "13522": {
+      "title": "[release/2.3] core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read",
+      "url": "https://github.com/containerd/containerd/pull/13522",
+      "body": "This is an automated cherry-pick of #13462\n\n/assign austinvazquez\n\n```release-note\nFix a data race when reading shim logs on Windows\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-03T00:47:29Z",
+      "merged_at": "2026-06-03T17:31:22Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "platform/windows",
+        "size/XS"
+      ]
+    },
+    "13462": {
+      "title": "core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read",
+      "url": "https://github.com/containerd/containerd/pull/13462",
+      "body": "Read short-circuited on `if dpc.c == nil` before calling `dpc.wg.Wait()` which races with the dialer goroutine spawned in openShimLog. The dialer assigns `dpc.c = c` (and may set `dpc.conerr`) outside any lock; the only synchronization is the WaitGroup, and Read skipped it on the fast path.\r\n\r\nRedacted stack trace:\r\n```\r\n==================\r\n  WARNING: DATA RACE\r\n  Write at 0x00c00xxxxxxx by goroutine N:\r\n    github.com/containerd/containerd/v2/core/runtime/v2.openShimLog.func1()\r\n        core/runtime/v2/shim_windows.go:84\r\n\r\n  Previous read at 0x00c00xxxxxxx by goroutine M:\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*deferredPipeConnection).Read()\r\n        core/runtime/v2/shim_windows.go:45\r\n    io.copyBuffer()\r\n        io/io.go:429\r\n    io.Copy()\r\n        io/io.go:388\r\n    os.genericReadFrom()\r\n        os/file.go:205\r\n    os.(*File).ReadFrom()\r\n        os/file.go:181\r\n    io.copyBuffer()\r\n        io/io.go:415\r\n    io.Copy()\r\n        io/io.go:388\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*binary).Start.func3()\r\n        core/runtime/v2/binary.go:106\r\n\r\n  Goroutine N (running) created at:\r\n    sync.(*WaitGroup).Go()\r\n        sync/waitgroup.go:238\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*binary).Start()\r\n        core/runtime/v2/binary.go:92\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*ShimManager).startShim()\r\n        core/runtime/v2/shim_manager.go:323\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*ShimManager).Start()\r\n        core/runtime/v2/shim_manager.go:282\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*TaskManager).Create()\r\n        core/runtime/v2/task_manager.go:213\r\n    go.etcd.io/bbolt.(*Bucket).spill()\r\n        [bbolt internal frames elided]\r\n    github.com/containerd/containerd/v2/core/mount/manager.(*mountManager).Activate()\r\n        core/mount/manager/manager.go:501\r\n    go.etcd.io/bbolt.(*DB).Update()\r\n        [bbolt internal frames elided]\r\n    github.com/containerd/containerd/v2/core/mount/manager.(*mountManager).Activate()\r\n        core/mount/manager/manager.go:246\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*TaskManager).Create()\r\n        core/runtime/v2/task_manager.go:189\r\n    github.com/containerd/containerd/v2/plugins/services/tasks.(*local).Create()\r\n        plugins/services/tasks/local.go:256\r\n    github.com/containerd/containerd/v2/client.(*container).NewTask()\r\n        client/container.go:295\r\n    [application: container-start handler chain elided]\r\n    net/http.serverHandler.ServeHTTP()\r\n        net/http/server.go:3311\r\n    net/http.(*conn).serve()\r\n        net/http/server.go:2073\r\n    net/http.(*Server).Serve.gowrap3()\r\n        net/http/server.go:3464\r\n\r\n  Goroutine M (running) created at:\r\n    github.com/containerd/containerd/v2/core/runtime/v2.(*binary).Start()\r\n        core/runtime/v2/binary.go:104\r\n    [same shim-startup path as Goroutine N above]\r\n  ==================\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-21T22:20:29Z",
+      "merged_at": "2026-05-27T01:16:15Z",
+      "author": "austinvazquez",
+      "labels": [
+        "kind/bug",
+        "platform/windows",
+        "size/XS",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13568": {
+      "title": "[release/2.3] Configure udevd children-max for root-test",
+      "url": "https://github.com/containerd/containerd/pull/13568",
+      "body": "This is an automated cherry-pick of #13562\n\n/assign chrishenzie",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-10T03:13:29Z",
+      "merged_at": "2026-06-10T16:22:18Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13562": {
+      "title": "Configure udevd children-max for root-test",
+      "url": "https://github.com/containerd/containerd/pull/13562",
+      "body": "GHA runners occasionally experience I/O constraints during root-test test execution. While concurrent tests rapidly allocate loopback devices, background udev probing stalls. This quickly exhausts systemd-udevd's default worker pool ceiling (20 children max), stalling netlink uevent processing so device-mapper device nodes are never created for subsequent dm-verity test execution.\r\n\r\nLogging cgroups v2 pids.peak telemetry confirmed peak in-flight udev workers accumulate to 325 during test execution. Raising the children-max limit to 500 provides comfortable buffer room so udevd freely spawns worker processes without entering event lockup or causing test timeouts.\r\n\r\nAssisted-by: Antigravity",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-10T01:00:48Z",
+      "merged_at": "2026-06-10T03:05:53Z",
+      "author": "chrishenzie",
+      "labels": [
+        "cherry-picked/1.7.x",
+        "size/XS",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13580": {
+      "title": "[release/2.3] update go to 1.26.4",
+      "url": "https://github.com/containerd/containerd/pull/13580",
+      "body": "- go1.26.4 includes security fixes to the crypto/x509, mime, and net/textproto packages, as well as bug fixes to the compiler, the runtime, the go fix command, and the crypto/fips140 package.\r\n- remove 1.26.2 from CI builds as it is not supported any longer due to dependency",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-11T16:00:57Z",
+      "merged_at": "2026-06-13T01:35:52Z",
+      "author": "akhilerm",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13591": {
+      "title": "[release/2.3] resolver: retry on transient network errors",
+      "url": "https://github.com/containerd/containerd/pull/13591",
+      "body": "This is an automated cherry-pick of #13323\n\n/assign AkihiroSuda\n\n```release-note\nAllow the last host to retry on transient network errors\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-13T18:47:33Z",
+      "merged_at": "2026-06-17T16:06:14Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/distribution"
+      ]
+    },
+    "13323": {
+      "title": "resolver: retry on transient network errors",
+      "url": "https://github.com/containerd/containerd/pull/13323",
+      "body": "Allow the last host to retry on transient network errors to incrase the likelihood of the operation succeeding and help reduce flaky tests.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-29T23:38:35Z",
+      "merged_at": "2026-06-13T18:46:46Z",
+      "author": "dmcgowan",
+      "labels": [
+        "kind/enhancement",
+        "size/L",
+        "area/distribution",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13601": {
+      "title": "[release/2.3] update runc binary to v1.4.3",
+      "url": "https://github.com/containerd/containerd/pull/13601",
+      "body": "This is an automated cherry-pick of #13590\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-15T20:48:00Z",
+      "merged_at": "2026-06-16T06:24:47Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13590": {
+      "title": "update runc binary to v1.4.3",
+      "url": "https://github.com/containerd/containerd/pull/13590",
+      "body": "release notes: https://github.com/opencontainers/runc/releases/tag/v1.4.3\r\nfull diff: https://github.com/opencontainers/runc/compare/v1.4.2...v1.4.3",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-13T17:58:17Z",
+      "merged_at": "2026-06-15T20:47:22Z",
+      "author": "AkihiroSuda",
+      "labels": [
+        "cherry-pick/1.7.x",
+        "size/XS",
+        "cherry-pick/2.0.x",
+        "cherry-pick/2.1.x",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13608": {
+      "title": "[release/2.3] vendor: golang.org/x/crypto v0.53.0",
+      "url": "https://github.com/containerd/containerd/pull/13608",
+      "body": "- \"backport\" https://github.com/containerd/containerd/pull/13600\r\n\r\nSimilar to 9838a323ed8b310643a7a36dc758270676ed59c0 on main;\r\n\r\ngolang.org/x/crypto < v0.52.0 contains various vulnerabilities; those do NOT impact containerd, but may show up as vulnerability in scanners;\r\n\r\n    === Symbol Results ===\r\n\r\n    No vulnerabilities found.\r\n\r\n    === Package Results ===\r\n\r\n    No other vulnerabilities found.\r\n\r\n    === Module Results ===\r\n\r\n    Vulnerability #1: GO-2026-5033\r\n        Invoking pathological inputs can lead to client panic in\r\n        golang.org/x/crypto/ssh/agent\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5033\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #2: GO-2026-5023\r\n        Invoking VerifiedPublicKeyCallback permissions skip enforcement in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5023\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #3: GO-2026-5021\r\n        Invoking auth bypass via unenforced @Revoked status in\r\n        golang.org/x/crypto/ssh/knownhosts\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5021\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #4: GO-2026-5020\r\n        Invoking infinite loop on large channel writes in golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5020\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #5: GO-2026-5019\r\n        Invoking bypass of FIDO/U2F security keys physical interaction in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5019\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #6: GO-2026-5018\r\n        Invoking pathological RSA/DSA parameters may cause DoS in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5018\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #7: GO-2026-5017\r\n        Invoking client can cause server deadlock on unexpected responses in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5017\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #8: GO-2026-5016\r\n        Invoking memory leak when rejecting channels can lead to DoS in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5016\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #9: GO-2026-5015\r\n        Invoking server panic during CheckHostKey/Authenticate in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5015\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #10: GO-2026-5014\r\n        Invoking bypass of certificate restrictions in golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5014\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #11: GO-2026-5013\r\n        Invoking byte arithmetic causes underflow and panic in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5013\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #12: GO-2026-5006\r\n        Invoking agent constraints dropped when forwarding keys in\r\n        golang.org/x/crypto/ssh/agent\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5006\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #13: GO-2026-5005\r\n        Invoking key constraints not enforced in golang.org/x/crypto/ssh/agent\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5005\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Your code is affected by 0 vulnerabilities.\r\n    This scan also found 0 vulnerabilities in packages you import and 13\r\n    vulnerabilities in modules you require, but your code doesn't appear to call\r\n    these vulnerabilities.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-16T13:23:36Z",
+      "merged_at": "2026-06-18T11:37:51Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XXL"
+      ]
+    },
+    "13600": {
+      "title": "vendor: golang.org/x/crypto v0.53.0",
+      "url": "https://github.com/containerd/containerd/pull/13600",
+      "body": "golang.org/x/crypto v0.52.0 contains various security updates; those do NOT impact containerd, but may show up as vulnerability in scanners;\r\n\r\n    === Symbol Results ===\r\n\r\n    No vulnerabilities found.\r\n\r\n    === Package Results ===\r\n\r\n    No other vulnerabilities found.\r\n\r\n    === Module Results ===\r\n\r\n    Vulnerability #1: GO-2026-5033\r\n        Invoking pathological inputs can lead to client panic in\r\n        golang.org/x/crypto/ssh/agent\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5033\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #2: GO-2026-5023\r\n        Invoking VerifiedPublicKeyCallback permissions skip enforcement in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5023\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #3: GO-2026-5021\r\n        Invoking auth bypass via unenforced @revoked status in\r\n        golang.org/x/crypto/ssh/knownhosts\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5021\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #4: GO-2026-5020\r\n        Invoking infinite loop on large channel writes in golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5020\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #5: GO-2026-5019\r\n        Invoking bypass of FIDO/U2F security keys physical interaction in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5019\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #6: GO-2026-5018\r\n        Invoking pathological RSA/DSA parameters may cause DoS in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5018\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #7: GO-2026-5017\r\n        Invoking client can cause server deadlock on unexpected responses in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5017\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #8: GO-2026-5016\r\n        Invoking memory leak when rejecting channels can lead to DoS in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5016\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #9: GO-2026-5015\r\n        Invoking server panic during CheckHostKey/Authenticate in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5015\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #10: GO-2026-5014\r\n        Invoking bypass of certificate restrictions in golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5014\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #11: GO-2026-5013\r\n        Invoking byte arithmetic causes underflow and panic in\r\n        golang.org/x/crypto/ssh\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5013\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #12: GO-2026-5006\r\n        Invoking agent constraints dropped when forwarding keys in\r\n        golang.org/x/crypto/ssh/agent\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5006\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Vulnerability #13: GO-2026-5005\r\n        Invoking key constraints not enforced in golang.org/x/crypto/ssh/agent\r\n      More info: https://pkg.go.dev/vuln/GO-2026-5005\r\n      Module: golang.org/x/crypto\r\n        Found in: golang.org/x/crypto@v0.51.0\r\n        Fixed in: golang.org/x/crypto@v0.52.0\r\n\r\n    Your code is affected by 0 vulnerabilities.\r\n    This scan also found 0 vulnerabilities in packages you import and 13\r\n    vulnerabilities in modules you require, but your code doesn't appear to call\r\n    these vulnerabilities.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-15T18:48:38Z",
+      "merged_at": "2026-06-16T11:51:46Z",
+      "author": "thaJeztah",
+      "labels": [
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13627": {
+      "title": "[release/2.3] Prepare release notes for v2.3.2 ",
+      "url": "https://github.com/containerd/containerd/pull/13627",
+      "body": "containerd 2.3.2\r\n\r\nWelcome to the v2.3.2 release of containerd!\r\n\r\nThe second patch release for containerd 2.3 contains various fixes\r\nand updates including security patches.\r\n\r\n### Security Updates\r\n\r\n* **containerd**\r\n  * [**CVE-2026-50195**](https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574)\r\n  * [**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)\r\n  * [**CVE-2026-53492**](https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc)\r\n  * [**CVE-2026-53489**](https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388)\r\n  * [**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)\r\n\r\n### Highlights\r\n\r\n* Fix a data race when reading shim logs on Windows ([#13522](https://github.com/containerd/containerd/pull/13522))\r\n\r\n#### Image Distribution\r\n\r\n* Allow the last host to retry on transient network errors ([#13591](https://github.com/containerd/containerd/pull/13591))\r\n\r\n#### Runtime\r\n\r\n* Fix container startup failures caused by concurrent task RPC timeouts during slow container creation ([#13512](https://github.com/containerd/containerd/pull/13512))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Samuel Karp\r\n* Chris Henzie\r\n* Akihiro Suda\r\n* Derek McGowan\r\n* Akhil Mohan\r\n* Austin Vazquez\r\n* Ben Cressey\r\n* Brian Goff\r\n* Maksym Pavlenko\r\n* Sebastiaan van Stijn\r\n* Sergey Kanzhelev\r\n\r\n### Changes\r\n<details><summary>29 commits</summary>\r\n<p>\r\n\r\n  * [`fb8ca00b0`](https://github.com/containerd/containerd/commit/fb8ca00b051fa9a9187502b16620fdb46595f1b7) Prepare release notes for v2.3.2\r\n  * [`9c69960ba`](https://github.com/containerd/containerd/commit/9c69960ba495c0aa08797be3f17b3c7712d17a22) Merge commit from fork\r\n  * [`0f6251520`](https://github.com/containerd/containerd/commit/0f6251520569a25f0b52158a97d035726e6af9d2) Merge commit from fork\r\n  * [`91d7471e2`](https://github.com/containerd/containerd/commit/91d7471e2cc7113c31dbcc62007756ba88f8cf9f) cri: filter CDI annotations on checkpoint restore\r\n  * [`7c2e086bf`](https://github.com/containerd/containerd/commit/7c2e086bf31a4402cc19817df3b05ffd74d454e6) Merge commit from fork\r\n  * [`dae67765f`](https://github.com/containerd/containerd/commit/dae67765f2d51ca3e67190c26e51edf496dd4cf4) cri: do not re-tag restored checkpoints\r\n  * [`94aa1e2c1`](https://github.com/containerd/containerd/commit/94aa1e2c1a6ebadf2578fabe85ba7845e1e553c0) Merge commit from fork\r\n  * [`09599078f`](https://github.com/containerd/containerd/commit/09599078f66bb98f6e83087893e3f2349b019fe7) cri: make checkpoint restore robust to unexpected archive content\r\n  * [`e1fdb8d22`](https://github.com/containerd/containerd/commit/e1fdb8d221a27ce017264875e3658d021511ba0c) Merge commit from fork\r\n  * [`ff1d116ef`](https://github.com/containerd/containerd/commit/ff1d116ef9c2d7505306d7d367ef46ff0756460b) Bound user-database file reads in openUserFile\r\n  * [`d156e07cb`](https://github.com/containerd/containerd/commit/d156e07cbe61331f77b72e3603d8b6d67dda59e5) Merge commit from fork\r\n  * [`f99aad54a`](https://github.com/containerd/containerd/commit/f99aad54af507168a1393dfae1559fde4cae9b2c) Do not propagate reserved labels from image configs\r\n* vendor: golang.org/x/crypto v0.53.0 ([#13608](https://github.com/containerd/containerd/pull/13608))\r\n  * [`0b9469501`](https://github.com/containerd/containerd/commit/0b9469501257584fc8ff32c8160dbda3501e99cc) [release/2.3] vendor: golang.org/x/crypto v0.53.0\r\n* resolver: retry on transient network errors ([#13591](https://github.com/containerd/containerd/pull/13591))\r\n  * [`983bbddc1`](https://github.com/containerd/containerd/commit/983bbddc139c607700259a2bec519e7026018c6f) resolver: retry on transient network errors\r\n* update runc binary to v1.4.3 ([#13601](https://github.com/containerd/containerd/pull/13601))\r\n  * [`3f76f2dc1`](https://github.com/containerd/containerd/commit/3f76f2dc1863820a2192af9dcf07584b61db778e) update runc binary to v1.4.3\r\n* update go to 1.26.4 ([#13580](https://github.com/containerd/containerd/pull/13580))\r\n  * [`8a49dfe85`](https://github.com/containerd/containerd/commit/8a49dfe854c1fe869e1531662bef76720104f20b) update go to 1.26.4\r\n  * [`5aa6bb2b7`](https://github.com/containerd/containerd/commit/5aa6bb2b7155a246a05872c70ea8e63e1e69ee70) remove 1.26.2 from CI builds as it is not supported any longer due to the dependency\r\n* Configure udevd children-max for root-test ([#13568](https://github.com/containerd/containerd/pull/13568))\r\n  * [`bfb8aebc0`](https://github.com/containerd/containerd/commit/bfb8aebc07d75608fdb70a6f5592a5bfd753475b) Configure udevd children-max for root-test\r\n* core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read ([#13522](https://github.com/containerd/containerd/pull/13522))\r\n  * [`62ceafff0`](https://github.com/containerd/containerd/commit/62ceafff0a9b37ab01f73d4d5acd2ff105ef4023) core/runtime/v2: fix race on Windows deferredPipeConnection.c in Read\r\n* runc-shim: don't hold the service lock across runc create ([#13512](https://github.com/containerd/containerd/pull/13512))\r\n  * [`9b0c0dc58`](https://github.com/containerd/containerd/commit/9b0c0dc584f275269e29a8b8365ab155705f6ec8) runc-shim: don't hold the service lock across runc create\r\n* contrib/checkpoint: increase timeouts to 30s ([#13459](https://github.com/containerd/containerd/pull/13459))\r\n  * [`f588bc6fb`](https://github.com/containerd/containerd/commit/f588bc6fb7c6001865461ece541cc8a6e12a33fe) contrib/checkpoint: increase timeouts to 30s\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\n* **golang.org/x/crypto**  v0.49.0 -> v0.53.0\r\n* **golang.org/x/mod**     v0.35.0 -> v0.36.0\r\n* **golang.org/x/net**     v0.52.0 -> v0.55.0\r\n* **golang.org/x/sync**    v0.20.0 -> v0.21.0\r\n* **golang.org/x/sys**     v0.43.0 -> v0.46.0\r\n* **golang.org/x/term**    v0.41.0 -> v0.44.0\r\n* **golang.org/x/text**    v0.35.0 -> v0.38.0\r\n\r\nPrevious release can be found at [v2.3.1](https://github.com/containerd/containerd/releases/tag/v2.3.1)\r\n### Which file should I download?\r\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\r\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\r\n\r\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\r\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\r\n\r\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-18T21:19:32Z",
+      "merged_at": "2026-06-18T23:07:17Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/XL"
+      ]
+    }
+  },
+  "issues": {
+    "4720": {
+      "title": "Add containerd sha/revision to prometheus output",
+      "url": "https://github.com/containerd/containerd/issues/4720",
+      "body": "**What is the problem you're trying to solve**\r\nFor large clusters, it would be good to query prometheus metrics to get the sha\r\n\r\n**Describe the solution you'd like**\r\nA simple counter metrics always == 1 that has the containerd version and revision (from the `version` package as labels to the metric.\r\n\r\n**Additional context**\r\n",
+      "state": "closed",
+      "created_at": "2020-11-10T15:03:06Z",
+      "closed_at": "2021-09-09T21:47:36Z",
+      "author": "crosbymichael",
+      "labels": [
+        "kind/feature"
+      ]
+    }
+  }
+}
