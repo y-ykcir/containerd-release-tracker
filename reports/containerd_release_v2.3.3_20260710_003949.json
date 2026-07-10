@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-10T00:39:50.334406",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.3.3",
+    "name": "containerd 2.3.3",
+    "body": "Welcome to the v2.3.3 release of containerd!\n\nThe third patch release for containerd 2.3 contains various fixes and updates.\n\n### Highlights\n\n* Set SystemTemp environment variable on Windows so temp directory overrides work for SYSTEM services ([#13694](https://github.com/containerd/containerd/pull/13694))\n\n#### Container Runtime Interface (CRI)\n\n* Fix nil pointer dereference in NRI GetIPs during pod sandbox teardown or container exit ([#13697](https://github.com/containerd/containerd/pull/13697))\n* Reject CreateContainer calls when the target sandbox is not running ([#13668](https://github.com/containerd/containerd/pull/13668))\n* Ensure sandbox shutdown on RunPodSandbox hook failures to avoid mount leaks ([#13645](https://github.com/containerd/containerd/pull/13645))\n\n#### Image Distribution\n\n* Surface OCI error bodies in registry 403 responses by falling back to GET requests ([#13738](https://github.com/containerd/containerd/pull/13738))\n\n#### Snapshotters\n\n* Align default 4K mkfs block size for EROFS across all platforms ([#13632](https://github.com/containerd/containerd/pull/13632))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Samuel Karp\n* Chris Henzie\n* Phil Estes\n* Sebastiaan van Stijn\n* Akihiro Suda\n* Austin Vazquez\n* Chris Crone\n* Derek McGowan\n* Maksim An\n* crawfordxx\n* cshung\n* lauralorenz\n\n### Changes\n<details><summary>14 commits</summary>\n<p>\n\n* Prepare release notes for v2.3.3 ([#13750](https://github.com/containerd/containerd/pull/13750))\n  * [`7f6cee02a`](https://github.com/containerd/containerd/commit/7f6cee02ad5afc5f3244ec36937d8eed61f7057d) Prepare release notes for v2.3.3\n* CI: migrate Vagrant to Lima ([#13744](https://github.com/containerd/containerd/pull/13744))\n  * [`7316210ce`](https://github.com/containerd/containerd/commit/7316210ce6bd95e8afd2856e256b5d9855385d01) CI: migrate Vagrant to Lima\n* remotes: surface OCI error body in registry 4xx responses ([#13738](https://github.com/containerd/containerd/pull/13738))\n  * [`457fba3a3`](https://github.com/containerd/containerd/commit/457fba3a380dab10ef7e9334352352f72caf8423) remotes: surface OCI error body on HEAD 403 via GET fallback\n* Update go to 1.26.5 ([#13732](https://github.com/containerd/containerd/pull/13732))\n  * [`dc2df934e`](https://github.com/containerd/containerd/commit/dc2df934efebc78523d6821c2520f538ff65986d) Update go to 1.26.5\n* ci: pin fog-json to resolve gem conflict ([#13711](https://github.com/containerd/containerd/pull/13711))\n  * [`5be0495df`](https://github.com/containerd/containerd/commit/5be0495dff529910a85b6ca1b2a1a35ea220da59) ci: pin fog-json to resolve gem conflict\n* Fix nil pointer dereference in NRI GetIPs ([#13697](https://github.com/containerd/containerd/pull/13697))\n  * [`36c713971`](https://github.com/containerd/containerd/commit/36c7139715fee7ff2f87f78a8b3d6fea4e2e7b35) Fix nil pointer dereference in NRI GetIPs\n* Set SystemTemp env var to config temp on Windows ([#13694](https://github.com/containerd/containerd/pull/13694))\n  * [`26dce170d`](https://github.com/containerd/containerd/commit/26dce170df24e227aeb5ccd1cec1e5c91b307595) Set SystemTemp env var to config temp on Windows\n* update runhcs to v0.15.0-rc.3 ([#13693](https://github.com/containerd/containerd/pull/13693))\n  * [`9bc2c2349`](https://github.com/containerd/containerd/commit/9bc2c23496073c3b48b083f6bede9e82d879a7d4) update runhcs to v0.15.0-rc.3\n* Update to current setup-go version ([#13686](https://github.com/containerd/containerd/pull/13686))\n  * [`3e97edeb7`](https://github.com/containerd/containerd/commit/3e97edeb7d3dfcee903c37ab531b1fdfe0a49ae4) Update to current setup-go version\n* cri: reject CreateContainer when sandbox is not running ([#13668](https://github.com/containerd/containerd/pull/13668))\n  * [`8856b0f9c`](https://github.com/containerd/containerd/commit/8856b0f9c3ae50efe6f2a84ab7337953faeb129f) cri: reject CreateContainer when sandbox is not running\n* update runhcs to v0.15.0-rc.2 ([#13666](https://github.com/containerd/containerd/pull/13666))\n  * [`ae796cec5`](https://github.com/containerd/containerd/commit/ae796cec596341f3db4ea324199b83670aaa8162) update runhcs to v0.15.0-rc.2\n* test: fix flaky image timestamp check on coarse clocks ([#13643](https://github.com/containerd/containerd/pull/13643))\n  * [`168d56783`](https://github.com/containerd/containerd/commit/168d56783608354301e6f6dfb3ceb9af342c7dde) test: fix flaky image timestamp check on coarse clocks\n* Add defer in event of mid-function failures in RunPodSandbox to avoid mount leaks ([#13645](https://github.com/containerd/containerd/pull/13645))\n  * [`d1db61db8`](https://github.com/containerd/containerd/commit/d1db61db8d6b59cdb27e5e1843911ad12e25a5e7) Add deferred call to ShutdownSandbox to avoid leaks\n* erofs: align default mkfs block size across platforms ([#13632](https://github.com/containerd/containerd/pull/13632))\n  * [`01b0f03f6`](https://github.com/containerd/containerd/commit/01b0f03f676c19bf5beca591524f274b61537694) erofs: align default mkfs block size across platforms\n</p>\n</details>\n\n### Dependency Changes\n\nThis release has no dependency changes\n\nPrevious release can be found at [v2.3.2](https://github.com/containerd/containerd/releases/tag/v2.3.2)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-07-10T00:04:40Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.3.3",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 20,
+    "analyzed_issues": 3,
+    "important_items": 13
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13632: [release/2.3] erofs: align default mkfs block size across platforms",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13643: [release/2.3] test: fix flaky image timestamp check on coarse clocks",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13645: [release/2.3] Add defer in event of mid-function failures in RunPodSandbox to avoid mount leaks",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13666: [release/2.3] update runhcs to v0.15.0-rc.2",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13668: [release/2.3] cri: reject CreateContainer when sandbox is not running",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13686: [release/2.3] Update to current setup-go version",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13693: [release/2.3] update runhcs to v0.15.0-rc.3",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13694: [release/2.3] Set SystemTemp env var to config temp on Windows",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13697: [release/2.3] Fix nil pointer dereference in NRI GetIPs",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13711: [release/2.3] ci: pin fog-json to resolve gem conflict",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "Issue",
+      "title": "#13355: When NRI plugin fails on RunPodSandbox, containerd leaks resources",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#13609: containerd fatal on restart",
+      "reason": "Has label 'kind/bug'; Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#13599: CreateContainer CRI API should be rejected on stopped sandbox",
+      "reason": "Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "13632": {
+      "title": "[release/2.3] erofs: align default mkfs block size across platforms",
+      "url": "https://github.com/containerd/containerd/pull/13632",
+      "body": "This is an automated cherry-pick of #13624\n\n/assign dmcgowan\n\n\n```release-note\nAlign default 4K mkfs block size for EROFS across all platforms\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-18T23:32:07Z",
+      "merged_at": "2026-06-19T17:19:10Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/XS"
+      ]
+    },
+    "13624": {
+      "title": "erofs: align default mkfs block size across platforms",
+      "url": "https://github.com/containerd/containerd/pull/13624",
+      "body": "Force a 4K block size on all platforms rather than only on darwin. An explicit caller-supplied `-b` is still respected.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-18T18:23:03Z",
+      "merged_at": "2026-06-18T21:48:46Z",
+      "author": "chris-crone",
+      "labels": [
+        "size/XS",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13643": {
+      "title": "[release/2.3] test: fix flaky image timestamp check on coarse clocks",
+      "url": "https://github.com/containerd/containerd/pull/13643",
+      "body": "This is an automated cherry-pick of #13588\n\n/assign fuweid",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-22T16:33:51Z",
+      "merged_at": "2026-06-23T21:35:28Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13588": {
+      "title": "test: fix flaky image timestamp check on coarse clocks",
+      "url": "https://github.com/containerd/containerd/pull/13588",
+      "body": "TestImagesCreateUpdateDelete asserts that an image's updatedat is strictly after its createdat. Both timestamps are stamped via time.Now().UTC(), which strips the monotonic reading, so the comparison falls back to the wall clock. On platforms with coarse timer resolution (e.g. Windows, which advances system time at the ~15.6ms tick), the Create and Update calls can land in the same tick and produce identical timestamps, making the strict After() check fail intermittently.\r\n\r\nWait for the wall clock to advance past the creation timestamp before updating so the assertion stays meaningful without depending on clock resolution. On fine-resolution clocks the loop runs zero iterations.\r\n\r\n### Testing\r\n\r\n#### Before\r\n\r\n```\r\n~/Workspace/containerd (main)\r\n$ go test -run ^TestImagesCreateUpdateDelete$ -count 2 ./core/metadata/\r\n--- FAIL: TestImagesCreateUpdateDelete (0.03s)\r\n    --- FAIL: TestImagesCreateUpdateDelete/ReplaceLabelsAnnotationsFieldPath (0.00s)\r\n        images_test.go:579: timestamp for updatedat not after createdat: 2026-06-12 19:46:25.9847699 +0000 UTC <= 2026-06-12 19:46:25.9847699 +0000 UTC\r\nFAIL\r\nFAIL    github.com/containerd/containerd/v2/core/metadata       0.430s\r\nFAIL\r\n```\r\n\r\n#### After\r\n\r\n```\r\n~/Workspace/containerd (fix-flaky-images-create-update-delete-test)\r\n$ go test -run ^TestImagesCreateUpdateDelete$ -count 1000 ./core/metadata/\r\nok      github.com/containerd/containerd/v2/core/metadata       26.076s\r\n```\r\n\r\n### Additional context\r\n\r\n- > === Failed\r\n=== FAIL: core/metadata TestImagesCreateUpdateDelete/ReplaceLabelsAnnotationsFieldPath (0.01s)\r\n    images_test.go:579: timestamp for updatedat not after createdat: 2026-06-12 17:11:33.7569733 +0000 UTC <= 2026-06-12 17:11:33.7569733 +0000 UTC\r\n\r\nSeen in https://github.com/containerd/containerd/actions/runs/27430461506/job/81079589148",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-12T19:39:39Z",
+      "merged_at": "2026-06-22T14:40:05Z",
+      "author": "austinvazquez",
+      "labels": [
+        "size/S",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13645": {
+      "title": "[release/2.3] Add defer in event of mid-function failures in RunPodSandbox to avoid mount leaks",
+      "url": "https://github.com/containerd/containerd/pull/13645",
+      "body": "This is an automated cherry-pick of #13399\n\n/assign samuelkarp\n\n\n```release-note\nEnsure sandbox shutdown on RunPodSandbox hook failures to avoid mount leaks\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-22T18:03:00Z",
+      "merged_at": "2026-06-22T23:35:58Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/S"
+      ]
+    },
+    "13399": {
+      "title": "Add defer in event of mid-function failures in RunPodSandbox to avoid mount leaks",
+      "url": "https://github.com/containerd/containerd/pull/13399",
+      "body": "- Fixes https://github.com/containerd/containerd/issues/13355\r\n- Fixes https://github.com/containerd/containerd/issues/13609\r\n\r\nAdd a defer with ~StopSandbox~ ShutdownSandbox in it before we start the RunPodSandbox hooks so if there is a failure in one of them, the mounts are still cleaned up. This rollback defer is active for any failures between the StartSandbox it directly follows and the successful addition of the sandbox to the sandbox store.\r\n\r\n\r\n# Before this PR / bad\r\n```bash\r\nlauralorenz@lauralorenz:cri-tools$ make critest\r\n# containerd is running locally from main with root /var/lib/containerd-critest and state /var/lib/containerd-critest/state\r\nlauralorenz@lauralorenz:cri-tools$ sudo ./build/bin/linux/$(go env GOARCH)/critest     --runtime-endpoint=unix:///run/containerd/containerd.sock --nri-socket=/var/run/nri/nri.sock    --ginkgo.vv     --ginkgo.focus=\"should propagate RunPodSandbox plugin error, clean up resources, and allow immediate retry\"\r\n```\r\n```bash\r\nlauralorenz@lauralorenz:cri-tools$ sudo rm -rf /var/lib/containerd-critest/state\r\nrm: cannot remove '/var/lib/containerd-critest/state/io.containerd.runtime.v2.task/k8s.io/9e98e9d62868198e2bf07260e25b79a6dc9ed12eec7ddff8183b4f9df681b440/rootfs': Device or resource busy\r\nrm: cannot remove '/var/lib/containerd-critest/state/io.containerd.grpc.v1.cri/sandboxes/9e98e9d62868198e2bf07260e25b79a6dc9ed12eec7ddff8183b4f9df681b440/shm': Device or resource busy\r\n```\r\n\r\n\r\n# After this PR / good\r\n```bash\r\n# containerd is running locally from this PR with same root/state dirs as above\r\nlauralorenz@lauralorenz:cri-tools$ sudo ./build/bin/linux/$(go env GOARCH)/critest     --runtime-endpoint=unix:///run/containerd/containerd.sock --nri-socket=/var/run/nri/nri.sock    --ginkgo.vv     --ginkgo.focus=\"should propagate RunPodSandbox plugin error, clean up resources, and allow immediate retry\"\r\n```\r\n```bash\r\nlauralorenz@lauralorenz:cri-tools$ sudo rm -rf /var/lib/containerd-critest/state\r\nlauralorenz@lauralorenz:cri-tools$ \r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-13T18:05:50Z",
+      "merged_at": "2026-06-09T18:44:12Z",
+      "author": "lauralorenz",
+      "labels": [
+        "ok-to-test",
+        "size/S",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13666": {
+      "title": "[release/2.3] update runhcs to v0.15.0-rc.2",
+      "url": "https://github.com/containerd/containerd/pull/13666",
+      "body": "This is an automated cherry-pick of #13659\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-25T07:24:20Z",
+      "merged_at": "2026-06-25T15:54:00Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13659": {
+      "title": "update runhcs to v0.15.0-rc.2",
+      "url": "https://github.com/containerd/containerd/pull/13659",
+      "body": "full diff: https://github.com/microsoft/hcsshim/compare/v0.15.0-rc.1...v0.15.0-rc.2",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-23T20:49:46Z",
+      "merged_at": "2026-06-25T01:45:13Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XS",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13668": {
+      "title": "[release/2.3] cri: reject CreateContainer when sandbox is not running",
+      "url": "https://github.com/containerd/containerd/pull/13668",
+      "body": "This is an automated cherry-pick of #13654\n\n/assign AkihiroSuda\n\n\n```release-note\nReject CreateContainer calls when the target sandbox is not running\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-25T19:32:44Z",
+      "merged_at": "2026-06-26T21:58:24Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/XS"
+      ]
+    },
+    "13654": {
+      "title": "cri: reject CreateContainer when sandbox is not running",
+      "url": "https://github.com/containerd/containerd/pull/13654",
+      "body": "## What does this PR do?\n\n`CreateContainer` currently proceeds without checking whether the sandbox is in a running (`StateReady`) state. If the sandbox has already stopped or is in an unknown state, the call silently creates a container shell that is unusable.\n\n`StartContainer` already has the correct guard (added in the existing code):\n\n```go\nif sandbox.Status.Get().State != sandboxstore.StateReady {\n    return nil, fmt.Errorf(\"sandbox container %q is not running\", sandboxID)\n}\n```\n\nThis PR applies the identical check in `CreateContainer`, right after the sandbox state is resolved, so callers receive an actionable error instead of a dangling container.\n\n## Why is it needed?\n\nThe CRI specification requires `CreateContainer` to fail when the target sandbox is not running. The `cri-tools` test at https://github.com/kubernetes-sigs/cri-tools/pull/2126 exercises this exact case and currently fails against containerd.\n\nFixes #13599\n\n## Testing\n\n- Existing `container_create_test.go` unit tests continue to pass (they exercise `buildContainerSpec`, which is unaffected).\n- The failing `cri-tools` conformance test referenced in #13599 will now pass with this guard in place.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-23T04:07:59Z",
+      "merged_at": "2026-06-25T19:32:05Z",
+      "author": "crawfordxx",
+      "labels": [
+        "size/XS",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13686": {
+      "title": "[release/2.3] Update to current setup-go version",
+      "url": "https://github.com/containerd/containerd/pull/13686",
+      "body": "This is an automated cherry-pick of #13516\n\n/assign dmcgowan",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-29T20:22:25Z",
+      "merged_at": "2026-06-29T23:27:11Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13516": {
+      "title": "Update to current setup-go version",
+      "url": "https://github.com/containerd/containerd/pull/13516",
+      "body": "Update the setup-go version in our private action yml to:\r\n\r\n1) be pinned by hash (with comment to version string)\r\n2) remove cache disable that was fixed 3 years ago\r\n\r\nApparently dependabot doesn't reach into this directory, so we were close to the cutoff date for Node 20 based actions to start to fail intermittently (in a couple weeks)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-02T17:23:42Z",
+      "merged_at": "2026-06-11T14:57:10Z",
+      "author": "estesp",
+      "labels": [
+        "cherry-pick/1.7.x",
+        "size/XS",
+        "cherry-pick/2.0.x",
+        "cherry-pick/2.1.x",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13693": {
+      "title": "[release/2.3] update runhcs to v0.15.0-rc.3",
+      "url": "https://github.com/containerd/containerd/pull/13693",
+      "body": "This is an automated cherry-pick of #13691\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-30T17:57:04Z",
+      "merged_at": "2026-06-30T22:15:04Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13691": {
+      "title": "update runhcs to v0.15.0-rc.3",
+      "url": "https://github.com/containerd/containerd/pull/13691",
+      "body": "- relates to https://github.com/containerd/containerd/pull/13684\r\n- relates to https://github.com/containerd/containerd/pull/13690\r\n\r\nfull diff: https://github.com/microsoft/hcsshim/compare/v0.15.0-rc.2...v0.15.0-rc.3",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-30T11:55:24Z",
+      "merged_at": "2026-06-30T17:39:09Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XS",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13694": {
+      "title": "[release/2.3] Set SystemTemp env var to config temp on Windows",
+      "url": "https://github.com/containerd/containerd/pull/13694",
+      "body": "This is an automated cherry-pick of #13667\n\n/assign thaJeztah\n\n\n```release-note\nSet SystemTemp environment variable on Windows so temp directory overrides work for SYSTEM services\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-30T19:48:05Z",
+      "merged_at": "2026-06-30T22:16:36Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "platform/windows",
+        "size/M"
+      ]
+    },
+    "13667": {
+      "title": "Set SystemTemp env var to config temp on Windows",
+      "url": "https://github.com/containerd/containerd/pull/13667",
+      "body": "Since Go 1.21, os.MkdirTemp/os.TempDir resolve the temp directory via Windows' GetTempPath2W. For processes running as SYSTEM (as containerd does when running under the SCM), that API reads the temp location from the SystemTemp environment variable rather than TMP/TEMP. As a result, the existing TMP/TEMP overrides no longer steer the layer-extraction tempdir for the containerd service, so it falls back to the default C:\\\\Windows\\\\SystemTemp and unpacks on the SystemDrive, reintroducing the cross-volume copy the 'temp' config option was meant to avoid.\r\n\r\nSet SystemTemp to config.TempDir alongside TEMP/TMP so the override keeps working on Go 1.21+.\r\n\r\nFactor the env-var setting out of CreateTopLevelDirectories into a small\r\nsetTempDirEnv helper and add a focused unit test (TestSetTempDirEnv) that\r\nverifies the expected variables are set: TEMP/TMP/SystemTemp on Windows,\r\nTMPDIR on other platforms.\r\n\r\nRef: https://cs.opensource.google/go/go/+/refs/tags/go1.21.0:src/os/file_windows.go",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-25T07:50:46Z",
+      "merged_at": "2026-06-30T19:34:13Z",
+      "author": "anmaxvl",
+      "labels": [
+        "cherry-pick/1.7.x",
+        "size/M",
+        "cherry-pick/2.0.x",
+        "cherry-pick/2.1.x",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13697": {
+      "title": "[release/2.3] Fix nil pointer dereference in NRI GetIPs",
+      "url": "https://github.com/containerd/containerd/pull/13697",
+      "body": "This is an automated cherry-pick of #13683\n\n/assign chrishenzie\n\n\n```release-note\nFix nil pointer dereference in NRI GetIPs during pod sandbox teardown or container exit\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-30T20:38:58Z",
+      "merged_at": "2026-06-30T22:23:18Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/M"
+      ]
+    },
+    "13683": {
+      "title": "Fix nil pointer dereference in NRI GetIPs",
+      "url": "https://github.com/containerd/containerd/pull/13683",
+      "body": "Adds a `nil` guard to `GetIPs` on `criPodSandbox` before accessing promoted struct fields on the embedded `Sandbox` pointer.\r\n\r\nDuring pod sandbox teardown or race conditions during container exit events, `nriPodSandbox` can return a `criPodSandbox` instance where the embedded `Sandbox` pointer is `nil`.\r\n\r\nAssisted-by: Antigravity",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-29T17:18:23Z",
+      "merged_at": "2026-06-30T19:41:43Z",
+      "author": "chrishenzie",
+      "labels": [
+        "size/M",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13711": {
+      "title": "[release/2.3] ci: pin fog-json to resolve gem conflict",
+      "url": "https://github.com/containerd/containerd/pull/13711",
+      "body": "This is an automated cherry-pick of #13707\n\n/assign AkihiroSuda",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-02T14:58:49Z",
+      "merged_at": "2026-07-02T16:42:34Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13707": {
+      "title": "ci: pin fog-json to resolve gem conflict",
+      "url": "https://github.com/containerd/containerd/pull/13707",
+      "body": "Vagrant 2.4.x bundles an embedded Ruby 3.3.0 runtime that loads the default specification json-2.7.2 during initialization. When installing vagrant-libvirt, RubyGems resolves the newly released fog-json 1.4.0, which requires json (~> 2.19). Because json-2.7.2 is already active in memory when Vagrant starts up, RubyGems raises a Gem::ConflictError.\r\n\r\nPinning fog-json to version 1.2.0 before installing vagrant-libvirt ensures compatible gem resolution against Vagrant's embedded default json specification.\r\n\r\nAssisted-by: Antigravity",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-02T05:52:20Z",
+      "merged_at": "2026-07-02T14:58:08Z",
+      "author": "samuelkarp",
+      "labels": [
+        "cherry-picked/1.7.x",
+        "size/XS",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    }
+  },
+  "issues": {
+    "13355": {
+      "title": "When NRI plugin fails on RunPodSandbox, containerd leaks resources",
+      "url": "https://github.com/containerd/containerd/issues/13355",
+      "body": "The test for NRI failure leads to a leaked resource. Found while working on https://github.com/kubernetes-sigs/cri-tools/issues/2046\n\nFrom AI:\n\n  Root cause: Between StartSandbox succeeding (line 299) and the NRI RunPodSandbox hook (line 346), there is no defer to stop the sandbox/shim on failure. When NRI returns an error:                                                               \n                                                                                                                                                                                                                                                    \n  - Sandbox metadata is deleted from the store (defer at line 164) ✓                                                                                                                                                                                \n  - NRI RemovePodSandbox notification is sent (defer at line 351) ✓                                                                                                                                                                                 \n  - Shim task is NOT stopped — no call to sandboxService.StopSandbox() or controller.Stop() ✗                                                                                                                                                       \n  - rootfs and shm mounts are NOT unmounted ✗                                                                                                                                                                                                       \n                                                                                                                                                                                                                                                    \n  The fix should add a defer between lines 313 and 344 that calls c.sandboxService.StopSandbox() when retErr != nil. The existing rollback tests (sandbox_run_rollback_test.go) don't cover NRI hook failure.    ",
+      "state": "closed",
+      "created_at": "2026-05-07T05:53:13Z",
+      "closed_at": "2026-06-09T18:44:14Z",
+      "author": "SergeyKanzhelev",
+      "labels": [
+        "kind/bug",
+        "area/nri",
+        "status/accepted"
+      ]
+    },
+    "13609": {
+      "title": "containerd fatal on restart",
+      "url": "https://github.com/containerd/containerd/issues/13609",
+      "body": "### Description\n\nWhen NRI RunPodSandbox fails after StartSandbox has already created a container record in bolt DB, the deferred cleanup path does not delete the container. This can be triggered by NRI plugins rejecting the sandbox after it has been started, as well as CNI setup timeouts, ttrpc deadline errors, or other failures that occur after StartSandbox. If kubelet retries the same pod and succeeds, multiple containers with the same sandbox name but different IDs coexist in bolt DB. On containerd restart, recover() calls sandboxNameIndex.Reserve() for each container and hits a name conflict, causing a fatal exit that makes the node completely unusable.\n\n### Steps to reproduce the issue\n\n1. On a node with an NRI plugin that rejects RunPodSandbox under certain conditions, create a pod that triggers the NRI rejection\n2. Since StartSandbox has already created a container in bolt DB before the NRI hook, and the deferred cleanup does not delete it, a stale container remains in bolt DB\n3. Retry creating the same pod — NRI now allows it — a new container with the same sandbox name but different ID is written to bolt DB\n4. Restart containerd — recover() finds both containers and calls Reserve() with the same name for different IDs — fatal\n\n### Describe the results you received and expected\n\nReceived: containerd exits with fatal error:\nlevel=fatal msg=\"Failed to run CRI service\" error=\"failed to recover state: failed to reserve sandbox name \\\"nginx-1_default_075f8559-d013-487d-8c31-31b8ba24ca99_0\\\": name \\\"nginx-1_default_075f8559-d013-487d-8c31-31b8ba24ca99_0\\\" is reserved for \\\"c315533e05821dd235f05b40515d4c8ec4f6455230d907557ec12b3394a54b1f\\\"\"\nAfter the fatal, ctr cannot connect to containerd. The node becomes completely unusable.\nExpected: containerd should either:\n- Clean up the container created by StartSandbox() when RunPodSandbox fails after it (root cause fix), OR\n- Treat the name conflict as a non-fatal warning during recovery, allowing the node to remain operational (mitigation)\n\n### What version of containerd are you using?\n\ncontainerd 2.2.1\n\n### Any other relevant information\n\nk8s 1.36.0\n\n### Show configuration if it is related to CRI plugin.\n\nversion = 3\nroot = '/data0/containerd'\noom_score = -999\n\n[metrics]\n  address = '127.0.0.1:1338'\n  default_runtime_name = \"runc\"\n  discard_unpacked_layers = true\n\n[plugins]\n  [plugins.'io.containerd.cri.v1.images']\n    snapshotter = 'overlayfs'\n\n  [plugins.'io.containerd.cri.v1.runtime']\n    [plugins.'io.containerd.cri.v1.runtime'.containerd]\n      default_runtime_name = 'runc'\n      [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes]\n        [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc]\n          runtime_type = 'io.containerd.runc.v2'\n          [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc.options]\n            SystemdCgroup = true\n\n        [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia]\n          runtime_type = 'io.containerd.runc.v2'\n          [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia.options]\n            BinaryName = 'nvidia-container-runtime'\n            SystemdCgroup = true\n\n  [plugins.'io.containerd.nri.v1.nri']\n    disable = true\n    socket_path = '/var/run/nri/nri.sock'\n    plugin_path = '/opt/nri/plugins'\n    plugin_config_path = '/etc/nri/conf.d'\n    plugin_registration_timeout = '10s'\n    plugin_request_timeout = '5s'\n    disable_connections = false\n\n    [plugins.'io.containerd.nri.v1.nri'.default_validator]\n      enable = false\n      reject_oci_hook_adjustment = false\n      reject_runtime_default_seccomp_adjustment = false\n      reject_unconfined_seccomp_adjustment = false\n      reject_custom_seccomp_adjustment = false\n      reject_namespace_adjustment = false\n      reject_sysctl_adjustment = false\n      required_plugins = ['node-resource-agent']\n      tolerate_missing_plugins_annotation = 'nri.containerd.io/skip-validation'\n",
+      "state": "closed",
+      "created_at": "2026-06-16T14:11:59Z",
+      "closed_at": "2026-06-22T13:29:07Z",
+      "author": "zoujili",
+      "labels": [
+        "kind/bug",
+        "area/cri",
+        "area/nri"
+      ]
+    },
+    "13599": {
+      "title": "CreateContainer CRI API should be rejected on stopped sandbox",
+      "url": "https://github.com/containerd/containerd/issues/13599",
+      "body": "### Description\n\nSee https://github.com/kubernetes-sigs/cri-tools/pull/2126\n\n### Steps to reproduce the issue\n\n1. Run https://github.com/kubernetes-sigs/cri-tools/pull/2126\n2. Test must pass without spec dicrepancy\n\n\n### Describe the results you received and expected\n\nCreateContainer call must not be allowed on Stopped sandbox\n\n### What version of containerd are you using?\n\nmain\n\n### Any other relevant information\n\n_No response_\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-06-15T16:46:03Z",
+      "closed_at": "2026-06-25T19:32:06Z",
+      "author": "SergeyKanzhelev",
+      "labels": [
+        "kind/bug",
+        "area/cri"
+      ]
+    }
+  }
+}
