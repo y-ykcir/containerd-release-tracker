@@ -1,0 +1,236 @@
+{
+  "metadata": {
+    "generated_at": "2026-08-05T03:40:09.865207",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "api/v1.12.0-beta.0",
+    "name": "containerd API 1.12.0-beta.0",
+    "body": "Welcome to the api/v1.12.0-beta.0 release of containerd!\n*This is a pre-release of containerd*\n\nThe 13th release for the containerd 1.x API aligns with the containerd 2.4 release.\n\n### Highlights\n\n* **Include media type in content create event** ([#13833](https://github.com/containerd/containerd/pull/13833))\n* **Add parent path to runc checkpoint options** ([#13699](https://github.com/containerd/containerd/pull/13699))\n\n#### Deprecations\n\n* **Fix sandbox task API endpoints for non-runc runtimes** ([#13360](https://github.com/containerd/containerd/pull/13360))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Derek McGowan\n* Jordan Liggitt\n* Samuel Karp\n* Wei Fu\n* Kohei Tokunaga\n* Philip Laine\n* Sergey Kanzhelev\n\n### Changes\n<details><summary>16 commits</summary>\n<p>\n\n* Prepare release notes for api/v1.12.0-beta.0 ([#13899](https://github.com/containerd/containerd/pull/13899))\n  * [`0ff04dc3f`](https://github.com/containerd/containerd/commit/0ff04dc3f7934523f6a2001e67d9572d4a9d4885) Prepare release notes for api/v1.12.0-beta.0\n* Include media type in content create event ([#13833](https://github.com/containerd/containerd/pull/13833))\n  * [`a452c2e23`](https://github.com/containerd/containerd/commit/a452c2e2304d43f48299ed2663ed82673b25be81) Include media type in content create event\n* build(deps): bump golang.org/x/net from 0.51.0 to 0.55.0 in /api ([#13819](https://github.com/containerd/containerd/pull/13819))\n  * [`52c5f1f64`](https://github.com/containerd/containerd/commit/52c5f1f64e2184af56f3550940db29ccdb94e576) build(deps): bump golang.org/x/net from 0.51.0 to 0.55.0 in /api\n* build(deps): bump github.com/containerd/ttrpc to v1.2.9 ([#13740](https://github.com/containerd/containerd/pull/13740))\n  * [`658a1c78b`](https://github.com/containerd/containerd/commit/658a1c78b52e25002c9c26a504055c8d3af09ea3) build(deps): bump github.com/containerd/ttrpc to v1.2.9\n* Add parent path to runc checkpoint options ([#13699](https://github.com/containerd/containerd/pull/13699))\n  * [`ea0ed51e2`](https://github.com/containerd/containerd/commit/ea0ed51e2101448874215c0de945197a1cafdea4) shim: allow specifying runc's --parent-path during checkpointing\n* Update typeurl/v2 to v2.3.0 to drop gogo dependency ([#13490](https://github.com/containerd/containerd/pull/13490))\n  * [`ce3914324`](https://github.com/containerd/containerd/commit/ce39143249b595d2b275e47c279c129f67e3a2a9) Update typeurl/v2 to v2.3.0 to drop gogo dependency\n* do not hide linitng errors ([#13423](https://github.com/containerd/containerd/pull/13423))\n  * [`7f10e9eb5`](https://github.com/containerd/containerd/commit/7f10e9eb5fe3b6e89438fd4806f75bcddfbf576e) do not hide linitng errors\n* Fix sandbox task API endpoints for non-runc runtimes ([#13360](https://github.com/containerd/containerd/pull/13360))\n  * [`ac01ae5c2`](https://github.com/containerd/containerd/commit/ac01ae5c2766961c3592523ab679dc06ca73c331) protos: include task API address to CreateTaskRequest\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/containerd/ttrpc**                v1.2.5 -> v1.2.9\n* **github.com/containerd/typeurl/v2**           v2.1.1 -> v2.3.0\n* **golang.org/x/net**                           v0.48.0 -> v0.55.0\n* **golang.org/x/sys**                           v0.39.0 -> v0.46.0\n* **golang.org/x/text**                          v0.32.0 -> v0.37.0\n* **google.golang.org/genproto/googleapis/rpc**  ff82c1b0f217 -> a57be14db171\n* **google.golang.org/grpc**                     v1.79.3 -> v1.81.1\n* **google.golang.org/protobuf**                 v1.36.10 -> v1.36.11\n\nPrevious release can be found at [api/v1.11.0](https://github.com/containerd/containerd/releases/tag/api/v1.11.0)\n",
+    "published_at": "2026-08-05T02:33:29Z",
+    "prerelease": true,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/api/v1.12.0-beta.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 12,
+    "analyzed_issues": 1,
+    "important_items": 3
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13360: Fix sandbox task API endpoints for non-runc runtimes",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13819: build(deps): bump golang.org/x/net from 0.51.0 to 0.55.0 in /api",
+      "reason": "Contains 'security'; Contains 'performance'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13899: Prepare release notes for api/v1.12.0-beta.0",
+      "reason": "Performance related"
+    }
+  ],
+  "prs": {
+    "13360": {
+      "title": "Fix sandbox task API endpoints for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13360",
+      "body": "I believe we overlooked this in https://github.com/containerd/containerd/pull/9736 and introduced task API address and version fields in Runc options.\r\n\r\nThose are used in Sandbox API flow and have nothing to do with runc specifically.\r\nAs the result it doesn't work with other runtimes - https://github.com/containerd/containerd/pull/12986\r\n\r\nThis PR deprecates fields introduced in runc options and moves them to `CreateTaskRequest`.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-07T22:02:00Z",
+      "merged_at": "2026-05-19T00:47:03Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/deprecation",
+        "kind/bug",
+        "area/runtime",
+        "size/XXL",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "9736": {
+      "title": "Store bootstrap parameters in sandbox metadata",
+      "url": "https://github.com/containerd/containerd/pull/9736",
+      "body": "1. Sandbox controller returns endpoint information including version, protocol and address when `Start` sandbox.\r\n2. Endpoint information is stored `Extensions`  of the Sandbox in db, then shim get the endpoint information from Sandbox Extensions and restore bootstrap parameters.\r\n\r\nThis is the first PR of the sandboxed Task demonstrated in draft #9574 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-02-02T06:42:54Z",
+      "merged_at": "2024-05-02T16:16:29Z",
+      "author": "abel-von",
+      "labels": [
+        "impact/changelog",
+        "ok-to-test",
+        "area/runtime",
+        "size/XL"
+      ]
+    },
+    "9574": {
+      "title": "WIP: sandbox: add \"sandboxedTask\"  in addition to shimTask",
+      "url": "https://github.com/containerd/containerd/pull/9574",
+      "body": "If the sandbox provides task API itself, shim management is not required anymore, and shimTask is no longer suitable for the task type provided by the sandbox. So I'm adding a \"sandboxedTask\" type here, and separating the two types can effectively reduce code complexity.\r\n\r\n\r\n\r\n![image](https://github.com/containerd/containerd/assets/7891772/8a3a5a2c-01e1-4e92-95c5-4da3938d293d)\r\n",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2023-12-25T03:43:27Z",
+      "merged_at": null,
+      "author": "abel-von",
+      "labels": [
+        "area/cri",
+        "needs-ok-to-test",
+        "needs-rebase",
+        "size/XXL",
+        "do-not-merge/work-in-progress"
+      ]
+    },
+    "12986": {
+      "title": "client: skip runc options unmarshal for non-runc runtime types",
+      "url": "https://github.com/containerd/containerd/pull/12986",
+      "body": "getRuncOptions() tries to copy the container's stored runtimeOptions into a fresh *runc.v1.Options before returning it to callers like WithTaskAPIEndpoint. This works for runc containers but fails when the container's runtime options are of a different type, e.g. runtimeoptions.v1.Options used by Kata Containers and other non-runc runtimes. typeurl.UnmarshalTo() rejects the cross-type unmarshal with:\r\n```\r\n  can't unmarshal type \"runtimeoptions.v1.Options\" to output\r\n  \"containerd.runc.v1.Options\"\r\n```\r\n\r\nThe error then propagates as \"failed to create containerd task: failed to get runtime v2 options: ...\" and breaks container start for every test that runs inside a Kata sandbox when the shim sandboxer is active.\r\n\r\nLet's ensure we check typeurl.Is() efore attempting the unmarshal. If the stored runtimeOptions are not runc.v1.Options we simply return an empty *options.Options so that callers can still populate task-level fields (TaskApiAddress, TaskApiVersion, etc.) without error.",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2026-03-06T16:13:34Z",
+      "merged_at": null,
+      "author": "fidencio",
+      "labels": [
+        "size/XS",
+        "area/client"
+      ]
+    },
+    "13423": {
+      "title": "do not hide linitng errors",
+      "url": "https://github.com/containerd/containerd/pull/13423",
+      "body": "This was counterproductive to format files before checking. Now lining errors will actually be checked",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-19T06:37:16Z",
+      "merged_at": "2026-05-21T22:39:05Z",
+      "author": "SergeyKanzhelev",
+      "labels": [
+        "size/L"
+      ]
+    },
+    "13490": {
+      "title": "Update typeurl/v2 to v2.3.0 to drop gogo dependency",
+      "url": "https://github.com/containerd/containerd/pull/13490",
+      "body": "Pull in https://github.com/containerd/typeurl/pull/51#issuecomment-4558801701\r\n\r\ncc @samuelkarp ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-27T21:32:42Z",
+      "merged_at": "2026-05-28T06:59:29Z",
+      "author": "liggitt",
+      "labels": [
+        "size/XXL"
+      ]
+    },
+    "51": {
+      "title": "Use protoversion for containerd version",
+      "url": "https://github.com/containerd/containerd/pull/51",
+      "body": "This is more a suggestion, if you actually wanted to use this, you'd probably want to copy proto/version into here, or I could rework it to have less default dependencies (right now it depends on a lot of my code that docker does not use ie https://go.pedge.io/protolog).\n\nFor my protobuf projects, I use a `Version` message for both client and server side versions. The setup is pretty simple - with the `version.API` service, there is both a `GetVersion` rpc, and a `GET /version` route using https://github.com/gengo/grpc-gateway. I use cobra instead of codegangsta/cli, so I just have https://github.com/peter-edge/go-proto/blob/master/client/protoclient.go to make the commands for me, but I do the same logic here for you.\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-18T13:09:50Z",
+      "merged_at": "2015-12-18T18:53:04Z",
+      "author": "bufdev",
+      "labels": []
+    },
+    "13699": {
+      "title": "Add parent path to runc checkpoint options",
+      "url": "https://github.com/containerd/containerd/pull/13699",
+      "body": "This commit allows the client to specify runc's `--parent-path` flag during checkpointing. This is useful for trying CRIU features relying on this flag (e.g. incremental checkpointing) from the client's side.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-01T00:24:24Z",
+      "merged_at": "2026-07-01T06:21:12Z",
+      "author": "ktock",
+      "labels": [
+        "impact/changelog",
+        "size/L"
+      ]
+    },
+    "13740": {
+      "title": "build(deps): bump github.com/containerd/ttrpc to v1.2.9",
+      "url": "https://github.com/containerd/containerd/pull/13740",
+      "body": "Update ttrpc to pick up https://github.com/containerd/ttrpc/pull/239\r\n\r\ncc @fuweid @samuelkarp ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-08T20:02:32Z",
+      "merged_at": "2026-07-12T15:15:39Z",
+      "author": "liggitt",
+      "labels": [
+        "size/L"
+      ]
+    },
+    "13819": {
+      "title": "build(deps): bump golang.org/x/net from 0.51.0 to 0.55.0 in /api",
+      "url": "https://github.com/containerd/containerd/pull/13819",
+      "body": "Bumps [golang.org/x/net](https://github.com/golang/net) from 0.51.0 to 0.55.0.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/golang/net/commit/7770ec48d03fec35e378665337b4faca93c38423\"><code>7770ec4</code></a> go.mod: update golang.org/x dependencies</li>\n<li><a href=\"https://github.com/golang/net/commit/4ece7b612ad44ad6c4d5e0d5d4df9c18cc211905\"><code>4ece7b6</code></a> html: escape greater-than symbol in doctype identifiers</li>\n<li><a href=\"https://github.com/golang/net/commit/08be507abce89191d78cd49da60f4501fc910472\"><code>08be507</code></a> html: improve Noah's Ark clause performance</li>\n<li><a href=\"https://github.com/golang/net/commit/a8fb2fe4f7378f816302b9f2f7b8290ce512e5dd\"><code>a8fb2fe</code></a> html: properly render fostered elements in foreign content</li>\n<li><a href=\"https://github.com/golang/net/commit/0dc5b7a5f81d7155ade6d5e9db35992998679932\"><code>0dc5b7a</code></a> html: properly check namespace in &quot;in body&quot; any other end tag</li>\n<li><a href=\"https://github.com/golang/net/commit/a452f3cc17168a60bc3f439a3ae0fcffc32eca0e\"><code>a452f3c</code></a> html: ignore duplicate attributes during tokenization</li>\n<li><a href=\"https://github.com/golang/net/commit/f8651996b24ba47d89dd9eb97fd47758e6d1886f\"><code>f865199</code></a> quic: fix appendMaxDataFrame erroneously accumulating sentLimit</li>\n<li><a href=\"https://github.com/golang/net/commit/210ed3cb901cb549818aefa04b71dadaf149d05d\"><code>210ed3c</code></a> quic: establish a &quot;happened-before&quot; relationship between stream write and read</li>\n<li><a href=\"https://github.com/golang/net/commit/ad8140e0aa2ec41b37ea478b4525a423bcc21af9\"><code>ad8140e</code></a> quic: fix buffer slicing when handling overlapping stream data</li>\n<li><a href=\"https://github.com/golang/net/commit/23ee2efe81a3ff183b4eca46c42f749af7efca45\"><code>23ee2ef</code></a> http2: avoid API changes when built with go1.27</li>\n<li>Additional commits viewable in <a href=\"https://github.com/golang/net/compare/v0.51.0...v0.55.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=golang.org/x/net&package-manager=go_modules&previous-version=0.51.0&new-version=0.55.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\nYou can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/containerd/containerd/network/alerts).\n\n</details>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-21T03:46:39Z",
+      "merged_at": "2026-07-22T03:13:48Z",
+      "author": "dependabot[bot]",
+      "labels": [
+        "dependencies",
+        "size/S",
+        "go"
+      ]
+    },
+    "13833": {
+      "title": "Include media type in content create event",
+      "url": "https://github.com/containerd/containerd/pull/13833",
+      "body": "This adds a new media type field to the content create event. This is needed as content create events occur before the image create event does. Meaning it is impossible to determine the media type of the content without first reading the content and fingerprinting it.\r\n\r\nFixes #12884",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-23T13:37:12Z",
+      "merged_at": "2026-07-24T10:46:23Z",
+      "author": "phillebaba",
+      "labels": [
+        "impact/changelog",
+        "size/XXL"
+      ]
+    },
+    "13899": {
+      "title": "Prepare release notes for api/v1.12.0-beta.0",
+      "url": "https://github.com/containerd/containerd/pull/13899",
+      "body": "Part of the v2.4 beta process\r\n\r\n----\r\n\r\ncontainerd api/v1.12.0-beta.0\r\n\r\nWelcome to the api/v1.12.0-beta.0 release of containerd!  \r\n*This is a pre-release of containerd*\r\n\r\nThe 13th release for the containerd 1.x API aligns with the containerd 2.4 release.\r\n\r\n### Highlights\r\n\r\n* **Include media type in content create event** ([#13833](https://github.com/containerd/containerd/pull/13833))\r\n* **Add parent path to runc checkpoint options** ([#13699](https://github.com/containerd/containerd/pull/13699))\r\n\r\n#### Deprecations\r\n\r\n* **Fix sandbox task API endpoints for non-runc runtimes** ([#13360](https://github.com/containerd/containerd/pull/13360))\r\n\r\nPlease try out the release binaries and report any issues at\r\nhttps://github.com/containerd/containerd/issues.\r\n\r\n### Contributors\r\n\r\n* Maksym Pavlenko\r\n* Jordan Liggitt\r\n* Samuel Karp\r\n* Wei Fu\r\n* Kohei Tokunaga\r\n* Philip Laine\r\n* Sergey Kanzhelev\r\n\r\n### Changes\r\n<details><summary>14 commits</summary>\r\n<p>\r\n\r\n* Include media type in content create event ([#13833](https://github.com/containerd/containerd/pull/13833))\r\n  * [`a452c2e23`](https://github.com/containerd/containerd/commit/a452c2e2304d43f48299ed2663ed82673b25be81) Include media type in content create event\r\n* build(deps): bump golang.org/x/net from 0.51.0 to 0.55.0 in /api ([#13819](https://github.com/containerd/containerd/pull/13819))\r\n  * [`52c5f1f64`](https://github.com/containerd/containerd/commit/52c5f1f64e2184af56f3550940db29ccdb94e576) build(deps): bump golang.org/x/net from 0.51.0 to 0.55.0 in /api\r\n* build(deps): bump github.com/containerd/ttrpc to v1.2.9 ([#13740](https://github.com/containerd/containerd/pull/13740))\r\n  * [`658a1c78b`](https://github.com/containerd/containerd/commit/658a1c78b52e25002c9c26a504055c8d3af09ea3) build(deps): bump github.com/containerd/ttrpc to v1.2.9\r\n* Add parent path to runc checkpoint options ([#13699](https://github.com/containerd/containerd/pull/13699))\r\n  * [`ea0ed51e2`](https://github.com/containerd/containerd/commit/ea0ed51e2101448874215c0de945197a1cafdea4) shim: allow specifying runc's --parent-path during checkpointing\r\n* Update typeurl/v2 to v2.3.0 to drop gogo dependency ([#13490](https://github.com/containerd/containerd/pull/13490))\r\n  * [`ce3914324`](https://github.com/containerd/containerd/commit/ce39143249b595d2b275e47c279c129f67e3a2a9) Update typeurl/v2 to v2.3.0 to drop gogo dependency\r\n* do not hide linitng errors ([#13423](https://github.com/containerd/containerd/pull/13423))\r\n  * [`7f10e9eb5`](https://github.com/containerd/containerd/commit/7f10e9eb5fe3b6e89438fd4806f75bcddfbf576e) do not hide linitng errors\r\n* Fix sandbox task API endpoints for non-runc runtimes ([#13360](https://github.com/containerd/containerd/pull/13360))\r\n  * [`ac01ae5c2`](https://github.com/containerd/containerd/commit/ac01ae5c2766961c3592523ab679dc06ca73c331) protos: include task API address to CreateTaskRequest\r\n</p>\r\n</details>\r\n\r\n### Dependency Changes\r\n\r\n* **github.com/containerd/ttrpc**                v1.2.5 -> v1.2.9\r\n* **github.com/containerd/typeurl/v2**           v2.1.1 -> v2.3.0\r\n* **golang.org/x/net**                           v0.48.0 -> v0.55.0\r\n* **golang.org/x/sys**                           v0.39.0 -> v0.46.0\r\n* **golang.org/x/text**                          v0.32.0 -> v0.37.0\r\n* **google.golang.org/genproto/googleapis/rpc**  ff82c1b0f217 -> a57be14db171\r\n* **google.golang.org/grpc**                     v1.79.3 -> v1.81.1\r\n* **google.golang.org/protobuf**                 v1.36.10 -> v1.36.11\r\n\r\nPrevious release can be found at [api/v1.11.0](https://github.com/containerd/containerd/releases/tag/api/v1.11.0)\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-03T18:59:02Z",
+      "merged_at": "2026-08-05T02:01:24Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/S"
+      ]
+    }
+  },
+  "issues": {
+    "12884": {
+      "title": "New content media type label",
+      "url": "https://github.com/containerd/containerd/issues/12884",
+      "body": "### What is the problem you're trying to solve\n\nCurrently when walking content it is hard to know how to parse the actual content. Given an arbitrary digest there is no way of determining the content type, nor is there a easy way to determine the parent of the content. This means that the only way to determine the media type is to fingerprint the data by looking for known keys. The other option is to walk all images until the given digest is found in the parent. Neither of these solutions are efficient or stable.\n\n### Describe the solution you'd like\n\nWhen content is ingested it would be helpful to include the media type as a label. This would remove any need for complicated lookups to determine the media type.\n\n### Additional context\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-02-10T12:19:17Z",
+      "closed_at": "2026-07-24T10:46:25Z",
+      "author": "phillebaba",
+      "labels": [
+        "kind/feature"
+      ]
+    }
+  }
+}
