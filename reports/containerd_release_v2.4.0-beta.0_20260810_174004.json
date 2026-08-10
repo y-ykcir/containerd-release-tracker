@@ -1,0 +1,325 @@
+{
+  "metadata": {
+    "generated_at": "2026-08-10T17:40:05.037963",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.4.0-beta.0",
+    "name": "containerd 2.4.0-beta.0",
+    "body": "Welcome to the v2.4.0-beta.0 release of containerd!\n*This is a pre-release of containerd*\n\ncontainerd 2.4 is a regular (non-LTS) release with a shorter support window,\nintended for users who want to adopt new features sooner. As the release\nfollowing the 2.3 LTS, it is the point in the release cycle where previously\ndeprecated features may be removed, so this release may include breaking\nchanges; check the notes below and clear any deprecation warnings from your\ncurrent version before upgrading.\n\nUsers prioritizing stability and a longer support lifecycle should stay on the\n2.3 LTS release.\n\nThis is a beta release and some functionality is still under development.\n\n### Highlights\n\n* **Include media type in content create event** ([#13833](https://github.com/containerd/containerd/pull/13833))\n* **Support warm image cache for erofs snapshotter** ([#13813](https://github.com/containerd/containerd/pull/13813))\n* **Add parent path to runc checkpoint options** ([#13699](https://github.com/containerd/containerd/pull/13699))\n\n#### Container Runtime Interface (CRI)\n\n* **Introspect OCI runtime features for non-runc runtimes** ([#13504](https://github.com/containerd/containerd/pull/13504))\n\n#### Image Distribution\n\n* **Use klauspost/compress/gzip for decode** ([#13560](https://github.com/containerd/containerd/pull/13560))\n\n#### Image Storage\n\n* **Add forward References to the GC collection context** ([#13634](https://github.com/containerd/containerd/pull/13634))\n\n#### Snapshotters\n\n* **Add max size label for snapshots** ([#13520](https://github.com/containerd/containerd/pull/13520))\n\n#### Breaking\n\n* Remove restore in CreateContainer ([#13871](https://github.com/containerd/containerd/pull/13871))\n\n#### Deprecations\n\n* **Fix sandbox task API endpoints for non-runc runtimes** ([#13360](https://github.com/containerd/containerd/pull/13360))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Samuel Karp\n* Akihiro Suda\n* Derek McGowan\n* Wei Fu\n* Sebastiaan van Stijn\n* Chris Henzie\n* Paweł Gronowski\n* Mike Brown\n* Brian Goff\n* Jordan Liggitt\n* Austin Vazquez\n* Kazuyoshi Kato\n* Kir Kolyshkin\n* Phil Estes\n* Sergey Kanzhelev\n* ningmingxiao\n* Ahmet Alp Balkan\n* Akhil Mohan\n* Chris Ayoub\n* Damien Grisonnet\n* Esteban Ginez\n* Laura Lorenz\n* Maksim An\n* Abhishek Bhunia\n* Alan Grosskurth\n* Albin Kerouanton\n* Alex Lyn\n* Aman Raj\n* Amir Alavi\n* Amit Barve\n* Andrew Halaney\n* AprilNEA\n* Arjun Yogidas\n* Ayato Tokubi\n* Aysha Afrah Ziya\n* Ben Cressey\n* Bing Hongtao\n* Chris Crone\n* Craig Gumbley\n* Daniel De Graaf\n* Davanum Srinivas\n* Dr. Jan-Philip Gehrcke\n* Gao Xiang\n* Harshal Patel\n* Henry Wang\n* Kohei Tokunaga\n* Krisztian Litkey\n* LEI WANG\n* Mikhail Dmitrichenko\n* Nikolaus Schuetz\n* Paco Xu\n* Philip Laine\n* SaloniRathi\n* Tianon Gravi\n* ayush-panta\n* crawfordxx\n* cshung\n* s3onghyun\n* 归寂\n* 徐晓伟\n\n### Dependency Changes\n\n* **cyphar.com/go-pathrs**                                                         v0.2.1 -> v0.2.4\n* **github.com/Microsoft/hcsshim**                                                 v0.15.0-rc.1 -> v0.15.0-rc.3\n* **github.com/ProtonMail/go-crypto**                                              v1.4.1 **_new_**\n* **github.com/cilium/ebpf**                                                       v0.16.0 -> v0.17.3\n* **github.com/cloudflare/circl**                                                  v1.6.3 **_new_**\n* **github.com/containerd/containerd/api**                                         v1.11.0 -> v1.12.0-beta.0\n* **github.com/containerd/imgcrypt/v2**                                            v2.0.2 -> v2.0.3\n* **github.com/containerd/nri**                                                    v0.12.0 -> v0.12.1\n* **github.com/containerd/ttrpc**                                                  v1.2.8 -> v1.2.9\n* **github.com/containerd/typeurl/v2**                                             v2.2.3 -> v2.3.0\n* **github.com/containers/ocicrypt**                                               v1.2.1 -> v1.3.2\n* **github.com/cyphar/filepath-securejoin**                                        v0.6.0 -> v0.6.1\n* **github.com/erofs/go-erofs**                                                    v0.3.0 -> v0.3.1\n* **github.com/fsnotify/fsnotify**                                                 v1.9.0 -> v1.10.1\n* **github.com/grpc-ecosystem/grpc-gateway/v2**                                    v2.28.0 -> v2.29.0\n* **github.com/intel/goresctrl**                                                   v0.12.0 -> v0.13.0\n* **github.com/klauspost/compress**                                                v1.18.5 -> v1.19.1\n* **github.com/mdlayher/socket**                                                   v0.5.1 -> v0.6.0\n* **github.com/mdlayher/vsock**                                                    v1.2.1 -> v1.3.0\n* **github.com/miekg/pkcs11**                                                      v1.1.1 -> v1.1.2\n* **github.com/moby/sys/user**                                                     v0.4.0 -> v0.4.1\n* **github.com/opencontainers/selinux**                                            v1.13.1 -> v1.15.1\n* **github.com/pelletier/go-toml/v2**                                              v2.3.0 -> v2.4.3\n* **github.com/prometheus/client_golang**                                          v1.23.2 -> v1.24.0\n* **github.com/prometheus/common**                                                 v0.67.5 -> v0.70.0\n* **github.com/prometheus/procfs**                                                 v0.19.2 -> v0.21.1\n* **github.com/smallstep/pkcs7**                                                   v0.1.1 -> v0.2.1\n* **go.etcd.io/bbolt**                                                             v1.4.3 -> v1.5.0\n* **go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc**  v0.68.0 -> v0.69.0\n* **go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp**                v0.68.0 -> v0.69.0\n* **go.opentelemetry.io/otel**                                                     v1.43.0 -> v1.44.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace**                            v1.43.0 -> v1.44.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc**              v1.43.0 -> v1.44.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp**              v1.43.0 -> v1.44.0\n* **go.opentelemetry.io/otel/metric**                                              v1.43.0 -> v1.44.0\n* **go.opentelemetry.io/otel/sdk**                                                 v1.43.0 -> v1.44.0\n* **go.opentelemetry.io/otel/trace**                                               v1.43.0 -> v1.44.0\n* **go.yaml.in/yaml/v2**                                                           v2.4.3 -> v2.4.4\n* **go.yaml.in/yaml/v3**                                                           v3.0.4 **_new_**\n* **golang.org/x/crypto**                                                          v0.49.0 -> v0.53.0\n* **golang.org/x/mod**                                                             v0.35.0 -> v0.38.0\n* **golang.org/x/net**                                                             v0.52.0 -> v0.56.0\n* **golang.org/x/oauth2**                                                          v0.35.0 -> v0.36.0\n* **golang.org/x/sync**                                                            v0.20.0 -> v0.22.0\n* **golang.org/x/sys**                                                             v0.43.0 -> v0.47.0\n* **golang.org/x/term**                                                            v0.41.0 -> v0.44.0\n* **golang.org/x/text**                                                            v0.35.0 -> v0.38.0\n* **google.golang.org/genproto/googleapis/api**                                    9d38bb4040a9 -> 3dc84a4a5aaa\n* **google.golang.org/genproto/googleapis/rpc**                                    6f92a3bedf2d -> 3dc84a4a5aaa\n* **google.golang.org/grpc**                                                       v1.80.0 -> v1.82.1\n* **k8s.io/api**                                                                   v0.36.0 -> v0.36.3\n* **k8s.io/apimachinery**                                                          v0.36.0 -> v0.36.3\n* **k8s.io/client-go**                                                             v0.36.0 -> v0.36.3\n* **k8s.io/component-base**                                                        v0.36.0 -> v0.36.3\n* **k8s.io/cri-api**                                                               v0.36.0 -> v0.36.3\n* **k8s.io/cri-client**                                                            v0.36.0 -> v0.36.3\n* **k8s.io/cri-streaming**                                                         v0.36.0 -> v0.36.3\n* **sigs.k8s.io/structured-merge-diff/v6**                                         v6.3.2 -> v6.3.3\n* **tags.cncf.io/container-device-interface**                                      v1.1.0 -> 49ac08dcf160\n\nPrevious release can be found at [v2.3.0](https://github.com/containerd/containerd/releases/tag/v2.3.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-08-10T16:56:46Z",
+    "prerelease": true,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.4.0-beta.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 16,
+    "analyzed_issues": 2,
+    "important_items": 6
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13360: Fix sandbox task API endpoints for non-runc runtimes",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13504: Introspect OCI runtime features for non-runc runtimes",
+      "reason": "Contains 'panic'; Potential crash issue; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13303: build(deps): bump github.com/containerd/go-dmverity from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0",
+      "reason": "Contains 'security'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13560: Use klauspost/compress/gzip for decode",
+      "reason": "Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13813: Support warm image cache for erofs snapshotter",
+      "reason": "Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#13307: Proposal: cross-image layer deduplication for the overlay snapshotter",
+      "reason": "Performance related"
+    }
+  ],
+  "prs": {
+    "13360": {
+      "title": "Fix sandbox task API endpoints for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13360",
+      "body": "I believe we overlooked this in https://github.com/containerd/containerd/pull/9736 and introduced task API address and version fields in Runc options.\r\n\r\nThose are used in Sandbox API flow and have nothing to do with runc specifically.\r\nAs the result it doesn't work with other runtimes - https://github.com/containerd/containerd/pull/12986\r\n\r\nThis PR deprecates fields introduced in runc options and moves them to `CreateTaskRequest`.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-07T22:02:00Z",
+      "merged_at": "2026-05-19T00:47:03Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/deprecation",
+        "kind/bug",
+        "area/runtime",
+        "size/XXL",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "9736": {
+      "title": "Store bootstrap parameters in sandbox metadata",
+      "url": "https://github.com/containerd/containerd/pull/9736",
+      "body": "1. Sandbox controller returns endpoint information including version, protocol and address when `Start` sandbox.\r\n2. Endpoint information is stored `Extensions`  of the Sandbox in db, then shim get the endpoint information from Sandbox Extensions and restore bootstrap parameters.\r\n\r\nThis is the first PR of the sandboxed Task demonstrated in draft #9574 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-02-02T06:42:54Z",
+      "merged_at": "2024-05-02T16:16:29Z",
+      "author": "abel-von",
+      "labels": [
+        "impact/changelog",
+        "ok-to-test",
+        "area/runtime",
+        "size/XL"
+      ]
+    },
+    "9574": {
+      "title": "WIP: sandbox: add \"sandboxedTask\"  in addition to shimTask",
+      "url": "https://github.com/containerd/containerd/pull/9574",
+      "body": "If the sandbox provides task API itself, shim management is not required anymore, and shimTask is no longer suitable for the task type provided by the sandbox. So I'm adding a \"sandboxedTask\" type here, and separating the two types can effectively reduce code complexity.\r\n\r\n\r\n\r\n![image](https://github.com/containerd/containerd/assets/7891772/8a3a5a2c-01e1-4e92-95c5-4da3938d293d)\r\n",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2023-12-25T03:43:27Z",
+      "merged_at": null,
+      "author": "abel-von",
+      "labels": [
+        "area/cri",
+        "needs-ok-to-test",
+        "needs-rebase",
+        "size/XXL",
+        "do-not-merge/work-in-progress"
+      ]
+    },
+    "12986": {
+      "title": "client: skip runc options unmarshal for non-runc runtime types",
+      "url": "https://github.com/containerd/containerd/pull/12986",
+      "body": "getRuncOptions() tries to copy the container's stored runtimeOptions into a fresh *runc.v1.Options before returning it to callers like WithTaskAPIEndpoint. This works for runc containers but fails when the container's runtime options are of a different type, e.g. runtimeoptions.v1.Options used by Kata Containers and other non-runc runtimes. typeurl.UnmarshalTo() rejects the cross-type unmarshal with:\r\n```\r\n  can't unmarshal type \"runtimeoptions.v1.Options\" to output\r\n  \"containerd.runc.v1.Options\"\r\n```\r\n\r\nThe error then propagates as \"failed to create containerd task: failed to get runtime v2 options: ...\" and breaks container start for every test that runs inside a Kata sandbox when the shim sandboxer is active.\r\n\r\nLet's ensure we check typeurl.Is() efore attempting the unmarshal. If the stored runtimeOptions are not runc.v1.Options we simply return an empty *options.Options so that callers can still populate task-level fields (TaskApiAddress, TaskApiVersion, etc.) without error.",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2026-03-06T16:13:34Z",
+      "merged_at": null,
+      "author": "fidencio",
+      "labels": [
+        "size/XS",
+        "area/client"
+      ]
+    },
+    "13504": {
+      "title": "Introspect OCI runtime features for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13504",
+      "body": "## What this does\n\nRemove the runc-only guard in `introspectRuntimeFeatures` so CRI introspects OCI runtime features for all shim types, not only `io.containerd.runc.v2`.\n\n## Why\n\nKubelet rejects pods with `runtimeClassName: gvisor` and `hostUsers: false` before the shim runs:\n\n```\nRuntimeClass handler \"runsc\" does not support user namespaces\n```\n\n`crictl info` shows `runc` with `features.user_namespaces: true`, but `runsc` has no `features` because containerd never queries non-runc shims. `containerd-shim-runsc-v1` already implements `-info` and returns `specutils.Features()`; containerd was refusing to call it.\n\nThe old `r.Type != RuntimeRuncV2` guard avoided a nil-options marshalling panic. That is already handled by `if options != nil`, so the guard is redundant. The introspection path is otherwise runtime-agnostic (`getRuntimeInfo`, `TaskManager.validateRuntimeFeatures`).\n\n## Behavior\n\n| Runtime | Change |\n|---------|--------|\n| `runc` | Unchanged |\n| `runsc`, `crun`, `kata`, ... | Shim `-info` features surfaced in `RuntimeHandlerFeatures` (RRO mounts, user namespaces, etc.) |\n| Shims without `-info` | Introspection fails, logged at debug; no features advertised (same as before for non-runc) |\n\n## Scope / caveat\n\nContainerd half of [google/gvisor#13303](https://github.com/google/gvisor/issues/13303). `supportsCRIUserns` still requires both the `user` namespace and idmap mounts (`MountExtensions.IDMap.Enabled`). runsc reports user namespace but not idmap, so gVisor also needs a shim-side change before `UserNamespaces: true` is advertised. This PR is the containerd enabler; runtimes that already advertise both benefit immediately.\n\n## Test plan\n\n- [x] `go test ./internal/cri/server/` (`service_introspect_test.go`)\n- [x] Non-runc introspection with and without runtime options\n- [x] Userns advertisement gate via `introspectRuntimeHandler`\n- [x] `go build ./...`, `go vet`, `gofmt`, `goimports`",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-01T02:15:05Z",
+      "merged_at": "2026-07-12T21:47:41Z",
+      "author": "a7i",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13303": {
+      "title": "build(deps): bump github.com/containerd/go-dmverity from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0",
+      "url": "https://github.com/containerd/containerd/pull/13303",
+      "body": "Bumps [github.com/containerd/go-dmverity](https://github.com/containerd/go-dmverity) from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/containerd/go-dmverity/releases\">github.com/containerd/go-dmverity's releases</a>.</em></p>\n<blockquote>\n<h2>v0.1.0</h2>\n<p>The first release for go-dmverity includes support for creating and verifying dm-verity hash trees in pure Go, and for activating verity devices on Linux via a pure-Go device-mapper interface. There is no support for FEC in this version.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>fix CI workflow and lint issues by <a href=\"https://github.com/ChengyuZhu6\"><code>@​ChengyuZhu6</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/5\">containerd/go-dmverity#5</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.27.0 to 0.38.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/2\">containerd/go-dmverity#2</a></li>\n<li>build(deps): bump actions/checkout from 5.0.1 to 6.0.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/1\">containerd/go-dmverity#1</a></li>\n<li>build(deps): bump actions/setup-go from 6.0.0 to 6.1.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/3\">containerd/go-dmverity#3</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.38.0 to 0.39.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/7\">containerd/go-dmverity#7</a></li>\n<li>tiny fix: fix link in README by <a href=\"https://github.com/anniecherk\"><code>@​anniecherk</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/8\">containerd/go-dmverity#8</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.39.0 to 0.40.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/9\">containerd/go-dmverity#9</a></li>\n<li>build(deps): bump actions/setup-go from 6.1.0 to 6.2.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/10\">containerd/go-dmverity#10</a></li>\n<li>build(deps): bump actions/checkout from 6.0.1 to 6.0.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/11\">containerd/go-dmverity#11</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.40.0 to 0.41.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/12\">containerd/go-dmverity#12</a></li>\n<li>build(deps): bump actions/setup-go from 6.2.0 to 6.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/13\">containerd/go-dmverity#13</a></li>\n<li>build(deps): bump actions/setup-go from 6.3.0 to 6.4.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/15\">containerd/go-dmverity#15</a></li>\n<li>ci: disable dependabot for go.mod dependencies by <a href=\"https://github.com/thaJeztah\"><code>@​thaJeztah</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/16\">containerd/go-dmverity#16</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/ChengyuZhu6\"><code>@​ChengyuZhu6</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/5\">containerd/go-dmverity#5</a></li>\n<li><a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/2\">containerd/go-dmverity#2</a></li>\n<li><a href=\"https://github.com/anniecherk\"><code>@​anniecherk</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/8\">containerd/go-dmverity#8</a></li>\n<li><a href=\"https://github.com/thaJeztah\"><code>@​thaJeztah</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/16\">containerd/go-dmverity#16</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/containerd/go-dmverity/commits/v0.1.0\">https://github.com/containerd/go-dmverity/commits/v0.1.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li>See full diff in <a href=\"https://github.com/containerd/go-dmverity/commits/0.1.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=github.com/containerd/go-dmverity&package-manager=go_modules&previous-version=0.0.0-20260106143538-e097b6cc4a33&new-version=0.1.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-28T02:02:35Z",
+      "merged_at": "2026-04-28T21:58:41Z",
+      "author": "dependabot[bot]",
+      "labels": [
+        "dependencies",
+        "size/XS",
+        "go"
+      ]
+    },
+    "11": {
+      "title": "Fix compilation for all tags",
+      "url": "https://github.com/containerd/containerd/pull/11",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-07T20:39:07Z",
+      "merged_at": "2015-12-07T22:33:46Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "12": {
+      "title": "Remove ctr binary from repository",
+      "url": "https://github.com/containerd/containerd/pull/12",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-07T20:41:00Z",
+      "merged_at": "2015-12-07T22:33:06Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "16": {
+      "title": "Prototype of grpc API",
+      "url": "https://github.com/containerd/containerd/pull/16",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-09T23:06:09Z",
+      "merged_at": "2015-12-09T23:08:40Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "13520": {
+      "title": "Add max size label for snapshots",
+      "url": "https://github.com/containerd/containerd/pull/13520",
+      "body": "Defines a global label for setting size and initially uses it for the erofs snapshotter",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-02T22:26:22Z",
+      "merged_at": "2026-06-03T22:58:32Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/M"
+      ]
+    },
+    "13560": {
+      "title": "Use klauspost/compress/gzip for decode",
+      "url": "https://github.com/containerd/containerd/pull/13560",
+      "body": "Related to #13559.\r\n\r\nSwap the stdlib gzip decompression code for [Klaus Post's inflate code](https://github.com/klauspost/compress/blob/v1.18.6/flate/inflate.go) in [`gzipDecompress`](https://github.com/containerd/containerd/blob/v2.3.1/pkg/archive/compression/compression.go#L270). klauspost/compress is already a dependency, used by containerd to decompress zstd OCI blobs. This patch affects only gzip layer decompression.\r\n\r\n#### Measurement\r\n\r\nGzip decode time for each image's largest layer on arm64 (NVIDIA Grace), Go 1.26.3, in seconds (mean of n=6, relative standard deviation under 1.5%):\r\n\r\n| image | compressed → decompressed | stdlib | klauspost | speedup |\r\n|---|---|--:|--:|--:|\r\n| `nvcr.io/nvidia/cuda:13.1.2-devel-ubi9` | 1.8 → 3.4 GiB | 13.6 | 9.1 | ~1.5× |\r\n| `docker.io/pytorch/pytorch:latest` | 3.4 → 7.0 GiB | 41.7 | 28.8 | ~1.4× |\r\n\r\nAllocation churn (measured for the cuda image): stdlib 305 MiB / 1.91M mallocs → klauspost 0.18 MiB / 1,948. We won't speculate about the practical impact, but it is a clear qualitative improvement.\r\n\r\n#### Precedent\r\n\r\nAs of today, CRI-O, Podman, Buildah, and Skopeo all use klauspost's inflate code for decompressing gzip OCI layers: they share the common implementation in [`containers/image`](https://github.com/containers/image). Its gzip decompressor has [returned `pgzip.NewReader(r)`](https://github.com/containers/image/blob/v5.36.2/pkg/compression/compression.go#L61) since [containers/image#543](https://github.com/containers/image/pull/543). For regular gzip blobs, pgzip [falls back to](https://github.com/klauspost/pgzip/blob/v1.2.6/gunzip.go#L318) klauspost's flate. This PR adopts the same inflate core directly.\r\n\r\nOther popular projects expose klauspost's inflate code to untrusted or external input: [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/v1.145.0/lib/protoparser/protoparserutil/compress_reader.go#L210) and Prometheus (HTTP bodies), NATS (inbound client WebSocket frames), IBM/sarama (Kafka message sets), MinIO (S3 Select and client `.tar.gz` uploads), CockroachDB (SQL `decompress()` on arbitrary bytes); also on external data at rest in Grafana Loki and TiDB.\r\n\r\n#### Notes\r\n\r\nThe Go maintainers already trust klauspost's gzip code: in 1.27 the standard library will use klauspost's methods for _compression_ (not yet decompression), see [golang/go#75532](https://github.com/golang/go/issues/75532).\r\n\r\nThe speedup is algorithmic, not optimized for any particular architecture.\r\n\r\nThe change is small and isolated, so backporting to containerd 1.7 and 2.x is worth discussing.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-09T08:59:50Z",
+      "merged_at": "2026-06-30T14:24:56Z",
+      "author": "jgehrcke",
+      "labels": [
+        "impact/changelog",
+        "size/XXL",
+        "area/distribution"
+      ]
+    },
+    "13634": {
+      "title": "Add forward References to the GC collection context",
+      "url": "https://github.com/containerd/containerd/pull/13634",
+      "body": "Extend the garbage-collection framework so a collectible resource can emit forward references during graph traversal, in addition to the existing back-reference mechanism.\r\n\r\nA CollectionContext may now implement the optional collectionWithReferences interface:\r\n\r\n\tReferences(ctx context.Context, node gc.Node, fn func(gc.Node))\r\n\r\nWhen the GC visits a node whose resource type was registered by an external collector, gcContext.references consults the per-type References implementation after the built-in core resource types are handled.\r\n\r\nThis is the forward-reference analogue of collectionWithBackRefs.  Whereas ActiveWithBackRefs must enumerate every edge up front and the gcContext holds all of them in its backRefs map for the entire collection, References is invoked on demand for a single node.  A collector whose resources fan out to many other nodes can therefore emit those edges without retaining them in memory for the gc context.\r\n\r\nThis commit is intentionally a no-op: no plugin registers a collector that uses collectionWithReferences yet.  It is isolated here so that concurrent development efforts that depend on this interface can be proposed and reviewed upstream independently. This is useful for implementing chunked storage as a plugin, which will directly reference blobs in the content store. This is also useful for any plugin that might hold a reference to a core containerd type.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-19T19:35:58Z",
+      "merged_at": "2026-06-22T23:51:47Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/storage"
+      ]
+    },
+    "13699": {
+      "title": "Add parent path to runc checkpoint options",
+      "url": "https://github.com/containerd/containerd/pull/13699",
+      "body": "This commit allows the client to specify runc's `--parent-path` flag during checkpointing. This is useful for trying CRIU features relying on this flag (e.g. incremental checkpointing) from the client's side.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-01T00:24:24Z",
+      "merged_at": "2026-07-01T06:21:12Z",
+      "author": "ktock",
+      "labels": [
+        "impact/changelog",
+        "size/L"
+      ]
+    },
+    "13813": {
+      "title": "Support warm image cache for erofs snapshotter",
+      "url": "https://github.com/containerd/containerd/pull/13813",
+      "body": "A common technique to speed up cold container launches is to prefetch image\r\ncontent onto the node:\r\n\r\n- https://aws.amazon.com/blogs/containers/start-pods-faster-by-prefetching-images/\r\n- https://docs.cloud.google.com/artifact-registry/docs/prewarm-images\r\n- https://aws.amazon.com/blogs/containers/reduce-container-startup-time-on-amazon-eks-with-bottlerocket-data-volume/\r\n- https://blogs.oracle.com/cloud-infrastructure/optimize-container-start-time-with-oci-storage\r\n\r\nTwo approaches are common:\r\n\r\n- Bake the content into containerd's content store at OS image build time.\r\n- Mount cached content from external/remote storage and have the\r\n  snapshotter consume it.\r\n\r\nThe OS image must be re-baked whenever the set of prefetched\r\ncontainers changes, coupling the bake pipeline to container images.\r\n\r\nThe second approach is hard to combine with erofs today. To keep container\r\nwrites local you'd either need a writable cache mount — which then can't be\r\nshared read-only across nodes — or you'd layer the read-only cache under an\r\noverlay that routes writes elsewhere. The overlay route doesn't work with erofs,\r\nbecause of nested-overlay constraints:\r\n\r\n- erofs can't mount blobs that live under an overlay directly, so every layer\r\n  falls back to a loop device\r\n- The container's own writable overlay can't be stacked on top of another\r\n  overlay and the two would conflict.\r\n\r\nThis PR proposes a `layer_content_cache` option to the erofs snapshotter: a path to a\r\nRO directory of pre-converted, diffID-keyed erofs layer blobs (`<dir>/<algorithm>/<hex>.erofs`).\r\n\r\n- The directory is operator-owned — used as RO mount from\r\n  external storage. containerd never writes to it.\r\n- On a cache hit the snapshotter commits the layer by symlinking the cached blob\r\n  and returns `ErrAlreadyExists`, so the pull skips both the layer download and\r\n  the on-the-fly tar→erofs conversion — i.e. it acts as a remote snapshotter.\r\n  A miss transparently falls back to the normal download+convert path.\r\n- As a side effect: because the key is the layer's diffID, blobs are deduplicated\r\n  across images that share layers, independent of chain position (a similar approach was\r\n  proposed for overlayfs in https://github.com/containerd/containerd/issues/13307)\r\n\r\n`ctr images` gains `build-erofs-cache <img> <dir>` to create erofs blobs from content store.\r\n\r\n```\r\nctr images build-erofs-cache \"$IMG\" /mnt/erofs-cache\r\n```\r\n\r\nThe converted image itself is discarded; only the cache blobs are kept (and can\r\nthen be synced to shared storage). Keying by the source layer's diffID means the\r\ncache is consumed when the fleet pulls the original image.\r\n\r\ncontainerd config:\r\n\r\n```toml\r\n[plugins.'io.containerd.snapshotter.v1.erofs']\r\n  layer_content_cache = '/mnt/erofs-cache'\r\n```\r\n\r\nThis way containerd can start with literally empty state directory and\r\nstill launch containers blazingly fast with erofs!",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-20T07:11:21Z",
+      "merged_at": "2026-07-22T00:09:29Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/changelog",
+        "size/XXL"
+      ]
+    },
+    "13833": {
+      "title": "Include media type in content create event",
+      "url": "https://github.com/containerd/containerd/pull/13833",
+      "body": "This adds a new media type field to the content create event. This is needed as content create events occur before the image create event does. Meaning it is impossible to determine the media type of the content without first reading the content and fingerprinting it.\r\n\r\nFixes #12884",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-23T13:37:12Z",
+      "merged_at": "2026-07-24T10:46:23Z",
+      "author": "phillebaba",
+      "labels": [
+        "impact/changelog",
+        "size/XXL"
+      ]
+    },
+    "13871": {
+      "title": "cri: remove restore in CreateContainer",
+      "url": "https://github.com/containerd/containerd/pull/13871",
+      "body": "Remove support for restoring checkpoint data during CreateContainer, which was previously deprecated in v2.3.\r\n\r\nThis will conflict with https://github.com/containerd/containerd/pull/13822. If this PR lands first, #13822 will need to add back relevant code (and would be a good time to re-review it). If that one lands first, I can update this PR.\r\n\r\n```release-note\r\nRemove restore in CreateContainer\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-28T23:51:24Z",
+      "merged_at": "2026-07-31T16:32:25Z",
+      "author": "samuelkarp",
+      "labels": [
+        "impact/breaking",
+        "area/criu",
+        "size/XXL"
+      ]
+    }
+  },
+  "issues": {
+    "13307": {
+      "title": "Proposal: cross-image layer deduplication for the overlay snapshotter",
+      "url": "https://github.com/containerd/containerd/issues/13307",
+      "body": "### What is the problem you're trying to solve\n\nAI/ML container images are large — 20–30 GB is common — and much of that is packages shared across images: CUDA, Python, glibc, etc. On a GPU node running ten images that all include CUDA 12.4, images must be carefully crafted to avoid downloading and extracting the same 8 GB toolkit ten times into ten separate snapshot directories.\n\nWhen different images share identical layers, their downloads are deduplicated by containerd's content store (i.e. a layer with a given digest is fetched once regardless of how many images reference it).\n\nHowever, the same guarantee is not made for extracted layer content. Committed snapshots are represented as the chain of all layers from the current layer to the base, so the same layer at different positions in two image stacks produces different chains and its content may be extracted and stored on disk multiple times.\n\nHistorically this has not been a problem. Identical layers typically appear as shared base layers, meaning they occupy the same position in every image that uses them — the chain IDs match and containerd naturally deduplicates the extraction.\n\nA different model is possible though.\n\nPackage managers like [Nix](https://nixos.org) organize software into content-addressable packages, which [Flox](https://flox.dev) is able to compose into full execution environments. These environments could be directly translated into container images where each dependency is a discrete OCI layer with a stable digest. Such images would end up with many more layers than traditional images, with identical layers interleaved at different positions across different image stacks.\n\nWith overlayfs there is no fundamental limitation preventing multiple snapshots from sharing a single extracted copy of a layer, even when that layer appears at different positions in each image's stack. It just hasn't been done this way until now, and this proposal aims to provide that support.\n\n### Describe the solution you'd like\n\nWhen the overlayfs snapshotter unpacks an image, each layer becomes a committed snapshot stored under `<overlayfs-root>/snapshots/<id>/`, where `<overlayfs-root>` is the overlayfs snapshotter's data directory and `<id>` is the chain ID — a rolling hash over the diffID of each layer from the base up to and including the current layer (where the diffID is the SHA-256 of the layer's uncompressed content). Each snapshot has an `fs/` subdirectory containing the extracted layer content, and each snapshot records the one below it as its parent, forming a chain that mirrors the image's layer order from base to the current layer.\n\nAt container start, the snapshotter walks that chain and passes each `fs/` directory to the kernel as a colon-separated list of overlayfs lowerdirs. Overlayfs stacks these directories as read-only layers into a single merged view, with files from later layers taking precedence over the same path in earlier ones.\n\nSince the `fs/` directory of each snapshot is mounted read-only, nothing requires it to privately own its content. Two snapshots containing a layer with the same diffID will have identical extracted content — even when that layer appears at different positions in different image stacks, producing different chain IDs and different snapshot keys. They could share a single copy on disk and produce an identical mount either way.\n\nThe question is how to make two snapshot directories share content without changing anything about how the snapshotter tracks them. The answer turns out to be simple: overlayfs follows symlinks when resolving lowerdir paths, so `fs/` does not need to be a real directory. If we extract a layer once to a stable shared path and make each snapshot's `fs/` a symlink to that path, the kernel reads the shared content transparently.\n\nChain IDs, BoltDB parent links, snapshot keys, mount assembly, and GC are all unchanged. The deduplication lives entirely in how `fs/` is created at `Prepare` time and how the shared directory is cleaned up at `Cleanup` time.\n\nAt a high level, the proposal consists of:\n\n- Introducing a new `layer_content_cache` boolean option in the overlayfs snapshotter plugin configuration; defaults to `false` but is a candidate for becoming the default once the feature has baked\n\n- Introducing a shared cache directory at `<overlayfs-root>/cache/` where extracted layer content is stored by diffID and uid/gid ownership\n\n- Using the existing `LabelSnapshotDiffID` label set by the unpacker on every active layer-unpack snapshot to key into the cache when necessary\n\n- Introducing a new unexported `LabelSkipApply` label set internally by `Prepare` on the active snapshot when cached content exists, signaling the unpacker to skip extraction entirely\n\n- Handling concurrent extraction of the same uncached layer safely: the first extractor to finish wins and the others discard their copy and symlink to the winner's content\n\n- Garbage-collecting cache entries when the last snapshot referencing them is removed\n\nOn the first unpack of a layer, its extracted content is moved into the cache at `<overlayfs-root>/cache/<algorithm>.<hex>.<uid>.<gid>/` and the snapshot's `fs/` directory is replaced with a symlink to that entry. The uid/gid component ensures that ID-mapped mounts each get their own cache entry with correct ownership.\n\nOn subsequent unpacks of the same layer — at any position in any image stack — `Prepare` uses `LabelSnapshotDiffID` to locate the cached entry, sets `LabelSkipApply` signaling the unpacker to skip extraction, and creates the snapshot's `fs/` directory as a symlink to the same cached entry. No re-extraction, no additional disk usage.\n\nIf two images race to unpack the same uncached layer simultaneously, the first extractor to finish wins; the others discard their copy and symlink to the winner's content. When the last snapshot referencing a cache entry is removed, the entry is garbage-collected.\n\nChain IDs, snapshot keys, and all other snapshotter semantics are completely unchanged.\n\n### Additional context\n\nA working implementation is available at #13308.\n\n- While the problem statement focuses on images built from content-addressable packages, the mechanism applies to any OCI image. Any two images that share a common layer at different stack positions — something that becomes more common as images are composed from shared base components — will see the same deduplication benefit without any image modification.\n\n- The `layer_content_cache` option is opt-in today to avoid disturbing existing code paths and to allow the feature to gain confidence in production. Enabling it globally as the default is a natural next step once it has baked.\n\n- The `LabelSnapshotDiffID` and `LabelSkipApply` labels are now part of the exported `core/snapshots` API. Other snapshotters could adopt the same skip-apply protocol to implement equivalent caching strategies suited to their own storage backends.",
+      "state": "open",
+      "created_at": "2026-04-28T08:48:05Z",
+      "closed_at": null,
+      "author": "klueska",
+      "labels": [
+        "kind/feature",
+        "area/snapshotters"
+      ]
+    },
+    "12884": {
+      "title": "New content media type label",
+      "url": "https://github.com/containerd/containerd/issues/12884",
+      "body": "### What is the problem you're trying to solve\n\nCurrently when walking content it is hard to know how to parse the actual content. Given an arbitrary digest there is no way of determining the content type, nor is there a easy way to determine the parent of the content. This means that the only way to determine the media type is to fingerprint the data by looking for known keys. The other option is to walk all images until the given digest is found in the parent. Neither of these solutions are efficient or stable.\n\n### Describe the solution you'd like\n\nWhen content is ingested it would be helpful to include the media type as a label. This would remove any need for complicated lookups to determine the media type.\n\n### Additional context\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-02-10T12:19:17Z",
+      "closed_at": "2026-07-24T10:46:25Z",
+      "author": "phillebaba",
+      "labels": [
+        "kind/feature"
+      ]
+    }
+  }
+}
