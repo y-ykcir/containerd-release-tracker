@@ -1,0 +1,463 @@
+{
+  "metadata": {
+    "generated_at": "2026-08-12T19:39:55.557373",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.3.4",
+    "name": "containerd 2.3.4",
+    "body": "Welcome to the v2.3.4 release of containerd!\n\nThe fourth patch release for containerd 2.3 contains various fixes and updates.\n\n### Highlights\n\n#### Container Runtime Interface (CRI)\n\n* Disable checkpoint restore in CreateContainer by default, requiring the enable_experimental_restore_via_create configuration option to enable ([#13913](https://github.com/containerd/containerd/pull/13913))\n* Set default runtimeFeatures.UserNamespacesHostNetwork to true in CRI ([#13914](https://github.com/containerd/containerd/pull/13914))\n* Deprecate checkpoint restore in CreateContainer ([#13868](https://github.com/containerd/containerd/pull/13868))\n* Support non-UTF-8 binary environment variable values in CRI ([#13454](https://github.com/containerd/containerd/pull/13454))\n* Enable OCI runtime feature introspection for non-runc runtimes in CRI ([#13778](https://github.com/containerd/containerd/pull/13778))\n* Disable checkpoint restore codepaths when CRIU is not installed and add enable_criu configuration option ([#13734](https://github.com/containerd/containerd/pull/13734))\n* Normalize sandbox image references in CRI to resolve images without domain prefixes ([#13759](https://github.com/containerd/containerd/pull/13759))\n\n#### Node Resource Interface (NRI)\n\n* Emit deprecation warnings for plugins using deprecated NRI interfaces ([#13935](https://github.com/containerd/containerd/pull/13935))\n\n#### Runtime\n\n* Enable log scrubbing by default on Windows ([#13904](https://github.com/containerd/containerd/pull/13904))\n* Fix memory leak in OOM watcher map when stopping container monitoring ([#13870](https://github.com/containerd/containerd/pull/13870))\n* Avoid orphaning shims on transient errors when loading process IDs ([#13857](https://github.com/containerd/containerd/pull/13857))\n* Fix corruption of binary protobuf shim start responses caused by premature whitespace trimming ([#13803](https://github.com/containerd/containerd/pull/13803))\n\n#### Snapshotters\n\n* Fix EROFS snapshotter dropping lower layers stacked above merged filesystem metadata ([#13876](https://github.com/containerd/containerd/pull/13876))\n\n#### Breaking\n\n* Disable checkpoint restore in CreateContainer by default, requiring the enable_experimental_restore_via_create configuration option to enable ([#13913](https://github.com/containerd/containerd/pull/13913))\n\n#### Deprecations\n\n* Deprecate checkpoint restore in CreateContainer ([#13868](https://github.com/containerd/containerd/pull/13868))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Samuel Karp\n* Maksym Pavlenko\n* Mike Brown\n* Akihiro Suda\n* Derek McGowan\n* Jordan Liggitt\n* Paweł Gronowski\n* Amir Alavi\n* Andrew Halaney\n* Bing Hongtao\n* Chris Henzie\n* Harshal Patel\n* Krisztian Litkey\n* Phil Estes\n* Wei Fu\n* ningmingxiao\n\n### Changes\n<details><summary>35 commits</summary>\n<p>\n\n  * [`c1f5360ef`](https://github.com/containerd/containerd/commit/c1f5360ef7b9afb748d4119ad7be665ba5144480) Prepare release notes for v2.3.4\n* cri: disable restore in CreateContainer by default ([#13913](https://github.com/containerd/containerd/pull/13913))\n  * [`928c03c68`](https://github.com/containerd/containerd/commit/928c03c6898cad95f795300281fdff0dbc55a32f) cri: disable restore in CreateContainer by default\n* nri,deprecation: record and emit warnings for NRI deprecations. ([#13935](https://github.com/containerd/containerd/pull/13935))\n  * [`5966e2edb`](https://github.com/containerd/containerd/commit/5966e2edb15bb939aa2bb73649fbad73a2b04094) nri,deprecation: emit warnings for old NRI plugins.\n* Set the default of runtimeFeatures.UserNamespacesHostNetwork to true ([#13914](https://github.com/containerd/containerd/pull/13914))\n  * [`ab52c58f1`](https://github.com/containerd/containerd/commit/ab52c58f16ac50bb6724354bf36cbb4da480c2a2) Set the default of runtimeFeatures.UserNamespacesHostNetwork to true\n* Use ScrubLogs by default on Windows ([#13904](https://github.com/containerd/containerd/pull/13904))\n  * [`0c255158a`](https://github.com/containerd/containerd/commit/0c255158aa1ecab40aafc42269cfc018a46eb627) ctr: add --scrub-logs flag for Windows\n  * [`1c2b13dc9`](https://github.com/containerd/containerd/commit/1c2b13dc975468197e57321e25fd09163f78a75a) cri/config: use ScrubLogs by default on Windows\n* snapshots/erofs: keep lowers stacked above a merged fsmeta ([#13876](https://github.com/containerd/containerd/pull/13876))\n  * [`0c511e068`](https://github.com/containerd/containerd/commit/0c511e068b7d6dd815418185a235b3ba3347c65a) snapshots/erofs: keep lowers stacked above a merged fsmeta\n* cri: deprecate restore in CreateContainer ([#13868](https://github.com/containerd/containerd/pull/13868))\n  * [`dc98141df`](https://github.com/containerd/containerd/commit/dc98141df70d3d72d46125c6f30de0d2de648086) cri: deprecate restore in CreateContainer\n* internal/oom: Fix memory leak by removing watcher from map on Stop ([#13870](https://github.com/containerd/containerd/pull/13870))\n  * [`537d82d54`](https://github.com/containerd/containerd/commit/537d82d545759d4a072d564d4937707af2650163) internal/oom: Fix memory leak by removing watcher from map on Stop\n* shim_load: Consider shim leaked only if we can't find pids ([#13857](https://github.com/containerd/containerd/pull/13857))\n  * [`decf97a9c`](https://github.com/containerd/containerd/commit/decf97a9c7c26f92391d2c862d35832e0a291e80) shim_load: Consider shim leaked only if we can't find pids\n* core/runtime/v2: Drop checkpointctl module dependency ([#13840](https://github.com/containerd/containerd/pull/13840))\n  * [`796f07dc8`](https://github.com/containerd/containerd/commit/796f07dc853d9ae8a3a1278fe47436755a4bc3b7) core/runtime/v2: Drop checkpointctl module dependency\n* Handle []byte envvar value for CRI ([#13454](https://github.com/containerd/containerd/pull/13454))\n  * [`751fddddb`](https://github.com/containerd/containerd/commit/751fddddbb630631e12fd63e5dac4a9530188822) Handle []byte envvar value\n  * [`0bce9060e`](https://github.com/containerd/containerd/commit/0bce9060ef3401e690b541dd6d2008c2abc50b0d) update to v0.36.x kubernetes dependencies\n* fix(cri): introspect OCI runtime features for non-runc runtimes ([#13778](https://github.com/containerd/containerd/pull/13778))\n  * [`61a8f6f45`](https://github.com/containerd/containerd/commit/61a8f6f45e34660d787988e8a7e7a218f556369c) fix(cri): introspect OCI runtime features for non-runc runtimes\n* core/runtime/v2: Preserve protobuf shim response bytes ([#13803](https://github.com/containerd/containerd/pull/13803))\n  * [`1d28017be`](https://github.com/containerd/containerd/commit/1d28017be295005bfa3aee1d47afe86341d391b6) core/runtime/v2: Preserve protobuf shim response bytes\n* Disable checkpoint restore codepath when CRIU is not installed ([#13734](https://github.com/containerd/containerd/pull/13734))\n  * [`374091d67`](https://github.com/containerd/containerd/commit/374091d67c1966969b772594ba96a74f4357bc7a) github/workflows: install criu in node-e2e\n  * [`db03e3968`](https://github.com/containerd/containerd/commit/db03e39685448a1d87025a2ca3a1e4e42713102d) cri: add enable_criu configuration option\n  * [`dacd4c7d0`](https://github.com/containerd/containerd/commit/dacd4c7d00f4a5fd71197e67afdb6355e8536e4f) cri: validate CRIU availability and version early\n* ci: bound Go fuzzing by execution count ([#13785](https://github.com/containerd/containerd/pull/13785))\n  * [`890a9c86c`](https://github.com/containerd/containerd/commit/890a9c86cd9918e53c1ef1b57c6539a943196cd5) ci: bound Go fuzzing by execution count\n* cri: auto-add prefix for pause image ([#13759](https://github.com/containerd/containerd/pull/13759))\n  * [`0b2f1d078`](https://github.com/containerd/containerd/commit/0b2f1d078124b52f4c8030dc686f2d65c1dfc17c) cri: auto-add prefix for pause image\n</p>\n</details>\n\n### Dependency Changes\n\n* **k8s.io/api**                            v0.36.0 -> v0.36.3\n* **k8s.io/apimachinery**                   v0.36.0 -> v0.36.3\n* **k8s.io/client-go**                      v0.36.0 -> v0.36.3\n* **k8s.io/component-base**                 v0.36.0 -> v0.36.3\n* **k8s.io/cri-api**                        v0.36.0 -> v0.36.3\n* **k8s.io/cri-client**                     v0.36.0 -> v0.36.3\n* **k8s.io/cri-streaming**                  v0.36.0 -> v0.36.3\n* **sigs.k8s.io/structured-merge-diff/v6**  v6.3.2 -> v6.3.3\n\nPrevious release can be found at [v2.3.3](https://github.com/containerd/containerd/releases/tag/v2.3.3)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-08-12T17:59:47Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.3.4",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 22,
+    "analyzed_issues": 2,
+    "important_items": 16
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13454: [release/2.3] Handle []byte envvar value for CRI",
+      "reason": "Contains 'regression'"
+    },
+    {
+      "type": "PR",
+      "title": "#13734: [release/2.3] Disable checkpoint restore codepath when CRIU is not installed",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13664: Disable checkpoint restore codepath when CRIU is not installed",
+      "reason": "Contains 'security'"
+    },
+    {
+      "type": "PR",
+      "title": "#13759: [release/2.3] cri: auto-add prefix for pause image",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13778: [release/2.3] fix(cri): introspect OCI runtime features for non-runc runtimes",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13504: Introspect OCI runtime features for non-runc runtimes",
+      "reason": "Contains 'panic'; Potential crash issue; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13303: build(deps): bump github.com/containerd/go-dmverity from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0",
+      "reason": "Contains 'security'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13785: [release/2.3] ci: bound Go fuzzing by execution count",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13803: [release/2.3] core/runtime/v2: Preserve protobuf shim response bytes",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13840: [release/2.3] core/runtime/v2: Drop checkpointctl module dependency",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13857: [release/2.3] shim_load: Consider shim leaked only if we can't find pids",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13868: [release/2.3] cri: deprecate restore in CreateContainer",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13870: [release/2.3] internal/oom: Fix memory leak by removing watcher from map on Stop",
+      "reason": "Contains 'memory leak'; Has label 'kind/bug'; Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13856: internal/oom: Fix memory leak by removing watcher from map on Stop",
+      "reason": "Contains 'memory leak'; Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#13784: Wrongly classified \"leaked shim\" causes leaked container on containerd restart",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#13853: internal/oom: Stop never removes the watcher from the map, leaking watchers and burning container IDs",
+      "reason": "Contains 'memory leak'; Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "13454": {
+      "title": "[release/2.3] Handle []byte envvar value for CRI",
+      "url": "https://github.com/containerd/containerd/pull/13454",
+      "body": "Part of recovering from a regression in the ability of v0.34.0+ cri-api being able to transmit binary non-utf8 envvar values\r\n\r\nxref\r\n* https://github.com/kubernetes/kubernetes/issues/139132\r\n* https://github.com/kubernetes/kubernetes/pull/139168#issuecomment-4501163149\r\n\r\ncc @mikebrow @samuelkarp \r\n\r\nThis updates to a cri-api patch release that switched the proto type of the envvar value field from `string` to `bytes`, and adds a []byte → go string cast in the spot that handles this CRI field.\n\n```release-note\nSupport non-UTF-8 binary environment variable values in CRI\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-20T19:37:47Z",
+      "merged_at": "2026-07-23T19:36:51Z",
+      "author": "liggitt",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "ok-to-test",
+        "size/L"
+      ]
+    },
+    "13734": {
+      "title": "[release/2.3] Disable checkpoint restore codepath when CRIU is not installed",
+      "url": "https://github.com/containerd/containerd/pull/13734",
+      "body": "This is an automated cherry-pick of #13664\n\n/assign samuelkarp\n\n```release-note\nDisable checkpoint restore codepaths when CRIU is not installed and add enable_criu configuration option\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-08T07:03:45Z",
+      "merged_at": "2026-07-14T18:38:20Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/XL"
+      ]
+    },
+    "13664": {
+      "title": "Disable checkpoint restore codepath when CRIU is not installed",
+      "url": "https://github.com/containerd/containerd/pull/13664",
+      "body": "Checkpoint restore was implicated in [several](https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388) [recent](https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574) [CVEs](https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc). While those have been patched, it would also be helpful to avoid running the code if it can't be used anyway (i.e., if CRIU isn't installed) or if a node administrator wants to specifically disable it.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-25T00:00:14Z",
+      "merged_at": "2026-07-08T06:40:05Z",
+      "author": "samuelkarp",
+      "labels": [
+        "area/cri",
+        "area/criu",
+        "size/XL",
+        "cherry-picked/2.1.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13759": {
+      "title": "[release/2.3] cri: auto-add prefix for pause image",
+      "url": "https://github.com/containerd/containerd/pull/13759",
+      "body": "This is an automated cherry-pick of #13513\n\n/assign mikebrow\n\n```release-note\nNormalize sandbox image references in CRI to resolve images without domain prefixes\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-10T04:43:15Z",
+      "merged_at": "2026-07-12T01:27:01Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/S"
+      ]
+    },
+    "13513": {
+      "title": "cri: auto-add prefix for pause image",
+      "url": "https://github.com/containerd/containerd/pull/13513",
+      "body": "fix if  sandbox_image doesn't have docker.io prefix cause run pod failed.\r\n\r\nreproduce :\r\n\r\n\r\nuse config \r\n```\r\nsandbox_image = \"rancher/mirrored-pause:3.6\"\r\n```\r\nimage is exist \r\n```\r\ncrictl  images\r\nIMAGE                              TAG                 IMAGE ID            SIZE\r\ndocker.io/library/busybox          1.28                8c811b4aec35f       1.36MB\r\ndocker.io/library/busybox          latest              fa152d3b2cb95       4.49MB\r\ndocker.io/rancher/mirrored-pause   3.6                 da86e6ba6ca19       746kB\r\n```\r\n\r\n\r\n```\r\ncrictl  run  --no-pull container.json  pod.json\r\n\r\nE0602 15:14:34.707264 2211126 remote_runtime.go:237] \"RunPodSandbox from runtime service failed\" err=\"rpc error: code = NotFound desc = failed to start sandbox \\\"02146ec6af7ad70f5ae2599268b38af5273c52c11a0f4f4f321da2dc133478ed\\\": failed to get sandbox image \\\"rancher/mirrored-pause:3.6\\\": image \\\"rancher/mirrored-pause:3.6\\\": not found\"\r\nFATA[0000] running container: run pod sandbox: rpc error: code = NotFound desc = failed to start sandbox \"02146ec6af7ad70f5ae2599268b38af5273c52c11a0f4f4f321da2dc133478ed\": failed to get sandbox image \"rancher/mirrored-pause:3.6\": image \"rancher/mirrored-pause:3.6\": not found\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-02T06:59:44Z",
+      "merged_at": "2026-07-01T22:20:47Z",
+      "author": "ningmingxiao",
+      "labels": [
+        "size/S",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13778": {
+      "title": "[release/2.3] fix(cri): introspect OCI runtime features for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13778",
+      "body": "This is an automated cherry-pick of #13504\n\n/assign AkihiroSuda\n\n```release-note\nEnable OCI runtime feature introspection for non-runc runtimes in CRI\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-12T21:48:19Z",
+      "merged_at": "2026-07-18T06:32:52Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "13504": {
+      "title": "Introspect OCI runtime features for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13504",
+      "body": "## What this does\n\nRemove the runc-only guard in `introspectRuntimeFeatures` so CRI introspects OCI runtime features for all shim types, not only `io.containerd.runc.v2`.\n\n## Why\n\nKubelet rejects pods with `runtimeClassName: gvisor` and `hostUsers: false` before the shim runs:\n\n```\nRuntimeClass handler \"runsc\" does not support user namespaces\n```\n\n`crictl info` shows `runc` with `features.user_namespaces: true`, but `runsc` has no `features` because containerd never queries non-runc shims. `containerd-shim-runsc-v1` already implements `-info` and returns `specutils.Features()`; containerd was refusing to call it.\n\nThe old `r.Type != RuntimeRuncV2` guard avoided a nil-options marshalling panic. That is already handled by `if options != nil`, so the guard is redundant. The introspection path is otherwise runtime-agnostic (`getRuntimeInfo`, `TaskManager.validateRuntimeFeatures`).\n\n## Behavior\n\n| Runtime | Change |\n|---------|--------|\n| `runc` | Unchanged |\n| `runsc`, `crun`, `kata`, ... | Shim `-info` features surfaced in `RuntimeHandlerFeatures` (RRO mounts, user namespaces, etc.) |\n| Shims without `-info` | Introspection fails, logged at debug; no features advertised (same as before for non-runc) |\n\n## Scope / caveat\n\nContainerd half of [google/gvisor#13303](https://github.com/google/gvisor/issues/13303). `supportsCRIUserns` still requires both the `user` namespace and idmap mounts (`MountExtensions.IDMap.Enabled`). runsc reports user namespace but not idmap, so gVisor also needs a shim-side change before `UserNamespaces: true` is advertised. This PR is the containerd enabler; runtimes that already advertise both benefit immediately.\n\n## Test plan\n\n- [x] `go test ./internal/cri/server/` (`service_introspect_test.go`)\n- [x] Non-runc introspection with and without runtime options\n- [x] Userns advertisement gate via `introspectRuntimeHandler`\n- [x] `go build ./...`, `go vet`, `gofmt`, `goimports`",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-01T02:15:05Z",
+      "merged_at": "2026-07-12T21:47:41Z",
+      "author": "a7i",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13303": {
+      "title": "build(deps): bump github.com/containerd/go-dmverity from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0",
+      "url": "https://github.com/containerd/containerd/pull/13303",
+      "body": "Bumps [github.com/containerd/go-dmverity](https://github.com/containerd/go-dmverity) from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/containerd/go-dmverity/releases\">github.com/containerd/go-dmverity's releases</a>.</em></p>\n<blockquote>\n<h2>v0.1.0</h2>\n<p>The first release for go-dmverity includes support for creating and verifying dm-verity hash trees in pure Go, and for activating verity devices on Linux via a pure-Go device-mapper interface. There is no support for FEC in this version.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>fix CI workflow and lint issues by <a href=\"https://github.com/ChengyuZhu6\"><code>@​ChengyuZhu6</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/5\">containerd/go-dmverity#5</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.27.0 to 0.38.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/2\">containerd/go-dmverity#2</a></li>\n<li>build(deps): bump actions/checkout from 5.0.1 to 6.0.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/1\">containerd/go-dmverity#1</a></li>\n<li>build(deps): bump actions/setup-go from 6.0.0 to 6.1.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/3\">containerd/go-dmverity#3</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.38.0 to 0.39.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/7\">containerd/go-dmverity#7</a></li>\n<li>tiny fix: fix link in README by <a href=\"https://github.com/anniecherk\"><code>@​anniecherk</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/8\">containerd/go-dmverity#8</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.39.0 to 0.40.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/9\">containerd/go-dmverity#9</a></li>\n<li>build(deps): bump actions/setup-go from 6.1.0 to 6.2.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/10\">containerd/go-dmverity#10</a></li>\n<li>build(deps): bump actions/checkout from 6.0.1 to 6.0.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/11\">containerd/go-dmverity#11</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.40.0 to 0.41.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/12\">containerd/go-dmverity#12</a></li>\n<li>build(deps): bump actions/setup-go from 6.2.0 to 6.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/13\">containerd/go-dmverity#13</a></li>\n<li>build(deps): bump actions/setup-go from 6.3.0 to 6.4.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/15\">containerd/go-dmverity#15</a></li>\n<li>ci: disable dependabot for go.mod dependencies by <a href=\"https://github.com/thaJeztah\"><code>@​thaJeztah</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/16\">containerd/go-dmverity#16</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/ChengyuZhu6\"><code>@​ChengyuZhu6</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/5\">containerd/go-dmverity#5</a></li>\n<li><a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/2\">containerd/go-dmverity#2</a></li>\n<li><a href=\"https://github.com/anniecherk\"><code>@​anniecherk</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/8\">containerd/go-dmverity#8</a></li>\n<li><a href=\"https://github.com/thaJeztah\"><code>@​thaJeztah</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/16\">containerd/go-dmverity#16</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/containerd/go-dmverity/commits/v0.1.0\">https://github.com/containerd/go-dmverity/commits/v0.1.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li>See full diff in <a href=\"https://github.com/containerd/go-dmverity/commits/0.1.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=github.com/containerd/go-dmverity&package-manager=go_modules&previous-version=0.0.0-20260106143538-e097b6cc4a33&new-version=0.1.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-28T02:02:35Z",
+      "merged_at": "2026-04-28T21:58:41Z",
+      "author": "dependabot[bot]",
+      "labels": [
+        "dependencies",
+        "size/XS",
+        "go"
+      ]
+    },
+    "11": {
+      "title": "Fix compilation for all tags",
+      "url": "https://github.com/containerd/containerd/pull/11",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-07T20:39:07Z",
+      "merged_at": "2015-12-07T22:33:46Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "12": {
+      "title": "Remove ctr binary from repository",
+      "url": "https://github.com/containerd/containerd/pull/12",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-07T20:41:00Z",
+      "merged_at": "2015-12-07T22:33:06Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "16": {
+      "title": "Prototype of grpc API",
+      "url": "https://github.com/containerd/containerd/pull/16",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-09T23:06:09Z",
+      "merged_at": "2015-12-09T23:08:40Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "13785": {
+      "title": "[release/2.3] ci: bound Go fuzzing by execution count",
+      "url": "https://github.com/containerd/containerd/pull/13785",
+      "body": "Go can report context deadline exceeded when a duration-based fuzz limit expires (https://go.dev/issue/75804).\r\n\r\nUse a 50,000-execution limit based on the roughly 47,000 executions FuzzImageStore completed in 30 seconds in CI. This keeps work stable across runners and avoids the duration issue.\r\n\r\nAssisted-by: Codex\r\n(cherry picked from commit c1b9b78f473f2936fb5d3f06b147d0a01f7a12dc)",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-13T21:57:21Z",
+      "merged_at": "2026-07-14T15:41:22Z",
+      "author": "chrishenzie",
+      "labels": [
+        "size/S"
+      ]
+    },
+    "13803": {
+      "title": "[release/2.3] core/runtime/v2: Preserve protobuf shim response bytes",
+      "url": "https://github.com/containerd/containerd/pull/13803",
+      "body": "This is an automated cherry-pick of #13801\n\n/assign mxpv\n\n```release-note\nFix corruption of binary protobuf shim start responses caused by premature whitespace trimming\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-17T01:55:51Z",
+      "merged_at": "2026-07-17T10:19:40Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M"
+      ]
+    },
+    "13801": {
+      "title": "core/runtime/v2: Preserve protobuf shim response bytes",
+      "url": "https://github.com/containerd/containerd/pull/13801",
+      "body": "Shim start output was trimmed before protobuf decoding. Because arbitrary protobuf fields may legitimately end with whitespace bytes, including `\\n`, trimming could corrupt metadata or capabilities and cause decoding to fail.\r\n\r\nPass the raw command output to `parseStartResponse` and attempt protobuf decoding before modifying the response.\r\nWhitespace trimming now applies only to legacy JSON and plain-address responses.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-16T17:04:04Z",
+      "merged_at": "2026-07-16T22:13:00Z",
+      "author": "vvoland",
+      "labels": [
+        "size/M",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13840": {
+      "title": "[release/2.3] core/runtime/v2: Drop checkpointctl module dependency",
+      "url": "https://github.com/containerd/containerd/pull/13840",
+      "body": "This is an automated cherry-pick of #13839\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-24T19:57:01Z",
+      "merged_at": "2026-07-24T22:58:55Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "area/runtime",
+        "size/XS"
+      ]
+    },
+    "13839": {
+      "title": "core/runtime/v2: Drop checkpointctl module dependency",
+      "url": "https://github.com/containerd/containerd/pull/13839",
+      "body": "The shim imported github.com/checkpoint-restore/checkpointctl/lib for a single string constant.\r\nConsumers that embed only the runtime v2 plugin (and never touch internal/cri) therefore had to vendor the checkpointctl package.\r\n\r\nDeclare the file name as a local constant instead. checkpointctl still remains a direct requirement here because internal/cri/server uses its types, JSON readers, and annotations, but it is no longer reachable from the runtime v2 import graph.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-24T18:31:02Z",
+      "merged_at": "2026-07-24T19:56:21Z",
+      "author": "vvoland",
+      "labels": [
+        "size/XS",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13857": {
+      "title": "[release/2.3] shim_load: Consider shim leaked only if we can't find pids",
+      "url": "https://github.com/containerd/containerd/pull/13857",
+      "body": "This is an automated cherry-pick of #13790\n\n/assign chrishenzie\n\n```release-note\nAvoid orphaning shims on transient errors when loading process IDs\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-27T15:38:22Z",
+      "merged_at": "2026-07-27T17:46:57Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/L"
+      ]
+    },
+    "13790": {
+      "title": "shim_load: Consider shim leaked only if we can't find pids",
+      "url": "https://github.com/containerd/containerd/pull/13790",
+      "body": "Right now the statement is treating any error from the shim as leaking\r\n(len(pInfo == 0 is true for any error). It seems the intent was to only\r\ntreat shims this way if the error was not found, or if there's\r\nlegitimately no pids associated with the shim. Let's fix that up to\r\navoid orphaning shims that just had a small error in reading pids.\r\n\r\nLink: https://github.com/containerd/containerd/issues/13784\r\nSigned-off-by: Andrew Halaney <ahalaney@netflix.com>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-13T23:10:01Z",
+      "merged_at": "2026-07-22T17:21:00Z",
+      "author": "halaney",
+      "labels": [
+        "size/L",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13868": {
+      "title": "[release/2.3] cri: deprecate restore in CreateContainer",
+      "url": "https://github.com/containerd/containerd/pull/13868",
+      "body": "This is an automated cherry-pick of #13838\n\n/assign samuelkarp\n\n```release-note\nDeprecate checkpoint restore in CreateContainer\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-28T18:10:38Z",
+      "merged_at": "2026-07-29T18:18:30Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "impact/deprecation",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "13838": {
+      "title": "cri: deprecate restore in CreateContainer",
+      "url": "https://github.com/containerd/containerd/pull/13838",
+      "body": "",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-24T08:10:34Z",
+      "merged_at": "2026-07-28T18:09:59Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/L",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13870": {
+      "title": "[release/2.3] internal/oom: Fix memory leak by removing watcher from map on Stop",
+      "url": "https://github.com/containerd/containerd/pull/13870",
+      "body": "This is an automated cherry-pick of #13856\n\n/assign fuweid\n\n/kind bug\n\n```release-note\nFix memory leak in OOM watcher map when stopping container monitoring\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-28T23:21:06Z",
+      "merged_at": "2026-07-29T17:39:31Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "kind/bug",
+        "area/runtime",
+        "size/M"
+      ]
+    },
+    "13856": {
+      "title": "internal/oom: Fix memory leak by removing watcher from map on Stop",
+      "url": "https://github.com/containerd/containerd/pull/13856",
+      "body": "- Fixes #13853\r\n\r\nThe `oomWatchers.Stop` method stopped the watcher but never removed it from the `watchers` map. Because `Add` is the only writer and nothing ever deletes from the map, `*watcher` entries accumulated for the lifetime of the shim process. This resulted in an unbounded memory leak.\r\n\r\nFurthermore, this prevented the same container ID from ever being watched again if it was re-created, silently dropping OOM monitoring.\r\n\r\nThis commit modifies `Stop` to `delete(ows.watchers, cid)`, ensuring the watcher is released and the container ID is freed. It also adds a unit test in `watcher_test.go` to ensure `Stop` successfully allows a watcher to be re-added under the same container ID.\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-26T16:21:25Z",
+      "merged_at": "2026-07-28T17:49:23Z",
+      "author": "HarshalPatel1972",
+      "labels": [
+        "kind/bug",
+        "size/M",
+        "cherry-picked/2.3.x"
+      ]
+    }
+  },
+  "issues": {
+    "13784": {
+      "title": "Wrongly classified \"leaked shim\" causes leaked container on containerd restart",
+      "url": "https://github.com/containerd/containerd/issues/13784",
+      "body": "### Description\n\nWhen running a pod with a container that has writable cgroups\nrestarting containerd can sometimes incorrectly claim the\nshim has been leaked, and this leads to orphaning the shim\nand container. Kubelet spawns a replacement (assuming your restart\npolicy is setup so) and both workloads can live on.\n\nI noticed this on a node I have that recently restarted containerd\nas part of a system upgrade. The referenced container had been\nrunning for days so far:\n```\nstart-kubelet-containerd.sh[1884948]: {\"id\":\"e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b\",\"level\":\"info\",\"msg\":\"cleaning leaked shim process\",\"namespace\":\"k8s.io\",\"time\":\"2026-07-08T18:47:39.948389522Z\"}\nstart-kubelet-containerd.sh[1884948]: {\"error\":\"rpc error: code = Unknown desc = cannot delete a running process\",\"id\":\"e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b\",\"level\":\"error\",\"msg\":\"failed to delete task\",\"namespace\":\"k8s.io\",\"time\":\"2026-07-08T18:47:39.948779237Z\"}\n```\n\nInspecting that shim some shows its still around as well as the container\nprocesses, but containerd knows nothing about it any more:\n```\n$ cat /sys/fs/cgroup/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podb9724ab9_6bef_4951_a092_a9b1ddb4b682.slice/cri-containerd-e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b.scope/init.scope/cgroup.procs\n1207102\n\n$ ps elf 1207102\nF   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND\n4 -1883963392 1207102 1206821 20 0 165844 9984 -    Ss   ?         61:53 /sbin/init\n$ ps elf 1206821\nF   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND\n0     0 1206821       1  20   0 1245520 16380 -     Sl   ?         80:13 /apps/nflx-containerd/bin/\n$ sudo crictl ps | grep e210df\n$ sudo tctr -n k8s.io containers ls | grep e210df84\n$ sudo tctr -n k8s.io tasks ls | grep e210df84\n```\n\nIf you dive into that code path in containerd, it calls to the shim\nand ultimately the shim does a runc ps. If it finds no pids, or errors out\nat all, it claims leaked and takes the path already described. Let's mimic\nthat some:\n```\n$ sudo runc --root /run/containerd/runc/k8s.io ps e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b\nUID          PID    PPID  C STIME TTY          TIME CMD\n2411003+ 1207102 1206821  0 Jul03 ?        01:02:33 /sbin/init\n(...)\n\n$ sudo cat /run/containerd/io.containerd.runtime.v2.task/k8s.io/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b/bootstrap.json\n{\"version\":3,\"address\":\"unix:///run/containerd/s/010893ea6ff3e95972858a6dd7ac1e5c892b94085a6d4626cb26d91bb8591ef1\",\"protocol\":\"ttrpc\"}\n$ sudo ctr -n k8s.io shim --shim-address unix:///run/containerd/s/010893ea6ff3e95972858a6dd7ac1e5c892b94085a6d4626cb26d91bb8591ef1 state --task-id e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b\n{\n    \"id\": \"e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b\",\n    \"bundle\": \"/run/containerd/io.containerd.runtime.v2.task/k8s.io/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b\",\n    \"pid\": 1207102,\n    \"status\": 2,\n    \"stdout\": \"/run/containerd/io.containerd.grpc.v1.cri/containers/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b/io/3949225944/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b-stdout\",\n    \"stderr\": \"/run/containerd/io.containerd.grpc.v1.cri/containers/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b/io/3949225944/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b-stderr\",\n    \"exited_at\": {\n\t\"seconds\": -62135596800\n    }\n}\n```\n\nSo the shim is alive and well and this all worked fine. But finally I realized\nthe runc logs also make it to disk (but not journald):\n```\n(nfsuper) ~ $ sudo cat /run/containerd/io.containerd.runtime.v2.task/k8s.io/e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b/log.json\n{\"level\":\"error\",\"msg\":\"unable to get all container pids: openat2 /sys/fs/cgroup/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podb9724ab9_6bef_4951_a092_a9b1ddb4b682.slice/cri-containerd-e210df84bcd26056a76e73c9a07dac85c876f8b95776afa4b8d998f35986f25b.scope/system.slice/system-nodequark\\\\x2dlog.slice/nodequark-log@pino-sentry.service/cgroup.procs: no such file or directory\",\"time\":\"2026-07-08T18:47:39Z\"}\n```\n\nAnd that clears everything up. The container was deleting a cgroup while runc ps\nhappened, that errored, and we handled it poorly.\n\n\n### Steps to reproduce the issue\n\n1. Run a container with writable cgroups\n2. Delete cgroups rapidly\n3. Restart containerd\n\n\n### Describe the results you received and expected\n\nShim/container not orphaned\n\n### What version of containerd are you using?\n\n2.2.1\n\n### Any other relevant information\n\n_No response_\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-07-13T21:12:14Z",
+      "closed_at": "2026-07-24T19:20:36Z",
+      "author": "halaney",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    },
+    "13853": {
+      "title": "internal/oom: Stop never removes the watcher from the map, leaking watchers and burning container IDs",
+      "url": "https://github.com/containerd/containerd/issues/13853",
+      "body": "## Description\n\n`internal/oom`'s `oomWatchers.Stop` stops a container's watcher but never removes it from `oomWatchers.watchers`:\n\n```go\nfunc (ows *oomWatchers) Stop(cid string) error {\n\tows.mu.Lock()\n\tw, exist := ows.watchers[cid]\n\tows.mu.Unlock()\n\n\tif !exist {\n\t\treturn nil\n\t}\n\treturn w.stop()\n}\n```\n\n`Add` is the only writer of that map and nothing ever deletes from it, so entries accumulate for the lifetime of the shim process. Two consequences:\n\n**1. Stopped watchers are leaked.** Every container that exits leaves a stopped `*watcher` behind, holding a `cid`, a `cgroupPath`, an `*os.File` and a channel. `stop()` does close the event FD, so this is a memory leak rather than an FD leak, but it is unbounded in the number of containers the shim has ever run.\n\n**2. A container ID can never be watched twice.** `Add` rejects an ID that is already in the map with `errdefs.ErrAlreadyExists`. Once a container ID has been stopped it can never be added again in the same shim, so a container re-created under that ID silently runs with no OOM monitoring — the `Create` path only logs the failure:\n\nhttps://github.com/containerd/containerd/blob/main/cmd/containerd-shim-runc-v2/task/service.go#L274-L276\n\nBoth matter because a shim is grouped per sandbox (`manager_linux.go` groups by `io.kubernetes.cri.sandbox-id`), so one shim process hosts every container of a pod, across restarts, for the pod's whole lifetime.\n\nThe only production caller is `cmd/containerd-shim-runc-v2/task/service.go`: `Add` in the create path, `Stop` in `handleProcessExit`.\n\n## Steps to reproduce\n\nDirectly observable as a unit test in `internal/oom`:\n\n```go\nwatchers := New()\nrequire.NoError(t, watchers.Add(cid, pid, fn))\nrequire.NoError(t, watchers.Stop(cid))\nrequire.NoError(t, watchers.Add(cid, pid, fn)) // fails: already exists\n```\n\n## Expected\n\n`Stop` removes the entry, releasing the watcher and freeing the container ID to be watched again.\n\n## Version\n\n`main`. Affects `internal/oom` since the package was introduced.\n\n## Note\n\nSeparate from #13851, which bounds the wait inside `watcher.stop()` for #13814. The two touch the same function but are independent problems.\n",
+      "state": "closed",
+      "created_at": "2026-07-26T02:58:38Z",
+      "closed_at": "2026-07-28T17:49:24Z",
+      "author": "locker95",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    }
+  }
+}
