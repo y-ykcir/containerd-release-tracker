@@ -1,0 +1,415 @@
+{
+  "metadata": {
+    "generated_at": "2026-09-04T21:39:48.127433",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.3.5",
+    "name": "containerd 2.3.5",
+    "body": "Welcome to the v2.3.5 release of containerd!\n\nThe fifth patch release for containerd 2.3 contains various fixes\nand updates including security patches.\n\n### Security Updates\n\n* **containerd**\n  * [**CVE-2026-53495**](https://github.com/containerd/containerd/security/advisories/GHSA-7jxh-36q5-gcqv)\n  * [**GHSA-rp3h-jf77-q9p4**](https://github.com/containerd/containerd/security/advisories/GHSA-rp3h-jf77-q9p4)\n\n### Highlights\n\n#### Image Distribution\n\n* Apply hardening to strip sensitive authentication headers when fetching descriptor URLs ([#14030](https://github.com/containerd/containerd/pull/14030))\n\n#### Runtime\n\n* Avoid hangs and data races when streaming container standard I/O in CRI ([#14094](https://github.com/containerd/containerd/pull/14094))\n* Fix missing error messages in OpenTelemetry trace attributes ([#14049](https://github.com/containerd/containerd/pull/14049))\n* Fix user and group lookup failures in container rootfs containing symlinked /etc/passwd or /etc/group ([#13999](https://github.com/containerd/containerd/pull/13999))\n* Fix configuration loading error when drop-in configuration files have a higher version than the root configuration ([#13995](https://github.com/containerd/containerd/pull/13995))\n* Avoid containerd startup hangs when loading shims ([#13983](https://github.com/containerd/containerd/pull/13983))\n* Add context to error when shim delete times out ([#13921](https://github.com/containerd/containerd/pull/13921))\n* Fix Windows Server 2022 container compatibility on host builds newer than the latest LTSC ([containerd/platforms#34](https://github.com/containerd/platforms/pull/34))\n\n#### Snapshotters\n\n* Fix unpack failure for EROFS images containing the erofs OS feature ([#14062](https://github.com/containerd/containerd/pull/14062))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Phil Estes\n* Samuel Karp\n* Derek McGowan\n* Sebastiaan van Stijn\n* Akhil Mohan\n* Maksym Pavlenko\n* Wei Fu\n* Oleh Konko\n* Austin Vazquez\n* Jing Chen\n* Martín Fernández\n* Paco Xu\n* XlabAI\n* Yuanliang Zhang\n\n### Changes\n<details><summary>33 commits</summary>\n<p>\n\n  * [`934efa5e0`](https://github.com/containerd/containerd/commit/934efa5e09193139c810bcab1fb5ca547dbb6b90) Prepare release notes for v2.3.5\n  * [`be419b070`](https://github.com/containerd/containerd/commit/be419b070c178548c8e384d8bc3c8fe0ad6f154a) Merge commit from fork\n  * [`9ec55f024`](https://github.com/containerd/containerd/commit/9ec55f024041d0641f6d79841e45c8781141ddaa) cri: cancel ExecSync IO drain on context cancellation\n  * [`84ea25bc1`](https://github.com/containerd/containerd/commit/84ea25bc1d7e9f71390ce9d647dbdec4408c05bc) Merge commit from fork\n  * [`c53577965`](https://github.com/containerd/containerd/commit/c535779652bc8d541328a36ba598088c09819b97) archive: skip redundant opaque whiteout walks\n* Fix data races and a deadlock in the byte stream helpers ([#14094](https://github.com/containerd/containerd/pull/14094))\n  * [`9f6be869c`](https://github.com/containerd/containerd/commit/9f6be869c8a6144dc66befde081d6e262b7c4c7d) Fix data races and a deadlock in the byte stream helpers\n* plugins: remove some stray logrus imports ([#14063](https://github.com/containerd/containerd/pull/14063))\n  * [`6c59399bf`](https://github.com/containerd/containerd/commit/6c59399bf07df45110770dbe28710e2e65c3e8c6) plugins: remove some stray logrus imports\n* snapshots/erofs: advertise the erofs OS feature from the snapshotter plugin ([#14062](https://github.com/containerd/containerd/pull/14062))\n  * [`f65732115`](https://github.com/containerd/containerd/commit/f65732115d1319a62fd35dc694d5fbe3045594f7) snapshots/erofs: test the advertised erofs feature platform\n  * [`5ffc2bbda`](https://github.com/containerd/containerd/commit/5ffc2bbda2a878f87b56ffa2496157f3b814fbc1) erofs: advertise the erofs OS feature platform from the snapshotter\n* update runc to v1.5.1 ([#14059](https://github.com/containerd/containerd/pull/14059))\n  * [`af445ea0a`](https://github.com/containerd/containerd/commit/af445ea0afd99c4925e5aa2c01a3210146675e2d) update runc to v1.5.1\n  * [`c077e43bd`](https://github.com/containerd/containerd/commit/c077e43bd7f2fe75284e10974cec0ff82d38024a) update runc to v1.5.0\n* vendor: github.com/containerd/platforms v1.0.0-rc.5 ([#14048](https://github.com/containerd/containerd/pull/14048))\n  * [`676a64cad`](https://github.com/containerd/containerd/commit/676a64cad58b76448d3978bc5c7c663c97f99656) vendor: github.com/containerd/platforms v1.0.0-rc.5\n* pkg/tracing: handle error and typed-nil Stringer attributes ([#14049](https://github.com/containerd/containerd/pull/14049))\n  * [`c7ffd8b00`](https://github.com/containerd/containerd/commit/c7ffd8b006b52ee329757d71430193e91b16b09d) pkg/tracing: handle error and typed-nil Stringer attributes\n* docker fetcher: strip sensitive headers on descriptor URLs ([#14030](https://github.com/containerd/containerd/pull/14030))\n  * [`58fb846d5`](https://github.com/containerd/containerd/commit/58fb846d53f212330dc6be8f0b13fdf550a741dd) core/remotes/docker: normalize descriptor URL origins\n  * [`c7625a1ff`](https://github.com/containerd/containerd/commit/c7625a1ff2826ee58fe5d8924f5612213aefa109) core/remotes/docker: strip sensitive headers on desc.urls fetch\n* update runhcs to v0.15.0-rc.4 ([#13990](https://github.com/containerd/containerd/pull/13990))\n  * [`6fbb92c33`](https://github.com/containerd/containerd/commit/6fbb92c33c58952735577e8943adc39a8528b888) update runhcs to v0.15.0-rc.4\n* pkg/oci: resolve rootfs symlinks for user lookup ([#13999](https://github.com/containerd/containerd/pull/13999))\n  * [`53bf030ea`](https://github.com/containerd/containerd/commit/53bf030ea230c8c6c7b2a74f49b4860950b1af93) pkg/oci: resolve rootfs symlinks for user lookup\n* Revert \"add check on version of drop in configs\" ([#13995](https://github.com/containerd/containerd/pull/13995))\n  * [`7790c4c21`](https://github.com/containerd/containerd/commit/7790c4c2108ff6667e6a222cb3c9a7a02bc459ec) ensure that the final config version is the higest in the config list\n  * [`1125b053f`](https://github.com/containerd/containerd/commit/1125b053f59ed3d4cacc07d1b6cb9e4da17d7fc7) Revert \"add check on version of drop in configs\"\n* fix(runtime): apply load timeout to load shim ([#13983](https://github.com/containerd/containerd/pull/13983))\n  * [`460c47b28`](https://github.com/containerd/containerd/commit/460c47b28dbc0f7ef463c94129489532fd708290) fix(runtime): bound shim loading with the load timeout\n* Add more context to the shim delete error ([#13921](https://github.com/containerd/containerd/pull/13921))\n  * [`7f97bc122`](https://github.com/containerd/containerd/commit/7f97bc1220b50dab542a88b39b09e7ac78ffda42) Add more context to the shim delete error\n</p>\n</details>\n\n### Changes from containerd/platforms\n<details><summary>2 commits</summary>\n<p>\n\n* Fix WS2022 compat on hosts past the latest LTSC ([containerd/platforms#34](https://github.com/containerd/platforms/pull/34))\n  * [`bacc690`](https://github.com/containerd/platforms/commit/bacc69061152115965f5b17fa59dc4e051ba8dc3) Fix WS2022 compat on hosts past the latest LTSC\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/containerd/platforms**  v1.0.0-rc.4 -> v1.0.0-rc.5\n\nPrevious release can be found at [v2.3.4](https://github.com/containerd/containerd/releases/tag/v2.3.4)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-09-04T20:49:28Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.3.5",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 19,
+    "analyzed_issues": 2,
+    "important_items": 16
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#13921: [release/2.3] Add more context to the shim delete error",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13912: Add more context to the shim delete error",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13983: [release/2.3] fix(runtime): apply load timeout to load shim",
+      "reason": "Cherry-pick or backport; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13954: fix(runtime): apply load timeout to load shim",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13852: core/runtime/v2: add timeout to shim.delete during loadShims",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13990: [release/2.3] update runhcs to v0.15.0-rc.4",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13995: [release/2.3] Revert \"add check on version of drop in configs\"",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#13999: [release/2.3] pkg/oci: resolve rootfs symlinks for user lookup",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14030: [release/2.3] docker fetcher: strip sensitive headers on descriptor URLs",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#12889: docker fetcher: strip sensitive headers on descriptor URLs",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#14048: [release/2.3] vendor: github.com/containerd/platforms v1.0.0-rc.5",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14049: [release/2.3] pkg/tracing: handle error and typed-nil Stringer attributes",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14013: pkg/tracing: handle error and typed-nil Stringer attributes",
+      "reason": "Contains 'panic'; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#14059: [release/2.3] update runc to v1.5.1",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "Issue",
+      "title": "#13848: loadShims can hang forever at startup if a single leftover shim's Task.Delete never replies",
+      "reason": "Contains 'deadlock'; Contains 'crash'; Has label 'kind/bug'; Potential crash issue; Performance related"
+    },
+    {
+      "type": "Issue",
+      "title": "#13382: [Go 1.24] version >=v2.2 fails to create containers from images having /etc symlinked to an absolute path",
+      "reason": "Has label 'kind/bug'"
+    }
+  ],
+  "prs": {
+    "34": {
+      "title": "Add graphite metrics support",
+      "url": "https://github.com/containerd/containerd/pull/34",
+      "body": "I tried with https://github.com/hopsoft/docker-graphite-statsd and it\nlooks pretty nice. We can see how different metrics depends on a number of\ncontainers and find bottlenecks under heavy load.\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2015-12-16T23:40:30Z",
+      "merged_at": "2015-12-17T00:09:44Z",
+      "author": "LK4D4",
+      "labels": []
+    },
+    "13921": {
+      "title": "[release/2.3] Add more context to the shim delete error",
+      "url": "https://github.com/containerd/containerd/pull/13921",
+      "body": "This is an automated cherry-pick of #13912\n\n/assign dmcgowan\n\n```release-note\nAdd context to error when shim delete times out\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-07T23:24:48Z",
+      "merged_at": "2026-08-18T21:27:00Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M"
+      ]
+    },
+    "13912": {
+      "title": "Add more context to the shim delete error",
+      "url": "https://github.com/containerd/containerd/pull/13912",
+      "body": "When a shim delete hits a timeout, currently the error message does not indicate that the delete was killed rather than failed to complete.\r\n\r\nAdds more context to these unhelpful messages after context timeout `\"error\":\": exit status 1\"`",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-07T00:28:35Z",
+      "merged_at": "2026-08-07T18:04:51Z",
+      "author": "dmcgowan",
+      "labels": [
+        "size/M",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13983": {
+      "title": "[release/2.3] fix(runtime): apply load timeout to load shim",
+      "url": "https://github.com/containerd/containerd/pull/13983",
+      "body": "This is an automated cherry-pick of #13954\n\n/assign austinvazquez\n\n```release-note\nAvoid containerd startup hangs when loading shims\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-19T12:02:40Z",
+      "merged_at": "2026-08-19T19:06:10Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M"
+      ]
+    },
+    "13954": {
+      "title": "fix(runtime): apply load timeout to load shim",
+      "url": "https://github.com/containerd/containerd/pull/13954",
+      "body": "Carries #13852\r\n\r\nThis change applies the `io.containerd.timeout.shim.load` budget to all of shim manager load shim and `io.containerd.timeout.shim.cleanup` to cleanup shim calls to prevent a previously leaked / wedged shim from stalling containerd startup.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-12T20:47:51Z",
+      "merged_at": "2026-08-14T23:08:57Z",
+      "author": "austinvazquez",
+      "labels": [
+        "size/M",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13852": {
+      "title": "core/runtime/v2: add timeout to shim.delete during loadShims",
+      "url": "https://github.com/containerd/containerd/pull/13852",
+      "body": "Fixes #13848\n\nwhen loadShims cleans up abandoned shims during daemon startup, it calls shim.delete() using the daemon's startup context. this context doesn't have a deadline.\n\nif a single leftover shim process never replies to the Delete grpc request (like what happens in #13848), containerd just hangs forever on startup.\n\nthis wraps the context with the existing cleanupTimeout (5s) before deleting the shim, ensuring the daemon can recover and continue starting even if a shim is wedged.\n",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2026-07-25T19:35:24Z",
+      "merged_at": null,
+      "author": "HarshalPatel1972",
+      "labels": [
+        "needs-rebase",
+        "size/XS"
+      ]
+    },
+    "13990": {
+      "title": "[release/2.3] update runhcs to v0.15.0-rc.4",
+      "url": "https://github.com/containerd/containerd/pull/13990",
+      "body": "This is an automated cherry-pick of #13984\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-19T19:52:36Z",
+      "merged_at": "2026-08-21T17:21:57Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/XS"
+      ]
+    },
+    "13984": {
+      "title": "update runhcs to v0.15.0-rc.4",
+      "url": "https://github.com/containerd/containerd/pull/13984",
+      "body": "full diff: https://github.com/microsoft/hcsshim/compare/v0.15.0-rc.3...v0.15.0-rc.4",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-19T13:03:31Z",
+      "merged_at": "2026-08-19T19:47:01Z",
+      "author": "thaJeztah",
+      "labels": [
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13995": {
+      "title": "[release/2.3] Revert \"add check on version of drop in configs\"",
+      "url": "https://github.com/containerd/containerd/pull/13995",
+      "body": "This is an automated cherry-pick of #13939\n\n/assign akhilerm\n\n```release-note\nFix configuration loading error when drop-in configuration files have a higher version than the root configuration\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-20T16:59:05Z",
+      "merged_at": "2026-08-20T18:33:51Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/S"
+      ]
+    },
+    "13939": {
+      "title": "Revert \"add check on version of drop in configs\"",
+      "url": "https://github.com/containerd/containerd/pull/13939",
+      "body": "This reverts commit 21248d00762ec572772c41e3bbb69a518e0a0eaf.\r\n\r\nSince the config merge now happens after migration, the version check need not be performed before the migration. ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-11T09:38:13Z",
+      "merged_at": "2026-08-20T13:53:44Z",
+      "author": "akhilerm",
+      "labels": [
+        "size/S",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13999": {
+      "title": "[release/2.3] pkg/oci: resolve rootfs symlinks for user lookup",
+      "url": "https://github.com/containerd/containerd/pull/13999",
+      "body": "This is an automated cherry-pick of #13818\n\n/assign fuweid\n\n```release-note\nFix user and group lookup failures in container rootfs containing symlinked /etc/passwd or /etc/group\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-20T19:54:08Z",
+      "merged_at": "2026-08-20T21:35:09Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/XL"
+      ]
+    },
+    "13818": {
+      "title": "pkg/oci: resolve rootfs symlinks for user lookup",
+      "url": "https://github.com/containerd/containerd/pull/13818",
+      "body": "Some rootfs may use symlinks for /etc/passwd and /etc/group. For example,\r\nNixOS uses absolute symlinks to files in /nix/store. os.Root is not used\r\nbecause [it rejects absolute symlinks][2].\r\n\r\nThe previous code only handled a symlink on the final path. Add a helper to\r\nresolve symlinks in every path component with fs.ReadLinkFS. Absolute symlinks\r\nare resolved from the rootfs, and the final path is still opened with fs.FS.\r\n\r\nWhen tracing a path through symbolic links, the maximum number of links that\r\ncan be followed is [40][1].\r\n\r\n[1]: <https://man7.org/linux/man-pages/man7/path_resolution.7.html>\r\n[2]: <https://github.com/golang/go/issues/67002#issuecomment-2284659595>\r\n\r\n\r\nProvides an alternative to #13383\r\nFixes: https://github.com/containerd/containerd/issues/13382\r\n\r\ncc @jasonjoo2010",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-21T01:03:03Z",
+      "merged_at": "2026-08-20T17:56:19Z",
+      "author": "fuweid",
+      "labels": [
+        "size/XL",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "14030": {
+      "title": "[release/2.3] docker fetcher: strip sensitive headers on descriptor URLs",
+      "url": "https://github.com/containerd/containerd/pull/14030",
+      "body": "This is an automated cherry-pick of #12889\n\n/assign samuelkarp\n\n/kind enhancement\n\n```release-note\nApply hardening to strip sensitive authentication headers when fetching descriptor URLs\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-24T23:49:45Z",
+      "merged_at": "2026-08-25T01:54:17Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "kind/enhancement",
+        "size/L",
+        "area/distribution"
+      ]
+    },
+    "12889": {
+      "title": "docker fetcher: strip sensitive headers on descriptor URLs",
+      "url": "https://github.com/containerd/containerd/pull/12889",
+      "body": "# docker fetcher: strip sensitive headers for desc.urls fetches\n\ncontext:\n- containerd supports fetching content from `descriptor.urls` (oci descriptor URLs).\n- the desc.urls fetch path currently reuses resolver/global headers (e.g., CRI `registry.headers` / hosts headers).\n- when desc.urls points to a non-registry origin, forwarding well-known sensitive headers (e.g., `Authorization`, `Proxy-Authorization`, `Cookie`) is a cross-origin trust-boundary footgun.\n\nchange:\n- keep operator control and existing behavior, but strip a small set of well-known sensitive headers on desc.urls-driven requests: `Authorization`, `Proxy-Authorization`, `Cookie`, `Cookie2`.\n- this mirrors go standard library redirect behavior where sensitive headers are not forwarded cross-origin.\n\ntest:\n- add `TestFetcherDescURLsDoesNotForwardResolverHeaders` to assert sensitive headers are not sent to desc.urls origins, while non-sensitive custom headers still flow.\n\nscope:\n- `core/remotes/docker` only.\n\npins:\n- repo: https://github.com/containerd/containerd\n- commit: c6d6c8af753c3b5cb6528231b9063d1372f7d226\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-11T20:14:10Z",
+      "merged_at": "2026-08-24T22:40:12Z",
+      "author": "1seal",
+      "labels": [
+        "kind/enhancement",
+        "cherry-picked/1.7.x",
+        "size/L",
+        "area/distribution",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "14048": {
+      "title": "[release/2.3] vendor: github.com/containerd/platforms v1.0.0-rc.5",
+      "url": "https://github.com/containerd/containerd/pull/14048",
+      "body": "This is an automated cherry-pick of #14001\n\n/assign thaJeztah",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-26T23:25:57Z",
+      "merged_at": "2026-08-27T19:02:51Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/M"
+      ]
+    },
+    "14001": {
+      "title": "vendor: github.com/containerd/platforms v1.0.0-rc.5",
+      "url": "https://github.com/containerd/containerd/pull/14001",
+      "body": "- relates to https://github.com/moby/moby/issues/53397\r\n\r\n### vendor: github.com/containerd/platforms v1.0.0-rc.5\r\n\r\n- Fix WS2022 compat on hosts past the latest LTSC\r\n\r\nfull diff: https://github.com/containerd/platforms/compare/v1.0.0-rc.4...v1.0.0-rc.5",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-20T20:43:23Z",
+      "merged_at": "2026-08-20T22:09:12Z",
+      "author": "thaJeztah",
+      "labels": [
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "14049": {
+      "title": "[release/2.3] pkg/tracing: handle error and typed-nil Stringer attributes",
+      "url": "https://github.com/containerd/containerd/pull/14049",
+      "body": "This is an automated cherry-pick of #14013\n\n/assign thaJeztah\n\n```release-note\nFix missing error messages in OpenTelemetry trace attributes\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-26T23:28:13Z",
+      "merged_at": "2026-08-27T14:58:32Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/M"
+      ]
+    },
+    "14013": {
+      "title": "pkg/tracing: handle error and typed-nil Stringer attributes",
+      "url": "https://github.com/containerd/containerd/pull/14013",
+      "body": "noticed this code, and recently had a similar issue in logrus;\r\n\r\n- https://github.com/sirupsen/logrus/issues/1580\r\n- https://github.com/sirupsen/logrus/pull/1582\r\n\r\n\r\nLog fields which contain an error currently fall through to JSON marshaling, which may produce an unhelpful value such as \"{}\" instead of the error message.\r\n\r\nHandle error values explicitly and use fmt.Sprint when formatting error and fmt.Stringer values. Besides preserving their textual representation, fmt handles typed-nil implementations without propagating a panic from their Error or String method.\r\n\r\nAlso simplify the final fmt.Sprintf(\"%v\", v) fallback to fmt.Sprint(v).",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-22T18:52:53Z",
+      "merged_at": "2026-08-25T03:28:48Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/M",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "14059": {
+      "title": "[release/2.3] update runc to v1.5.1",
+      "url": "https://github.com/containerd/containerd/pull/14059",
+      "body": "backports;\r\n\r\n- https://github.com/containerd/containerd/pull/13673\r\n- https://github.com/containerd/containerd/pull/13791",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-08-27T22:30:08Z",
+      "merged_at": "2026-08-28T00:02:15Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/XS"
+      ]
+    }
+  },
+  "issues": {
+    "13848": {
+      "title": "loadShims can hang forever at startup if a single leftover shim's Task.Delete never replies",
+      "url": "https://github.com/containerd/containerd/issues/13848",
+      "body": "## Title\ncontainerd hangs forever on startup and never self-recovers once a node accumulates leftover task/shim state — self-perpetuating crash loop\n\n## Environment\n- Affected: containerd **2.2.2** (prod) and **2.3.1** (staging) — identical symptom on both.\n- Kubernetes worker nodes, containerd as CRI, runtime v2.\n- Two runtimes registered: `runc` (`containerd-shim-runc-v2`) and gVisor (`containerd-shim-runsc-v1` / `runsc`).\n- State dir on tmpfs (`/run/containerd`); root on disk (`/var/lib/containerd`).\n- Pods restart very frequently under gVisor (individual pods at 221 and 537+ restarts) → lots of leftover state accumulates.\n- No `[timeouts]` block configured (defaults in use).\n\n## Summary\ncontainerd never finishes starting and **never recovers on its own**, no matter how many restarts. Once a node breaks, it stays broken until manual intervention, and that only holds until the next containerd restart (crash/OOM/upgrade/manual), when it can fall right back in. Our affected nodes had already failed 412, 457, and 636+ restarts identically before we investigated.\n\n### Steps to reproduce\n\n**A. Observed in prod/staging (verified real behavior, not a guess)**\n1. Run containerd 2.2.2/2.3.1 as CRI with gVisor registered alongside runc, state dir on tmpfs.\n2. Run workloads that restart frequently under gVisor over time → leftover shims whose tasks already exited but haven't been cleaned up.\n3. Restart containerd for any reason (we couldn't identify the original trigger on any of the three nodes).\n4. containerd never finishes starting: no socket, `ctr version` hangs, systemd kills + restarts in an endless loop.\n\n**B. Minimal repro (we ran it ourselves; reproduced on the first attempt)**\nFirst naive attempt: start a runc container, kill its task directly, then `kill -STOP` the whole shim so it can't respond to anything → it recovered on its own in ~10s (containerd logged the shim as unreachable and moved on). So a *totally* unresponsive shim is **not** enough to reproduce this. That told us the real production shims must still answer *most* requests and only fail one specific kind.\n\nSecond attempt: put a small relay on the shim's connection that passes everything through unchanged **except** silently dropping only the one request that asks the shim to confirm/finalize its task is gone — never forwarded, never answered. Everything else (announce, \"no running process left\", etc.) passed and got answered normally.\n\nSteps:\n1. Spare/non-prod node, containerd with runc as default.\n2. Start a container in its own namespace → running task + shim.\n3. Kill the task's main process directly (not via containerd) → task exits, shim left with nothing to manage.\n4. Route the shim's comms through the relay, dropping only the \"confirm task is gone\" request. (We first ran the relay fully transparent and confirmed it correctly identified that request type, so we knew we were targeting the right one.)\n5. Restart containerd.\n6. **Result: hung exactly as above — stuck at `activating` for the full startup timeout, killed by systemd, restarted, stuck identically on the next attempt.** Removing the relay → recovered on the following restart.\n7. Cleaned up container + relay; node returned to fully healthy.\n\nSame failure mode: startup asks a leftover shim to confirm its task is gone; if that one request never gets answered — **for any reason** — startup hangs forever regardless of whether the shim is otherwise fine.\n\n## Expected behavior\ncontainerd starts, creates its socket, and kubelet can manage pods within a normal window (a few seconds to low tens of seconds).\n\n## Actual behavior\nSocket never created. `systemctl status containerd` shows `Active: activating (start)` indefinitely. `ctr version` hangs / connection error. After `TimeoutStartSec` (90s in our setup) systemd kills + restarts → fails identically, forever. Journal repeats every cycle:\n```\nstart operation timed out. Terminating.\nFailed with result 'timeout'.\nScheduled restart job, restart counter is at N.\n```\nNode goes `NotReady`. CRI down → kubelet can't create/kill/exec any pod. Only CRI-independent host-network pods (CNI, node-local DNS, CSI node plugins) keep running; everything else gets stuck `Terminating` or unschedulable.\n\n## Debugging we've done (ruled out systematically)\n- **Disk/inodes**: 9% used, 789G free, 2% inodes — not a space issue.\n- **runsc debug logs filling disk**: `/var/log/runsc` only 134MB / ~4,890 files, no `ENOSPC` anywhere.\n- **Hung CephFS mount blocking cleanup**: `stat -f` returned instantly, mount responsive.\n- **Procs stuck in kernel (`D` state)**: none found (`ps -eo pid,stat,wchan,cmd`).\n- **Wedged gVisor Sentry**: `runsc ... debug --stacks` returned immediately, clean idle goroutines.\n- **Deadlocked gVisor shims**: ~2 dozen `runsc` shims sampled, all idle waiting-for-work, none stuck.\n- **Unread data on a socket**: `ss -xp` showed empty rx/tx queues on both ends.\n- **Just wait longer**: raised `TimeoutStartSec` to 900s on a staging node — still never finished. Looks like it's waiting on something that will never happen, not something slow.\n\nLive dump via `kill -SIGUSR1 <containerd-pid>` (debug socket was off; with it on, `ctr pprof goroutines` gives the same info). Two dumps a couple minutes apart across a kill/restart cycle, identical: ~a dozen threads permanently parked \"waiting for a response\" — containerd reaching out to a leftover shim to confirm/finalize its task is gone, reply never comes.\n\n## What we believe is happening (from the dumps; confirmed directly by repro B)\nOn startup, containerd walks every leftover task/shim dir and, for the ones it thinks are abandoned (no running process found), sends each a cleanup/confirmation request and **waits with no timeout** before moving on. If even one shim never replies to that one request, startup hangs forever → systemd start-timeout kill → restart → same hang, because the blocker hasn't gone. Repro B shows this is unconditional: it doesn't matter *why* the shim doesn't answer, only that it doesn't.\n\nWe still don't know *why* the real production shims never reply — we couldn't catch one in the act; by the time we looked, only containerd's side was visibly stuck. Repro B proves the containerd-side mechanism, not the shim-side root cause. gVisor's tracker has google/gvisor#9383 (gVisor processes stuck/unresponsive while appearing alive), which *might* be related — unconfirmed, just flagging it.\n\n## Workaround (not a fix)\nStop containerd + kubelet, force-kill leftover shim/runsc procs, and clear `/run/containerd/*` (tmpfs runtime state only — we do **not** touch `/var/lib/containerd`), then restart. Healthy immediately. But the same workloads rebuild the same leftover state, so the next unrelated containerd restart can hit this again.\n\nHappy to gather more diagnostics — we still have an affected node in its stuck state as of writing.\n\n### Show configuration if it is related to CRI plugin.\n\n### /etc/containerd/config.toml\n```yaml\nimports = [\"/etc/containerd/conf.d/*.toml\"]\nversion = 4\nroot = \"/var/lib/containerd\"\nstate = \"/run/containerd\"\noom_score = 0\n\n[grpc]\n  max_recv_message_size = 16777216\n  max_send_message_size = 16777216\n\n[debug]\n  address = \"\"\n  level = \"info\"\n  format = \"\"\n  uid = 0\n  gid = 0\n\n[metrics]\n  address = \"\"\n  grpc_histogram = false\n\n[plugins]\n  [plugins.\"io.containerd.cri.v1.runtime\"]\n    max_container_log_line_size = 16384\n    enable_unprivileged_ports = false\n    enable_unprivileged_icmp = false\n    enable_selinux = false\n    disable_apparmor = false\n    tolerate_missing_hugetlb_controller = true\n    disable_hugetlb_controller = true\n    enable_cdi = true\n    cdi_spec_dirs = [\"/etc/cdi\", \"/var/run/cdi\"]\n\n   [plugins.\"io.containerd.cri.v1.runtime\".containerd]\n     default_runtime_name = \"runc\"\n     [plugins.\"io.containerd.cri.v1.runtime\".containerd.runtimes]\n       [plugins.\"io.containerd.cri.v1.runtime\".containerd.runtimes.runc]\n         runtime_type = \"io.containerd.runc.v2\"\n         base_runtime_spec = \"/etc/containerd/cri-base.json\"\n\n         [plugins.\"io.containerd.cri.v1.runtime\".containerd.runtimes.runc.options]\n           Root = \"\"\n           SystemdCgroup = true\n           BinaryName = \"/usr/local/bin/runc\"\n\n  [plugins.\"io.containerd.cri.v1.images\"]\n    snapshotter = \"overlayfs\"\n    image_pull_progress_timeout = \"5m\"\n  [plugins.\"io.containerd.cri.v1.images\".pinned_images]\n    sandbox = \"registry.k8s.io/pause:3.10.2\"\n  [plugins.\"io.containerd.cri.v1.images\".registry]\n    config_path = \"/etc/containerd/certs.d\"\n\n  [plugins.\"io.containerd.nri.v1.nri\"]\n    disable = false\n```\n\n### /etc/containerd/runsc.toml\n```yaml\n[runsc_config]\n  platform = \"systrap\"\n  debug = \"true\"\n  debug-log = \"/var/log/runsc/\"\n  overlay2 = \"all:self\"\n```\n\n### /etc/containerd/conf.d/98-runsc.toml\n```yaml\nversion = 2\n[plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.runsc]\n  runtime_type = \"io.containerd.runsc.v1\"\n  pod_annotations = [\"dev.gvisor.*\", \"dev.gvisor.io/*\"]\n  container_annotations = [\"dev.gvisor.*\", \"dev.gvisor.io/*\"]\n  [plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.runsc.options]\n    TypeUrl = \"io.containerd.runsc.v1.options\"\n    ConfigPath = \"/etc/containerd/runsc.toml\"\n```",
+      "state": "open",
+      "created_at": "2026-07-25T12:13:35Z",
+      "closed_at": null,
+      "author": "Ayush-Rathor",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    },
+    "13382": {
+      "title": "[Go 1.24] version >=v2.2 fails to create containers from images having /etc symlinked to an absolute path",
+      "url": "https://github.com/containerd/containerd/issues/13382",
+      "body": "### Description\n\nThe `openUserFile` function in `pkg/oci/spec_opts.go` fails to resolve absolute symlinks on intermediate directory components when looking up `/etc/passwd` or `/etc/group` in a container's rootfs.\n\nA previous fix (#12732, #12683, commit 85b5418e) addressed the case where the target **file** itself (e.g., `/etc/passwd`) is an absolute symlink (common on NixOS, where `/etc/passwd -> /nix/store/abcd/passwd`). However, that fix only called `ReadLink` on the final path and did not walk intermediate directory components. This means rootfs layouts where an intermediate **folder** is a symlink — such as `/etc -> /system/etc` (common on Android emulator images) — are still broken. The `openUserFile` call fails with a \"path escapes from parent\" error or simply cannot find the file.\n\n### Steps to reproduce the issue\n\n1. Create a container image with a rootfs where `/etc` is an absolute symlink to `/system/etc`:\n   ```\n   /system/etc/passwd   (regular file)\n   /etc -> /system/etc  (absolute symlink)\n   ```\n2. Run the container with containerd using Go 1.24+.\n3. Any operation that triggers user/group lookup (e.g., `WithUser`, `WithUserID`, `WithUsername`, `WithAdditionalGIDs`) will attempt to open `etc/passwd` via `openUserFile`.\n\n\n### Describe the results you received and expected\n\n**Received:** `openUserFile` fails to open `etc/passwd` because it only checks whether `etc/passwd` itself is a symlink. Since `etc/passwd` is not a symlink (only `etc` is), the `ReadLink` call returns an error and the function falls through, returning the original \"path escapes from parent\" error.\n\n**Expected:** `openUserFile` should resolve symlinks at every component of the path. When walking `etc/passwd`, it should detect that `etc` is a symlink to `/system/etc`, re-anchor it to `system/etc` relative to the rootfs, and then open `system/etc/passwd` successfully.\n\n### What version of containerd are you using?\n\n2.2.x\n\n### Any other relevant information\n\n_No response_\n\n### Show configuration if it is related to CRI plugin.\n\n_No response_",
+      "state": "closed",
+      "created_at": "2026-05-12T03:30:47Z",
+      "closed_at": "2026-08-20T17:56:21Z",
+      "author": "jasonjoo2010",
+      "labels": [
+        "kind/bug",
+        "area/runtime"
+      ]
+    }
+  }
+}
