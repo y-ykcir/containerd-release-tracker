@@ -1,0 +1,308 @@
+{
+  "metadata": {
+    "generated_at": "2026-09-15T15:39:59.007800",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.4.0-rc.0",
+    "name": "containerd 2.4.0-rc.0",
+    "body": "Welcome to the v2.4.0-rc.0 release of containerd!\n*This is a pre-release of containerd*\n\ncontainerd 2.4 is a regular (non-LTS) release with a shorter support window,\nintended for users who want to adopt new features sooner. As the release\nfollowing the 2.3 LTS, it is the point in the release cycle where previously\ndeprecated features may be removed, so this release may include breaking\nchanges; check the notes below and clear any deprecation warnings from your\ncurrent version before upgrading.\n\nUsers prioritizing stability and a longer support lifecycle should stay on the\n2.3 LTS release.\n\n### Highlights\n\n#### Container Runtime Interface (CRI)\n\n* Enable mount manager for image mounts in CRI ([#13542](https://github.com/containerd/containerd/pull/13542))\n* Export sandbox image and CNI directory configuration in CRI plugin info ([#13940](https://github.com/containerd/containerd/pull/13940))\n* Set default runtimeFeatures.UserNamespacesHostNetwork to true ([#13162](https://github.com/containerd/containerd/pull/13162))\n* Support OCI runtime feature introspection for non-runc runtimes ([#13504](https://github.com/containerd/containerd/pull/13504))\n\n#### Image Distribution\n\n* Apply hardening to strip sensitive authentication headers when fetching descriptor URLs ([#12889](https://github.com/containerd/containerd/pull/12889))\n* Support propagating HTTP 299 warning headers from registries to the resolver ([#12698](https://github.com/containerd/containerd/pull/12698))\n* Use klauspost/compress for gzip layer decompression ([#13560](https://github.com/containerd/containerd/pull/13560))\n\n#### Image Storage\n\n* Add client options to fetch all layer content during unpack even when snapshots exist ([#14126](https://github.com/containerd/containerd/pull/14126))\n* Include media type in content create events ([#13833](https://github.com/containerd/containerd/pull/13833))\n* Add forward References to the GC collection context ([#13634](https://github.com/containerd/containerd/pull/13634))\n\n#### Node Resource Interface (NRI)\n\n* Expose container image name, digest, and config digest to NRI plugins ([#13960](https://github.com/containerd/containerd/pull/13960))\n* Emit deprecation warnings for plugins using deprecated NRI interfaces ([#13916](https://github.com/containerd/containerd/pull/13916))\n\n#### Runtime\n\n* Mask /proc/interrupts and CPU thermal throttle sysfs paths in Linux containers by default ([#14090](https://github.com/containerd/containerd/pull/14090))\n* Add UpdateSandbox RPC to propagate sandbox controller updates to the shim ([#14105](https://github.com/containerd/containerd/pull/14105))\n* Avoid immediately restarting containers with restart=always policy after they are explicitly stopped ([#13993](https://github.com/containerd/containerd/pull/13993))\n* Pass tracing context from shim to runc and hooks ([#14036](https://github.com/containerd/containerd/pull/14036))\n* Fix user and group lookup failures in container rootfs containing symlinked /etc/passwd or /etc/group ([#13818](https://github.com/containerd/containerd/pull/13818))\n* Implement Windows named-pipe server and log streaming support in pkg/shim ([#13948](https://github.com/containerd/containerd/pull/13948))\n* Enable log scrubbing by default on Windows ([#13837](https://github.com/containerd/containerd/pull/13837))\n* Allow specifying parent checkpoint directory when checkpointing with runc ([#13699](https://github.com/containerd/containerd/pull/13699))\n\n#### Snapshotters\n\n* Add Prometheus metrics for EROFS snapshotter layer content cache ([#13941](https://github.com/containerd/containerd/pull/13941))\n* Support warm image cache for erofs snapshotter ([#13813](https://github.com/containerd/containerd/pull/13813))\n* Add max size label for snapshots ([#13520](https://github.com/containerd/containerd/pull/13520))\n\n#### Breaking\n\n* Remove restore in CreateContainer ([#13871](https://github.com/containerd/containerd/pull/13871))\n\n#### Deprecations\n\n* Deprecate containerd.io/runtime-allow-mounts shim annotation in favor of MountCapabilities bootstrap extension ([#14002](https://github.com/containerd/containerd/pull/14002))\n* Remove deprecated shim.Command from pkg ([#13991](https://github.com/containerd/containerd/pull/13991))\n* Deprecate task API address and version fields in runc options and move to CreateTaskRequest ([#13360](https://github.com/containerd/containerd/pull/13360))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Maksym Pavlenko\n* Sebastiaan van Stijn\n* Samuel Karp\n* Derek McGowan\n* Wei Fu\n* Akihiro Suda\n* Mike Brown\n* Paweł Gronowski\n* Chris Henzie\n* Phil Estes\n* Brian Goff\n* Austin Vazquez\n* ningmingxiao\n* Jordan Liggitt\n* Akhil Mohan\n* Eshaan Mathur\n* Krisztian Litkey\n* Chris Ayoub\n* Kazuyoshi Kato\n* Kir Kolyshkin\n* Sergey Kanzhelev\n* Ahmet Alp Balkan\n* Arpit Jain\n* Cindy Li\n* Damien Grisonnet\n* Esteban Ginez\n* Gao Xiang\n* Harsh Rawat\n* Laura Lorenz\n* Maksim An\n* Oleh Konko\n* Philip Laine\n* Abhishek Bhunia\n* Alan Grosskurth\n* Albin Kerouanton\n* Alex Lyn\n* Aman Raj\n* Amir Alavi\n* Amit Barve\n* Andrew Halaney\n* AprilNEA\n* Arjun Yogidas\n* Ayato Tokubi\n* Aysha Afrah Ziya\n* Ben Cressey\n* Bing Hongtao\n* Chris Crone\n* Craig Gumbley\n* Daniel De Graaf\n* Davanum Srinivas\n* Dr. Jan-Philip Gehrcke\n* Harshal Patel\n* Henry Wang\n* Hsiu-Chi Tsai\n* JP Phillips\n* Jing Chen\n* Kohei Tokunaga\n* LEI WANG\n* Martín Fernández\n* Mikhail Dmitrichenko\n* Nahum Litvin\n* Nikolaus Schuetz\n* Pablo Garcia Caceres\n* Paco Xu\n* Robert Cronin\n* SaloniRathi\n* Shambhavi Srivastava\n* Tianon Gravi\n* XlabAI\n* Yuanliang Zhang\n* ayush-panta\n* crawfordxx\n* cshung\n* match man\n* s3onghyun\n* 归寂\n* 徐晓伟\n\n### Dependency Changes\n\n* **cyphar.com/go-pathrs**                                                         v0.2.1 -> v0.2.5\n* **github.com/Microsoft/hcsshim**                                                 v0.15.0-rc.1 -> v0.15.0-rc.4\n* **github.com/ProtonMail/go-crypto**                                              v1.4.1 **_new_**\n* **github.com/StackExchange/wmi**                                                 cbe66965904d -> v1.2.1\n* **github.com/checkpoint-restore/checkpointctl**                                  v1.5.0 -> v1.6.0\n* **github.com/cilium/ebpf**                                                       v0.16.0 -> v0.17.3\n* **github.com/cloudflare/circl**                                                  v1.6.3 **_new_**\n* **github.com/containerd/containerd/api**                                         v1.11.0 -> v1.12.0-rc.1\n* **github.com/containerd/go-cni**                                                 v1.1.13 -> v1.1.14\n* **github.com/containerd/go-runc**                                                v1.1.0 -> v1.2.1\n* **github.com/containerd/imgcrypt/v2**                                            v2.0.2 -> v2.0.3\n* **github.com/containerd/log/otel**                                               v0.1.0 **_new_**\n* **github.com/containerd/nri**                                                    v0.12.0 -> v0.12.3\n* **github.com/containerd/platforms**                                              v1.0.0-rc.4 -> v1.0.0-rc.5\n* **github.com/containerd/ttrpc**                                                  v1.2.8 -> v1.2.9\n* **github.com/containerd/typeurl/v2**                                             v2.2.3 -> v2.3.0\n* **github.com/containernetworking/cni**                                           v1.3.0 -> v1.3.1\n* **github.com/containers/ocicrypt**                                               v1.2.1 -> v1.3.2\n* **github.com/cyphar/filepath-securejoin**                                        v0.6.0 -> v0.7.0\n* **github.com/docker/go-events**                                                  e31b211e4f1c -> v0.1.0\n* **github.com/docker/go-metrics**                                                 v0.0.1 -> v0.1.0\n* **github.com/erofs/go-erofs**                                                    v0.3.0 -> v0.3.1\n* **github.com/felixge/httpsnoop**                                                 v1.0.4 -> v1.1.0\n* **github.com/fsnotify/fsnotify**                                                 v1.9.0 -> v1.10.1\n* **github.com/fxamacker/cbor/v2**                                                 v2.9.0 -> v2.9.1\n* **github.com/go-jose/go-jose/v4**                                                v4.1.4 -> v4.1.5\n* **github.com/go-logr/logr**                                                      v1.4.3 -> v1.4.4\n* **github.com/go-ole/go-ole**                                                     v1.2.6 -> v1.3.0\n* **github.com/google/certtostore**                                                v1.0.6 -> v1.0.7\n* **github.com/google/deck**                                                       105ad94aa8ae -> v1.1.0\n* **github.com/grpc-ecosystem/grpc-gateway/v2**                                    v2.28.0 -> v2.30.0\n* **github.com/intel/goresctrl**                                                   v0.12.0 -> v0.13.0\n* **github.com/klauspost/compress**                                                v1.18.5 -> v1.20.0\n* **github.com/mdlayher/socket**                                                   v0.5.1 -> v0.6.0\n* **github.com/mdlayher/vsock**                                                    v1.2.1 -> v1.3.0\n* **github.com/miekg/pkcs11**                                                      v1.1.1 -> v1.1.2\n* **github.com/moby/sys/user**                                                     v0.4.0 -> v0.4.1\n* **github.com/moby/sys/userns**                                                   v0.1.0 -> v0.2.1\n* **github.com/opencontainers/selinux**                                            v1.13.1 -> v1.15.1\n* **github.com/pelletier/go-toml/v2**                                              v2.3.0 -> v2.4.3\n* **github.com/prometheus/client_golang**                                          v1.23.2 -> v1.24.1\n* **github.com/prometheus/common**                                                 v0.67.5 -> v0.70.1\n* **github.com/prometheus/procfs**                                                 v0.19.2 -> v0.21.1\n* **github.com/sirupsen/logrus**                                                   v1.9.4 -> v1.10.2\n* **github.com/smallstep/pkcs7**                                                   v0.1.1 -> v0.2.1\n* **github.com/stretchr/testify**                                                  v1.11.1 -> v1.12.1\n* **github.com/urfave/cli-docs/v3**                                                v3.1.0 **_new_**\n* **github.com/urfave/cli/v3**                                                     v3.11.0 **_new_**\n* **go.etcd.io/bbolt**                                                             v1.4.3 -> v1.5.0\n* **go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc**  v0.68.0 -> v0.71.0\n* **go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp**                v0.68.0 -> v0.71.0\n* **go.opentelemetry.io/contrib/propagators/envcar**                               v0.71.0 **_new_**\n* **go.opentelemetry.io/otel**                                                     v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace**                            v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc**              v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp**              v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/otel/metric**                                              v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/otel/sdk**                                                 v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/otel/trace**                                               v1.43.0 -> v1.46.0\n* **go.opentelemetry.io/proto/otlp**                                               v1.10.0 -> v1.11.0\n* **go.yaml.in/yaml/v2**                                                           v2.4.3 -> v2.4.4\n* **go.yaml.in/yaml/v3**                                                           v3.0.5 **_new_**\n* **golang.org/x/crypto**                                                          v0.49.0 -> v0.56.0\n* **golang.org/x/mod**                                                             v0.35.0 -> v0.41.0\n* **golang.org/x/net**                                                             v0.52.0 -> v0.58.0\n* **golang.org/x/oauth2**                                                          v0.35.0 -> v0.36.0\n* **golang.org/x/sync**                                                            v0.20.0 -> v0.23.0\n* **golang.org/x/sys**                                                             v0.43.0 -> v0.48.0\n* **golang.org/x/term**                                                            v0.41.0 -> v0.45.0\n* **golang.org/x/text**                                                            v0.35.0 -> v0.41.0\n* **golang.org/x/time**                                                            v0.15.0 -> v0.16.0\n* **google.golang.org/genproto/googleapis/api**                                    9d38bb4040a9 -> da73d73af1c5\n* **google.golang.org/genproto/googleapis/rpc**                                    6f92a3bedf2d -> da73d73af1c5\n* **google.golang.org/grpc**                                                       v1.80.0 -> v1.83.2\n* **google.golang.org/protobuf**                                                   f2248ac996af -> v1.36.12\n* **k8s.io/api**                                                                   v0.36.0 -> v0.37.0\n* **k8s.io/apimachinery**                                                          v0.36.0 -> v0.37.0\n* **k8s.io/client-go**                                                             v0.36.0 -> v0.37.0\n* **k8s.io/component-base**                                                        v0.36.0 -> v0.37.0\n* **k8s.io/cri-api**                                                               v0.36.0 -> v0.37.0\n* **k8s.io/cri-client**                                                            v0.36.0 -> v0.37.0\n* **k8s.io/cri-streaming**                                                         v0.36.0 -> v0.37.0\n* **k8s.io/kube-openapi**                                                          5883c5ee87b9 -> d427ff9ee9ad\n* **k8s.io/streaming**                                                             v0.36.0 -> v0.37.0\n* **k8s.io/utils**                                                                 28399d86e0b5 -> be93311217bd\n* **sigs.k8s.io/structured-merge-diff/v6**                                         v6.3.2 -> v6.4.2\n* **tags.cncf.io/container-device-interface**                                      v1.1.0 -> v1.1.1\n* **tags.cncf.io/container-device-interface/specs-go**                             v1.1.0 -> v1.1.1\n\nPrevious release can be found at [v2.3.0](https://github.com/containerd/containerd/releases/tag/v2.3.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-09-15T14:27:33Z",
+    "prerelease": true,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.4.0-rc.0",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 15,
+    "analyzed_issues": 0,
+    "important_items": 6
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#12698: remotes/docker: Propagate registry warnings to the resolver",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#12889: docker fetcher: strip sensitive headers on descriptor URLs",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13360: Fix sandbox task API endpoints for non-runc runtimes",
+      "reason": "Has label 'kind/bug'"
+    },
+    {
+      "type": "PR",
+      "title": "#13504: Introspect OCI runtime features for non-runc runtimes",
+      "reason": "Contains 'panic'; Potential crash issue; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13303: build(deps): bump github.com/containerd/go-dmverity from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0",
+      "reason": "Contains 'security'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13560: Use klauspost/compress/gzip for decode",
+      "reason": "Cherry-pick or backport; Performance related"
+    }
+  ],
+  "prs": {
+    "12698": {
+      "title": "remotes/docker: Propagate registry warnings to the resolver",
+      "url": "https://github.com/containerd/containerd/pull/12698",
+      "body": "According to the OCI distribution spec registries may include informational warnings in HTTP Warning headers:\r\n\r\n- https://github.com/opencontainers/distribution-spec/blob/e612a6e1e1bc717f9fa7e1feb4f05c8b6568754a/spec.md#warnings\r\n- https://www.rfc-editor.org/rfc/rfc7234#section-5.5\r\n\r\nThis change implements support for handling these warnings and propagating them to the resolver.\r\n\r\nThis patch adds a new WarningHandler to ResolverOptions that allows callers to receive and process warnings sent by registries via HTTP Warning headers with warn-code 299.\n\n```release-note\nSupport propagating HTTP 299 warning headers from registries to the resolver\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-12-17T12:17:08Z",
+      "merged_at": "2026-08-05T18:44:44Z",
+      "author": "vvoland",
+      "labels": [
+        "impact/changelog",
+        "size/XL",
+        "area/distribution"
+      ]
+    },
+    "12889": {
+      "title": "docker fetcher: strip sensitive headers on descriptor URLs",
+      "url": "https://github.com/containerd/containerd/pull/12889",
+      "body": "# docker fetcher: strip sensitive headers for desc.urls fetches\n\ncontext:\n- containerd supports fetching content from `descriptor.urls` (oci descriptor URLs).\n- the desc.urls fetch path currently reuses resolver/global headers (e.g., CRI `registry.headers` / hosts headers).\n- when desc.urls points to a non-registry origin, forwarding well-known sensitive headers (e.g., `Authorization`, `Proxy-Authorization`, `Cookie`) is a cross-origin trust-boundary footgun.\n\nchange:\n- keep operator control and existing behavior, but strip a small set of well-known sensitive headers on desc.urls-driven requests: `Authorization`, `Proxy-Authorization`, `Cookie`, `Cookie2`.\n- this mirrors go standard library redirect behavior where sensitive headers are not forwarded cross-origin.\n\ntest:\n- add `TestFetcherDescURLsDoesNotForwardResolverHeaders` to assert sensitive headers are not sent to desc.urls origins, while non-sensitive custom headers still flow.\n\nscope:\n- `core/remotes/docker` only.\n\npins:\n- repo: https://github.com/containerd/containerd\n- commit: c6d6c8af753c3b5cb6528231b9063d1372f7d226\n\n```release-note\nApply hardening to strip sensitive authentication headers when fetching descriptor URLs\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-02-11T20:14:10Z",
+      "merged_at": "2026-08-24T22:40:12Z",
+      "author": "1seal",
+      "labels": [
+        "impact/changelog",
+        "kind/enhancement",
+        "cherry-picked/1.7.x",
+        "size/L",
+        "area/distribution",
+        "cherry-picked/2.0.x",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13162": {
+      "title": "Set the default of runtimeFeatures.UserNamespacesHostNetwork to true",
+      "url": "https://github.com/containerd/containerd/pull/13162",
+      "body": "This is a follow-up to #12518, after it is merged.\r\n\r\nDue to the integration with NodeDeclaredFeatures, the kubelet needs to know exactly which version of containerd provides this feature. Therefore, I added the `UserNamespacesHostNetwork` field in CRI. Now we just need to set it to true and merge it in the same version as #12518.\n\n```release-note\nSet default runtimeFeatures.UserNamespacesHostNetwork to true\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-04T17:22:49Z",
+      "merged_at": "2026-08-07T07:53:23Z",
+      "author": "HirazawaUi",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "dependencies",
+        "size/XS",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "12518": {
+      "title": "feat: Allow containers to use both host network and user namespace",
+      "url": "https://github.com/containerd/containerd/pull/12518",
+      "body": "This PR implements the feature proposed in KEP: kubernetes/enhancements#5607 for containerd.\r\n\r\nThis PR modifies the behavior to use bind mounts for /sys when a pod employs both hostNetwork and user namespace.\r\n\r\nrelate: #12489\r\n\r\n```release-note\r\nAllow containers to use user namespaces with host networking\r\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2025-11-16T15:15:05Z",
+      "merged_at": "2026-03-30T16:19:51Z",
+      "author": "HirazawaUi",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L"
+      ]
+    },
+    "13360": {
+      "title": "Fix sandbox task API endpoints for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13360",
+      "body": "I believe we overlooked this in https://github.com/containerd/containerd/pull/9736 and introduced task API address and version fields in Runc options.\r\n\r\nThose are used in Sandbox API flow and have nothing to do with runc specifically.\r\nAs the result it doesn't work with other runtimes - https://github.com/containerd/containerd/pull/12986\r\n\r\nThis PR deprecates fields introduced in runc options and moves them to `CreateTaskRequest`.\r\n\n```release-note\nDeprecate task API address and version fields in runc options and move to CreateTaskRequest\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-07T22:02:00Z",
+      "merged_at": "2026-05-19T00:47:03Z",
+      "author": "mxpv",
+      "labels": [
+        "impact/deprecation",
+        "kind/bug",
+        "area/runtime",
+        "size/XXL",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "9736": {
+      "title": "Store bootstrap parameters in sandbox metadata",
+      "url": "https://github.com/containerd/containerd/pull/9736",
+      "body": "1. Sandbox controller returns endpoint information including version, protocol and address when `Start` sandbox.\r\n2. Endpoint information is stored `Extensions`  of the Sandbox in db, then shim get the endpoint information from Sandbox Extensions and restore bootstrap parameters.\r\n\r\nThis is the first PR of the sandboxed Task demonstrated in draft #9574 ",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2024-02-02T06:42:54Z",
+      "merged_at": "2024-05-02T16:16:29Z",
+      "author": "abel-von",
+      "labels": [
+        "impact/changelog",
+        "ok-to-test",
+        "area/runtime",
+        "size/XL"
+      ]
+    },
+    "9574": {
+      "title": "WIP: sandbox: add \"sandboxedTask\"  in addition to shimTask",
+      "url": "https://github.com/containerd/containerd/pull/9574",
+      "body": "If the sandbox provides task API itself, shim management is not required anymore, and shimTask is no longer suitable for the task type provided by the sandbox. So I'm adding a \"sandboxedTask\" type here, and separating the two types can effectively reduce code complexity.\r\n\r\n\r\n\r\n![image](https://github.com/containerd/containerd/assets/7891772/8a3a5a2c-01e1-4e92-95c5-4da3938d293d)\r\n",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2023-12-25T03:43:27Z",
+      "merged_at": null,
+      "author": "abel-von",
+      "labels": [
+        "area/cri",
+        "needs-ok-to-test",
+        "needs-rebase",
+        "size/XXL",
+        "do-not-merge/work-in-progress"
+      ]
+    },
+    "12986": {
+      "title": "client: skip runc options unmarshal for non-runc runtime types",
+      "url": "https://github.com/containerd/containerd/pull/12986",
+      "body": "getRuncOptions() tries to copy the container's stored runtimeOptions into a fresh *runc.v1.Options before returning it to callers like WithTaskAPIEndpoint. This works for runc containers but fails when the container's runtime options are of a different type, e.g. runtimeoptions.v1.Options used by Kata Containers and other non-runc runtimes. typeurl.UnmarshalTo() rejects the cross-type unmarshal with:\r\n```\r\n  can't unmarshal type \"runtimeoptions.v1.Options\" to output\r\n  \"containerd.runc.v1.Options\"\r\n```\r\n\r\nThe error then propagates as \"failed to create containerd task: failed to get runtime v2 options: ...\" and breaks container start for every test that runs inside a Kata sandbox when the shim sandboxer is active.\r\n\r\nLet's ensure we check typeurl.Is() efore attempting the unmarshal. If the stored runtimeOptions are not runc.v1.Options we simply return an empty *options.Options so that callers can still populate task-level fields (TaskApiAddress, TaskApiVersion, etc.) without error.",
+      "state": "closed",
+      "merged": false,
+      "created_at": "2026-03-06T16:13:34Z",
+      "merged_at": null,
+      "author": "fidencio",
+      "labels": [
+        "size/XS",
+        "area/client"
+      ]
+    },
+    "13504": {
+      "title": "Introspect OCI runtime features for non-runc runtimes",
+      "url": "https://github.com/containerd/containerd/pull/13504",
+      "body": "## What this does\n\nRemove the runc-only guard in `introspectRuntimeFeatures` so CRI introspects OCI runtime features for all shim types, not only `io.containerd.runc.v2`.\n\n## Why\n\nKubelet rejects pods with `runtimeClassName: gvisor` and `hostUsers: false` before the shim runs:\n\n```\nRuntimeClass handler \"runsc\" does not support user namespaces\n```\n\n`crictl info` shows `runc` with `features.user_namespaces: true`, but `runsc` has no `features` because containerd never queries non-runc shims. `containerd-shim-runsc-v1` already implements `-info` and returns `specutils.Features()`; containerd was refusing to call it.\n\nThe old `r.Type != RuntimeRuncV2` guard avoided a nil-options marshalling panic. That is already handled by `if options != nil`, so the guard is redundant. The introspection path is otherwise runtime-agnostic (`getRuntimeInfo`, `TaskManager.validateRuntimeFeatures`).\n\n## Behavior\n\n| Runtime | Change |\n|---------|--------|\n| `runc` | Unchanged |\n| `runsc`, `crun`, `kata`, ... | Shim `-info` features surfaced in `RuntimeHandlerFeatures` (RRO mounts, user namespaces, etc.) |\n| Shims without `-info` | Introspection fails, logged at debug; no features advertised (same as before for non-runc) |\n\n## Scope / caveat\n\nContainerd half of [google/gvisor#13303](https://github.com/google/gvisor/issues/13303). `supportsCRIUserns` still requires both the `user` namespace and idmap mounts (`MountExtensions.IDMap.Enabled`). runsc reports user namespace but not idmap, so gVisor also needs a shim-side change before `UserNamespaces: true` is advertised. This PR is the containerd enabler; runtimes that already advertise both benefit immediately.\n\n## Test plan\n\n- [x] `go test ./internal/cri/server/` (`service_introspect_test.go`)\n- [x] Non-runc introspection with and without runtime options\n- [x] Userns advertisement gate via `introspectRuntimeHandler`\n- [x] `go build ./...`, `go vet`, `gofmt`, `goimports`\n\n```release-note\nSupport OCI runtime feature introspection for non-runc runtimes\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-01T02:15:05Z",
+      "merged_at": "2026-07-12T21:47:41Z",
+      "author": "a7i",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x"
+      ]
+    },
+    "13303": {
+      "title": "build(deps): bump github.com/containerd/go-dmverity from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0",
+      "url": "https://github.com/containerd/containerd/pull/13303",
+      "body": "Bumps [github.com/containerd/go-dmverity](https://github.com/containerd/go-dmverity) from 0.0.0-20260106143538-e097b6cc4a33 to 0.1.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/containerd/go-dmverity/releases\">github.com/containerd/go-dmverity's releases</a>.</em></p>\n<blockquote>\n<h2>v0.1.0</h2>\n<p>The first release for go-dmverity includes support for creating and verifying dm-verity hash trees in pure Go, and for activating verity devices on Linux via a pure-Go device-mapper interface. There is no support for FEC in this version.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>fix CI workflow and lint issues by <a href=\"https://github.com/ChengyuZhu6\"><code>@​ChengyuZhu6</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/5\">containerd/go-dmverity#5</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.27.0 to 0.38.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/2\">containerd/go-dmverity#2</a></li>\n<li>build(deps): bump actions/checkout from 5.0.1 to 6.0.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/1\">containerd/go-dmverity#1</a></li>\n<li>build(deps): bump actions/setup-go from 6.0.0 to 6.1.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/3\">containerd/go-dmverity#3</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.38.0 to 0.39.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/7\">containerd/go-dmverity#7</a></li>\n<li>tiny fix: fix link in README by <a href=\"https://github.com/anniecherk\"><code>@​anniecherk</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/8\">containerd/go-dmverity#8</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.39.0 to 0.40.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/9\">containerd/go-dmverity#9</a></li>\n<li>build(deps): bump actions/setup-go from 6.1.0 to 6.2.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/10\">containerd/go-dmverity#10</a></li>\n<li>build(deps): bump actions/checkout from 6.0.1 to 6.0.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/11\">containerd/go-dmverity#11</a></li>\n<li>build(deps): bump golang.org/x/sys from 0.40.0 to 0.41.0 in the golang-x group by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/12\">containerd/go-dmverity#12</a></li>\n<li>build(deps): bump actions/setup-go from 6.2.0 to 6.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/13\">containerd/go-dmverity#13</a></li>\n<li>build(deps): bump actions/setup-go from 6.3.0 to 6.4.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/15\">containerd/go-dmverity#15</a></li>\n<li>ci: disable dependabot for go.mod dependencies by <a href=\"https://github.com/thaJeztah\"><code>@​thaJeztah</code></a> in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/16\">containerd/go-dmverity#16</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/ChengyuZhu6\"><code>@​ChengyuZhu6</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/5\">containerd/go-dmverity#5</a></li>\n<li><a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/2\">containerd/go-dmverity#2</a></li>\n<li><a href=\"https://github.com/anniecherk\"><code>@​anniecherk</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/8\">containerd/go-dmverity#8</a></li>\n<li><a href=\"https://github.com/thaJeztah\"><code>@​thaJeztah</code></a> made their first contribution in <a href=\"https://redirect.github.com/containerd/go-dmverity/pull/16\">containerd/go-dmverity#16</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/containerd/go-dmverity/commits/v0.1.0\">https://github.com/containerd/go-dmverity/commits/v0.1.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li>See full diff in <a href=\"https://github.com/containerd/go-dmverity/commits/0.1.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=github.com/containerd/go-dmverity&package-manager=go_modules&previous-version=0.0.0-20260106143538-e097b6cc4a33&new-version=0.1.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-04-28T02:02:35Z",
+      "merged_at": "2026-04-28T21:58:41Z",
+      "author": "dependabot[bot]",
+      "labels": [
+        "dependencies",
+        "size/XS",
+        "go"
+      ]
+    },
+    "13520": {
+      "title": "Add max size label for snapshots",
+      "url": "https://github.com/containerd/containerd/pull/13520",
+      "body": "Defines a global label for setting size and initially uses it for the erofs snapshotter\n\n```release-note\nAdd max size label for snapshots\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-02T22:26:22Z",
+      "merged_at": "2026-06-03T22:58:32Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/M"
+      ]
+    },
+    "13542": {
+      "title": "cri: enable mount manager for image mounts",
+      "url": "https://github.com/containerd/containerd/pull/13542",
+      "body": "Fix #13534\r\n~Depends on #13656~\n\n```release-note\nEnable mount manager for image mounts in CRI\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-08T04:07:49Z",
+      "merged_at": "2026-09-09T01:06:36Z",
+      "author": "hsiangkao",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/S",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x"
+      ]
+    },
+    "13560": {
+      "title": "Use klauspost/compress/gzip for decode",
+      "url": "https://github.com/containerd/containerd/pull/13560",
+      "body": "Related to #13559.\n\nSwap the stdlib gzip decompression code for [Klaus Post's inflate code](https://github.com/klauspost/compress/blob/v1.18.6/flate/inflate.go) in [`gzipDecompress`](https://github.com/containerd/containerd/blob/v2.3.1/pkg/archive/compression/compression.go#L270). klauspost/compress is already a dependency, used by containerd to decompress zstd OCI blobs. This patch affects only gzip layer decompression.\n\n#### Measurement\n\nGzip decode time for each image's largest layer on arm64 (NVIDIA Grace), Go 1.26.3, in seconds (mean of n=6, relative standard deviation under 1.5%):\n\n| image | compressed → decompressed | stdlib | klauspost | speedup |\n|---|---|--:|--:|--:|\n| `nvcr.io/nvidia/cuda:13.1.2-devel-ubi9` | 1.8 → 3.4 GiB | 13.6 | 9.1 | ~1.5× |\n| `docker.io/pytorch/pytorch:latest` | 3.4 → 7.0 GiB | 41.7 | 28.8 | ~1.4× |\n\nAllocation churn (measured for the cuda image): stdlib 305 MiB / 1.91M mallocs → klauspost 0.18 MiB / 1,948. We won't speculate about the practical impact, but it is a clear qualitative improvement.\n\n#### Precedent\n\nAs of today, CRI-O, Podman, Buildah, and Skopeo all use klauspost's inflate code for decompressing gzip OCI layers: they share the common implementation in [`containers/image`](https://github.com/containers/image). Its gzip decompressor has [returned `pgzip.NewReader(r)`](https://github.com/containers/image/blob/v5.36.2/pkg/compression/compression.go#L61) since [containers/image#543](https://github.com/containers/image/pull/543). For regular gzip blobs, pgzip [falls back to](https://github.com/klauspost/pgzip/blob/v1.2.6/gunzip.go#L318) klauspost's flate. This PR adopts the same inflate core directly.\n\nOther popular projects expose klauspost's inflate code to untrusted or external input: [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/v1.145.0/lib/protoparser/protoparserutil/compress_reader.go#L210) and Prometheus (HTTP bodies), NATS (inbound client WebSocket frames), IBM/sarama (Kafka message sets), MinIO (S3 Select and client `.tar.gz` uploads), CockroachDB (SQL `decompress()` on arbitrary bytes); also on external data at rest in Grafana Loki and TiDB.\n\n#### Notes\n\nThe Go maintainers already trust klauspost's gzip code: in 1.27 the standard library will use klauspost's methods for _compression_ (not yet decompression), see [golang/go#75532](https://github.com/golang/go/issues/75532).\n\nThe speedup is algorithmic, not optimized for any particular architecture.\n\nThe change is small and isolated, so backporting to containerd 1.7 and 2.x is worth discussing.\n\n```release-note\nUse klauspost/compress for gzip layer decompression\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-09T08:59:50Z",
+      "merged_at": "2026-06-30T14:24:56Z",
+      "author": "jgehrcke",
+      "labels": [
+        "impact/changelog",
+        "size/XXL",
+        "area/distribution"
+      ]
+    },
+    "13634": {
+      "title": "Add forward References to the GC collection context",
+      "url": "https://github.com/containerd/containerd/pull/13634",
+      "body": "Extend the garbage-collection framework so a collectible resource can emit forward references during graph traversal, in addition to the existing back-reference mechanism.\n\nA CollectionContext may now implement the optional collectionWithReferences interface:\n\n\tReferences(ctx context.Context, node gc.Node, fn func(gc.Node))\n\nWhen the GC visits a node whose resource type was registered by an external collector, gcContext.references consults the per-type References implementation after the built-in core resource types are handled.\n\nThis is the forward-reference analogue of collectionWithBackRefs.  Whereas ActiveWithBackRefs must enumerate every edge up front and the gcContext holds all of them in its backRefs map for the entire collection, References is invoked on demand for a single node.  A collector whose resources fan out to many other nodes can therefore emit those edges without retaining them in memory for the gc context.\n\nThis commit is intentionally a no-op: no plugin registers a collector that uses collectionWithReferences yet.  It is isolated here so that concurrent development efforts that depend on this interface can be proposed and reviewed upstream independently. This is useful for implementing chunked storage as a plugin, which will directly reference blobs in the content store. This is also useful for any plugin that might hold a reference to a core containerd type.\n\n```release-note\nAdd forward References to the GC collection context\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-06-19T19:35:58Z",
+      "merged_at": "2026-06-22T23:51:47Z",
+      "author": "dmcgowan",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/storage"
+      ]
+    },
+    "13699": {
+      "title": "Add parent path to runc checkpoint options",
+      "url": "https://github.com/containerd/containerd/pull/13699",
+      "body": "This commit allows the client to specify runc's `--parent-path` flag during checkpointing. This is useful for trying CRIU features relying on this flag (e.g. incremental checkpointing) from the client's side.\r\n\n```release-note\nAllow specifying parent checkpoint directory when checkpointing with runc\n```",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-01T00:24:24Z",
+      "merged_at": "2026-07-01T06:21:12Z",
+      "author": "ktock",
+      "labels": [
+        "impact/changelog",
+        "area/runtime",
+        "size/L"
+      ]
+    }
+  },
+  "issues": {}
+}
