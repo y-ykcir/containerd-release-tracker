@@ -1,0 +1,393 @@
+{
+  "metadata": {
+    "generated_at": "2026-09-25T00:39:55.187545",
+    "tool": "containerd-release-tracker",
+    "version": "1.0.0"
+  },
+  "release": {
+    "tag_name": "v2.4.1",
+    "name": "containerd 2.4.1",
+    "body": "Welcome to the v2.4.1 release of containerd!\n\nThe first patch release for containerd 2.4 contains various fixes\nand updates including a security patch.\n\n### Security Updates\n\n* **containerd**\n  * [**CVE-2026-53493**](https://github.com/containerd/containerd/security/advisories/GHSA-pg57-6jwg-q645)\n\n### Highlights\n\n#### Container Runtime Interface (CRI)\n\n* Fix bug where failed container start cleanup leaked tasks and prevented container removal ([#14223](https://github.com/containerd/containerd/pull/14223))\n* Fix bug where container creation failed when SELinux relabeling was unsupported by the filesystem ([#14212](https://github.com/containerd/containerd/pull/14212))\n\n#### Image Distribution\n\n* Fix content upload failures when retrying fetch content after reaching EOF ([#14197](https://github.com/containerd/containerd/pull/14197))\n\n#### Snapshotters\n\n* Apply hardening to filter ID-mapping labels from image annotations during unpack ([#14200](https://github.com/containerd/containerd/pull/14200))\n\n#### ctr development tool\n\n* Fix bug where arguments following \"-\" were dropped in \"ctr images export\" ([#14219](https://github.com/containerd/containerd/pull/14219))\n* Fix bug where container command arguments were parsed as flags in \"ctr run\", \"ctr containers create\", \"ctr tasks exec\", and \"containerd oci-hook\" ([#14215](https://github.com/containerd/containerd/pull/14215))\n* Fix bug where comma-separated flag values were incorrectly split in ctr subcommands ([#14188](https://github.com/containerd/containerd/pull/14188))\n\nPlease try out the release binaries and report any issues at\nhttps://github.com/containerd/containerd/issues.\n\n### Contributors\n\n* Samuel Karp\n* Aysha Afrah Ziya\n* Chris Henzie\n* CrazyMax\n* Maksym Pavlenko\n* Nan Liu\n* Sebastiaan van Stijn\n\n### Changes\n<details><summary>23 commits</summary>\n<p>\n\n  * [`9f7f70fc31`](https://github.com/containerd/containerd/commit/9f7f70fc3160fec77a3a3eb4e62c9b07cc138b19) Prepare release notes for v2.4.1\n  * [`98e88f2afe`](https://github.com/containerd/containerd/commit/98e88f2afe2dc59452eaa26606e3f2823ab42531) Merge commit from fork\n  * [`e0c8eed120`](https://github.com/containerd/containerd/commit/e0c8eed120dfd6f5546d754f406b0aa19939f463) Bound Walk references\n  * [`ddf544326a`](https://github.com/containerd/containerd/commit/ddf544326a38a602da50b499ca97efe349efd8f6) Bound Dispatch concurrency and references\n* cri: don't leak task when StartContainer cleanup fails to delete task ([#14223](https://github.com/containerd/containerd/pull/14223))\n  * [`9e8abe0405`](https://github.com/containerd/containerd/commit/9e8abe0405ff03c49cbd475cb0c45ff6c1c3f995) cri: fix process leak when start cleanup fails to delete task\n* ctr: preserve args after \"-\" in images export ([#14219](https://github.com/containerd/containerd/pull/14219))\n  * [`acbdd57f0d`](https://github.com/containerd/containerd/commit/acbdd57f0dc38e900a45e7d7da364e0e83c848bd) ctr: preserve args after \"-\" in images export\n* ctr: fix flag parsing issues in run, containers create, tasks exec, and oci-hook ([#14215](https://github.com/containerd/containerd/pull/14215))\n  * [`a2e9a5196e`](https://github.com/containerd/containerd/commit/a2e9a5196e8264842f78d843b358afb0cbb20fde) cmd/containerd: stop flag parsing on oci-hook\n  * [`2d0e53474d`](https://github.com/containerd/containerd/commit/2d0e53474d9e0fb47f028a52134fff1e19e07db6) ctr: stop flag parsing before container command\n* cri: tolerate wrapped ENOTSUP during relabel ([#14212](https://github.com/containerd/containerd/pull/14212))\n  * [`eb2dfa125d`](https://github.com/containerd/containerd/commit/eb2dfa125db8f670538c8a8b49b7bb0e3e2a5898) cri: tolerate wrapped ENOTSUP during relabel\n* core/unpack: don't honor id-mapping labels from image annotations ([#14200](https://github.com/containerd/containerd/pull/14200))\n  * [`429f317b55`](https://github.com/containerd/containerd/commit/429f317b55882a0ebd536e0f8b81b019d90fe776) core/unpack: tighten comments around id-mapping label filtering\n  * [`cc1b8a2dc5`](https://github.com/containerd/containerd/commit/cc1b8a2dc5cbc76ecdd47f1bd97414f3bf88d16b) core/unpack: don't honor id-mapping labels from image annotations\n* remotes: revert closing fetch readers at EOF ([#14197](https://github.com/containerd/containerd/pull/14197))\n  * [`d265baec5a`](https://github.com/containerd/containerd/commit/d265baec5a62c1b2bcc2d8051cfd68f7970cdd51) remotes: test fetch retries and HTTP reader lifetime\n  * [`9e8507bea8`](https://github.com/containerd/containerd/commit/9e8507bea8a5b66c32caa199a0df76cf94cc67d3) Revert \"remotes: close fetch reader immediately on EOF\"\n* ctr: disable slice flag separator on commands ([#14188](https://github.com/containerd/containerd/pull/14188))\n  * [`2543d23905`](https://github.com/containerd/containerd/commit/2543d239053adb35b8d4e2f94361cee40dbbedf7) ctr: disable slice flag separator on commands\n* vendor: github.com/fxamacker/cbor/v2 v2.9.4 ([#14179](https://github.com/containerd/containerd/pull/14179))\n  * [`f00dd7552e`](https://github.com/containerd/containerd/commit/f00dd7552e957c7909df861586180b2a35868357) vendor: github.com/fxamacker/cbor/v2 v2.9.4\n</p>\n</details>\n\n### Dependency Changes\n\n* **github.com/fxamacker/cbor/v2**  v2.9.1 -> v2.9.4\n\nPrevious release can be found at [v2.4.0](https://github.com/containerd/containerd/releases/tag/v2.4.0)\n### Which file should I download?\n* `containerd-<VERSION>-<OS>-<ARCH>.tar.gz`:         ✅Recommended. Dynamically linked with glibc 2.35 (Ubuntu 22.04).\n* `containerd-static-<VERSION>-<OS>-<ARCH>.tar.gz`:  Statically linked. Expected to be used on Linux distributions that do not use glibc >= 2.35. Not position-independent.\n\nIn addition to containerd, typically you will have to install [runc](https://github.com/opencontainers/runc/releases)\nand [CNI plugins](https://github.com/containernetworking/plugins/releases) from their official sites too.\n\nSee also the [Getting Started](https://github.com/containerd/containerd/blob/main/docs/getting-started.md) documentation.\n",
+    "published_at": "2026-09-24T23:40:25Z",
+    "prerelease": false,
+    "draft": false,
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v2.4.1",
+    "author": "github-actions[bot]"
+  },
+  "analysis": {
+    "summary": "Error calling LLM API: 401 Client Error: Unauthorized for url: https://qianfan.baidubce.com/v2/chat/completions",
+    "key_changes": [],
+    "important_bugfixes": [],
+    "security_issues": [],
+    "performance_improvements": [],
+    "breaking_changes": [],
+    "recommendations": [],
+    "risk_assessment": ""
+  },
+  "statistics": {
+    "analyzed_prs": 18,
+    "analyzed_issues": 2,
+    "important_items": 13
+  },
+  "important_items": [
+    {
+      "type": "PR",
+      "title": "#14179: [release/2.4] vendor: github.com/fxamacker/cbor/v2 v2.9.4",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14174: vendor: github.com/fxamacker/cbor/v2 v2.9.4",
+      "reason": "Contains 'panic'; Potential crash issue"
+    },
+    {
+      "type": "PR",
+      "title": "#14188: [release/2.4] ctr: disable slice flag separator on commands",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14197: [release/2.4] remotes: revert closing fetch readers at EOF",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14194: remotes: revert closing fetch readers at EOF",
+      "reason": "Contains 'regression'; Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#13438: remotes: close fetch reader immediately on EOF",
+      "reason": "Performance related"
+    },
+    {
+      "type": "PR",
+      "title": "#14200: [release/2.4] core/unpack: don't honor id-mapping labels from image annotations",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14212: [release/2.4] cri: tolerate wrapped ENOTSUP during relabel",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14215: [release/2.4] ctr: fix flag parsing issues in run, containers create, tasks exec, and oci-hook",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14219: [release/2.4] ctr: preserve args after \"-\" in images export",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "PR",
+      "title": "#14223: [release/2.4] cri: don't leak task when StartContainer cleanup fails to delete task",
+      "reason": "Cherry-pick or backport"
+    },
+    {
+      "type": "Issue",
+      "title": "#14181: `ctr`: Subcommands split slice flags (e.g. `--mount`) on commas after migration to `urfave/cli/v3`",
+      "reason": "Contains 'regression'; Has label 'kind/bug'"
+    },
+    {
+      "type": "Issue",
+      "title": "#14208: [Regression 2.4.0] ctr run treats container command flags as ctr flags (\"flag provided but not defined\")",
+      "reason": "Contains 'regression'; Has label 'kind/bug'; Performance related"
+    }
+  ],
+  "prs": {
+    "14179": {
+      "title": "[release/2.4] vendor: github.com/fxamacker/cbor/v2 v2.9.4",
+      "url": "https://github.com/containerd/containerd/pull/14179",
+      "body": "This is an automated cherry-pick of #14174\n\n/assign samuelkarp",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-16T21:33:39Z",
+      "merged_at": "2026-09-16T23:23:56Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "size/L"
+      ]
+    },
+    "14174": {
+      "title": "vendor: github.com/fxamacker/cbor/v2 v2.9.4",
+      "url": "https://github.com/containerd/containerd/pull/14174",
+      "body": "update to the latest version, which fixes various potential panics.\r\n\r\nfull diff: https://github.com/fxamacker/cbor/compare/v2.9.1...v2.9.4",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-16T13:11:44Z",
+      "merged_at": "2026-09-16T21:32:38Z",
+      "author": "thaJeztah",
+      "labels": [
+        "size/L",
+        "cherry-pick/2.4.x"
+      ]
+    },
+    "14188": {
+      "title": "[release/2.4] ctr: disable slice flag separator on commands",
+      "url": "https://github.com/containerd/containerd/pull/14188",
+      "body": "This is an automated cherry-pick of #14185\n\n/assign thaJeztah\n\n```release-note\nFix bug where comma-separated flag values were incorrectly split in ctr subcommands\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-17T19:27:39Z",
+      "merged_at": "2026-09-17T21:12:43Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/ctr"
+      ]
+    },
+    "14185": {
+      "title": "ctr: disable slice flag separator on commands",
+      "url": "https://github.com/containerd/containerd/pull/14185",
+      "body": "In urfave/cli/v3, child commands do not inherit\r\nDisableSliceFlagSeparator from the root command, unlike in urfave/cli/v2. When containerd migrated to v3 in commit f72829f36, subcommands inadvertently reverted to splitting slice flags on commas, breaking flags that expect comma-separated values such as --mount type=bind,src=/tmp,dst=/host,options=rbind:ro.\r\n\r\nExplicitly set DisableSliceFlagSeparator on all cli.Command structs in cmd/ctr/commands, restoring the behavior where slice flags are not split on commas.\r\n\r\nFixes #14181\r\n\r\nAssisted-by: Antigravity",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-17T07:56:35Z",
+      "merged_at": "2026-09-17T19:26:58Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/L",
+        "cherry-picked/2.4.x"
+      ]
+    },
+    "14197": {
+      "title": "[release/2.4] remotes: revert closing fetch readers at EOF",
+      "url": "https://github.com/containerd/containerd/pull/14197",
+      "body": "This is an automated cherry-pick of #14194\n\n/assign thaJeztah\n\n```release-note\nFix content upload failures when retrying fetch content after reaching EOF\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-19T20:26:49Z",
+      "merged_at": "2026-09-19T21:13:28Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/distribution"
+      ]
+    },
+    "14194": {
+      "title": "remotes: revert closing fetch readers at EOF",
+      "url": "https://github.com/containerd/containerd/pull/14194",
+      "body": "Revert #13438 to restore registry-cache upload retries, addressing the regression blocking BuildKit containerd v2.4.0 upgrade in https://github.com/moby/buildkit/pull/7173#discussion_r4047433110. Closing the source reader at EOF prevents `content.Copy` from rewinding it when the destination writer requests a retry, causing uploads to fail with `seek on closed reader`.\r\n\r\nThe HTTP reader already closes its response body at EOF while remaining seekable, preserving CRI progress accounting before a slow commit without the generic wrapper. A separate commit adds regression tests for replaying uploads after HTTP 408, seeking after EOF, and closing the HTTP body exactly once before commit.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-18T14:39:57Z",
+      "merged_at": "2026-09-19T20:25:50Z",
+      "author": "crazy-max",
+      "labels": [
+        "size/L",
+        "cherry-pick/2.4.x"
+      ]
+    },
+    "7173": {
+      "title": "test: Add ability to switch between  cgroupv1 or cgroupv2 for node e2e",
+      "url": "https://github.com/containerd/containerd/pull/7173",
+      "body": "For k8s e2e node tests, we want to be able to test both cgroupv1 and\r\ncgroupv2 variants. Currently, the latest version of COS (M97) is running\r\nas cgroupv2 and we would like the add the ability to switch to cgroupv1\r\nfor running tests on cgroupv1.\r\n\r\nTo do this, add a new flag, \"CGROUP_MODE\" which can be set as v1 or v2.\r\nIf the current cgroup configuration does not match the desired config,\r\nthe cgroup config will be set via `cgroup_helper` COS utility, and the\r\nnode will be rebooted.\r\n\r\nSigned-off-by: David Porter <porterdavid@google.com>",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2022-07-16T01:32:26Z",
+      "merged_at": "2022-07-21T01:46:04Z",
+      "author": "bobbypage",
+      "labels": [
+        "ok-to-test"
+      ]
+    },
+    "13438": {
+      "title": "remotes: close fetch reader immediately on EOF",
+      "url": "https://github.com/containerd/containerd/pull/13438",
+      "body": "The CRI progress reporter cancels an image pull if it sees no progress\r\nfor 5 seconds. It tracks this through active HTTP requests. During\r\nremote fetches, the HTTP response reader is closed via a deferred\r\ncall after `content.Copy` completes.\r\n\r\nDiagnosis:\r\n`content.Copy` handles both downloading the stream and committing\r\nthe writer to the content store. Any delays during the database\r\ncommit phase (e.g. from database locks, slow disk syncs, or concurrent\r\npull deduplication blocks) keep the HTTP connection open. The progress\r\nreporter sees the request is still active (`activeReqs = 1`) but no new\r\nbytes are coming in, leading to a premature timeout cancellation.\r\n\r\nReproduction:\r\nWe reproduced this flakiness deterministically on a GCE VM under a\r\nsimulated 2 Mbps ingress bandwidth limit using Linux traffic control\r\ningress policing (`tc filter ... action police rate 2mbit`). Under this\r\nslowness, the download took longer than the progress timeout during the\r\nslow commit phase, triggering context cancellation and failing the\r\n`TestCRIImagePullTimeout/HoldingContentOpenWriterWithLocalPull` test.\r\n\r\nSolution:\r\nTo fix this, we wrap the HTTP reader in a `closeOnEOFReader` or\r\n`closeOnEOFReadSeeker` before handing it to `content.Copy`. If the\r\nunderlying connection reader implements `io.Seeker`, it is dynamically\r\nwrapped in `closeOnEOFReadSeeker` to forward `Seek` operations. This\r\nensures that O(1) Range seeks are fully preserved during network\r\nresumes or retries. The wrappers automatically close the underlying\r\nnetwork stream as soon as `Read()` returns `io.EOF` (when the download\r\ncompletes, before the database commit begins). This drops `activeReqs`\r\nto `0` early, freeing the socket and preventing progress timeouts\r\nduring commits. A `sync.Once` ensures that subsequent deferred\r\n`Close()` calls do not double-decrement the reporter.\r\n\r\nHow it was tested:\r\nVerified the fix on a GCE VM under a simulated 2 Mbps ingress\r\nbandwidth limit. Verified seeker safety via standalone logic audits\r\nand trace proofs.\r\n\r\nAssisted-by: Antigravity\r\n\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-05-20T04:17:59Z",
+      "merged_at": "2026-06-02T23:39:52Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/M"
+      ]
+    },
+    "14200": {
+      "title": "[release/2.4] core/unpack: don't honor id-mapping labels from image annotations",
+      "url": "https://github.com/containerd/containerd/pull/14200",
+      "body": "This is an automated cherry-pick of #13855\n\n/assign samuelkarp\n\n```release-note\nApply hardening to filter ID-mapping labels from image annotations during unpack\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-21T20:08:11Z",
+      "merged_at": "2026-09-22T17:55:45Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/snapshotters",
+        "size/M"
+      ]
+    },
+    "13855": {
+      "title": "core/unpack: don't honor id-mapping labels from image annotations",
+      "url": "https://github.com/containerd/containerd/pull/13855",
+      "body": "The unpacker turns each image layer descriptor's annotations into snapshot labels and hands them to the snapshotter's Prepare, and FilterInheritedLabels keeps every containerd.io/snapshot/ key, so it also keeps containerd.io/snapshot/uidmapping and .../gidmapping. The overlay and erofs snapshotters act on those in Prepare by chowning the extracted layer's fs directory to the mapped host uid/gid, and that branch runs whenever the label is present, independent of the snapshotter's remapIDs setting. Layer annotations come straight from the image manifest, so a crafted image can put the mapping labels on a layer and make containerd chown the committed layer directory to an arbitrary host uid/gid during an ordinary pull, with no user-namespace setup involved. Because the committed directory is a shared, reused rootfs lowerdir, that ownership sticks and follows every container built on the layer. I ran into it while tracing where these labels are produced: the id maps are meant to reach the snapshotter from the runtime via WithRemapperLabels at container-prepare time, not from image content. The fix drops only the two id-mapping labels in the unpacker, so the annotation inheritance that remote snapshotters depend on stays intact while image content can no longer reach that chown.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-07-26T11:15:49Z",
+      "merged_at": "2026-09-21T20:05:28Z",
+      "author": "aysha-afrah26",
+      "labels": [
+        "cherry-pick/1.7.x",
+        "size/M",
+        "cherry-pick/2.0.x",
+        "cherry-pick/2.2.x",
+        "cherry-pick/2.3.x",
+        "cherry-picked/2.4.x"
+      ]
+    },
+    "14212": {
+      "title": "[release/2.4] cri: tolerate wrapped ENOTSUP during relabel",
+      "url": "https://github.com/containerd/containerd/pull/14212",
+      "body": "This is an automated cherry-pick of #14207\n\n/assign cpuguy83\n\n```release-note\nFix bug where container creation failed when SELinux relabeling was unsupported by the filesystem\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-23T17:08:11Z",
+      "merged_at": "2026-09-23T17:51:38Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/XS"
+      ]
+    },
+    "14207": {
+      "title": "cri: tolerate wrapped ENOTSUP during relabel",
+      "url": "https://github.com/containerd/containerd/pull/14207",
+      "body": "`label.Relabel` can return an `*os.PathError` wrapping `syscall.ENOTSUP` when the source filesystem does not support SELinux extended attributes. The existing direct comparison only recognizes an unwrapped errno, so CRI container creation fails instead of tolerating the unsupported relabel operation.\r\n\r\nTested with:\r\n\r\n- `GOTOOLCHAIN=auto go test ./internal/cri/opts`\r\n- `GOTOOLCHAIN=auto make check`\r\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-22T20:45:59Z",
+      "merged_at": "2026-09-23T16:29:58Z",
+      "author": "liunan-ms",
+      "labels": [
+        "size/XS",
+        "cherry-picked/2.2.x",
+        "cherry-picked/2.3.x",
+        "cherry-picked/2.4.x"
+      ]
+    },
+    "14215": {
+      "title": "[release/2.4] ctr: fix flag parsing issues in run, containers create, tasks exec, and oci-hook",
+      "url": "https://github.com/containerd/containerd/pull/14215",
+      "body": "This is an automated cherry-pick of #14209\n\n/assign samuelkarp\n\n```release-note\nFix bug where container command arguments were parsed as flags in \"ctr run\", \"ctr containers create\", \"ctr tasks exec\", and \"containerd oci-hook\"\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-23T21:02:45Z",
+      "merged_at": "2026-09-23T22:20:16Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/ctr"
+      ]
+    },
+    "14209": {
+      "title": "ctr: fix flag parsing issues in run, containers create, tasks exec, and oci-hook",
+      "url": "https://github.com/containerd/containerd/pull/14209",
+      "body": "Fixes https://github.com/containerd/containerd/issues/14208",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-23T00:33:41Z",
+      "merged_at": "2026-09-23T21:02:05Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/L"
+      ]
+    },
+    "14219": {
+      "title": "[release/2.4] ctr: preserve args after \"-\" in images export",
+      "url": "https://github.com/containerd/containerd/pull/14219",
+      "body": "This is an automated cherry-pick of #14217\n\n/assign thaJeztah\n\n```release-note\nFix bug where arguments following \"-\" were dropped in \"ctr images export\"\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-24T01:15:20Z",
+      "merged_at": "2026-09-24T02:10:54Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "size/L",
+        "area/ctr"
+      ]
+    },
+    "14217": {
+      "title": "ctr: preserve args after \"-\" in images export",
+      "url": "https://github.com/containerd/containerd/pull/14217",
+      "body": "urfave/cli/v3 breaks out of its flag parsing loop when it encounters a \"-\" positional argument without appending the remaining arguments, causing \"ctr images export - <image>\" to drop all image references and flags following \"-\".\r\n\r\nWhen <out> is \"-\", recover the un-truncated arguments from the parent \"images\" command lineage and re-parse the tail starting at \"-\" with a sentinel placeholder so trailing image references and flags are preserved.\r\n\r\nThis workaround can be removed after the bug is fixed upstream:\r\n\r\n* https://github.com/urfave/cli/issues/2418\r\n* https://github.com/urfave/cli/pull/2419\r\n\r\nAssisted-by: Antigravity",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-23T22:57:11Z",
+      "merged_at": "2026-09-24T01:14:42Z",
+      "author": "samuelkarp",
+      "labels": [
+        "size/L",
+        "cherry-picked/2.4.x"
+      ]
+    },
+    "14223": {
+      "title": "[release/2.4] cri: don't leak task when StartContainer cleanup fails to delete task",
+      "url": "https://github.com/containerd/containerd/pull/14223",
+      "body": "This is an automated cherry-pick of #14218\n\n/assign mxpv\n\n/kind resource-leak\n\n```release-note\nFix bug where failed container start cleanup leaked tasks and prevented container removal\n```\n",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-24T19:45:41Z",
+      "merged_at": "2026-09-24T20:46:55Z",
+      "author": "k8s-infra-cherrypick-robot",
+      "labels": [
+        "impact/changelog",
+        "area/cri",
+        "size/L",
+        "kind/resource-leak"
+      ]
+    },
+    "14218": {
+      "title": "cri: don't leak task when StartContainer cleanup fails to delete task",
+      "url": "https://github.com/containerd/containerd/pull/14218",
+      "body": "When `StartContainer` fails after the task is created and the cleanup task delete fails (e.g. it timed out on a stuck shim), the container was recorded as `EXITED` while its task could potentially remained. \r\n\r\n`RemoveContainer` only reaps tasks for `RUNNING` and `UNKNOWN` containers, so every kubelet GC retry failed with \"cannot delete running task\" and the container was never collected.\r\n\r\nRecord the container as `UNKNOWN` when task cleanup cannot be confirmed so `RemoveContainer` force-stops it and retries the cleanup.",
+      "state": "closed",
+      "merged": true,
+      "created_at": "2026-09-23T23:36:13Z",
+      "merged_at": "2026-09-24T19:40:02Z",
+      "author": "mxpv",
+      "labels": [
+        "size/L",
+        "kind/resource-leak",
+        "cherry-pick/2.4.x"
+      ]
+    }
+  },
+  "issues": {
+    "14181": {
+      "title": "`ctr`: Subcommands split slice flags (e.g. `--mount`) on commas after migration to `urfave/cli/v3`",
+      "url": "https://github.com/containerd/containerd/issues/14181",
+      "body": "### Background:\n#### Description\nIn containerd 2.4.0, `cmd/ctr` was migrated to `urfave/cli/v3`. While `DisableSliceFlagSeparator: true` is set on the root `ctr` command (`cmd/ctr/app/main.go`), child subcommands (`containers create`, `run`, etc.) do **not** inherit this flag in `urfave/cli/v3`.\n\nAs a result, slice flags containing commas (such as `--mount type=bind,src=/path,dst=/path,options=rbind:ro`) are erroneously split on commas into separate slice elements with empty destinations, causing container task initialization to fail during `runc` mount setup:\n\n```text\nctr: failed to create shim task: OCI runtime create failed: runc create failed:\nunable to start container process: error during container init:\nerror mounting \"\" to rootfs at \"\": create mountpoint for mount:\nmountpoint \"/run/containerd/io.containerd.runtime.v2.task/default/test/rootfs\" is on the top of rootfs \"/run/containerd/io.containerd.runtime.v2.task/default/test/rootfs\"\n```\n\nThis regression impacts node workflows, diagnostics, autotests, and GKE Installables.\n\n#### Steps to Reproduce\nRun any `ctr` command passing a `--mount` flag with comma-separated options:\n```bash\nctr containers create \\\n  --mount type=bind,src=/var/lib/containerd/binary,dst=/binary,options=bind \\\n  <image> test\nctr task start -d test\n```\n\nInspecting the container spec (`ctr containers info test`) shows the single `--mount` flag was split into 4 separate mounts:\n```json\n\"mounts\": [\n    {\"destination\": \"\", \"type\": \"bind\"},\n    {\"destination\": \"\", \"source\": \"/var/lib/containerd/binary\"},\n    {\"destination\": \"/binary\"},\n    {\"destination\": \"\", \"options\": [\"bind\"]}\n]\n```\n\n#### Root Cause\nIn `urfave/cli/v3` (`flag_slice_base.go` and `command.go`):\n- Multi-value slice flags split on commas by default unless `cmd.DisableSliceFlagSeparator == true`.\n- When subcommands execute, `setMultiValueParsingConfig` checks `cmd.DisableSliceFlagSeparator` on the active subcommand `cmd`.\n- Unlike `useShortOptionHandling()`, `urfave/cli/v3` does not traverse `cmd.Lineage()` for `DisableSliceFlagSeparator` (see also [urfave/cli#1856](https://github.com/urfave/cli/issues/1856)).\n- Because `ctr` only sets `DisableSliceFlagSeparator: true` on the root command, all subcommands execute with `DisableSliceFlagSeparator: false`.\n\n#### Proposed Fix\nExplicitly set `DisableSliceFlagSeparator: true` on all subcommands where slice flags are accepted, or traverse command definitions when constructing `ctr` commands.",
+      "state": "closed",
+      "created_at": "2026-09-17T06:32:12Z",
+      "closed_at": "2026-09-17T19:26:59Z",
+      "author": "chenglongtang1",
+      "labels": [
+        "kind/bug",
+        "status/accepted",
+        "area/ctr"
+      ]
+    },
+    "14208": {
+      "title": "[Regression 2.4.0] ctr run treats container command flags as ctr flags (\"flag provided but not defined\")",
+      "url": "https://github.com/containerd/containerd/issues/14208",
+      "body": "### Description\n\nIn containerd 2.4.0, passing container command arguments that begin with a dash (such as `bash -uexc \"...\"` or `sh -c \"...\"`) causes `ctr run` to fail with `flag provided but not defined`.\n\nIn all previous versions of containerd (containerd 1.7.x and 2.0.x through 2.3.x), `ctr run [flags] Image|RootFS ID [COMMAND] [ARG...]` treated all arguments following `<ID>` as the container process command and arguments. In 2.4.0, `ctr` scans for its own flags across and after positional arguments.\n\n### Steps to Reproduce\n\nRun any container where the command to execute inside the container includes flags:\n\n```bash\nctr run --rm docker.io/library/busybox:latest test-container sh -uexc \"echo hello\"\n```\n\n### Expected Behavior (containerd <= 2.3.x)\n\nThe arguments `sh`, `-uexc`, and `\"echo hello\"` are passed to the container runtime via `oci.WithProcessArgs`. The container executes the command and exits cleanly:\n\n```\n+ echo hello\nhello\n```\n\n### Actual Behavior (containerd 2.4.0)\n\n`ctr` attempts to parse `-uexc` as a flag for `ctr run` itself and aborts:\n\n```\nIncorrect Usage: flag provided but not defined: -uexc\n\nctr: flag provided but not defined: -uexc\n```\n\n### Additional Context & Impact\n\n* **Regression source:** This behavior changed with the CLI migration from `urfave/cli/v2` to `urfave/cli/v3` in 2.4.0. In `v2`, Go's standard library `flag.FlagSet` stopped flag parsing at the first positional argument (`Image`), leaving all subsequent arguments untouched in `c.Args().Slice()[2:]`. In `v3`, the argument scanner continues looking for flags throughout the remaining arguments.\n* **Compatibility impact with `--`:** Existing scripts and automation cannot simply insert `--` after the container ID (`ctr run <image> <id> -- <cmd>`) to support both old and new versions. In `containerd <= 2.3.x`, `ctr` does not strip `--` when placed after positional arguments; it passes `\"--\"` directly to runc as the process command, failing with:\n  ```\n  exec: \"--\": executable file not found in $PATH\n  ```\n* This also affects other commands taking positional container commands, such as `ctr exec`.\n",
+      "state": "closed",
+      "created_at": "2026-09-22T21:51:22Z",
+      "closed_at": "2026-09-23T21:02:07Z",
+      "author": "chenglongtang1",
+      "labels": [
+        "kind/bug",
+        "area/ctr"
+      ]
+    }
+  }
+}
